@@ -1,0 +1,42 @@
+.container{
+	width: 100%;
+	height: 700px;
+	border:double;
+}
+.boder{
+	float:left;
+	background-color: #87CEFA;
+	width:60px;
+	height:inherit;
+}
+.pic{
+	text-align: center;
+	margin-top: 100px;
+}
+.name{
+	text-align: center;
+	font-family: arial;
+	font-size: larger;
+}
+
+
+.portrait{
+	float:left;
+	width: 300px;
+	background-color: #EAEAEA;
+	height:inherit;
+}
+.selfintro{
+	padding-left: 20px;
+	float:left;
+	font-family:arial;
+}
+
+.hr1 {
+	height: 10px;
+	border: none;
+	border-top: 2px groove skyblue;
+}
+.ps{
+	font-size: 0.6em;
+}

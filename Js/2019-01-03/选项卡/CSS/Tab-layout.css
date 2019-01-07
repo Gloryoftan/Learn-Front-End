@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+#tab-layout {
+    width: 500px;
+    height: 250px;
+    margin: 50px auto;
+    user-select: none
+}
+
+#tab-layout .lefttab {
+    float: left;
+}
+
+#tab-layout .lefttab li {
+    width: 95px;
+    height: 40px;
+    background-color: aquamarine;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    color: blue;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#tab-layout .lefttab li.on {
+    background-color: aqua;
+}
+
+#tab-layout .content {
+    position: relative;
+    float: left;
+    width: 400px;
+    height: 250px;
+}
+
+#tab-layout .content .righttab {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#tab-layout .content .righttab .img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+#tab-layout .content .righttab .img li {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#tab-layout .content .righttab .tab {
+    position: absolute;
+    bottom: 0;
+}
+
+#tab-layout .content .righttab .tab li {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background-color: aquamarine;
+    margin-right: 2px;
+    color: blue;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#tab-layout .content .righttab .tab li.on {
+    background-color: aqua;
+}
+
+#tab-layout .content .on {
+    display: block;
+}
+
+#tab-layout .content .righttab .img li.on{
+    display: block;
+}

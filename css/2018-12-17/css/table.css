@@ -1,0 +1,34 @@
+body{
+    background-color: rgb(221,221,220);
+}
+
+table{
+    width: 700px;
+    height: 400px;
+    background-color: #fff;
+}
+
+.head{
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgb(80,130,187);
+    height: 40px;
+    color: #fff;
+}
+
+tr{
+    height: 30px;
+    background-color: rgb(232,237,244);
+}
+
+.modualDes{
+    background-color: rgb(208,215,231);
+}
+
+.modualDes td:first-child{
+    text-align: center;
+}
+
+.ver td:first-child{
+    text-align: left;
+}

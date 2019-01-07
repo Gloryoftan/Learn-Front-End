@@ -1,0 +1,81 @@
+body {
+    perspective: 800px;
+    /* perspective-origin: left; */
+}
+
+.stage {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 200px auto;
+    box-shadow: 0 0 15px slategrey inset;
+    transform-style: preserve-3d;
+    transition: 2s;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 0 15px black inset;
+    transition: 2s;
+}
+
+.face-front {
+    transform: translateZ(100px);
+    box-shadow: 0 0 15px red inset;
+}
+
+.face-back {
+    transform: rotateY(180deg) translateZ(100px);
+    box-shadow: 0 0 15px orange inset;
+    /*面朝哪，Z轴正值就在哪*/
+}
+
+.face-left {
+    transform: rotateY(-90deg) translateZ(100px);
+    box-shadow: 0 0 15px rgb(252, 252, 61) inset;
+}
+
+.face-right {
+    transform: rotateY(90deg) translateZ(100px);
+    box-shadow: 0 0 15px green inset;
+}
+
+.face-top {
+    transform: rotateX(90deg) translateZ(100px);
+    box-shadow: 0 0 15px blue inset;
+}
+
+.face-bottom {
+    transform: rotateX(-90deg) translateZ(100px);
+    box-shadow: 0 0 15px purple inset;
+}
+
+.stage:hover {
+    transform: rotateZ(180deg) rotateY(180deg);
+}
+
+.stage:hover .face-front {
+    transform: translateZ(200px);
+}
+
+.stage:hover .face-back {
+    transform: rotateY(180deg) translateZ(200px);
+}
+
+.stage:hover .face-left {
+    transform: rotateY(-90deg) translateZ(200px);
+}
+
+.stage:hover .face-right {
+    transform: rotateY(90deg) translateZ(200px);
+}
+
+.stage:hover .face-top {
+    transform: rotateX(90deg) translateZ(200px);
+}
+
+.stage:hover .face-bottom {
+    transform: rotateX(-90deg) translateZ(200px);
+}

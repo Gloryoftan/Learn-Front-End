@@ -1,0 +1,59 @@
+.container{
+	width: 90%;
+	background-color:#C0C0C0;
+	margin:auto;
+}
+
+h1{
+	text-align: center;
+}
+p{
+	color:#00FFFF;
+}
+
+#title{
+	color:lightseagreen;
+}
+
+#subtitle-1{
+	color: aqua;
+}
+
+.content{
+	color:dodgerblue;
+}
+
+*{
+	font-family: "arial black";
+}
+
+p span{
+	color:red;
+}
+
+dl dd{
+	color:chartreuse;
+}
+
+dl em{
+	color:blueviolet;
+}
+
+dt>em{
+	color: crimson;
+}
+dd+dd>em{
+	color:ghostwhite;
+}
+
+li+li{
+	color:deeppink;
+}
+
+ul~h3{
+	color: fuchsia;
+}
+
+h3+p{
+	color:lightsalmon;
+	}

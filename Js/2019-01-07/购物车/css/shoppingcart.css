@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(163, 163, 128);
+}
+
+table {
+    width: 600px;
+    height: 400px;
+    background-color: rgb(237, 208, 190);
+    margin: 50px auto;
+    border:1px solid  rgb(76, 180, 231);
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.head {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgb(76, 180, 231);
+    height: 40px;
+    color: rgb(255, 192, 159);
+}
+
+th , td{
+    height: 40px;   
+    border:1px solid  rgb(76, 180, 231);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.item{
+    width: 150px;
+}
+
+.price{
+    width: 50px;
+}
+
+.quality{
+    width: 50px;
+}
+
+.sub-total{
+    width: 50px;
+}

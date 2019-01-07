@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+#wrap {
+    width: 400px;
+    height: 200px;
+    border: 1px solid red;
+    border-radius: 10px;
+    margin: 50px auto;
+    text-align: center;
+    font-size: 24px
+}
+
+#wrap .list {
+    width: 160px;
+    height: 70px;
+    margin: 20px auto;
+    padding-top: 30px;
+}
+
+#wrap .list li {
+    float: left;
+    width: 32px;
+    height: 32px;
+    background-image: url("../img/xihuan.png");
+}
+
+#wrap .list li.light {
+    background-image: url("../img/xihuan-2.png");
+}

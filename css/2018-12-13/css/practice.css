@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+.form {
+    width: 320px;
+    height: 320px;
+    border: 1px solid #ccc;
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px;
+    line-height: 30px;
+    box-shadow: 0 0 15px black;
+}
+
+span {
+    font-size: 20px;
+}
+
+.input1{
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.form1{
+    position: relative;
+}
+
+.prompt {
+    display: none;
+    position: absolute;
+    right:0;
+    top: 0;
+    height: 20px;
+    margin-top:5px;
+    background-color: blue;
+    color: #ccc;
+    font-size:12px;
+    line-height: 20px;
+}
+
+.prompt:after{
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    content: "";
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-left: 0;
+    border-right-color: blue;
+}
+
+.form1:hover .prompt{
+    display: block;
+}
+
+.example{
+    position: relative;
+    /* width: 50px;
+    height: 25px; */
+    width: 0;
+    height: 0;
+    background-color: pink;
+    margin: auto;
+    margin-top: 300px;
+    /* border-radius: 50%; */
+    border: 25px solid red;
+    border-left: 25px solid blue;
+    border-bottom-color: blueviolet; 
+
+    /* border-radius: 50%; */
+    /* border-left-color: blue; */
+    /* border-top-color: yellow;
+    border-bottom-color: green; */
+
+}
+/* .example1{
+    position: absolute;
+    left: -25px;
+    top: 0;
+    width: 50px;
+    height: 25px;
+    background-color: blueviolet;
+} */

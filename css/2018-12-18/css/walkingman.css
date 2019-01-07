@@ -1,0 +1,167 @@
+.animate{
+    position: relative;
+    height: 400px;
+    width: 200px;
+    margin-top: 100px;
+    /* border: 1px solid red; */
+    animation: walk 6s infinite linear;
+}
+
+.head{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: sandybrown;
+    animation: head 1s infinite alternate linear;
+    transform-origin: bottom center;
+}
+
+
+.head:before{
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 50px;
+    height: 20px;
+    background: green;
+    border-radius: 5px 5px 0 0;
+    content: "";
+}
+
+.head:after{
+    position: absolute;
+    top: -18px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: green;
+    border-radius: 50%;
+    content: "";
+}
+
+.body{
+    position: absolute;
+    top: 45px;
+    left: 3px;
+    height: 70px;
+    width: 35px;
+    background-color: brown;
+    border-radius: 10px 10px 5px 5px;
+}
+
+.body:after{
+    position: absolute;
+    top: -7px;
+    left: 12px;
+    width: 10px;
+    height: 10px;
+    background-color: sandybrown;
+    border-radius: 2px;
+    content: "";
+    z-index: -1;
+}
+
+.arm{
+    position: absolute;
+    top: 53px;
+    left: 14px;
+    width: 11px;
+    height: 42px;
+    background: aqua;
+    border-radius: 5px 5px 2px 2px;
+    animation:arm 1s infinite alternate linear;
+    transform-origin: top center;
+}
+
+.arm:after{
+    position: absolute;
+    top: 44px;
+    left: 0px;
+    width: 11px;
+    height: 11px;
+    background:sandybrown;
+    border-radius: 50%;
+    content: "";
+}
+
+.arm::before{
+    position: absolute;
+    top: 40px;
+    left: 3px;
+    width: 5px;
+    height: 5px;
+    background:sandybrown;
+    content: "";
+}
+
+.leg{
+    position: absolute;
+    top: 111px;
+    left: 12px;
+    height: 70px;
+    width: 15px;
+    background-color: blue;
+    border-radius: 0 0 5px 5px;
+    z-index: -1;
+    animation:leg 1s infinite alternate linear;
+    transform-origin: top center;
+}
+
+.leg::before{
+    position: absolute;
+    top: 74px;
+    left: -1px;
+    height: 15px;
+    width: 25px;
+    background-color: blue;
+    border-radius: 5px 15px 0 0;
+    content: "";
+}
+
+.leg::after{
+    position: absolute;
+    top: 68px;
+    left: 2px;
+    height: 10px;
+    width: 10px;
+    background-color: sandybrown;
+    border-radius: 2px;
+    content: "";
+    z-index: -1;
+}
+
+
+@keyframes arm{
+    0%{transform: rotate(35deg);}
+    50%{transform: rotate(0deg);}
+    100%{transform: rotate(-55deg);}
+}
+
+.arm-left{
+    z-index: -1;
+    animation-delay: 1s;
+}
+
+@keyframes leg{
+    0%{transform: rotate(35deg);}
+    50%{transform: rotate(0deg);}
+    100%{transform: rotate(-55deg);}
+}
+
+.leg-left{
+    z-index: -1;
+    animation-delay: 1s;
+}
+
+@keyframes head{
+    0%{transform: rotate(10deg);}
+    50%{transform: rotate(0deg);}
+    100%{transform: rotate(-10deg);}
+}
+
+
+@keyframes walk{
+    0%{transform: translateX(-200px);}
+    100%{transform: translateX(1400px);}
+}
