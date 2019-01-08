@@ -16,32 +16,88 @@ img {
     border: 0
 }
 
-body{
+body {
     background-color: aqua;
 }
 
-#side .main{
+#side .main {
     position: fixed;
-    right: 0;
+    right: -35px;
     top: 0;
     width: 35px;
     height: 100%;
     background-color: #000000;
+    transition: right 1s;
 }
 
-#side main ul li{
+#side .main:hover {
+    right: 0;
+}
+
+#side .main ul li {
+    position: relative;
     width: 35px;
     height: 35px;
 }
 
-#side .main ul li i{
+#side .main ul li.first {
+    margin: 149px 0 100px;
+    border-bottom: 1px solid gray;
+}
+
+#side .main ul li i {
     display: block;
     width: 35px;
     height: 35px;
+    font-size: 25px;
     color: #fff;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
 }
 
-#side .cart{
+#side .main ul li:hover i {
+    background-color: #e03636;
+}
+
+#side .main ul li.first i {
+    font-size: 20px;
+}
+
+#side .main ul li .title {
+    visibility: hidden;
+    position: absolute;
+    right: 95px;
+    top: 0;
+    width: 90px;
+    height: 35px;
+    background-color: #494949;
+    line-height: 35px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    transition: right 1s, opacity 1s;
+    opacity: 0;
+}
+
+#side .main ul li:hover .title {
+    visibility: visible;
+    right: 35px;
+    opacity: 1;
+}
+
+#side .main ul li .title::after {
+    position: absolute;
+    content: "";
+    right: -16px;
+    top: 9px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-left-color: #494949
+}
+
+#side .cart {
     position: fixed;
     right: 0;
     top: 185px;
@@ -49,13 +105,30 @@ body{
     height: 100px;
     background-color: #000;
     cursor: pointer;
+    z-index: 1;
 }
 
-#side .cart i{
+#side .cart i {
     display: block;
     width: 35px;
     height: 35px;
-    font-size:25px;
+    font-size: 25px;
     color: #fff;
     text-align: center;
+}
+
+#side .cart:hover i {
+    color: #e03636;
+}
+
+#side .cart span {
+    display: block;
+    width: 25px;
+    font-size: 15px;
+    margin: 3px 5px 0;
+    user-select: none;
+}
+
+#side .cart:hover~.main {
+    right: 0;
 }
