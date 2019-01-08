@@ -121,10 +121,71 @@
 // c();
 // fn()();
 // c();
-function a (x,y){
-    console.log(x);
-    console.log(y);
-    console.log(this);
-}
-a(8,9);
-a.bind(10)(8,9);
+// function a (x,y){
+//     console.log(x);
+//     console.log(y);
+//     console.log(this);
+// }
+// a(8,9);
+// a.bind(10)(8,9);
+
+// let [a,b,c,d,e] = [1,2,3,4,5];
+
+
+// let {x:x,y:y} = {y:9,x:10};
+
+// let {x,y} = {x:9,y:10};
+
+// let a = 9;
+// let b = 10;
+// let c = {
+//     a,
+//     b
+// };
+// console.log(c);
+
+// function fn(data){
+//     let {a,b,c=100} = data;
+//     console.log(a,b,c);
+// }
+// fn({a:9,b:10});
+
+// function f(){
+//     console.log("xx");
+// }
+// let [x=f()]=[];
+// let [a, b = a] = [1]
+// console.log(a, b);
+
+// let [a = b, b] = [undefined, 1]
+// console.log(a, b);
+
+// let a ="a";
+// console.log(a.charCodeAt(0));
+
+// let a = String.fromCharCode(99);
+// console.log(a);
+
+// let a = "我爱你";
+// let b ="";
+
+// for (let i=0,len=a.length;i<len;i++){
+//     let code = a.charCodeAt(i) + 520;
+    
+//     b += String.fromCharCode(code);
+// }
+// console.log(b);
+
+
+// let a = ["abc","def"];
+
+// console.log(a.push("g"));
+
+// console.log(a);
+
+// let b = [9,function(x){console.log(x)}];
+// b.pop()(b[0]);
+
+// let a = ["A","B","C"];
+// a.splice(1,1,"D");
+// console.log(a);
