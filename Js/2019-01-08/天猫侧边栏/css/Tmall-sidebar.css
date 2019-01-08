@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+body{
+    background-color: aqua;
+}
+
+#side .main{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 100%;
+    background-color: #000000;
+}
+
+#side main ul li{
+    width: 35px;
+    height: 35px;
+}
+
+#side .main ul li i{
+    display: block;
+    width: 35px;
+    height: 35px;
+    color: #fff;
+}
+
+#side .cart{
+    position: fixed;
+    right: 0;
+    top: 185px;
+    width: 35px;
+    height: 100px;
+    background-color: #000;
+    cursor: pointer;
+}
+
+#side .cart i{
+    display: block;
+    width: 35px;
+    height: 35px;
+    font-size:25px;
+    color: #fff;
+    text-align: center;
+}
