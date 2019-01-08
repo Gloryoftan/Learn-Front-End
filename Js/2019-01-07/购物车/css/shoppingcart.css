@@ -1,5 +1,6 @@
 body {
     background-color: rgb(163, 163, 128);
+    user-select: none;
 }
 
 table {
@@ -42,3 +43,27 @@ th , td{
 .sub-total{
     width: 50px;
 }
+
+.goods .quality .reduce{
+    display:inline-block;
+    width: 20px;
+    height: 20px;
+    background-color:gray;
+    cursor: pointer;
+}
+
+.goods .quality .add{
+    display:inline-block;
+    width: 20px;
+    height: 20px;
+    background-color:gray;
+    cursor: pointer;
+}
+
+.goods .quality .num{
+    display:inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+

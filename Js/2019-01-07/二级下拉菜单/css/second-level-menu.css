@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+#wrap {
+    width: 100px;
+    border: 2px solid gray;
+    border-bottom: none;
+    font-size: 16px;
+    margin: 50px auto;
+    text-align: center;
+    user-select: none;
+}
+
+#wrap .title {
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    background-color: rgb(95, 217, 205);
+    border-bottom: 2px solid gray;
+    color: rgb(2, 48, 148);
+    cursor: pointer;
+
+}
+
+#wrap .list li {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    background-color: rgb(184, 244, 255);
+    border-bottom: 1px solid gray;
+    color: rgb(92, 125, 197);
+    cursor: pointer;
+}
+
+#wrap .list li:hover {
+    background-color: rgb(95, 217, 205);
+}
+
+#wrap .list {
+    display: none;
+}
+
+#wrap .show {
+    display: block;
+}

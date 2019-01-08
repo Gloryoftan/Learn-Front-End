@@ -13,7 +13,7 @@
 
     <table>
         <thead>
-            <tr>
+            <tr class="goods">
                 <th colspan="4" class="head">Shopping Cart</th>
             </tr>
         </thead>
@@ -21,44 +21,57 @@
         <tbody>
             <tr>
                 <th class="item">Item</th>
-                <th class="price">Price</th>
                 <th class="quality">Quality</th>
+                <th class="price">Price</th>
                 <th class="sub-total">Sub-total</th>
             </tr>
-            <tr>
+            <tr class="goods">
                 <td>
                     <img src="img/HtmlImgs1.jpeg" alt="" width="100" height="50">
                 </td>
-                <td>8</td>
-                <td></td>
-                <td></td>
+                <td class="quality">
+                    <span class="reduce">-</span>
+                    <span class="num">0</span>
+                    <span class="add">+</span>
+                </td>
+                <td>88</td>
+                <td class="sub-total">0</td>
             </tr>
-            <tr>
+            <tr class="goods">
                 <td>
                     <img src="img/CssImgs1.jpg" alt="" width="100" height="50">
                 </td>
-                <td>10</td>
-                <td></td>
-                <td></td>
+                <td class="quality">
+                    <span class="reduce">-</span>
+                    <span class="num">0</span>
+                    <span class="add">+</span>
+                </td>
+                <td>198</td>
+                <td class="sub-total">0</td>
             </tr>
-            <tr>
+            <tr class="goods">
                 <td>
                     <img src="img/JsImgs1.jpg" alt="" width="100" height="50">
                 </td>
-                <td>20</td>
-                <td></td>
-                <td></td>
+                <td class="quality">
+                    <span class="reduce">-</span>
+                    <span class="num">0</span>
+                    <span class="add">+</span>
+                </td>
+                <td>208</td>
+                <td class="sub-total">0</td>
             </tr>
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="2"></td>
-                <td colspan="2"></td>
+            <tr class="count">
+                <td>Total-quality</td>
+                <td class="Total-quality">0</td>
+                <td>Total-price</td>
+                <td class="Total-price">0</td>
             </tr>
         </tfoot>
     </table>
-
-
+    
     <script src="js/shoppingcart.js"></script>
 </body>
 
