@@ -171,7 +171,7 @@
 
 // for (let i=0,len=a.length;i<len;i++){
 //     let code = a.charCodeAt(i) + 520;
-    
+
 //     b += String.fromCharCode(code);
 // }
 // console.log(b);
@@ -189,3 +189,71 @@
 // let a = ["A","B","C"];
 // a.splice(1,1,"D");
 // console.log(a);
+
+// let a =[9,5,3,1,2]
+// a.sort();
+// console.log(a);
+
+// let a = [9, 5, 3, 1, 2];
+// a.sort(function (a, b) {
+//     return b - a;
+// });
+// console.log(a);
+
+// let a = [9, 5, 3, 1, 2];
+// a.sort(function (a, b) {
+//     return a - b;
+// });
+// console.log(a);
+
+// let a = [
+//     {name:"刘一",age:18},
+//     {name:"陈二",age:28},
+//     {name:"张三",age:17},
+//     {name:"李四",age:24},
+//     {name:"王五",age:24},
+//     {name:"赵六",age:23},
+// ];
+
+// a.sort(function(x,y){
+//     return x.age - y.age;
+// });
+// console.log(a);
+
+// let a = [1, 2, 3];
+// let b = [4, 5, 6];
+// let c = a.concat(b);
+// console.log(c);
+
+// let a = ["A", "B", "C"];
+// // let a = [1,2,3];
+// let b = a.join(" & ");
+// console.log(b);
+
+// let a = [1, 2, 3];
+// a.forEach(function () {
+//     console.log(a);
+// });
+
+/* 
+ * param:
+ * return:
+ */
+
+// let a = [1, 2, 3];
+// a.forEach(function (x, y, z) {
+//     console.log(x, y, z);
+// });
+
+// for (let i = 0; i < a.length; i++) {
+//     (function (x, y, z) {
+//         console.log(x, y, z);
+//     })(a[i], i, a);
+// }
+
+// let a = [10, 20, 5, 25, 90];
+// let b = a.filter(function (x) {
+//     return x == 10;
+// });
+// console.log(a);
+// console.log(b);
