@@ -257,3 +257,43 @@
 // });
 // console.log(a);
 // console.log(b);
+
+// let name = "Tony";
+// let age = 18;
+
+// let str = `${name} is a ${age} year old boy`;
+// console.log(str);
+
+// let a = [1, 2, 3];
+
+// function x(param){
+//     console.log(param);
+// }x(...a);
+
+// let a = [1, 2, 3];
+// let b = [4,5,6];
+// // let c = a.concat(b);
+// let c = [...a,...b];
+// console.log(c);
+
+// let aDiv = document.querySelectorAll("#wrap div");
+// console.log([...aDiv]);
+// [...aDiv].forEach(function(n,i){});
+
+// console.log(Math.PI);
+
+// console.log(Math.abs(-1));
+
+// let a = 9;
+// console.log(Math.pow(2,10));
+
+// console.log(Math.pow(256,.5));
+
+// console.log(Math.floor(2.7));
+// console.log(Math.floor(-2.7));
+
+// console.log(Math.ceil(2.4));
+// console.log(Math.ceil(-2.4));
+
+console.log(Math.round(4.49));
+console.log(Math.round(4.5));
