@@ -295,5 +295,17 @@
 // console.log(Math.ceil(2.4));
 // console.log(Math.ceil(-2.4));
 
-console.log(Math.round(4.49));
-console.log(Math.round(4.5));
+// console.log(Math.round(4.49));
+// console.log(Math.round(4.5));
+
+// console.log(Math.PI*2);
+
+// console.log(Math.asin(0.5));
+// console.log(Math.PI / 6);
+
+// const rdm = function (n=0,m=n+1) {
+//     return Math.floor((m-n)*Math.random()+n);
+// }
+// console.log(rdm(5,10));
+
+console.log(parseInt("1001",2));

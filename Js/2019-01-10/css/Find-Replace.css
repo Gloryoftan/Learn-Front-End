@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+#tip {
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    cursor: help;;
+}
+
+#tip:hover {
+   color: #F20202;
+   font-size:20px;
+}
+
+
+#wrap {
+    width: 650px;
+    height: 350px;
+    margin: 50px auto;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+#wrap .top {
+    padding: 20px 30px 0 30px;
+    height: 30px;
+}
+
+#wrap .top span {
+    float: left;
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 3px;
+    color: #cf7ee0;
+    background-color: #f2f9ff;
+    border: 1px solid gray;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#wrap .top span:hover {
+    color: #aa02cc;
+    background-color: #a8c0d8;
+}
+
+
+#wrap .top span:first-of-type {
+    margin-right: 5px;
+}
+
+#wrap .top span:last-of-type {
+    float: right;
+}
+
+#wrap .top input {
+    float: left;
+    height: 18px;
+    font-weight: bold;
+    margin: 3px 10px;
+    text-indent: 4px;
+
+}
+
+#wrap .content {
+    margin: 20px 40px;
+    font-size: 18px;
+    text-align: justify;
+}
+
+#wrap .content p {
+    margin-bottom: 18px;
+}
+
+#wrap .content p b {
+    color: #F20202;
+}
