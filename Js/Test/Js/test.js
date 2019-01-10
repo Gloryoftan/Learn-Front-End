@@ -308,4 +308,9 @@
 // }
 // console.log(rdm(5,10));
 
-console.log(parseInt("1001",2));
+// console.log(parseInt("1001",2));
+
+// let x =10.45;
+// let a = (x+"").split(".")[0]-0;
+// console.log(a);
+
