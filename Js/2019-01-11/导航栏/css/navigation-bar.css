@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+#wrap {
+    width: 800px;
+    height: 220px;
+    margin: 50px auto;
+    border: 1px solid gray;
+    user-select: none;
+}
+
+#wrap .nav {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #f2f9ff;
+    color: #cf7ee6;
+}
+
+#wrap .nav p {
+    position: relative;
+    float: left;
+    padding: 0 10px;
+    background-color: #a8c0d8;
+    font-size: 20px;
+}
+
+#wrap .nav p::after {
+    position: absolute;
+    top: 10px;
+    right: -19px;
+    width: 0;
+    height: 0;
+    content: "";
+    border: 10px solid transparent;
+    border-left-color: #a8c0d8;
+}
+
+#wrap .nav ul {
+    float: left;
+    margin-left: 40px;
+}
+
+#wrap .nav ul li {
+    position: relative;
+    float: left;
+    padding: 0 18px;
+    cursor: pointer;
+    transition: color .6s;
+    font-size: 16px;
+}
+
+#wrap .nav ul li.active {
+    color: #f20202;
+    background-color: #a8c0d8;
+}
+
+#wrap .nav ul li::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: #f20202;
+    transition: width .3s;
+}
+
+#wrap .nav ul li.active::after {
+    width: 100%;
+}
+
+#wrap .content {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    background-color: aqua;
+}
+
+#wrap .content ul {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 20px;
+}
+
+#wrap .content ul.show {
+    display: block;
+}
+
+#wrap .content li {
+    float: left;
+    margin-left: 20px;
+}
+
+#wrap .content li:first-of-type {
+    margin-left: 0px;
+}
+
+#wrap .content li img {
+    width: 240px;
+    height: 120px;
+}
+
+#wrap .content li p {
+    height: 20px;
+    line-height: 20px;
+}

@@ -314,3 +314,56 @@
 // let a = (x+"").split(".")[0]-0;
 // console.log(a);
 
+// let a = {
+//     id: "1",
+//     name: "samari",
+//     age: "24",
+//     sex: "male"
+// };
+
+// for (let key in a) {
+//     console.log(key, ":", a[key]);
+
+// }
+
+// let a = {
+//     id: "1",
+//     name: "samari",
+//     age: "24",
+//     sex: "male"
+// };
+// //新增
+// a.nationality = "Chinese";
+// //改变
+// a.age = "20";
+// //删除
+// delete a.sex;
+// //是否存在
+// let b = "age" in a;
+
+// console.log(a);
+// console.log(b);
+
+// let a = {
+//     id: "1",
+//     name: "samari",
+//     age: "24",
+//     sex: "male"
+// };
+// let b = JSON.stringify(a);
+// console.log(b);
+
+// let c = JSON.parse(b);
+// console.log(c);
+
+// function fn({x,y}={x:10,y:20}){
+//     console.log(x,y);
+// }
+
+
+
+// var fn = function (a, b) {
+//     return a + b;
+// }
+
+// let fn = (a, b) => a + b;
