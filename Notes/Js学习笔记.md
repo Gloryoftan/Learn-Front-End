@@ -1,8 +1,14 @@
 [toc]
 # Js学习笔记
-## 2018-12-20 git & github
+## 2018-12-20 git & github & 常用链接
 
 [廖雪峰Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+
+[阮一峰ECMAScript 6 入门](http://es6.ruanyifeng.com)
+
+[MDN web docs](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
+
+[Babel:ES6转ES5](https://babeljs.io)
 
 需要培养自己的github，把自己的项目放上去。
 
@@ -1072,6 +1078,15 @@ console.log(a, b);
 ```
 > Uncaught ReferenceError: b is not defined
 
+Tips:参数的也可以解构赋值，规则和上面一样。不同的是，参数可以设置整体的默认值，当没有参数传入时才启用。如
+```js
+function fn({x,y}={x:10,y:20}){
+    console.log(x,y);
+}
+
+
+```
+
 ## 2019-01-08 string相关Api
 
 - charAt(i)
@@ -1288,21 +1303,58 @@ console.log(b);
 ## 2019-01-09 数组的遍历
 - forEach()
 
+参数：function()
+
+功能：遍历
+
+返回值：undefined
 
 ```js
 let a = [1, 2, 3];
-a.forEach(function () {
-    console.log(a);
+a.forEach(function (x, y, z) {
+    console.log(x, y, z);
 });
 ```
-> Array(3)
-> Array(3)
-> Array(3)
+> 1 0 [1, 2, 3]
+> 2 1 [1, 2, 3]
+> 3 2 [1, 2, 3]
 
-Tips:
+- 第一个形参：每一位的数据
+- 第二个形参：每一位的序号
+- 第三个形参：原数组
 
-以后在封装函数的时候，写注视要告诉别人两个值：
-param 和 return
+forEach的本质是for循环的一个遍历
+
+```js
+for (let i = 0; i < a.length; i++) {
+    (function (x, y, z) {
+        console.log(x, y, z);
+    })(a[i], i, a);
+}
+```
+
+- map();
+
+和forEach功能一样，但有返回值。
+
+返回值：是一个新数组，里面装的是每一次返回值。如果函数没有return，默认undefined
+
+- filter();
+
+返回值：是一个新数组，里面装的是每一次满足条件的返回值
+
+```js
+let a = [10, 20, 5, 25, 90];
+let b = a.filter(function (x) {
+    return x == 10;
+});
+console.log(a);
+console.log(b);
+```
+> [10, 20, 5, 25, 90]
+> 10
+
+==Tips:以后在封装函数的时候，写注视要告诉别人两个值：param 和 return==
 
 
 ```js
@@ -1312,23 +1364,339 @@ param 和 return
 */
 ```
 
+## 2019-01-09 ES6字符串拓展
+- **模版字符串**
+
+```js
+let name = "Tony";
+let age = 18;
+
+let str = `${name} is a ${age} year old boy`;
+console.log(str);
+
+```
+>Tony is a 18 year old boy
+
+${}可以直接执行各种Js代码
+
+- includes();
+- startsWith();
+- endWiths();
+
+包含关系的检测
+
+- repeat();
+
+内容重复
+
+- padStart();
+- padEnd();
+
+补全
+
+## 2019-01-09 ES6数组操作扩展
+- Array.from()
+- Array.of()
+- includes() 
+- fill()
+- find() findIndex()
+- copyWithin()
+
+## 2019-01-09 ... 扩展运算符
+
+ 
+```js
+let a = [1, 2, 3];
+console.log(...a);
+```
+> 1 2 3
+
+```js
+let a = [1, 2, 3];
+let b = [4,5,6];
+// let c = a.concat(b);
+let c = [...a,...b];
+console.log(c);
+```
+> [1, 2, 3, 4, 5, 6]
 
 
+```js
+let [a, ...b] = [1, 2, 3, 4];
+console.log(a);
+console.log(b);
+```
+> 1
+> [2, 3, 4]
 
 
+```js
+let aDiv = document.querySelectorAll("#wrap div");
+console.log(aDiv);
+```
+>NodeList(3) [div, div, div]
+
+此时aDiv是没有forEach方法的。
+
+ES5解决方案：
+
+```js
+let aDiv = document.querySelectorAll("#wrap div");
+let x = [].slice.call(aDiv);
+console.log(x);
+```
+> [div, div, div]
+
+原理是利用call的自执行，改变slice的this（类数组无法调用slice）
+
+ES6解决方案：
+
+```js
+let aDiv = document.querySelectorAll("#wrap div");
+console.log([...aDiv]);
+[...aDiv].forEach(function(n,i){
+    n.onclic = function(){
+      alert( i );  
+    };
+});
+```
+> [div, div, div]
+
+==rest 必须放在最后==
+
+## 2019-01-09 数值操作
+浏览器计算误差来源：
+
+第一部分，存储正负，符号位
+
+第二部分，存储小数点的位置
 
 
+```js
+console.log(Math.PI);
+```
+>3.141592653589793
+
+圆周率
+
+```js
+console.log(Math.abs(-1));
+```
+>1
+
+1. 传入的值是number，返回绝对值
+2. 传入的不是number，现转化为number，若不能转换，返回NaN
 
 
+```js
+console.log(Math.pow(2,10));
+```
+> 1024
 
 
+```js
+console.log(Math.pow(256,.5));
+```
+> 16
+
+```js
+console.log(Math.floor(2.7));
+console.log(Math.floor(-2.7));
+```
+> 2.7
+> -3
+
+向下取整
 
 
+```js
+console.log(Math.ceil(2.4));
+console.log(Math.ceil(-2.4));
+```
+> 3
+> -2
 
 
+```js
+console.log(Math.round(4.49));
+console.log(Math.round(4.5));
+```
+> 4
+> 5
 
+```js
+let x =10.45;
+let a = (x+"").split(".")[0]-0;
+console.log(a);
 
+```
+> 10
 
+不用API取整，后面-0是为了从string变number
 
+## 2019-01-09 querySelectorAll()的坑
 
+[JavaScript基础教程之querySelectorAll( )方法遇到的问题](https://blog.csdn.net/tel13259437538/article/details/79049191)
+
+Tip：Js改变背景图片的时候，如果会闪一下，可以提前加载背景图，或者用精灵图。
+
+## 2019-01-10 三角函数
+圆一周的角度是360deg,利用弧度制来传角度。
+
+- Math.PI*2 = 360deg 
+
+sin 正弦    对/斜
+
+cos 余弦    邻/斜
+
+tan 正切    对/邻
+
+```js
+console.log(Math.sin(Math.PI / 6));
+console.log(Math.cos(Math.PI / 3));
+console.log(Math.tan(Math.PI / 4));
+```
+> 0.49999999999999994
+> 0.5000000000000001
+> 0.9999999999999999
+
+```js
+console.log(Math.asin(0.5));
+console.log(Math.PI / 6);
+```
+> 0.5235987755982989
+> 0.5235987755982988
+
+## 2019-01-10 随机数
+- Math.random()
+
+返回一个大于0小于1的数。
+
+```js
+const rdm = function (n=0,m=n+1) {
+    return Math.floor((m-n)*Math.random()+n);
+}
+console.log(rdm(5,10));
+```
+> 5-9中任意一个整数
+
+- parseInt()
+
+将字符串转为整数
+
+如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回NaN
+
+- parseInt(a,b)
+
+进制转换
+
+## 2019-01-11 对象的遍历
+```js
+let a = {
+    id: "1",
+    name: "samari",
+    age: "24",
+    sex: "male"
+};
+
+for (let key in a) {
+    console.log(key, ":", a[key]);
+
+}
+```
+>  id : 1<br>
+>  name : samari<br>
+>  age : 24<br>
+>  sex : male<br>
+
+## 2019-01-11 对属性的象增、删、改、查
+```js
+let a = {
+    id: "1",
+    name: "samari",
+    age: "24",
+    sex: "male"
+};
+//新增
+a.nationality = "Chinese";
+//改变
+a.age = "20";
+//删除
+delete a.sex;
+//是否存在
+let b = "age" in a;
+
+console.log(a);
+console.log(b);
+```
+> id: "1"<br>
+> name: "samari"<br>
+> age: "24"<br>
+> a.nationality = "Chinese"<br>
+> 
+> true
+
+## 2019-01-11 序列化 和 反序列化
+Json是一个格式非常标准的长得像对象的字符串
+
+- 反序列化
+```js
+let a = {
+    id: "1",
+    name: "samari",
+    age: "24",
+    sex: "male"
+};
+let b = JSON.stringify(a);
+console.log(b);
+```
+> {"id":"1","name":"samari","age":"24","sex":"male"}
+
+- 序列化
+
+```js
+let c = JSON.parse(b);
+console.log(c);
+```
+> {id: "1", name: "samari", age: "24", sex: "male"}
+
+## 2019-01-11 ES6函数箭头函数
+
+```js
+var fn = function (a, b) {
+    return a + b;
+}
+
+let fn = (a, b) => a + b;
+```
+
+## 2019-01-11 定时器
+
+- setTimeout（）；
+
+param1:函数
+param2:数字（毫秒单位）
+
+一次性的。
+
+- setInterval（）；
+
+持续施法。
+
+- 定时器的传参
+
+```js
+function fn(a, b) {
+    console.log(a + b);
+}
+setInterval(fn, 1000, 2, 3);
+```
+
+- clearTimeout（）；
+
+清除定时器
+
+定时器的返回值根据在浏览器内出现的顺序从1开始返回。
+
+Tips：定时器就算设置0ms执行，也会在最后执行。
 
