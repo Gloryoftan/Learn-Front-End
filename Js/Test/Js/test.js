@@ -367,3 +367,14 @@
 // }
 
 // let fn = (a, b) => a + b;
+
+// let num = 0;
+// let fn = function () {
+//     console.log(++num);
+// };
+// setInterval(fn, 1);
+
+// function fn(a, b) {
+//     console.log(a + b);
+// }
+// setInterval(fn, 1000, 2, 3);
