@@ -378,3 +378,26 @@
 //     console.log(a + b);
 // }
 // setInterval(fn, 1000, 2, 3);
+
+// requestAnimationFrame(function(){
+//     console.log(4);
+// });
+
+
+// //初级伪装
+// if (!window.requestAnimationFrame) {
+//     window.requestAnimationFrame = function (fn) {
+//         let timer = setTimeout(fn, 16);
+//         return timer;
+//     };
+
+//     window.cancelAnimationFrame = function (id) {
+//         clearTimeout(id);
+//     };
+// }
+
+// //伪装的高级写法
+// window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {
+//     return setTimeout(fn, 1000 / 60);
+// };
+// window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
