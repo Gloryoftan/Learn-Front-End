@@ -2,36 +2,39 @@ let aBtn = document.querySelectorAll("#wrap .nav .btn li");
 let oUl = document.getElementById("slide");
 let oWrap = document.getElementById("wrap");
 let aArrow = document.querySelectorAll("#wrap .shift div");
+let aLi = document.querySelectorAll("");
 
 let len = aBtn.length;
+let liLen = aLi.length;
 
 let index = 0;
 
+function change(i) {
+    aBtn[index].classList.remove("active");
 
+    if (index < 0) {
+        index = len - 1;
+    } else if (index >= len) {
+        index = 0;
+    } else {
+        index = i;
+    }
 
-
+    oUl.style.left = "-" + index * 100 + "%";
+    aBtn[index].classList.add("active");
+}
 
 //添加点击事件
 [...aBtn].forEach(function (x, i) {
     x.onclick = function () {
-        aBtn[index].classList.remove("active");
-
-        index = i;
-        oUl.style.left = "-" + index * 100 + "%";
-
-        aBtn[index].classList.add("active");
+        if (index === i) return;
+        change(i);
     };
 });
 
 //定时器
 function fn() {
-    aBtn[index].classList.remove("active");
-
-    index++;
-    index %= len;
-
-    oUl.style.left = "-" + index * 100 + "%";
-    aBtn[index].classList.add("active");
+    change(index);
 }
 let timer = setInterval(fn, 3000);
 
@@ -45,20 +48,8 @@ oWrap.onmouseleave = function () {
 
 //左右箭头
 aArrow[0].onclick = function () {
-    aBtn[index].classList.remove("active");
-
-    index--;
-    if (index < 0) index = len - 1;
-
-    oUl.style.left = "-" + index * 100 + "%";
-    aBtn[index].classList.add("active");
+    change(index);
 };
 aArrow[1].onclick = function () {
-    aBtn[index].classList.remove("active");
-
-    index++;
-    index %= len;
-
-    oUl.style.left = "-" + index * 100 + "%";
-    aBtn[index].classList.add("active");
+    change(index);
 };
