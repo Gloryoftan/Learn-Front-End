@@ -23,7 +23,7 @@ img {
     height: 100%;
     color: #cf7ee6;
     background-color: aqua;
-    margin: 100px auto;
+    margin: 40px auto;
     user-select: none;
 }
 
@@ -37,9 +37,13 @@ img {
 #wrap .frame ul {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 1000%;
     transition: left 1s;
+}
+
+#wrap .frame ul.cons {
+    transition: left 0s;
 }
 
 #wrap .frame ul li {

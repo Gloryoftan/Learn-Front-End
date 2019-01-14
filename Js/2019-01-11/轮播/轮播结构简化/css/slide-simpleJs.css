@@ -23,7 +23,7 @@ img {
     height: 100%;
     color: #cf7ee6;
     background-color: aqua;
-    margin: 100px auto;
+    margin: 40px auto;
     user-select: none;
 }
 
@@ -37,7 +37,7 @@ img {
 #wrap .frame ul {
     position: absolute;
     top: 0;
-    left: -100px;
+    left: 0;
     width: 1000%;
     transition: left 1s;
 }
@@ -128,4 +128,16 @@ img {
 
 #wrap .shift .right {
     right: -10px;
+}
+
+#des{
+    color: red;
+    cursor: help;
+    margin:10px auto;
+    user-select: none;
+    text-align: center;
+}
+
+#des:hover{
+    font-size:20px;
 }

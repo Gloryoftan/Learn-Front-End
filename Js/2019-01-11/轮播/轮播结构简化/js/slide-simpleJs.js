@@ -2,19 +2,18 @@ let aBtn = document.querySelectorAll("#wrap .nav .btn li");
 let oUl = document.getElementById("slide");
 let oWrap = document.getElementById("wrap");
 let aArrow = document.querySelectorAll("#wrap .shift div");
-let aLi = document.querySelectorAll("");
 
 let len = aBtn.length;
-let liLen = aLi.length;
 
 let index = 0;
 
+//功能部分提出来，对参数的判断
 function change(i) {
     aBtn[index].classList.remove("active");
 
-    if (index < 0) {
+    if (i < 0) {
         index = len - 1;
-    } else if (index >= len) {
+    } else if (i >= len) {
         index = 0;
     } else {
         index = i;
@@ -34,7 +33,7 @@ function change(i) {
 
 //定时器
 function fn() {
-    change(index);
+    change(index+1);
 }
 let timer = setInterval(fn, 3000);
 
@@ -48,8 +47,8 @@ oWrap.onmouseleave = function () {
 
 //左右箭头
 aArrow[0].onclick = function () {
-    change(index);
+    change(index-1);
 };
 aArrow[1].onclick = function () {
-    change(index);
+    change(index+1);
 };
