@@ -401,3 +401,21 @@
 //     return setTimeout(fn, 1000 / 60);
 // };
 // window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+
+let a = new Date();
+console.log(a);
+
+console.log(a.getFullYear());
+console.log(a.getMonth() + 1);
+console.log(a.getDate());
+console.log(a.getHours());
+console.log(a.getMinutes());
+console.log(a.getSeconds());
+
+console.log("##################################");
+
+console.log(a.toUTCString());
+
+let b = new Date().getTime();
+
+console.log(new Date(b - 3600000));
