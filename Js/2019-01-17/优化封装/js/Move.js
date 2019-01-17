@@ -22,6 +22,10 @@ window.Move = (function () {
         let cssObj = ele.currentStyle || getComputedStyle(ele);
         //初始值
         let sVal = parseFloat(cssObj[attr]);
+        //IE兼容
+        if (attr === "opacity" && isNaN(sVal)) {
+            sVal = 1;
+        }
         // 初始值与目标大小的问题
         let bool = sVal > target;
         if (sVal > target) {
@@ -34,13 +38,20 @@ window.Move = (function () {
 
         function fn() {
             sVal += step;
-            //判断终点
-            if (bool ? sVal >= target : sVal >= target) {
-                ele.style[attr] = sVal + "px";
-                return;
+            //判断是否到达目标值
+            let xBool = bool ? sVal <= target : sVal >= target;
+
+            sVal = xBool ? target : sVal;
+
+            if (attr === "opacity") {
+                ele.style.opacity = sVal;
+                ele.style.filter = "alpha(opacity=" + sVal * 100 + ")";
+            } else if (attr === "zIndex") {
+                ele.style.zIdex = sVal;
             }
+
             ele.style[attr] = sVal + "px";
-            requestAnimationFrame(fn);
+            xBool || requestAnimationFrame(fn);
         }
         requestAnimationFrame(fn);
     };

@@ -35,7 +35,7 @@ window.Move = (function () {
         function fn() {
             sVal += step;
             //判断终点
-            if (bool ? sVal >= target : sVal >= target) {
+            if (bool ? sVal <= target : sVal >= target) {
                 ele.style[attr] = sVal + "px";
                 return;
             }

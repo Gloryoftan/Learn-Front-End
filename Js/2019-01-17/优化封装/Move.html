@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/startMove.css">
+    <link rel="stylesheet" href="css/Move.css">
     <title>startMove</title>
 </head>
+
 <body>
-    <div id="wrap">
+    <h2>marginLeft</h2>
+    <div id="wrap1">
 
     </div>
-    
-    <script src="js/startMove.js"></script>
+
+    <h2>opacity</h2>
+    <div id="wrap2">
+
+    </div>
+
+    <h2>width</h2>
+    <div id="wrap3">
+
+    </div>
+
+    <h2>multiChange</h2>
+    <div id="wrap4">
+
+    </div>
+
+    <script src="js/Move.js"></script>
     <script>
-        let oW = document.getElementById("wrap");
-        //根据js文档给数据
-        Move(oW,"marginLeft",500,5);
+        let oW1 = document.getElementById("wrap1");
+        let oW2 = document.getElementById("wrap2")
+        let oW3 = document.getElementById("wrap3")
+        let oW4 = document.getElementById("wrap4")
+
+        Move(oW1, "marginLeft", 0, 3);
+
+        Move(oW2, "opacity", 0, 0.01);
+
+        Move(oW3, "width", 150, 2);
+
+        Move(oW4, "marginLeft", 0, 3);
+        Move(oW4, "opacity", 0, 0.01);
+        Move(oW4, "width", 150, 2);
     </script>
 </body>
+
 </html>
