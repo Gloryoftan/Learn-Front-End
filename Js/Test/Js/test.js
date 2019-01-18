@@ -432,39 +432,58 @@ return:
 需要babel转译
 */
 
-window.Move = (function () {
-    //判断requestAnimationFrame的兼容
-    window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {
-        return setTimeout(fn, 1000 / 60);
-    };
-    window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+// window.Move = (function () {
+//     //判断requestAnimationFrame的兼容
+//     window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {
+//         return setTimeout(fn, 1000 / 60);
+//     };
+//     window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
 
-    return function (ele, attr, target, step = 2) {
-        //IE兼容，IE8只兼容currentStyle
-        let cssObj = ele.currentStyle || getComputedStyle(ele);
-        //初始值
-        let sVal = parseFloat(cssObj[attr]);
-        // 初始值与目标大小的问题
-        let bool = sVal > target;
-        if (sVal > target) {
-            step = -Math.abs(step);
-        } else if (sVal < target) {
-            step = Math.abs(step);
-        } else {
-            return;
-        }
+//     return function (ele, attr, target, step = 2) {
+//         //IE兼容，IE8只兼容currentStyle
+//         let cssObj = ele.currentStyle || getComputedStyle(ele);
+//         //初始值
+//         let sVal = parseFloat(cssObj[attr]);
+//         // 初始值与目标大小的问题
+//         let bool = sVal > target;
+//         if (sVal > target) {
+//             step = -Math.abs(step);
+//         } else if (sVal < target) {
+//             step = Math.abs(step);
+//         } else {
+//             return;
+//         }
 
-        function fn() {
-            sVal += step;
-            //判断终点
-            if (bool ? sVal >= target : sVal >= target) {
-                ele.style[attr] = sVal + "px";
-                return;
-            }
-            ele.style[attr] = sVal + "px";
-            requestAnimationFrame(f);
-        }
-        requestAnimationFrame(f);
-    };
+//         function fn() {
+//             sVal += step;
+//             //判断终点
+//             if (bool ? sVal >= target : sVal >= target) {
+//                 ele.style[attr] = sVal + "px";
+//                 return;
+//             }
+//             ele.style[attr] = sVal + "px";
+//             requestAnimationFrame(f);
+//         }
+//         requestAnimationFrame(f);
+//     };
 
-})();
+// })();
+
+let ele = document.getElementById("wrap");
+//创建文本节点
+let text = document.createTextNode("Hanks");
+//创建元素节点
+let oDiv = document.createElement("div");
+
+//添加
+ele.appendChild(text);
+
+//在某个自元素的前面加
+let e = document.getElementById("e");
+ele.insertBefore(oDiv, e);
+
+//放在子元素第一位（即使是undefined都可以添加）
+ele.insertBefore(oDiv,ele.children[0]);
+
+//删除
+ele.removeChild(e);

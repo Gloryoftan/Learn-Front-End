@@ -14,9 +14,9 @@ function randomColor() {
         Math.random().toFixed(1)
     ];
     let [tr, tg, tb, ta] = [
-        256 - r,
-        256 - g,
-        256 - b,
+        r,
+        255 - g,
+        255 - b,
         1
     ];
     return [`rgba(${r},${g},${b},${a})`, `rgba(${tr},${tg},${tb},${ta})`];
