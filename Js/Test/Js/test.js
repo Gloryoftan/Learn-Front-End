@@ -513,12 +513,42 @@ return:
 //     ajax();
 // }
 
-// let btn = document.getElementById("btn1");
+let a = document.getElementById("btn1");
 
 // btn.onclick = function () {
 //     alert("1");
 // };
 
+//获取页面显示区的宽高，IE8及一下不兼容
 console.log(window.innerWidth);
 console.log(window.innerHeight);
 
+//IE兼容
+//width + padding
+console.log(document.documentElement.clientWidth);
+console.log(document.documentElement.clientHeight);
+
+//width + padding + border
+console.log(document.documentElement.offsetWidth);
+console.log(document.documentElement.offsetHeight);
+
+//有超出部分时
+console.log(document.documentElement.scrollWidth);
+console.log(document.documentElement.scrollHeight);
+
+//获取定位的 left & top 值
+console.log(a.offsetLeft);
+console.log(a.offsetTop);
+
+//获取元素到文档的距离
+function getOffset(ele) {
+    let dis = {top: 0, left: 0};
+    while (ele === document.body){
+        dis.top += ele.offsetTop;
+        dis.left += ele.offsetLeft;
+        ele = ele.offsetParent;
+    }
+}
+
+//获取页面的滚动高
+console.log(document.documentElement.scrollTop || document.body.scrollTop);
