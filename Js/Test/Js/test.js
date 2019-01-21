@@ -469,21 +469,56 @@ return:
 
 // })();
 
-let ele = document.getElementById("wrap");
-//创建文本节点
-let text = document.createTextNode("Hanks");
-//创建元素节点
-let oDiv = document.createElement("div");
+// let ele = document.getElementById("wrap");
+// //创建文本节点
+// let text = document.createTextNode("Hanks");
+// //创建元素节点
+// let oDiv = document.createElement("div");
 
-//添加
-ele.appendChild(text);
+// //添加
+// ele.appendChild(text);
 
-//在某个自元素的前面加
-let e = document.getElementById("e");
-ele.insertBefore(oDiv, e);
+// //在某个自元素的前面加
+// let e = document.getElementById("e");
+// ele.insertBefore(oDiv, e);
 
-//放在子元素第一位（即使是undefined都可以添加）
-ele.insertBefore(oDiv,ele.children[0]);
+// //放在子元素第一位（即使是undefined都可以添加）
+// ele.insertBefore(oDiv,ele.children[0]);
 
-//删除
-ele.removeChild(e);
+// //删除
+// ele.removeChild(e);
+
+// let ele = document.getElementById("wrap");
+
+// //ele.firstChild
+// //ele.firstElementChild
+// ele.lastChild
+// ele.nextSibling
+// ele.previousSibling
+
+// console.log( (!(~+[])+{})[--[~+""][+[]]*[~+[]] + ~~!+[]]+({}+[])[[~!+[]]*~+[]]);
+
+// let ele1 = document.getElementById("wrap1");
+// let ele2 = document.getElementById("wrap2");
+// //true表示会把里面的文本内容也克隆（警惕ID的重复）
+// let clone = ele1.cloneNode(true);
+
+// ele2.appendChild(clone);
+
+// function ajax(){
+
+// }
+
+// btn.onclick = {
+//     ajax();
+// }
+
+// let btn = document.getElementById("btn1");
+
+// btn.onclick = function () {
+//     alert("1");
+// };
+
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+
