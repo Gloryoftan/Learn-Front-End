@@ -513,42 +513,51 @@ return:
 //     ajax();
 // }
 
-let a = document.getElementById("btn1");
+// let a = document.getElementById("btn1");
 
 // btn.onclick = function () {
 //     alert("1");
 // };
 
-//获取页面显示区的宽高，IE8及一下不兼容
-console.log(window.innerWidth);
-console.log(window.innerHeight);
+// //获取页面显示区的宽高，IE8及一下不兼容
+// console.log(window.innerWidth);
+// console.log(window.innerHeight);
 
-//IE兼容
-//width + padding
-console.log(document.documentElement.clientWidth);
-console.log(document.documentElement.clientHeight);
+// //IE兼容
+// //width + padding
+// console.log(document.documentElement.clientWidth);
+// console.log(document.documentElement.clientHeight);
 
-//width + padding + border
-console.log(document.documentElement.offsetWidth);
-console.log(document.documentElement.offsetHeight);
+// //width + padding + border
+// console.log(document.documentElement.offsetWidth);
+// console.log(document.documentElement.offsetHeight);
 
-//有超出部分时
-console.log(document.documentElement.scrollWidth);
-console.log(document.documentElement.scrollHeight);
+// //有超出部分时
+// console.log(document.documentElement.scrollWidth);
+// console.log(document.documentElement.scrollHeight);
 
-//获取定位的 left & top 值
-console.log(a.offsetLeft);
-console.log(a.offsetTop);
+// //获取定位的 left & top 值
+// console.log(a.offsetLeft);
+// console.log(a.offsetTop);
 
-//获取元素到文档的距离
-function getOffset(ele) {
-    let dis = {top: 0, left: 0};
-    while (ele === document.body){
-        dis.top += ele.offsetTop;
-        dis.left += ele.offsetLeft;
-        ele = ele.offsetParent;
-    }
-}
+// //获取元素到文档的距离
+// function getOffset(ele) {
+//     let dis = {top: 0, left: 0};
+//     while (ele === document.body){
+//         dis.top += ele.offsetTop;
+//         dis.left += ele.offsetLeft;
+//         ele = ele.offsetParent;
+//     }
+// }
 
-//获取页面的滚动高
-console.log(document.documentElement.scrollTop || document.body.scrollTop);
+// //获取页面的滚动高
+// console.log(document.documentElement.scrollTop || document.body.scrollTop);
+
+// let a =document.getElementById("btn1");
+
+// //返回值是一个对象，包含top,left,right,bottom
+// a.getBoundingClientRect();
+
+// //把元素直接移动到可视区 true顶部对齐 false底部对齐
+// a.scrollIntoView();
+
