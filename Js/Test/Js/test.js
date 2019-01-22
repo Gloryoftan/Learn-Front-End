@@ -561,3 +561,46 @@ return:
 // //把元素直接移动到可视区 true顶部对齐 false底部对齐
 // a.scrollIntoView();
 
+box1.onclick = function () {
+    console.log(1);
+}
+
+box2.onclick = function () {
+    console.log(2);
+}
+
+box3.onclick = function (event) {
+    event.stopPropagation();
+    console.log(3);
+}
+// //兼容IE
+// event = event || window.event;
+// //组织冒泡
+// if (event.stopPropagation) {
+//     event.stopPropagation();
+// } else {
+//     event.cancelBubble = true;
+// }
+// //Dom 0级事件，弊端是会被覆盖
+// box.onclick = function () {
+//     console.log("1");
+// };
+
+// box.onclick = function () {
+//     console.log("2");
+// };
+
+// //Dom 2级事件监听
+// box3.addEventListener("click", function (event) {
+//     console.log("31");
+// });
+
+// //监听事件的清除
+// let callback = function () {
+//     console.log("1");
+// };
+// box.addEventListener("click", callback);
+
+// document.ondblclick = function () {
+//     box.removeEventListener("click".callback);
+// };
