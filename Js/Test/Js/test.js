@@ -561,18 +561,18 @@ return:
 // //把元素直接移动到可视区 true顶部对齐 false底部对齐
 // a.scrollIntoView();
 
-box1.onclick = function () {
-    console.log(1);
-}
+// box1.onclick = function () {
+//     console.log(1);
+// }
 
-box2.onclick = function () {
-    console.log(2);
-}
+// box2.onclick = function () {
+//     console.log(2);
+// }
 
-box3.onclick = function (event) {
-    event.stopPropagation();
-    console.log(3);
-}
+// box3.onclick = function (event) {
+//     event.stopPropagation();
+//     console.log(3);
+// }
 // //兼容IE
 // event = event || window.event;
 // //组织冒泡
@@ -603,4 +603,85 @@ box3.onclick = function (event) {
 
 // document.ondblclick = function () {
 //     box.removeEventListener("click".callback);
+// };
+
+// // DOM 0级在时间里直接return false
+// document.oncontextmenu = function () {
+//     return false;
+// };
+
+// // DOM 2级
+// // 主流浏览器
+// document.addEventListener("contextmenu", function (event) {
+//     event.preventDefault();
+// });
+// // IE
+// document.attachEvent("contextmenu", function (event) {
+//     event = enent || window.event;
+//     event.returnValue = false;
+// });
+
+// //事件的监听
+// function addEvent(ele, eType, callback, capture) {
+//     //主流浏览器
+//     if (ele.addEventListener) {
+
+//         //判断是否为火狐
+//         if (eType === "mousewheel" && document.createElement("div").onmousewheel === undefined) {
+//             eType = "DOMMouseScroll";
+//         }
+
+//         ele.addEventListener(eType, callback, capture);
+//         return callback;
+//     } else {
+//         //处理IE的this指向问题
+//         var codeCall = function () {
+//             callback.call(ele);
+//         };
+//         ele.attachEvent("on" + eType, ele);
+//         return codeCall;
+//     }
+// }
+
+// //事件的移除
+// function removeEvent(ele, eType, callback, capture) {
+//     ele.addEventListener ? ele.removeEventListener(eType, callback, capture) : ele.detachEvent("on" + eType, callback);
+// }
+
+// //一次性事件
+// function oneEvent(ele, eType, callback, capture) {
+//     var fn = addEvent(box, "click", function (e) {
+//         callback.call(ele, e);
+//         removeEvent(this, "click", fn);
+//     });
+// }
+
+// /* 
+// onfocus 获得焦点
+// onblur  失去焦点
+// 按Tab能选中的，就可以获得焦点。
+// 特例:a,document,window
+// */
+// //非常有意思的焦点事件应用
+// window.onfocus = function () {
+//     document.title = "Samari's Blog";
+// };
+// window.onblur = function () {
+//     document.title = "Jesus! Too many BUGs!!";
+// };
+// //用来停止定时器（定时器在焦点不在当前页面的时候会变慢）
+// let num = 0;
+// let timer = null;
+// function m(){
+//     document.title = ++num;
+//     timer = setTimeout(m,50);
+// }
+// timer = setTimeout(m,50);
+
+// window.onblur = function(){
+//     clearTimeout(timer);
+// };
+// window.onfocus = function(){
+//     clearTimeout(timer);
+//     m();
 // };
