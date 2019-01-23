@@ -685,3 +685,24 @@ return:
 //     clearTimeout(timer);
 //     m();
 // };
+
+// /* 
+// 按下：keydown keypress
+// down在press前触发
+// down事件响应所有按键
+// press只响应能键入值相关的键
+
+// 抬起：keyup
+// */
+
+// document.onkeydown = function(){};
+
+// document.onkeypress = function () {};
+
+// document.onkeyup = function(){};
+
+// //阻止键盘事件
+// if(e.keyCode === xxx){
+//  return false;   
+// }
+

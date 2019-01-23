@@ -14,7 +14,6 @@ function getTime() {
     SS = SS < 10 ? "0" + SS : SS + "";
     // console.log([...HH,...MM,...SS]);
     return [...HH, ...MM, ...SS];
-
 }
 
 //初始加载一次
@@ -37,7 +36,7 @@ function showTime() {
                 aFirstSpan[index].innerHTML = d[index];
                 aP[index].classList.remove("tran");
                 aP[index].classList.remove("top");
-            }, 500);
+            }, 600);
         });
         lastTime = d;
     };
