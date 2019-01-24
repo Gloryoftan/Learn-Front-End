@@ -706,3 +706,9 @@ return:
 //  return false;   
 // }
 
+/* 正则表达式
+    对象
+    配合一些api来验证字符串
+*/
+
+// let str = "";
