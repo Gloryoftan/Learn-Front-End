@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    user-select: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0
+}
+
+#wrap {
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(to bottom, rgb(168, 192, 216) 0%, rgb(242, 249, 255) 100%);
+}
+
+#wrap .content {
+    width: 600px;
+    margin: 0 auto;
+    padding: 60px 0 60px 0;
+}
+
+#wrap .content .items {
+    padding: 40px 20px;
+}
+
+#wrap .left,
+#wrap .right {
+    float: left;
+    width: 50%;
+    height: 480px;
+}
+
+#wrap .content .left {
+    background-color: #F5FFFB;
+}
+
+#wrap .content .left .items .title {
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #f20202;
+}
+
+#wrap .content .left .items .city:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#wrap .content .left .items .city span {
+    float: left;
+    padding: 5px;
+    font-size: 18px;
+    color: #1f6fb5;
+    cursor: pointer;
+}
+
+#wrap .content .left .items .city span:hover {
+    color: #f20202;
+}
+
+#wrap .content .left .items .selected {
+    margin-top: 20px;
+}
+
+#wrap .content .left .items .selected span {
+    display: inline-block;
+    padding: 0 5px;
+    margin: 0 5px 10px 0px;
+    font-size: 16px;
+    border: 1px solid #9dd3fa;
+    color: #9dd3fa;
+}
+
+#wrap .content .left .items .selected span i:hover {
+    color: #f20202;
+    cursor: pointer;
+}
+
+#wrap .content .right {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#wrap .content .right .items span {
+    display: inline-block;
+    padding: 0 5px;
+    margin: 0 0 10px 5px;
+    font-size: 20px;
+    border: 1px solid #F5FFFB;
+    color: #F5FFFB;
+}
