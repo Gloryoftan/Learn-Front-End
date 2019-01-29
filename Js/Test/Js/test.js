@@ -883,3 +883,45 @@ replace()
 // let newStr = str.replace(reg,()=>{
 //     return xxx;
 // });
+
+/* 
+如果不给cookie设置过期时间，那么浏览器关闭之后，cookie就清除了
+
+在存储本地cookie的时候，一定会设置一个过期时间
+    expires=日期对象.toUTCString()
+
+麻烦点:  1.获取
+        2.设置时间
+        3.删除
+*/
+// let date = new Date(2019, 11, 31, 23, 59, 59);
+// //存储cookie
+// document.cookie = "user = Samari;expires=" + date.toUTCString;
+// //获取cookie
+// document.cookie;
+
+// //7天之后过期
+// let date = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+
+/* Cookie.set({
+    a:"",
+    b:"",
+    c:""
+},7); */
+
+let Cookie = {
+    //设置
+    set:function(mJson,day){
+        let date = new Date(new Date().getTime()+day*24*60*60*1000);
+        
+    },
+    //获取
+    get:function(){
+
+    },
+    //删除
+    remove(){
+
+    }
+};
+
