@@ -1,4 +1,6 @@
 <?php
+//实际的场合 数据接口 逻辑更多更复杂 比如权限
+header('Access-Control-Allow-Origin:*');
 $arr = array(
     array(
         'id' => 1,
