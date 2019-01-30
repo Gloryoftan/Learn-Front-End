@@ -1,0 +1,89 @@
+#wrap {
+    position: absolute;
+    top: 200px;
+    left: 300px;
+    width: 100px;
+    height: 100px;
+    background-color: #1f6fb5;
+}
+
+#wrap .resize div {
+    position: absolute;
+}
+
+#wrap .resize .west {
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: #9dd3fa;
+    cursor: w-resize;
+}
+
+#wrap .resize .east {
+    top: 0;
+    left: 100%;
+    width: 5px;
+    height: 100%;
+    margin-left: -5px;
+    background-color: #9dd3fa;
+    cursor: e-resize;
+}
+
+#wrap .resize .north {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #9dd3fa;
+    cursor: n-resize;
+}
+
+#wrap .resize .south {
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    margin-top: -5px;
+    background-color: #9dd3fa;
+    cursor: s-resize;
+}
+
+#wrap .resize .north-west {
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background-color: #fcd692;
+    cursor: nw-resize;
+}
+
+#wrap .resize .north-east {
+    top: 0;
+    left: 100%;
+    width: 5px;
+    height: 5px;
+    margin-left: -5px;
+    background-color: #fcd692;
+    cursor: ne-resize;
+}
+
+#wrap .resize .south-west {
+    top: 100%;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    margin-top: -5px;
+    background-color: #fcd692;
+    cursor: sw-resize;
+}
+
+#wrap .resize .south-east {
+    top: 100%;
+    left: 100%;
+    width: 5px;
+    height: 5px;
+    margin: -5px 0 0 -5px;
+    background-color: #fcd692;
+    cursor: se-resize;
+}
