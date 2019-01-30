@@ -909,19 +909,51 @@ replace()
     c:""
 },7); */
 
-let Cookie = {
-    //设置
-    set:function(mJson,day){
-        let date = new Date(new Date().getTime()+day*24*60*60*1000);
-        
-    },
-    //获取
-    get:function(){
+// let Cookie = {
+//     //设置
+//     set:function(mJson,day){
+//         let date = new Date(new Date().getTime()+day*24*60*60*1000);
 
-    },
-    //删除
-    remove(){
+//     },
+//     //获取
+//     get:function(){
 
-    }
-};
+//     },
+//     //删除
+//     remove(){
+
+//     }
+// };
+
+
+/* 
+OOP
+封装 继承 多态
+*/
+
+/* 
+New
+
+new Date();
+new Image();
+new XMLHttpRequest();
+new RegExp();
+
+new 关键词 后面紧跟一个函数
+区别： 
+    1. 函数的this指向问题：函数内部生成一个全新的对象，函数的this指向这个对象
+    2. 函数默认返回上述对象
+
+Tips：这些函数首字母需要大写（作为区分）
+构造函数/类（js没有类）
+*/
+
+/* 
+原型
+它是构造函数的一个属性，是一个object数据类型
+
+构造函数.prototype
+
+所有构造函数都有一个相等的__proto__
+*/
 
