@@ -957,3 +957,114 @@ Tips：这些函数首字母需要大写（作为区分）
 所有构造函数都有一个相等的__proto__
 */
 
+
+/* 
+原型链
+
+当访问对象属性的时候，先在自身的属性里找，原型找不到去原型的原型里找，直到object.prototype为止
+*/
+
+/* 
+私有属性写在构造函数里面
+公共属性写在原型里
+*/
+
+// //先有原型，再有实例
+// function Teacher(n, a, i) {
+//     this.name = n;
+//     this.age = a;
+//     this.id = i;
+// }
+// // Teacher.prototype.showID = function () {
+// //     alert(this.id);
+// // };
+// Teacher.prototype = {
+//     constructor: Teacher,
+//     showID: function () {
+//         alert(this.id);
+//     },
+//     showName: function () {
+//         alert(this.name);
+//     },
+//     showAge: function () {
+//         alert(this.age);
+//     }
+// };
+// var samari = new Teacher("samari", 24, 1234);
+// samari.showID();
+
+// /* 
+// 继承
+
+// */
+// function A(n, a) {
+//     this.name = n;
+//     this.age = a;
+// }
+// A.prototype.getName = function () {
+//     return this.name;
+// };
+
+// //B原型需要新增属性
+// function B(n, a, i) {
+//     //继承原来的私有属性
+//     A.call(this, n, a);
+//     //新增私有属性
+//     this.id = i;
+// }
+// //继承原型
+// //错误写法：
+// // B.prototype = A.prototype;
+// // B.prototype.xx = 10;
+// //上述写法因为prototype的地址一样，儿子的修改会影响父亲
+
+// //防止 new A();的传参问题
+// function Fn() {
+//     Fn.prototype = A.prototype;
+// }
+// B.prototype = new Fn();
+// //新增原型
+// B.prototype.constructor = B;
+// B.prototype.xx = 10;
+
+// function clone(obj) {
+//     var o = {};
+//     for (var key in obj) {
+//         o[key] = obj[key];
+//     }
+//     return o;
+// }
+
+// var a = {
+//     x: 10,
+//     b: 20,
+//     K: {
+//         a: 1
+//     }
+// };
+
+// //递归
+// var b = clone(a);
+// b.k.b = 2;
+
+// function fn(num) {
+//     if (num === 1) {
+//         return 1;
+//     }
+//     return num * fn(num - 1);
+// }
+
+// function deepClone(obj) {
+//     var o = {};
+//     for (var key in obj) {
+
+//         if (obj[key] === "object") {
+//             o[key] = deepClone(obj[key]);
+//         } else {
+//             o[key] = obj[key];
+//         }
+//     }
+//     return o;
+// }
+
+// var b = JSON.parse(JSON.stringify(a));
