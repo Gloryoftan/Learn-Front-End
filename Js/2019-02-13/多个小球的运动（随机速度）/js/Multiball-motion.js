@@ -29,6 +29,16 @@ window.onresize = function resize() {
     return resize;
 }();
 
+//随机颜色
+function changeColor(ele){
+    let [r,g,b]=[
+        Math.floor(Math.random()*256),
+        Math.floor(Math.random()*256),
+        Math.floor(Math.random()*256)
+    ];
+    ele.style.background = `radial-gradient(#fff,rgb(${r},${g},${b}))`; 
+}
+
 //运动
 ! function move() {
     aP.forEach((ele, index) => {
@@ -50,18 +60,22 @@ window.onresize = function resize() {
         if (left >= maxLeft) {
             left = maxLeft;
             speedArr[index].x = -speedArr[index].x;
+            changeColor(ele);
         }
         if (left <= 0) {
             left = 0;
             speedArr[index].x = -speedArr[index].x;
+            changeColor(ele);
         }
         if (top >= maxTop) {
             top = maxTop;
             speedArr[index].y = -speedArr[index].y;
+            changeColor(ele);
         }
         if (top <= 0) {
             top = 0;
             speedArr[index].y = -speedArr[index].y;
+            changeColor(ele);
         }
 
         //位置赋值
@@ -70,3 +84,4 @@ window.onresize = function resize() {
     });
     requestAnimationFrame(move);
 }();
+
