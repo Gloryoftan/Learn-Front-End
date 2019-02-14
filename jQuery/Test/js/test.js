@@ -171,19 +171,17 @@ JS -> jQ $(JS对象)
 // $dom.eq(2).html("This is a Div label");
 // $("wrap").append($dom);
 
+// appendTo 添加了兄弟
+// appenAfter 添加了子元素
 
+// empth = innerHtml =  "";
 
-//appendTo 添加了兄弟
-//appenAfter 添加了子元素
+// remove = 自杀;
 
-//empth = innerHtml =  "";
-
-//remove = 自杀;
-
-//filter();
-//has();
-//not();
-//查找返回是所有子项，结合通配选择符
+// filter();
+// has();
+// not();
+// 查找返回是所有子项，结合通配选择符
 // find();
 // next();
 // nextAll();
@@ -191,5 +189,40 @@ JS -> jQ $(JS对象)
 // parent();父辈
 // parents();父辈们
 
+// $(function () {}); //ready
 
+// $("#wrap").on("click.func1", function () {
 
+// });
+
+// $("#wrap").on("click.func1", function () {
+
+// });
+
+// $("#wrap").off("click.func1");
+
+// //事件委托
+// $("#wrap").on("click", "p", function () {
+
+// });
+
+// //enter before
+// $("#wrap").hover(function () {
+
+// });
+
+//show hide
+$("#wrap").hide();
+$("#wrap").hide(3000);
+$("#wrap").show();
+$("#wrap").stop().animate({
+    width: 500,
+}, 2000);
+$("wrap").queue(function(){
+    $(this).css("background-color","red");
+
+    $(this).dequeue();
+});
+$("#wrap").delay(500).animate({
+    height: 500,
+}, 2000);
