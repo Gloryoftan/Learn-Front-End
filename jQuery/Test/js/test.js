@@ -171,6 +171,8 @@ JS -> jQ $(JS对象)
 // $dom.eq(2).html("This is a Div label");
 // $("wrap").append($dom);
 
+
+
 //appendTo 添加了兄弟
 //appenAfter 添加了子元素
 
@@ -180,7 +182,14 @@ JS -> jQ $(JS对象)
 
 //filter();
 //has();
+//not();
+//查找返回是所有子项，结合通配选择符
+// find();
+// next();
+// nextAll();
 
+// parent();父辈
+// parents();父辈们
 
 
 
