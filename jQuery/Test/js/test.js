@@ -212,17 +212,17 @@ JS -> jQ $(JS对象)
 // });
 
 //show hide
-$("#wrap").hide();
-$("#wrap").hide(3000);
-$("#wrap").show();
-$("#wrap").stop().animate({
-    width: 500,
-}, 2000);
-$("wrap").queue(function(){
-    $(this).css("background-color","red");
+// $("#wrap").hide();
+// $("#wrap").hide(3000);
+// $("#wrap").show();
+// $("#wrap").stop().animate({
+//     width: 500,
+// }, 2000);
+// $("wrap").queue(function(){
+//     $(this).css("background-color","red");
 
-    $(this).dequeue();
-});
-$("#wrap").delay(500).animate({
-    height: 500,
-}, 2000);
+//     $(this).dequeue();
+// });
+// $("#wrap").delay(500).animate({
+//     height: 500,
+// }, 2000);
