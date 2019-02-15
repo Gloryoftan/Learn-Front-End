@@ -1700,3 +1700,1049 @@ setInterval(fn, 1000, 2, 3);
 
 Tips：定时器就算设置0ms执行，也会在最后执行。
 
+
+## 2019-01-11 不兼容时如何伪装
+- requestAnimationFrame()
+
+作用和setTimeout一样，css3的底层。
+
+如果需要用到这个，不如直接使用css3。 
+
+如果不兼容，可以==伪装==。
+
+
+```js
+//初级伪装
+if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function (fn) {
+        let timer = setTimeout(fn, 16);
+        return timer;
+    };
+
+    window.cancelAnimationFrame = function (id) {
+        clearTimeout(id);
+    };
+}
+
+//伪装的高级写法
+window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {
+    return setTimeout(fn, 1000 / 60);
+};
+window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+```
+
+## 2019-01-15 日期对象
+
+```js
+let a = new Date();
+console.log(a);
+
+console.log(a.getFullYear());
+console.log(a.getMonth() + 1);
+console.log(a.getDate());
+console.log(a.getHours());
+console.log(a.getMinutes());
+console.log(a.getSeconds());
+
+console.log("##################################");
+
+console.log(a.toUTCString());
+
+let b = new Date().getTime();
+
+console.log(new Date(b - 3600000));
+```
+
+## 2019-01-16 运动框架（封装）
+
+```Js
+/* 
+Param:
+    ele - object (必传)   
+    attr - string (必须)    css属性
+    target - number (必须)  终点
+    step - number (选填) 默认2
+return:
+    undefined
+要点:
+需要babel转译
+*/
+
+window.Move = (function () {
+    //判断requestAnimationFrame的兼容
+    window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {
+        return setTimeout(fn, 1000 / 60);
+    };
+    window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+
+    return function (ele, attr, target, step = 2) {
+        //IE兼容，IE8只兼容currentStyle
+        let cssObj = ele.currentStyle || getComputedStyle(ele);
+        //初始值
+        let sVal = parseFloat(cssObj[attr]);
+        // 初始值与目标大小的问题
+        let bool = sVal > target;
+        if (sVal > target) {
+            step = -Math.abs(step);
+        } else if (sVal < target) {
+            step = Math.abs(step);
+        } else {
+            return;
+        }
+
+        function fn() {
+            sVal += step;
+            //判断终点
+            if (bool ? sVal >= target : sVal >= target) {
+                ele.style[attr] = sVal + "px";
+                return;
+            }
+            ele.style[attr] = sVal + "px";
+            requestAnimationFrame(f);
+        }
+        requestAnimationFrame(f);
+    };
+
+})();
+```
+## 2019-01-17 DOM文档对象模型
+操作HTML的规则，是Js与HTML之前的桥梁
+
+DOM树
+
+节点类型  | nodeType    | nodeName | nodeValue
+---|---|---|---
+元素节点|	1|	标签名（大写）|	null
+属性节点|	2|  属性名        |	属性值
+文本节点|	3|	#text          |文本内容
+CDTAT节点|	4|	#cdata-section|	CDATA区域的内容
+实体引用名称节点|	5|	引用名称|	null
+实体名称节点|	6|	实体名称|	null
+处理指令节点|	7|	target|	entire content cluding the target
+注释节点|	8|	#comment|	注释内容
+文档节点|	9|	#document|	null
+文档类型节点|	10|	doctype的名称|	null
+文档片段节点|	11|	#document-fragment|	null
+DTD声明节点|	12|	符号名称|	null
+
+## 2019-01-18 DOM API
+- children();
+
+因为childNodes解析空格，并且我们平时操作的都是元素节点，所以利用.children();
+
+==Tips: Inner会修改文本，尽量不要使用。==
+
+
+```js
+let ele = document.getElementById("wrap");
+//创建文本节点
+let text = document.createTextNode("Hanks");
+//创建元素节点
+let oDiv = document.createElement("div");
+
+//添加
+ele.appendChild(text);
+
+//在某个自元素的前面加
+let e = document.getElementById("e");
+ele.insertBefore(oDiv, e);
+
+//放在子元素第一位（即使是undefined都可以添加）
+ele.insertBefore(oDiv,ele.children[0]);
+
+//删除
+ele.removeChild(e);
+```
+
+## 2019-01-18 节点操作
+```js
+//克隆
+let ele1 = document.getElementById("wrap1");
+let ele2 = document.getElementById("wrap2");
+//true表示会把里面的文本内容也克隆（警惕ID的重复）
+let clone = ele1.cloneNode(true);
+
+ele2.appendChild(clone);
+```
+## 2019-01-21 宽高API
+
+```js
+//获取页面显示区的宽高，IE8及一下不兼容
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+
+//IE兼容
+//width + padding
+console.log(document.documentElement.clientWidth);
+console.log(document.documentElement.clientHeight);
+
+//width + padding + border
+console.log(document.documentElement.offsetWidth);
+console.log(document.documentElement.offsetHeight);
+
+//有超出部分时
+console.log(document.documentElement.scrollWidth);
+console.log(document.documentElement.scrollHeight);
+```
+
+其他一些API
+```js
+//获取元素到文档的距离
+function getOffset(ele) {
+    let dis = {top: 0, left: 0};
+    while (ele === document.body){
+        dis.top += ele.offsetTop;
+        dis.left += ele.offsetLeft;
+        ele = ele.offsetParent;
+    }
+}
+```
+Tips:以上的都是==不可以==被赋值的。
+
+
+获取页面的滚动高
+
+```js
+//获取页面的滚动高
+console.log(document.documentElement.scrollTop || document.body.scrollTop);
+```
+元素方法
+
+```js
+//返回值是一个对象，包含top,left,right,bottom
+a.getBoundingClientRect();
+
+//把元素直接移动到可视区 true顶部对齐 false底部对齐
+a.scrollIntoView();
+```
+
+## 2019-01-21 event事件对象
+事件函数执行时，第一个形参，就是事件对象。
+
+存储着和该次事件相关的一些信息。
+
+- clientX/clientY 
+
+事件触发时，鼠标距离可视区的位置
+
+- pageX/pageY
+
+鼠标距离文档的位置
+
+## 2019-01-21 BOM
+- window对象属性
+
+- history
+1. go
+2. forward
+3. back
+
+- navigator
+userAgent：伪装成别的浏览器
+
+## 2019-01-21 事件冒泡
+
+子元素的事件触发，会带着父元素的事件一同触发，并且和布局没有任何关系。
+
+```html
+ <div id="box1">
+            <div id="box2">
+                <div id="box3">
+                    
+                </div>
+            </div>
+        </div>
+```
+```js
+box1.onclick = function() {
+    console.log(1);
+}
+
+box2.onclick = function() {
+    console.log(2);
+}
+
+box3.onclick = function() {
+    console.log(3);
+}
+```
+>3 2 1
+
+如何拦截冒泡
+
+事件的触发都有各自的event
+
+```js
+box3.onclick = function(e) {
+    e.stopPropagation();
+    console.log(3);
+}
+```
+```js
+//兼容IE
+event = event || window.event;
+//组织冒泡
+if(event.stopPropagation){
+    event.stopPropagation();
+}else{
+    event.cancelBubble = true;
+}
+```
+
+## 2019-01-21 事件监听
+
+```js
+//DOM 0级事件，弊端是会被覆盖
+box.onclick = function () {
+    console.log("1");
+};
+
+box.onclick = function () {
+    console.log("2");
+};
+```
+
+- ele.addEventListener(事件类型，回调方法，捕获|冒泡)
+```js
+//DOM 2级事件监听
+box3.addEventListener("click",function(event){
+console.log("31");
+});
+//尽量用DOM 2级做监听
+```
+
+主流浏览器才有的事件捕获机制：
+- 事件冒泡：儿子到父亲
+- 事件捕获：父亲到儿子
+
+捕获相当于拦截
+
+事件的清除
+
+```js
+//监听事件的清除
+let callback = function () {
+    console.log("1");
+};
+box.addEventListener("click", callback);
+
+document.ondblclick = function () {
+    box.removeEventListener("click".callback);
+};
+```
+tips:监听事件传什么参数，取消也要传
+
+## 2019-01-22 事件的默认行为
+鼠标右键事件的取消：
+```js
+// DOM 0级在时间里直接return false
+document.oncontextmenu = function(){
+    return false;
+};
+// DOM 0级要少用
+```
+```js
+// DOM 2级
+// 主流浏览器
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+});
+// IE
+document.attachEvent("contextmenu", function (event) {
+    event = enent || window.event;
+    event.returnValue = false;
+});
+```
+利用preventDefault()来阻止事件的默认行为。
+
+## 2019-01-22 滚轮事件
+谷歌及IE
+
+mousewheel 
+
+event.wheelDelta
+-120 下滚
+120 上滚
+
+火狐滚动事件
+
+DOMMouseScroll只能通过二级事件监听
+
+event.detail
+3下滚
+-3上滚
+
+## 2019-01-23 事件的兼容封装
+
+```js
+//事件的监听
+function addEvent(ele, eType, callback, capture) {
+    //主流浏览器
+    if (ele.addEventListener) {
+
+        //判断是否为火狐
+        if (eType === "mousewheel" && document.createElement("div").onmousewheel === undefined) {
+            eType = "DOMMouseScroll";
+        }
+
+        ele.addEventListener(eType, callback, capture);
+        return callback;
+    } else {
+        //处理IE的this指向问题
+        var codeCall = function () {
+            callback.call(ele);
+        };
+        ele.attachEvent("on" + eType, ele);
+        return codeCall;
+    }
+}
+
+//事件的移除
+function removeEvent(ele, eType, callback, capture) {
+    ele.addEventListener ? ele.removeEventListener(eType, callback, capture) : ele.detachEvent("on" + eType, callback);
+}
+
+//一次性事件
+function oneEvent(ele, eType, callback, capture) {
+    var fn = addEvent(box, "click", function (e) {
+        callback.call(ele, e);
+        removeEvent(this, "click", fn);
+    });
+}
+```
+
+## 2019-01-22 表单事件
+
+```js
+/* 
+onfocus 获得焦点
+onblur  失去焦点
+按Tab能选中的，就可以获得焦点。
+特例:a,document,window
+*/
+//非常有意思的焦点事件应用
+window.onfocus = function () {
+    document.title = "Samari's Blog";
+};
+window.onblur = function () {
+    document.title = "Jesus! Too many BUGs!!";
+};
+```
+
+```js
+//用来停止定时器（定时器在焦点不在当前页面的时候会变慢）
+let num = 0;
+let timer = null;
+function m(){
+    document.title = ++num;
+    timer = setTimeout(m,50);
+}
+timer = setTimeout(m,50);
+
+window.onblur = function(){
+    clearTimeout(timer);
+};
+window.onfocus = function(){
+    clearTimeout(timer);
+    m();
+};
+```
+- focus()
+- blur()
+
+## 2019-01-23 键盘事件
+
+```js
+/* 
+按下：keydown keypress
+down在press前触发
+down事件响应所有按键
+press只响应能键入值相关的键
+
+抬起：keyup
+*/
+
+document.onkeydown = function(){};
+
+document.onkeypress = function () {};
+
+document.onkeyup = function(){};
+
+//阻止键盘事件
+if(e.keyCode === xxx){
+ return false;   
+}
+```
+
+## 2019-01-24 正则表达式
+传统方法提取字符串里的数字
+
+```js
+let a = "123abc456def789";
+
+function fn(str) {
+    let len = str.length;
+    let s = "";
+    let arr = [];
+    for (let i = 0; i < len; i++) {
+        let n = str.charAt(i);
+        if (!isNaN(n)) {
+            s += n;
+        } else {
+            s && arr.push(s);
+            s = "";
+        }
+    }
+    s && arr.push(s);
+    return arr;
+}
+
+fn(a);
+console.log(fn(a));
+```
+> ["123", "456", "789"]
+
+使用正则表达式
+
+```js
+let a = "123abc456def789";
+
+function fn(str) {
+    return str.match(/\d+/g);
+}
+console.log(fn(a));
+```
+> ["123", "456", "789"]
+
+正则表达式的写法
+
+第一种
+
+这种方法是没有办法用变量来定义正则表达式的
+
+```js
+let a = /abc/;
+```
+
+第二种
+
+```js
+let  a = new RegExp("abc");
+```
+
+学习正则表达式的准备工作,test api
+
+.test() 
+
+正则.test（字符串）
+
+匹配成功返回true,否则返回false
+
+## 2019-01-24 转义符号
+
+```js
+/* 
+转义符号
+\ /
+*/
+
+//转义符号讲有特殊意义的符号变成没有特殊意义
+let a = /\//;
+
+//转义符号配合一些自己使用，有非常独特的意义
+/* 
+\s 匹配各种空格
+\S 除了小s能匹配到的
+
+\d 数字
+\D 非数字
+
+\w 匹配字符（数字，字母，下划线）一般用来匹配用户名 
+\W 
+
+\b 连词符 起始-结束 让其独立（转义w的内容让其不独立）（汉字一个字也不独立）（通常匹配英文单词）
+\B
+*/
+
+```
+
+## 2019-01-24 修饰符
+
+```js
+/* 
+修饰符
+i   不区分大小写
+g   全局匹配 (不会在第一个就停)
+m   换行匹配
+*/
+
+/* 
+.match()
+字符串.match(正则)
+寻找匹配的内容，拿到并组成一个数组返回，否则返回null
+*/
+
+let a = /abc/igm;
+
+```
+
+## 2019-01-24 量词 & 子项 
+
+```js
+/* 
+量词 { }
+    {n}     n个
+    {n,m}   n~m [n,m]
+    {n,}    [n,+∞]
+    没有{,n} 只有{0,n}
+
+    默认贪婪，往多的去匹配
+    量词后面加 ？ 就成了惰性
+
+几个特殊量词有专属的符号代替
+    {1,}    +
+    {0,}    *
+    {0,1}   ?
+*/
+let a = /\d{11}/g;
+let b = /\d{2,4}/;
+```
+
+```js
+/* 
+子项（）
+如果只想拿到里面的一部分，可以利用子项去取值
+*/
+let a =/(ab)+/;
+let b = /Samari:(\d{11})/; //取第一个子项就是手机号，而不会出现名字
+```
+
+
+
+## 2019-01-25 字符集 & 起始/结束 & . & $1 & 捕获组
+```js
+/* 
+字符集[] 规则 => unicode ASCII码
+很多特殊字符在字符集里面没有特殊意义
+*/
+let a = /Dear(Samari|Henry|Liz)/;
+
+let b = /[1-7]/;
+let c = /1|2|3|4|5|6|7/;
+
+let d = /[1-7]{5}/;
+let e = /(1|2|3|4|5|6|7){5}/;
+
+let f = /[^abc]/g; // "^" 表示除了，只能写在开头
+```
+
+```js
+/* 
+^ $
+^起始位置
+$结束位置
+*/
+
+let a = /^abc/;
+
+let b = /a^bc/; //这是一个逻辑错误的正则表达式
+
+let c = /(a|^)bc/;
+
+```
+
+```js
+/* 
+. 匹配任意字符 除了换行等之外
+[.]没有特殊意义
+*/
+
+let a = /./g;
+
+```
+
+```js
+//存储了最近的1-9次正则表达式的子项
+RegExp.$1;
+
+//捕获组 \1把之前的第一个子项重复一次
+let a =/(\d(\d))\1\2/;
+```
+
+## 2019-01-25 常用正则
+
+```js
+let reg = {
+    //qq:最少5位，最大10位,只能是数字，第一位不是0
+    qq: /^[1-9]\d{4,9}$/,
+    //用户名：6～18，数字、字母、下划线。必须要字母开头
+    user:/^[a-zA-Z]\w{5,17}$/i,
+    //密码：6～18，数字字母下划线，所有符号
+    pwd: /^[\w\-\]<>,.?/+*=)([{}:;"'&^%$#@!`~|\\/]{6,18}$/,
+    //手机号
+    tel:/^1[3-9]\d{9}$/,
+    //邮箱
+    mail: /^[a-z1-9]\w{0,17}@[0-9a-z]{2,}(\.[a-z]{2,4}){1,2}$/i,
+    //身份证
+    IDCard: /^[1-9]\d{5}(18|19|20)\d{2}((0[13578]|1[02])(0[1-9]|[12][0-9])|3[01])|((0[469]|11)(0[1-9]|[12][0-9])|30)|(02)(0[1-9]|[12][0-9])\d{3}[0-9x]$/,
+};
+
+```
+
+## 2019-01-25 断言
+
+```js
+/* 
+断言
+?= 匹配包括括号内的内容但是结果不包含
+？| 匹配不包括括号内的内容但是结果不包含
+括号里的东西不属于子项
+*/
+let a = /Window(?=XP)/;
+let b = "Windos";
+```
+## 2019-01-28 cookie
+
+```js
+/* 
+如果不给cookie设置过期时间，那么浏览器关闭之后，cookie就清除了
+
+在存储本地cookie的时候，一定会设置一个过期时间
+    expires=日期对象.toUTCString()
+
+麻烦点:  1.获取
+        2.设置时间
+        3.删除
+*/
+let date = new Date(2019, 11, 31, 23, 59, 59);
+//存储cookie
+document.cookie = "user = Samari;expires=" + date.toUTCString;
+//获取cookie
+document.cookie;
+
+//7天之后过期
+let date = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+```
+
+## 2019-01-29 Ajax
+异步的Javascript 和 xml
+
+同步=>一心一意
+
+异步=>三心二意
+
+
+功能：
+
+无刷新页面的情况下，实现与后台的数据交互，同时在页面进行更新。
+
+跨域：
+
+不允许跨域请求资源
+（安全问题）
+
+和后端语言进行数据交互，需要在电脑上安装，集成环境（本地服务器）
+
+一台电脑，最好只安装一台本地服务器（否则会出现端口冲突问题）
+
+Windows推荐：
+    
+    xampp
+    
+1. xampp安装到D盘根目录
+2. 进入xampp文件夹，xampp-control.exe启动服务器
+3.先把htdocs目录里的文件都删除掉，只留一个图标就可，然后就可以吧你的html项目复制到此目录下。
+4. 通过127.0.0.1（本地服务器域名）访问
+
+
+```js
+//创建Ajax对象
+const ajax = new XMLHttpRequest();
+//监听状态的改变
+/* 
+*   0-4
+        0 初始状态 ajax对象已经被创建
+        1 open()方法 已调用
+        2 send()方法 已调用
+        3 所有的相应 已经收到
+        4 http 相应已经完全接受
+*/
+ajax.onreadystatechange = function () {
+    if (ajax.readyState === 4 && ajax.readyState === 200) {
+        //前端 就能接收到数据了，想干嘛就干嘛
+        console.log(ajax.response);
+        //把对应的数据 转换对应的数据类型
+        console.log(JSON.parse(ajax.response));
+    }
+};
+//本地测试
+ajax.open('get', '/data.php', true); //通过什么样的方式，向什么样的后端服务器，发送什么样的请求,true异步
+
+//真实服务器（虚拟主机）环境 数据先行 数据驱动视图
+//ajax.open('post','http://www.alibaba.com/48/data.php',true);
+
+ajax.send(); //执行请求命令
+```
+
+## 2019-01-29 jsonp跨域
+
+```js
+//jsonp 一种跨域问题的解决方案
+
+//H5 17期实战
+function getData(data) {
+    console.log(data);
+}
+
+//核心本质 就是后端服务器 返回一个函数调用
+//getData("js")
+createJsonp();
+
+function createJsonp() {
+    const s = document.createElement("script");
+    s.src = 'http://www.tanzhouweb.com/48/jsonp.php?callback=getData';
+    document.body.appendChild(s);
+}
+```
+
+[相关笔记在GitHub中可以找到代码注释](https://github.com/Gloryoftan/Learn-Front-End/tree/master/Js/2019-01-29/初探Ajax)
+
+
+## 2019-01-29 Node
+1. 运行Node 需要先安装 去英文官网下载安装
+2. 测试是否安装成功
+3. $node -v
+4. $npm -v
+
+## 2019-01-30 面向对象 & new
+    
+```js
+/* 
+OOP的三大特点
+封装 继承 多态
+*/
+```
+- 封装性
+```js
+/* 
+New
+
+new Date();
+new Image();
+new XMLHttpRequest();
+new RegExp();
+
+new 关键词 后面紧跟一个函数
+区别： 
+    1. 函数的this指向问题：函数内部生成一个全新的对象，函数的this指向这个对象
+    2. 函数默认返回上述对象
+
+Tips：这些函数首字母需要大写（作为区分）
+构造函数/类（js没有类）
+*/
+```
+## 2019-01-31 原型 & 原型链
+
+```js
+/* 
+原型
+它是构造函数的一个属性，是一个object数据类型
+
+构造函数.prototype
+
+所有构造函数都有一个相等的__proto__
+*/
+```
+原型链
+
+```js
+/* 
+原型链
+
+当访问对象属性的时候，先在自身的属性里找，原型找不到去原型的原型里找，直到object.prototype为止
+*/
+
+/* 
+私有属性写在构造函数里面
+公共属性写在原型里
+*/
+
+//先有原型，再有实例
+function Teacher(n, a, i) {
+    this.name = n;
+    this.age = a;
+    this.id = i;
+}
+// Teacher.prototype.showID = function () {
+//     alert(this.id);
+// };
+Teacher.prototype = {
+    constructor: Teacher,
+    showID: function () {
+        alert(this.id);
+    },
+    showName: function () {
+        alert(this.name);
+    },
+    showAge: function () {
+        alert(this.age);
+    }
+};
+var samari = new Teacher("samari", 24, 1234);
+samari.showID();
+```
+## 2019-01-31 继承
+
+```js
+/* 
+继承
+
+*/
+function A(n, a) {
+    this.name = n;
+    this.age = a;
+}
+A.prototype.getName = function () {
+    return this.name;
+};
+
+//B原型需要新增属性
+function B(n, a, i) {
+    //继承原来的私有属性
+    A.call(this, n, a);
+    //新增私有属性
+    this.id = i;
+}
+//继承原型
+//错误写法：
+// B.prototype = A.prototype;
+// B.prototype.xx = 10;
+//上述写法因为prototype的地址一样，儿子的修改会影响父亲
+
+//防止 new A();的传参问题
+function Fn() {
+    Fn.prototype = A.prototype;
+}
+B.prototype = new Fn();
+//新增原型
+B.prototype.constructor = B;
+B.prototype.xx = 10;
+```
+
+## 2019-01-31 对象的拷贝
+
+```js
+function clone(obj){
+    var o ={};
+    for(var key in obj){
+        o[key] = obj[key];
+    }
+    return o;
+}
+
+var a ={
+    x:10,
+    b:20,
+    k:{
+        a:1
+    }
+};
+
+var b = clone(a);
+b.k.b = 2;
+```
+这样拷贝的问题在于，b.k.b的调用，k.b的引用是一样的。
+
+递归：
+
+递是一层层往下，归是一层层往上。
+
+```js
+//递归
+var b = clone(a);
+b.k.b = 2;
+
+function fn(num){
+    if(num ===1){
+        return 1;
+    }
+    return num*fn(num-1);
+}
+```
+
+深拷贝
+
+```js
+function deepClone(obj) {
+    var o = {};
+    for (var key in obj) {
+
+        if (obj[key] === "object") {
+            o[key] = deepClone(obj[key]);
+        } else {
+            o[key] = obj[key];
+        }
+    }
+    return o;
+}
+```
+利用JSON转，但有局限性：对象里包含函数
+
+```js
+var b = JSON.parse(JSON.stringify(a));
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
