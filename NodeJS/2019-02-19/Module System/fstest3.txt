@@ -1,1 +1,2 @@
 Something to test fs.writeFile!2nd Something to test fs.writeFile!
+linkTest
