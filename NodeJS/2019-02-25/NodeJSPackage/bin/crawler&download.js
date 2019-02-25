@@ -1,10 +1,10 @@
 const request = require("request");
 const fs = require("fs");
 
-let word = "魔术";
+let word = encodeURI("魔术");
 
 let option = {
-    url: encodeURI("http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=魔术"),
+    url: "http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=" + word,
     method: "GET",
     headers: {
         "User-Agent": "Mozilla / 5.0(Macintosh; Intel Mac OS X 10 _14_3) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 72.0 .3626 .109 Safari / 537.36"
