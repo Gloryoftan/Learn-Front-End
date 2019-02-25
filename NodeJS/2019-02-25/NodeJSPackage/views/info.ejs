@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestEJS</title>
+    <style>
+        /* table,
+        table tr th,
+        table tr td {
+            border: 1px solid #0094ff;
+        } */
+
+        table {
+            width: 400px;
+            min-height: 25px;
+            line-height: 25px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1">
+        <tbody>
+            <tr>
+                <th colspan="2">
+                    <%= title %>
+                </th>
+            </tr>
+            <tr>
+                <th>姓名</th>
+                <th>演员</th>
+            </tr>
+            <% items.forEach((ele,index)=>{     %>
+            <tr>
+                <td>
+                    <%= ele.character %>
+                </td>
+                <td>
+                    <%= ele.actor %>
+                </td>
+            </tr>
+            <% }) %>
+
+            <!-- <tr>
+                <td>“盗梦者”道姆·柯布</td>
+                <td>莱昂纳多·迪卡普里奥</td>
+            </tr>
+            <tr>
+                <td>“前哨者”亚瑟</td>
+                <td>约瑟夫·高登·莱维特</td>
+            </tr>
+            <tr>
+                <td>“筑梦师”阿德里安</td>
+                <td>艾伦·佩姬</td>
+            </tr>
+            <tr>
+                <td>“伪装者”伊姆斯</td>
+                <td>汤姆·哈迪</td>
+            </tr>
+            <tr>
+                <td>“魅影”梅尔</td>
+                <td>玛丽昂·歌迪亚</td>
+            </tr>
+            <tr>
+                <td>“目标”费舍</td>
+                <td>希里安·墨菲</td>
+            </tr> -->
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</body>
+
+</html>
