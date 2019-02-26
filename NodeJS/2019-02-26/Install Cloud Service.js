@@ -15,10 +15,14 @@
         #n latest
         #n 10.1.0
     *n 回车切换版本
-    *使用n命令删除某个版本的弄的
+    *使用n命令删除某个版本的node
         #n rm10.1.0
     *检测node是否安装成功
         #node -v
 
-
+    *安装pm2进程守护
+        #npm i pm2 -g
+    *通过pm2来启动和关闭多个服务
+        #pm2 start xxx.js [name]
+        #pm2 delete [id]
 */
