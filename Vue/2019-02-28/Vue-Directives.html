@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue-指令系统</title>
+    <style>
+        .box {
+            width: 50px;
+            height: 50px;
+            background-color: green;
+        }
+
+        .box.active {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="app">
+            <h2>{{msg}}</h2>
+            <p v-text="msg"></p>
+            <div v-html="msg2"></div>
+
+            <div v-if="isShow">开业了</div>
+            <div v-if="!isShow">打烊了</div>
+
+            <div v-if="Math.random()>0.5">if的显示</div>
+            <div v-else>if的隐藏</div>
+
+            <div v-show="isShow">vShow的显示</div>
+            <div v-show="!isShow">vShow的隐藏</div>
+
+            <div class="box" v-bind:class="{active:isRed}" v-on:click="clickHandler"></div>
+
+            <ul>
+                <li v-for="(item,index) in menuList">
+                    <h4>{{item.id}}</h4>
+                    <h2 v-text="item.name"></h2>
+                    <em>{{item.price}}</em>
+                </li>
+            </ul>
+
+            <ul>
+                <li v-for="(value, key) in person">
+                    {{key}} => {{value}}
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+
+    <script>
+        /* 创建实例化对象 
+        双大括号插值{{}}
+        v-text innerText
+        v-html innerHTML
+        v-if 数据属性对应的值，如果为假，则不在页面中渲染，反之亦然。appendChild(),removeChilde().
+        v-show 控制dom元素的显示隐藏 display:none / block;(频繁使用的情况推荐使用v-show)
+
+        控制类名对元素显示隐藏
+        v-bind 绑定标签上的属性（内置的属性和自定义的属性）简写为:（冒号）
+
+        v-on:原生事件名=“函数名” 简写为 @
+
+        v-for="(item,index)in items"
+        */
+
+        new Vue({
+            el: "#app",
+            data: function () {
+                return {
+                    //数据属性
+                    msg: "指令系统",
+                    msg2: "<h2>指令系统</h2>",
+                    isShow: true,
+                    isRed: true,
+                    menuList: [{
+                            id: 1,
+                            name: "西红柿炒鸡蛋",
+                            price: 29
+                        },
+                        {
+                            id: 2,
+                            name: "宫保鸡丁",
+                            price: 49
+                        },
+                        {
+                            id: 3,
+                            name: "糖醋排骨",
+                            price: 69
+                        },
+                    ],
+                    person: {
+                        name: "Samari",
+                        age: 18,
+                        fav: "Front-End"
+                    }
+                }
+            },
+            methods: {
+                clickHandler(e) {
+                    this.isRed = !this.isRed;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

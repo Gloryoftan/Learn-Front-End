@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的基本使用</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- vue的模板语法{{}}双大括号插值 react{} -->
+        <h2>
+            {{msg}}
+        </h2>
+        <h3>{{1+1}}</h3>
+        <h4>{{isTrue}}</h4>
+        <h5>{{str.split('').reverse().join('')}}</h5>
+        <h6>{{1>2?"真":"假"}}</h6>
+        <h5>{{ {name:"Samari"} }}</h5>
+    </div>
+
+    <!-- 1.引包 -->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+
+    <!-- 2.创建实例化对象 -->
+
+    <!-- 如果template中定义了内容，那么有限加载template,如果没有定义内容，那么加载的是#app的模板 -->
+    <script>
+        new Vue({
+            el: "#app", //目的地
+            //数据发生改变是，视图发生改变，简言之，数据驱动视图
+            data: {
+                //数据属性
+                //既可以是对象，也可以是一个函数
+                msg: "Tomato",
+                isTrue: 1 == 1,
+                str: "Hello Vue"
+            },
+            // template: `<div>{{msg}}</div>`
+        })
+    </script>
+</body>
+
+</html>
