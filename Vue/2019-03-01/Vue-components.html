@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue局部组件的使用</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        //全局组件
+        //第一个参数是组件的名字，第二个是options
+        Vue.component("Vbtn",{
+            /* 插槽 内置组件 slot 承载、分发内容的出口 */
+            template:`<button><slot>按钮</slot></button>`,
+        })
+
+        //局部组件
+        let Vheader = {
+            template: `<div>
+                        我是头部组件
+                            <Vbtn>登陆</Vbtn>
+                            <Vbtn>注册</Vbtn>
+                            <Vbtn>提交</Vbtn>
+                        </div>`,
+            methods: {
+
+            }
+        }
+
+        let Vaside = {
+            template: `<div>
+                            我是侧边栏组件
+                            <Vbtn />
+                        </div>`
+        }
+
+        let Vcontent = {
+            template: `<div>我是内容组件</div>`
+        }
+
+        let App = {
+            components: {
+                Vheader,
+                Vaside,
+                Vcontent
+            },
+            template: `<div>
+                            <Vheader />
+                                <div>
+                                    <Vaside />
+                                    <Vcontent />
+                                </div>
+                        </div>`
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>
