@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>计算属性</title>
+    <style>
+        ul li.active {
+            background-color: aqua;
+        }
+    </style>
 </head>
+
 <body>
     <div id="app">
-        
+        <audio :src="getCurrentSongSrc" autoplay controls></audio>
+        <ul>
+            <li v-for="(item,index) in musicData" @click="clickHandler(index)" :class="{active:(currentIndex == index)}">
+                <h2>{{item.id}} - 歌名:{{item.name}}</h2>
+                <p>歌手:{{item.songSrc}}</p>
+            </li>
+
+        </ul>
     </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let musicData = [{
+                id: 1,
+                name: "Everytime",
+                author: "Chen,Punch",
+                songSrc: "./static/Chen,Punch - Everytime.mp3"
+            },
+            {
+                id: 2,
+                name: "ALWAYS",
+                author: "尹美莱",
+                songSrc: "./static/尹美莱 - ALWAYS.mp3"
+            },
+        ];
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    musicData: musicData,
+                    currentIndex: 0,
+                }
+            },
+            computed: {
+                //计算属性默认只有getter
+                getCurrentSongSrc: function () {
+                    return this.musicData[this.currentIndex].songSrc
+                }
+            },
+            methods: {
+                clickHandler(index) {
+                    this.currentIndex = index;
+                }
+            },
+        })
+    </script>
 </body>
+
 </html>
