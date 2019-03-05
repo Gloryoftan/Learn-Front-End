@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <h3>{{msg}}</h3>
+        <button @click="status[0].name='Rose'">Click to change the name</button>
+        <h4>{{status[0].name}}</h4>
+
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+
+    <!-- watch 监听的是单个属性基本的数据类型 -->
+
+    <!-- 基本的数据类型==>简单监视 -->
+    <!-- 复杂的数据类型==>深度监视 -->
+
+    <!-- 什么情况下，数据改变视图却不改变 -->
+    <!-- 监听实际实际上是监听了内存地址 -->
+    <!-- 当数据类型为数组的时候，里面的对象对应的是另一个内存地址。 -->
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    msg: "",
+                    status: [{
+                        name: "Jack"
+                    }]
+                }
+            },
+            watch: {
+                msg: function (newV, oldV) {
+                    if (newV === "Samari") {
+                        alert("Welcome Samari")
+                    }
+                },
+                //监听复杂数据类型object array 深度监视
+                status: {
+                    deep: true, //深度监视
+                    handler: function (newV, oldV) {
+                        alert("Deep watch succeed!")
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
