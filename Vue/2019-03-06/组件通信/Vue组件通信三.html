@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue组件通信三</title>
+</head>
+
+<body>
+    <!-- bus.$emit & bus.$on -->
+    <!-- 通信一二都是处理父子组件，三处理兄弟组件 -->
+
+    <div id="app"></div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script>
+        //中央事件总线
+        let bus = new Vue();
+
+        Vue.component("brother2", {
+            data() {
+                return {
+                    brother2Msg: ""
+                }
+            },
+            template: `
+            <div>
+                <p>我是老二</p>
+                <button @click="passData(brother2Msg)">点击进行兄弟组件的通信</button>
+                <input v-model="brother2Msg"/>
+            </div>
+            `,
+            methods: {
+                passData(brother2Msg) {
+                    bus.$emit("globalEvent", brother2Msg)
+                }
+            },
+        })
+
+        Vue.component("brother1", {
+            data() {
+                return {
+                    brother1Msg: "",
+                }
+            },
+            template: `
+            <div>
+                <p>我是老大</p>
+                <p>这是老二传过来的数据：{{brother1Msg}}</p>
+            </div>
+            `,
+            mounted() {
+                //绑定全局时间globalEvent事件
+                bus.$on("globalEvent", (brother2Msg) => {
+                    this.brother1Msg = brother2Msg;
+                })
+            },
+        })
+
+        let App = {
+            data() {
+                return {
+
+                }
+            },
+            template: `
+            <div>
+                <brother1></brother1>
+                <brother2></brother2>
+            </div>
+            `,
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`
+        })
+    </script>
+</body>
+
+</html>

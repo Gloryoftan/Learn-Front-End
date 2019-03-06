@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue组件通信二</title>
+</head>
+
+<body>
+    <!--$attrs & $listeners -->
+    <!-- 解决问题：Vue组件通信一解决了父子组件，现在可能会有孙组件，曾孙组件... -->
+    <div id="app"></div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component("C", {
+            data() {
+                return {
+                    val: ""
+                }
+            },
+
+            template: `
+            <div>
+                <p>这是C组件</p>
+                <p>这是从父组件传过来的数据：{{$attrs.msg}}</p>
+                <button @click="clickHandler(val)">点击出发子到父的通信</button>
+                <input v-model="val"/>
+            </div>
+            `,
+            methods: {
+                clickHandler(val) {
+                    this.$emit("getChildData", val)
+                }
+            }
+        })
+
+        Vue.component("B", {
+            data() {
+                return {
+
+                }
+            },
+            template: `
+           <div>
+                <p>这是B组件</p>
+                <C v-bind="$attrs" v-on="$listeners"></C>
+           </div>
+           `,
+        })
+
+        Vue.component("A", {
+            data() {
+                return {
+                    message: "这是A组件的数据"
+                }
+            },
+            template: `
+            <div>
+                <p>这是A组件</p>
+                <B v-bind="$attrs" v-on="$listeners"></B>
+            </div>
+            `,
+        })
+
+        let App = {
+            data() {
+                return {
+                    message: "这是父组件的数据",
+                    msg: "这是条父往子传的数据",
+                    valFromChild: ""
+                }
+            },
+            template: `
+            <div>
+                <p>这是父组件</p>
+                <A :msg="msg" v-on:getChildData="getChildData"></A> 
+                <p>这是子组件传回来的数据：{{valFromChild}}</p>
+            </div>
+            `,
+            methods: {
+                getChildData(val) {
+                    this.valFromChild = val
+                }
+            },
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`
+        })
+    </script>
+</body>
+
+</html>

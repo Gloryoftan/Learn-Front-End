@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue组件通信四</title>
+</head>
+
+<body>
+    <!-- provider & inject：-->
+    <!-- 简单的来说就是在父组件中通过provider来提供变量，然后在子组件中通过inject来注入变量。 -->
+    <div id="app"></div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component("B", {
+            data() {
+                return {
+                    msg: this.pData
+                }
+            },
+            inject: ['pData'],
+            template: `
+            <div>
+                <p>我是B组件的：{{msg}}</p>
+            </div>
+            `,
+        })
+
+        Vue.component("A", {
+            data() {
+                return {
+                    msg: this.pData
+                }
+            },
+            inject: ['pData'],
+            template: `
+            <div>
+                <p>我是A组件的：{{msg}}</p>
+                <B></B>
+            </div>
+            `,
+        })
+
+        let App = {
+            data() {
+                return {
+
+                }
+            },
+            template: `
+            <div>
+            <A></A>
+            </div>
+            `,
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`,
+            provide: {
+                pData: "这是provide的数据"
+            }
+        })
+    </script>
+</body>
+
+</html>

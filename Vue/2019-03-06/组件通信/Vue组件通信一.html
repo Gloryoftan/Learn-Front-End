@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue组件通信一</title>
+</head>
+
+<body>
+    <!-- props 和 $emit -->
+    <!--    
+        父=>子 props
+        1.  在父组件的用子中        :childData="msg"
+        2.  在子组件中             props: ["childData"]
+
+        子=>父 $emit
+        1. 子组件（触发emit）       @click="sendMsg(childMsg)"
+        2. 子组件method            this.$emit("childDataPass", childMsg)
+        3. 在父组件的用子中（监听）   @childDataPass="childDataPass"
+        4. 父组件method            this.childMsg = childMsg;
+    -->
+    <div id="app">
+
+    </div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component("Child", {
+            data() {
+                return {
+                    childMsg: ""
+                }
+            },
+            template: `
+            <div>
+                <p>我是子组件</p>
+                <p>这是我从父组件获得的数据：{{childData}}</p>
+                <button @click="sendMsg(childMsg)">向父组件传数据</button>
+                <input v-model="childMsg">
+            </div>
+            `,
+            props: ["childData"],
+            methods: {
+                sendMsg(childMsg) {
+                    this.$emit("childDataPass", childMsg)
+                }
+            }
+        })
+
+        Vue.component("Parent", {
+            data() {
+                return {
+                    msg: "我是父组件的数据！",
+                    childMsg: "",
+                }
+            },
+            template: `
+            <div>
+                <p>我是父组件</p>
+                <p>父组件的数据内容：{{msg}}</p>
+                <p>从子组件获得的数据内容：{{childMsg}}</p>
+                <Child :childData="msg" @childDataPass="childDataPass"></Child>
+            </div>
+            `,
+            methods: {
+                childDataPass: function (childMsg) {
+                    this.childMsg = childMsg;
+                }
+            }
+        })
+
+        let App = {
+            template: `
+            <div>
+                <Parent />
+            </div>
+            `
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>
