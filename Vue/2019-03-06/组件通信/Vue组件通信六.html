@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue组件通信六</title>
+</head>
+
+<body>
+    <!-- $parent & $children -->
+    <!-- 利用父组件修改子组件数据 & 利用子组件修改父组件数据 -->
+    <div id="app"></div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component("Child", {
+            props: {
+                value: String, //v-model会自动传递一个字段为value的prop属性
+            },
+            data() {
+                return {
+                    mymessage: this.value
+                }
+            },
+            template: `
+            <div>
+                <input type="text" v-model="mymessage" @change="changeValue">
+            </div>
+            `,
+            methods: {
+                changeValue() {
+                    this.$parent.message = this.mymessage;
+                }
+            }
+        })
+
+        Vue.component("Parent", {
+            data() {
+                return {
+                    message: "hello"
+                }
+            },
+            template: `
+            <div>
+                <p>我是父组件，这是自组件传的值（初始值为hello）：{{message}}</p>
+                <button @click="changeChildValue">点击</button>
+                <Child></Child>
+            </div>
+            `,
+            methods: {
+                changeChildValue() {
+                    this.$children[0].mymessage = "hello"
+                }
+            }
+        })
+
+        let App = {
+            data() {
+                return {
+
+                }
+            },
+            template: `
+            <div>
+                <parent></parent>
+            </div>
+            `,
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>
