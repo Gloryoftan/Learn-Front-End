@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>嵌套路由</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script src="../../node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        let Song = {
+            template: `
+            <div>
+                <p>我是音乐</p>
+            </div>
+            `,
+        }
+
+        let Movie = {
+            template: `
+            <div>
+                <p>我是电影</p>
+            </div>
+            `,
+        }
+
+        let Home = {
+            template: `
+            <div>
+                <p>我是HOME</p>
+                <div>
+                    <router-link to="/home/song">音乐</router-link>
+                    <router-link to="/home/movie">电影</router-link>
+                    <router-view></router-view>
+                </div>
+            </div>
+            `,
+            created() {
+
+            },
+        }
+
+        const router = new VueRouter({
+            routes: [{
+                path: "/home",
+                name: "home",
+                component: Home,
+                children: [{
+                        path: 'song',
+                        component: Song
+                    },
+                    {
+                        path: 'movie',
+                        component: Movie
+                    }
+                ]
+            }, ]
+        })
+
+        let App = {
+            template: `
+            <div>
+                <router-link :to="{name:'home'}">首页</router-link>
+                <router-view></router-view>
+            </div>
+            `,
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            router: router,
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>

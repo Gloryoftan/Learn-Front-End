@@ -5,64 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>vue-router的基本使用</title>
+    <title>路由参数</title>
 </head>
 
 <body>
     <div id="app"></div>
 
-    <!-- 1. 引入vue的模块 -->
     <script src="../../node_modules/vue/dist/vue.js"></script>
-    <!-- 2. 引入vue-router模块 -->
     <script src="../../node_modules/vue-router/dist/vue-router.js"></script>
-
     <script>
-        //3. 让Vue对象使用该VueRouter
-        //Vue.use(VueRouter) 现在可以不写，以后用脚手架需要写
+        //地址栏 路由范式
 
-        let Login = {
+        // a. xxxx.html#/user/1         params动态路由参数
+        // b. oooo.html#/user?userId=1  query
+
+        let UserParams = {
             template: `
             <div>
-                <p>我是Login页面</p>
+                <p>我是UserParams页面</p>
+            </div>
+            `,
+            //获取Id
+            created() {
+                console.log(this.$router);
+                console.log(this.$route.params.id);
+            },
+        }
+        let UserQuery = {
+            template: `
+            <div>
+                <p>我是UserQuery页面</p>
             </div>
             `,
         }
-        let Register = {
-            template: `
-            <div>
-                <p>我是Register页面</p>
-            </div>
-            `,
-        }
 
-        //4. 创建router对象
         const router = new VueRouter({
-            //5. 配置路由对象
             routes: [
                 //路由匹配的规则
                 {
-                    path: "/login",
-                    component: Login
+                    //动态路由参数 以冒号开头
+                    path: "/user/:id",
+                    name: "userP",
+                    component: UserParams
                 },
                 {
-                    path: "/register",
-                    component: Register
+                    path: "/user",
+                    name: "userQ",
+                    component: UserQuery
                 }
             ]
         })
-        // 引入vue-router模块，抛出两个全局的组件。
-        // router-link==>a to==>hret 和 router-view==>路由匹配组件的出口
 
         let App = {
             template: `
             <div>
-                <router-link to="/login">登陆页面</router-link>
-                <router-link to="/register">注册页面</router-link>
+                <router-link :to="{name:'userP',params:{id:1}}">userP</router-link>
+                <router-link :to="{name:'userQ',query:{userId:2}}">userQ</router-link>
                 <router-view></router-view>
             </div>
             `,
         }
-
 
         new Vue({
             el: "#app",
@@ -71,7 +73,6 @@
 
                 }
             },
-            // 6.交给Vue实例化对象管理
             router: router,
             components: {
                 App
