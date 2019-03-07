@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>前端路由的原理</title>
+</head>
+
+<body>
+    <!-- 路由实现
+    1.传统开发方式url改变后，立刻发生请求响应整个页面，有可能资源过多，传统开发会让页面出现白屏。
+    2.SPA 单页面应用 Single Page Application
+
+    锚点值改变后
+    不会立刻发送请求，而是在某个合适的时机，发起ajax请求，页面局部渲染。
+
+    优点：页面不立刻跳转，用户体验好
+        如：Vue angular React
+
+    -->
+    <a href="#/login">登陆页面</a>
+    <a href="#/register">注册页面</a>
+    <div id="app">
+
+    </div>
+    <script>
+        let oDiv = document.getElementById("app");
+
+        window.onhashchange = function () {
+            console.log(location.hash);
+            switch (location.hash) {
+                case "#/login":
+                    oDiv.innerHTML = `<h2>我是登陆页面</h2>`
+                    break;
+                case "#/register":
+                    oDiv.innerHTML = `<h2>我是注册页面</h2>`
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
