@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>给DOM元素添加事件的特殊情况</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let App = {
+            data() {
+                return {
+                    isShow: false
+                }
+            },
+            template: `
+                <div class="app">
+                   <input type="text" v-show="isShow" ref="input"/>
+                </div>
+                `,
+            mounted() {
+                this.isShow = true;
+
+                //$nextTick()
+                //在DOM更新之后，获取更新之后的DOM
+
+                this.$nextTick(function () {
+                    this.$refs.input.focus();
+                })
+            }
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>

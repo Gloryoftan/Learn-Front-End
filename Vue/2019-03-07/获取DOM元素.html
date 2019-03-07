@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取DOM元素</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component("subCom", {
+            template: `
+            <div>
+                <p>我是子组件</p>
+            </div>
+            `,
+        })
+
+        let App = {
+            template: `
+            <div class="app">
+                <p>我是App组件</p>
+                <button ref="btn1">我是按钮1</button>
+                <sub-com ref="subcom1"></sub-com>
+            </div>
+            `,
+            created: function () {
+                console.log(this.$refs.btn1);
+            },
+            mounted() {
+                //给标签绑定ref="",使用this.$refs.获取原生jsDOM对象
+                //ref 不能重名
+                console.log(this.$refs.btn1);
+
+                //给组件绑定ref属性，this.$refs.获取当前组件对象
+                console.log(this.$refs.subcom1);
+            }
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>
