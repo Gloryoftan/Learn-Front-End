@@ -1,12 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>meta的使用_权限控制</title>
 </head>
+
 <body>
-    
+    <div id="app">
+        <router-link to="/Home">Home</router-link>
+        <router-link to="/Blog">Blog</router-link>
+        <router-view></router-view>
+        <div>
+            <a href="javascript:void(0)">退出</a>
+        </div>
+    </div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script src="../../node_modules/vue-router/dist/vue-router.js"></script>
+
+    <script>
+        Vue.use(VueRouter);
+
+        let Login = {
+            data() {
+                return {
+                    name: "",
+                    pwd: ""
+                }
+            },
+            template: `
+            <div>
+                <input type="text" v-model="name"/>
+                <input type="text" v-model="pwd"/>
+                <button @click="loginHandler">登陆</button>
+            </div>
+            `,
+            methods: {
+                loginHandler() {
+                    //登陆
+                    localStorage.setItem("user", {
+                        name: this.name,
+                        pwd: this.pwd
+                    })
+                    //跳转到Blog页面
+                    //编程式导航
+                    this.$router.push({
+                        name: "Blog"
+                    })
+                }
+            },
+        }
+
+        let Blog = {
+            template: `
+            <div>
+                <p>这里是Blog</p>
+            </div>
+            `,
+        }
+
+        let Home = {
+            template: `
+            <div>
+                <p>这里是Home</p>
+            </div>
+            `,
+        }
+
+        const router = new VueRouter({
+            routes: [{
+                    path: "/Home",
+                    component: Home,
+                },
+                {
+                    name: "Blog",
+                    path: "/Blog",
+                    component: Blog,
+                    //给未来的路由做权限控制
+                    meta: {
+                        //证明用户访问该组件的时候需要登陆
+                        needAuth: true
+                    }
+                },
+                {
+                    path: "/",
+                    redirect: "/Home"
+                },
+                {
+                    path: "/Login",
+                    component: Login,
+                }
+            ]
+        })
+
+        router.beforeEach((to, from, next) => {
+            console.log(to);
+            console.log(from);
+
+            if (to.meta.needAuth) {
+                //用户点击了博客链接，该用户需要登陆
+                if (localStorage.getItem("user")) {
+                    next()
+                } else {
+                    //用户需要登陆
+                    next({
+                        path: "/Login"
+                    })
+                }
+            } else {
+                //直接放行
+                next();
+            }
+        })
+
+        new Vue({
+            el: "#app",
+            router: router
+        })
+    </script>
 </body>
+
 </html>
