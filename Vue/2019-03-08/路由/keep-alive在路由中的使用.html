@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>keep-alive在路由中的使用</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script src="../../node_modules/vue-router/dist/vue-router.js"></script>
+
+    <script>
+        let Homepage = {
+            template: `
+            <div>
+                <p>这是主页</p>
+            </div>
+            `,
+            created() {
+                console.log("主页组件创建了");
+            },
+            mounted() {
+                console.log("主页组件进DOM了");
+            },
+            destroyed() {
+                console.log("主页组件销毁了");
+            },
+        }
+
+        let Timepage = {
+            template: `
+            <div>
+                <p>这是时间</p>
+                <p @click="clickHandler">这是希望缓存的内容，点我改变颜色</p>
+            </div>
+            `,
+            created() {
+                console.log("时间组件创建了");
+            },
+            mounted() {
+                console.log("时间组件进DOM了");
+            },
+            destroyed() {
+                console.log("时间组件销毁了");
+            },
+            methods: {
+                clickHandler(e) {
+                    e.target.style.color = "red";
+                }
+            },
+        }
+
+        const router = new VueRouter({
+            routes: [{
+                    path: "/Homepage",
+                    component: Homepage
+                },
+                {
+                    path: "/Timepage",
+                    component: Timepage
+                }
+            ]
+        })
+
+        let App = {
+            template: `
+            <div>
+                <router-link to="/Homepage">主页</router-link>
+                <router-link to="/Timepage">时间</router-link>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+            </div>
+            `,
+        }
+
+        new Vue({
+            el: "#app",
+            router: router,
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>

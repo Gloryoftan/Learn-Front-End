@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态路由匹配</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script src="../../node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        let ComDes = {
+            data() {
+                return {
+                    msg: ""
+                }
+            },
+            template: `
+            <div>
+                这是ComDes的内容 : {{msg}}
+            </div>
+            `,
+            created() {
+                //发ajax
+                this.msg = "Created"
+                console.log(1);
+            },
+            //在当前的组件内部，监听路由信息的变化
+            watch: {
+                "$route"(to, from) {
+                    console.log(to);
+                    console.log(from);
+                    //发送ajax请求
+                    this.msg = to.params.id
+                }
+            }
+        }
+
+        let Homepage = {
+            template: `
+            <div id="Homepage">
+                <p>这是首页的内容</p>
+                <router-link :to="{name:'comDes',params:{id:'frontend'}}">前端</router-link>
+                <router-link :to="{name:'comDes',params:{id:'backend'}}">后端</router-link>
+                <router-view></router-view>
+            </div>
+            `,
+        }
+
+        let Timepage = {
+            template: `
+            <div>
+                <p>这是时间的内容</p>
+            </div>
+            `,
+        }
+
+        const router = new VueRouter({
+            routes: [{
+                path: "/homepage",
+                component: Homepage,
+                children: [{
+                    name: "comDes",
+                    path: "/homepage/:id",
+                    component: ComDes
+                }]
+            }, {
+                path: "/timepage",
+                component: Timepage
+            }]
+        })
+
+        let App = {
+            template: `
+            <div>
+                <router-link to="/homepage">首页</router-link>
+                <router-link to="/timepage">时间</router-link>
+                <router-view></router-view>
+            </div>
+            `,
+        }
+
+        new Vue({
+            el: "#app",
+            router: router,
+            components: {
+                App
+            },
+            template: `<App />`,
+        })
+    </script>
+</body>
+
+</html>
