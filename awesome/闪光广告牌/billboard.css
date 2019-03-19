@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Gochi+Hand");
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+body {
+  background-image: url(https://images.unsplash.com/photo-1457092716468-97352752b749?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+  background-position: cover;
+  background-blend-mode: luminosity;
+  background-color: #130415;
+}
+.text {
+  width: 100vw;
+  height: auto;
+}
+h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 10vw;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Gochi Hand", cursive;
+  color: #fff;
+}
+.flicker {
+  animation: flicker 3s linear infinite 3s;
+}
+.neon {
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff,
+    0 0 40px #0ff, 0 0 120px #0ff, 0 0 140px #0ff, 0 0 200px #0ff,
+    0 0 500px #0ff;
+}
+@keyframes flicker {
+  0% {
+    text-shadow: none;
+  }
+  6% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff,
+      0 0 40px #0ff, 0 0 120px #0ff, 0 0 140px #0ff, 0 0 200px #0ff,
+      0 0 500px #0ff;
+  }
+  8% {
+    text-shadow: none;
+  }
+  10% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff,
+      0 0 40px #0ff, 0 0 120px #0ff, 0 0 140px #0ff, 0 0 200px #0ff,
+      0 0 500px #0ff;
+  }
+  12% {
+    text-shadow: none;
+  }
+  14% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff,
+      0 0 40px #0ff, 0 0 120px #0ff, 0 0 140px #0ff, 0 0 200px #0ff,
+      0 0 500px #0ff;
+  }
+}
+.form__input {
+  margin-top: 2rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 0.7rem;
+  border: none;
+  font-family: "Gochi Hand", cursive;
+  font-size: 1rem;
+  color: hsla(260, 2%, 25%, 0.7);
+  width: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff,
+    0 0 40px #0ff;
+  &:focus {
+    outline: none;
+    border: solid 3px #ea95e0;
+  }
+}
