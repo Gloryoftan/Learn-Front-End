@@ -112,11 +112,11 @@ body {
   } */
 
 #ui .love {
-    display: none;
     position: absolute;
-    top: 50%;
-    left: 60%;
+    top: 51%;
+    left: 67%;
     margin: -225px 0 0 -225px;
+    z-index: -1;
 }
 
 #ui .love:last-child .love_word {

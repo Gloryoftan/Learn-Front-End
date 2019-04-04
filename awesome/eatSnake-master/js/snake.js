@@ -1,5 +1,6 @@
 let oBlur = document.getElementById("bg");
 let oScore = document.getElementById("score");
+let oUi = document.getElementById("ui");
 oBlur.style.webkitFilter = "blur(100px)";
 
 
@@ -151,6 +152,13 @@ window.onload = function () {
 			oBlur.style.webkitFilter = "blur(" + blurp + "px)";
 			oScore.innerHTML = "得分: " + score;
 
+			if (score > 150) {
+				oUi.style.zIndex = "1";
+			}
+
+			if (score > 180) {
+				oBlur.style.backgroundImage = "url(img/bg-img3.jpeg)";
+			}
 
 		},
 		//绑定键盘事件
@@ -300,7 +308,8 @@ window.onload = function () {
 					var score = this.getScore();
 
 					if (confirm(msg)) {
-						this.reset();
+						// this.reset();
+
 					}
 					return false;
 				}
@@ -346,9 +355,5 @@ window.onload = function () {
 		}
 	};
 	new Snake(15, 25, 'eatSnake', 50, true);
-	
+
 };
-
-
-
-
