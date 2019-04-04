@@ -346,4 +346,9 @@ window.onload = function () {
 		}
 	};
 	new Snake(15, 25, 'eatSnake', 50, true);
+	
 };
+
+
+
+
