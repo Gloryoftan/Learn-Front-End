@@ -354,6 +354,7 @@ window.onload = function () {
 			document.onkeydown = _this.bind(_this.keyDown, _this); //绑定键盘事件
 		}
 	};
-	new Snake(15, 25, 'eatSnake', 20, false);
+	new Snake(20, 30, 'eatSnake', 100, true);
+	// new Snake(15, 25, 'eatSnake', 25, true);
 
 };

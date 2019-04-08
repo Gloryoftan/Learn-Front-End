@@ -354,7 +354,7 @@ SVG/Javascript conversion by GF https://codepen.io/ge1doot/
 					cel[i][j].reach = 0;
 					cel[i][j].po = -1;
 				}
-			}
+			}   
 			for (i = 0; i < 15; i++) {
 				for (j = 0; j < 15; j++) {
 					if (cel[i][j].stat != 1) continue;
