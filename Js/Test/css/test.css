@@ -20,7 +20,7 @@
 } */
 
 
-#box1 {
+/* #box1 {
     padding: 50px;
     border: 1px solid gray;
 }
@@ -35,4 +35,18 @@
     height: 50px;
     padding: 50px;
     border: 1px solid gray;
-}
+} */
+
+/* #content .element,#content .element1 {
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    color: #fff;
+} */
+
+/* #page { width: 520px; }
+.nav { width: 200px; float: right; }
+.main { width: 200px; float: left; padding-left: 110px; }
+.sub { width: 100px; float: left; margin: 10px 0 10px -100px; } .main { border: 1px solid #000; }
+.nav, .sub { border: 1px dashed #000; height: 300px; }
+.sub { height: 280px; } */

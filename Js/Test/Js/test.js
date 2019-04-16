@@ -1068,3 +1068,79 @@ Tips：这些函数首字母需要大写（作为区分）
 // }
 
 // var b = JSON.parse(JSON.stringify(a));
+
+// function doSomething() {
+//     alert(this);
+// }
+
+// var oContent = document.querySelector("#content");
+// var element = document.querySelector("#content .element");
+// var element1 = document.querySelector("#content .element1");
+
+// oContent.removeChild(element1);
+
+// element.onclick = doSomething;
+
+// element.onclick = function () {
+//     doSomething();
+// };
+
+// doSomething();
+
+// var array = [5, 100, 6, 3, -12];
+// var newArray = array.sort(sortNumber);
+// console.log(newArray);
+
+// function sortNumber(a, b) {
+//     return a - b;
+// }
+
+// var array = [{
+//         name: 'zopp',
+//         age: 90
+//     },
+//     {
+//         name: 'gpp',
+//         age: 18
+//     },
+//     {
+//         name: 'yjj',
+//         age: 8
+//     }
+// ];
+
+// var newArray = array.sort(compare("age"));
+// console.log(newArray);
+
+// function compare(property) {
+//     return function (a, b) {
+//         var value1 = a[property];
+//         var value2 = b[property];
+//         return value1 - value2;
+//     };
+// }
+
+// if (window.addEventListener) {
+//     var addListener = function (el, type, listener, useCapture) {
+//         el.addEventListener(type, listener, useCapture);
+//     };
+// } else if (document.all) {
+//     addListener = function (el, type, listener) {
+//         el.attachEvent("on" + type, function () {
+//             listener.apply(el);
+//         });
+//     };
+// }
+// console.log(window.addEventListener);
+// console.log(document.all);
+
+$(document).ready(function(){
+    $("#btn2").click(function(){
+      $("body").append($("#text").clone());
+      $("body").append($("#btn1").clone());
+    });
+  });
+
+  $("#btn1").on("click",function (e) {
+      $("#text").css("color","red");
+  });
