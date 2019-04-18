@@ -1134,13 +1134,26 @@ Tips：这些函数首字母需要大写（作为区分）
 // console.log(window.addEventListener);
 // console.log(document.all);
 
-$(document).ready(function(){
-    $("#btn2").click(function(){
-      $("body").append($("#text").clone());
-      $("body").append($("#btn1").clone());
-    });
-  });
+// $(document).ready(function(){
+//     $("#btn2").click(function(){
+//       $("body").append($("#text").clone());
+//       $("body").append($("#btn1").clone());
+//     });
+//   });
 
-  $("#btn1").on("click",function (e) {
-      $("#text").css("color","red");
-  });
+//   $("#btn1").on("click",function (e) {
+//       $("#text").css("color","red");
+//   });
+
+let v = "fun";
+/* 对象方法传参 */
+let object = {
+    "b": {
+        id: 1,
+        fun: fun(v),
+    },
+};
+function fun(v){
+    console.log(v);
+}
+object.b.fun;
