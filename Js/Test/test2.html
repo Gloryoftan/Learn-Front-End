@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iIRbecOICGVm1VYkcTQ3kyKLNFR86KfA">
+    //防止上面的ak失效请换为你的http://lbsyun.baidu.com/apiconsole/key
+    </script>
+    <title>百度地图搜索数据爬取</title>
+</head>
+<body>
+<div id="log"></div>
+<script type="text/javascript">
+    // 百度地图API功能
+var map = new BMap.Map('map');
+var poi = new BMap.Point(106.553428,29.557928); 
+var s = [];
+var k=0;
+
+var options = {  
+    onSearchComplete: function(results){  
+        if (local.getStatus() == BMAP_STATUS_SUCCESS){     // 判断状态是否正确
+                for (var i = 0; i < results.getCurrentNumPois(); i ++){  
+                    //输出tile名称、经度、纬度、地址、联系方式、地图详情网址、标签tag等等 #查看LocalResultPoi可添加更多详细信息          
+                    s.push((k+1)+":"+results.getPoi(i).title + ", "+ results.getPoi(i).point.lng+", "+ results.getPoi(i).point.lat+ ", "+ results.getPoi(i).address+ ", "+ results.getPoi(i).phoneNumber+","+results.getPoi(i).url+","+results.getPoi(i).tags);
+                    k++;                    
+                }         
+        }  
+        // 判断是否到最后一页，如果是则不再搜索页面输出结果 
+        if (results.getPageIndex() < results.getNumPages() - 1) {
+            local.gotoPage(results.getPageIndex() + 1);  
+        } else{
+            document.getElementById("log").innerHTML = s.join("<br>");  
+        }      
+    }   
+};   
+
+    var local = new BMap.LocalSearch("南京市", options); //待输入的搜索的范围     
+    local.setPageCapacity(48); 
+    local.search("清真拉面");//待输入的搜索的内容
+</script>
+</body>
+</html>
