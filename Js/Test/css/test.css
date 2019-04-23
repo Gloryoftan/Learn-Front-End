@@ -50,3 +50,9 @@
 .sub { width: 100px; float: left; margin: 10px 0 10px -100px; } .main { border: 1px solid #000; }
 .nav, .sub { border: 1px dashed #000; height: 300px; }
 .sub { height: 280px; } */
+
+#btn{
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+}

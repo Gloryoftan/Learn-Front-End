@@ -1145,15 +1145,11 @@ Tips：这些函数首字母需要大写（作为区分）
 //       $("#text").css("color","red");
 //   });
 
-let v = "fun";
-/* 对象方法传参 */
-let object = {
-    "b": {
-        id: 1,
-        fun: fun(v),
-    },
+// 
+
+let oBtn =document.getElementById("btn");
+
+oBtn.onclick = function(){
+    // window.resizeTo(window.screen.availWidth, window.screen.availHeight);
+    window.resizeBy(50,100);
 };
-function fun(v){
-    console.log(v);
-}
-object.b.fun;
