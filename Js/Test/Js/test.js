@@ -1147,9 +1147,21 @@ Tips：这些函数首字母需要大写（作为区分）
 
 // 
 
-let oBtn =document.getElementById("btn");
+// let oBtn =document.getElementById("btn");
 
-oBtn.onclick = function(){
-    // window.resizeTo(window.screen.availWidth, window.screen.availHeight);
-    window.resizeBy(50,100);
+// oBtn.onclick = function(){
+//     // window.resizeTo(window.screen.availWidth, window.screen.availHeight);
+//     window.resizeBy(50,100);
+// };
+
+window.onscroll = function () {
+    var c =$("#btn")[0].getBoundingClientRect().top;
+
+    console.log(c);
+    
 };
+
+// function height(a) {
+//     console.log(a);
+// }
+// setInterval(height, 1000);
