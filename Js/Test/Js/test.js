@@ -1154,14 +1154,110 @@ Tips：这些函数首字母需要大写（作为区分）
 //     window.resizeBy(50,100);
 // };
 
-window.onscroll = function () {
-    var c =$("#btn")[0].getBoundingClientRect().top;
-
-    console.log(c);
-    
-};
+// window.onscroll = function () {
+//     var c =$("#btn")[0].getBoundingClientRect().top;
+//     console.log(c);
+// };
 
 // function height(a) {
 //     console.log(a);
 // }
 // setInterval(height, 1000);
+
+// $("#btn").html("<h1>test</h1>");
+// $("#btn1").text("<p>test</p>");
+
+// var myDate = new Date("0");
+// myDate.getYear();        //获取当前年份(2位)
+// myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+// myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+// myDate.getDate();        //获取当前日(1-31)
+// myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
+// myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
+// myDate.getHours();       //获取当前小时数(0-23)
+// myDate.getMinutes();     //获取当前分钟数(0-59)
+// myDate.getSeconds();     //获取当前秒数(0-59)
+// myDate.getMilliseconds();    //获取当前毫秒数(0-999)
+// myDate.toLocaleDateString();     //获取当前日期
+// myDate.toLocaleTimeString();     //获取当前时间
+// myDate.toLocaleString( );        //获取日期与时间
+
+// var mytime = myDate.getTime(); 
+// var mytoLocaleDateString = myDate.toLocaleDateString();
+
+// console.log(mytime);
+// console.log(mytoLocaleDateString);
+
+
+// Date.prototype.isLeapYear = function()   
+// {   
+//     return (0==this.getYear()%4&&((this.getYear()%100!=0)||(this.getYear()%400==0)));   
+// };
+
+// Date.prototype.Format = function(formatStr)   
+// {   
+//     var str = formatStr;   
+//     var Week = ['日','一','二','三','四','五','六'];  
+  
+//     str=str.replace(/yyyy|YYYY/,this.getFullYear());   
+//     str=str.replace(/yy|YY/,(this.getYear() % 100)>9?(this.getYear() % 100).toString():'0' + (this.getYear() % 100));   
+  
+//     str=str.replace(/MM/,this.getMonth()>9?this.getMonth().toString():'0' + this.getMonth());   
+//     str=str.replace(/M/g,this.getMonth());   
+  
+//     str=str.replace(/w|W/g,Week[this.getDay()]);   
+  
+//     str=str.replace(/dd|DD/,this.getDate()>9?this.getDate().toString():'0' + this.getDate());   
+//     str=str.replace(/d|D/g,this.getDate());   
+  
+//     str=str.replace(/hh|HH/,this.getHours()>9?this.getHours().toString():'0' + this.getHours());   
+//     str=str.replace(/h|H/g,this.getHours());   
+//     str=str.replace(/mm/,this.getMinutes()>9?this.getMinutes().toString():'0' + this.getMinutes());   
+//     str=str.replace(/m/g,this.getMinutes());   
+  
+//     str=str.replace(/ss|SS/,this.getSeconds()>9?this.getSeconds().toString():'0' + this.getSeconds());   
+//     str=str.replace(/s|S/g,this.getSeconds());   
+  
+//     return str;   
+// };
+
+// Date.prototype.myMet=function()
+// {
+// if (this.getMonth()==0){this.myProp="January"};
+// if (this.getMonth()==1){this.myProp="February"};
+// if (this.getMonth()==2){this.myProp="March"};
+// if (this.getMonth()==3){this.myProp="April"};
+// if (this.getMonth()==4){this.myProp="May"};
+// if (this.getMonth()==5){this.myProp="June"};
+// if (this.getMonth()==6){this.myProp="July"};
+// if (this.getMonth()==7){this.myProp="August"};
+// if (this.getMonth()==8){this.myProp="Spetember"};
+// if (this.getMonth()==9){this.myProp="October"};
+// if (this.getMonth()==10){this.myProp="November"};
+// if (this.getMonth()==11){this.myProp="December"};
+// }
+
+
+// myDate.myMet();
+
+// var monthname = myDate.myProp;
+
+// myDate.Format();
+
+// var formatTest = myDate.str;
+
+// console.log(myDate.isLeapYear());
+
+// console.log(monthname);
+
+// let arr = new Array(3);
+// arr[0] = "George"
+// arr[1] = "John"
+// arr[2] = "Thomas"
+
+// let res = arr.join("");
+// console.log(res);
+
+// let str = "Pin this day and keep being great.";
+// console.log(str.split(" ",3));
+
