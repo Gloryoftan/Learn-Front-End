@@ -1261,3 +1261,7 @@ Tips：这些函数首字母需要大写（作为区分）
 // let str = "Pin this day and keep being great.";
 // console.log(str.split(" ",3));
 
+var money=prompt("请输入你所购买物品的金额()元");
+var total=money*0.8;
+money=money>=500?total:money;
+document.write(money);
