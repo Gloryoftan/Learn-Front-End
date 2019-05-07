@@ -1274,14 +1274,14 @@ Tips：这些函数首字母需要大写（作为区分）
 
 
 
-window.onscroll = function () {
-    //变量t是滚动条滚动时，距离顶部的距离
-    var t = document.documentElement.scrollTop || document.body.scrollTop;
-    var scrollup = document.getElementById('scrollup');
-    //当滚动到距离顶部200px时，返回顶部的锚点显示
-    if (t >= 200) {
-        scrollup.style.display = "block";
-    } else { //恢复正常
-        scrollup.style.display = "none";
-    }
-}
+// window.onscroll = function () {
+//     //变量t是滚动条滚动时，距离顶部的距离
+//     var t = document.documentElement.scrollTop || document.body.scrollTop;
+//     var scrollup = document.getElementById('scrollup');
+//     //当滚动到距离顶部200px时，返回顶部的锚点显示
+//     if (t >= 200) {
+//         scrollup.style.display = "block";
+//     } else { //恢复正常
+//         scrollup.style.display = "none";
+//     }
+// }
