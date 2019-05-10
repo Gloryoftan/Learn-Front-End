@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+
+	<div>11</div>
+	<iframe id="iframe" src="frame.html"></iframe>
+
+	<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+	<script>
+		let oIframe = document.getElementById("iframe");
+		// let oBox = oIframe.contentDocument.getElementById("test"); //获取document对象 
+
+		oIframe.onload = function(){
+			console.log(oIframe.contentWindow.document.getElementById("test"));
+		}
 		
-		<div>11</div>
-		<iframe id="iframe" src="frame.html"></iframe>
-		
-		<script type="text/javascript" src="../js/jquery-3.2.1.min.js" ></script>
-		<script>
-		$("#iframe")[0].contentWindow.text("aa");
-				
-				
-			
-		
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>
