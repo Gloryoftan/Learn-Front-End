@@ -57,20 +57,33 @@
             canvas.height = 450;
             canvas.style.border = "1px solid #000";
 
+            //起始点角度
             let tempAngle = -90;
+            //圆心与半径
             let x0 = 450,
                 y0 = 225,
                 r = 100;
 
+            //文字距离
+            R = r + 20;
+
             for (let i = 0; i < data.length; i++) {
                 cxt.beginPath();
+                //扇形
                 cxt.moveTo(x0, y0);
                 let startAngle = tempAngle * Math.PI / 180,
-                    endAngle = (data[i].value * 360 + tempAngle) * Math.PI / 180;
+                    endAngle = (data[i].value * 360 + tempAngle) * Math.PI / 180,
+                    radText = (tempAngle + data[i].value * 180) * Math.PI / 180;
                 cxt.arc(x0, y0, r, startAngle, endAngle, false);
                 tempAngle = data[i].value * 360 + tempAngle;
                 cxt.closePath();
+                //文字
+                let xText = x0 + Math.cos(radText) * R;
+                let yText = y0 + Math.sin(radText) * R;
+                let text = data[i].name;
+
                 cxt.fillStyle = data[i].color;
+                cxt.fillText(text, xText, yText, 40);
                 cxt.fill();
             }
         })();
