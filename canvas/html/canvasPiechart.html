@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvasPiechart</title>
+    <style>
+        #content {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <canvas id="demo">
+            浏览器不支持canvas，请升级浏览器。
+        </canvas>
+    </div>
+
+    <script>
+        let data = [{
+                value: 0.05,
+                color: "green",
+                name: "绿色"
+            },
+            {
+                value: 0.3,
+                color: "red",
+                name: "红色"
+            }, {
+                value: 0.2,
+                color: "yellow",
+                name: "黄色"
+            },
+            {
+                value: 0.2,
+                color: "aqua",
+                name: "青色"
+            },
+            {
+                value: 0.25,
+                color: "silver",
+                name: "银色"
+            }
+        ];
+
+        (function () {
+            let canvas = document.getElementById("demo");
+            let cxt = canvas.getContext('2d');
+
+            canvas.width = 900;
+            canvas.height = 450;
+            canvas.style.border = "1px solid #000";
+
+            let tempAngle = -90;
+            let x0 = 450,
+                y0 = 225,
+                r = 100;
+
+            for (let i = 0; i < data.length; i++) {
+                cxt.beginPath();
+                cxt.moveTo(x0, y0);
+                let startAngle = tempAngle * Math.PI / 180,
+                    endAngle = (data[i].value * 360 + tempAngle) * Math.PI / 180;
+                cxt.arc(x0, y0, r, startAngle, endAngle, false);
+                tempAngle = data[i].value * 360 + tempAngle;
+                cxt.closePath();
+                cxt.fillStyle = data[i].color;
+                cxt.fill();
+            }
+        })();
+    </script>
+</body>
+
+</html>

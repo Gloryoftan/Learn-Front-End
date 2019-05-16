@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvasTable</title>
+    <style>
+        #content {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <canvas id="demo">
+            浏览器不支持canvas，请升级浏览器。
+        </canvas>
+    </div>
+
+
+    <script>
+        (function () {
+            let canvas = document.getElementById("demo");
+            let cxt = canvas.getContext('2d');
+
+            canvas.width = 991;
+            canvas.height = 481;
+            // canvas.style.border = "1px solid #000";
+
+            let rectH = 30,
+                rectW = 30;
+            cxt.beginPath();
+            for (let i = 0; i < canvas.width / rectH; i++) {
+                cxt.moveTo(0, i * rectH);
+                cxt.lineTo(canvas.width, i * rectH);
+                cxt.moveTo(i * rectW, 0);
+                cxt.lineTo(i * rectW, canvas.height);
+            }
+            cxt.strokeStyle = '#999';
+            cxt.stroke();
+
+            //坐标轴
+            cxt.beginPath();
+            //x轴
+            cxt.moveTo(0, 390);
+            cxt.lineTo(900, 390);
+            //x轴箭头
+            cxt.moveTo(900, 390);
+            cxt.lineTo(870, 375);
+            cxt.moveTo(900, 390);
+            cxt.lineTo(870, 405);
+            //y轴
+            cxt.moveTo(90, 480);
+            cxt.lineTo(90, 30);
+            //y轴箭头
+            cxt.lineTo(75, 60);
+            cxt.moveTo(90, 30);
+            cxt.lineTo(105, 60);
+            //坐标轴样式
+            cxt.lineWidth = 2;
+            cxt.strokeStyle = "#000";
+            cxt.stroke();
+
+            //折线图
+            cxt.beginPath();
+            cxt.moveTo(90, 390);
+            cxt.lineTo(180, 360);
+            cxt.lineTo(270, 180);
+            cxt.lineTo(360, 270);
+            cxt.lineTo(450, 90);
+            cxt.lineTo(540, 180);
+            cxt.lineTo(570, 150);
+            cxt.lineTo(630, 300);
+            cxt.lineTo(900, 30);
+
+            cxt.strokeStyle = "green";
+            cxt.stroke();
+
+        })();
+    </script>
+</body>
+
+</html>
