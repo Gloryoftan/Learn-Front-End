@@ -6,7 +6,7 @@ layui.config({
 });
 
 //加载模块
-layui.use(['layer', 'form', 'element','index'], function () {
+layui.use(['layer', 'form', 'element', 'index'], function () {
     var form = layui.form; //获取form模块
     var element = layui.element; //获取element模块
     var layer = layui.element; //获取layer模块
@@ -14,6 +14,6 @@ layui.use(['layer', 'form', 'element','index'], function () {
 
     console.log(index);
     console.log(form);
-    
- 
+
+
 });
