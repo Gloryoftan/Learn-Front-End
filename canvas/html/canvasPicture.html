@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvasPicture</title>
+</head>
+
+<body>
+    <div id="content">
+        <canvas id="demo">
+
+        </canvas>
+    </div>
+
+    <script>
+        (function () {
+            let canvas = document.getElementById("demo");
+            let cxt = canvas.getContext('2d');
+
+            canvas.height = 600;
+            canvas.width = 1000;
+            canvas.style.border = "1px solid #000";
+
+            let image = new Image();
+            image.src = "../img/canvas1.jpg";
+            image.onload = function () {
+                cxt.drawImage(image, 100, 100, 400, 200);
+            }
+
+            let image2 = new Image();
+            image2.src = "../img/canvas2.jpg";
+            image2.onload = function () {
+                cxt.drawImage(image2, 0, 0, 1000, 850, 100, 400, 100, 100);
+            }
+        })();
+    </script>
+</body>
+
+</html>

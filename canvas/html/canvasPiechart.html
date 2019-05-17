@@ -52,7 +52,7 @@
         (function () {
             let canvas = document.getElementById("demo");
             let cxt = canvas.getContext('2d');
-
+            //画布样式
             canvas.width = 900;
             canvas.height = 450;
             canvas.style.border = "1px solid #000";
@@ -73,16 +73,22 @@
                 cxt.moveTo(x0, y0);
                 let startAngle = tempAngle * Math.PI / 180,
                     endAngle = (data[i].value * 360 + tempAngle) * Math.PI / 180,
-                    radText = (tempAngle + data[i].value * 180) * Math.PI / 180;
+                    textAngle = tempAngle + data[i].value * 180;
                 cxt.arc(x0, y0, r, startAngle, endAngle, false);
                 tempAngle = data[i].value * 360 + tempAngle;
                 cxt.closePath();
                 //文字
-                let xText = x0 + Math.cos(radText) * R;
-                let yText = y0 + Math.sin(radText) * R;
+                let xText = x0 + Math.cos(textAngle * Math.PI / 180) * R;
+                let yText = y0 + Math.sin(textAngle * Math.PI / 180) * R;
                 let text = data[i].name;
-
+                //填充和画笔属性
+                cxt.font = '20px sans-serif';
                 cxt.fillStyle = data[i].color;
+                //饼图左边的部分字end对其
+                if (textAngle > 90 && textAngle < 270) {
+                    cxt.textAlign = 'end';
+                }
+                //绘制
                 cxt.fillText(text, xText, yText, 40);
                 cxt.fill();
             }

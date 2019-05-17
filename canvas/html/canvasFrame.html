@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvasFrame</title>
+</head>
+
+<body>
+    <div id="content">
+        <canvas id="demo">
+
+        </canvas>
+    </div>
+
+    <script>
+        (function () {
+            let canvas = document.getElementById("demo");
+            let cxt = canvas.getContext('2d');
+
+            canvas.width = 800;
+            canvas.heigt = 400;
+            canvas.style.border = "1px solid #000";
+
+            let image = new Image();
+            image.src = "../img/canvas3.png";
+            image.onload = function () {
+                let frameIndex = 0;
+                let imgWidth = 120,
+                    imgHeight = 150; //设置图片宽高
+                let canX = 0,
+                    canY = 0; //设置canvas起始坐标
+                setInterval(function () {
+                    cxt.clearRect(canX, canY, imgWidth, imgHeight);//清除
+                    cxt.drawImage(image, //图片
+                        imgWidth * frameIndex, 0, //图片起始坐标
+                        imgWidth, imgHeight, //图片宽高
+                        canX, canY, //canvas绘图起始坐标
+                        imgWidth, imgHeight //图片宽高
+                    );
+                    frameIndex++;
+                    frameIndex = frameIndex % 7;
+                }, 1000 / 6);
+
+
+
+            }
+
+        })();
+    </script>
+</body>
+
+</html>
