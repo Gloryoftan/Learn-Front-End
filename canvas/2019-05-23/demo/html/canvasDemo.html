@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvasDemo</title>
+    <link rel="stylesheet" href="../css/canvasDemo.css">
+</head>
+
+<body>
+    <div id="content">
+        <div class="demo demo1">
+            <div class="title">Demo1</div>
+            <canvas id="demo1">
+                浏览器不支持canvas，请升级浏览器。
+            </canvas>
+        </div>
+    </div>
+
+    <script>
+        /* demo1 
+        线条+三角形+矩形+圆形+文字+贝塞尔曲线
+        面向过程
+        */
+        let canvas = document.getElementById("demo1");
+        let ctx = canvas.getContext('2d');
+
+        canvas.width = 800;
+        canvas.height = 350;
+        canvas.style.background = "-webkit-linear-gradient(bottom, #7ea5e5, #b0a8f6)";
+        //文字
+        ctx.beginPath();
+        ctx.strokeText("Demo1", 0, 10);
+        ctx.strokeText("线条+三角形+矩形+圆形+文字+贝塞尔曲线", 0, 20);
+        ctx.strokeText("面向过程", 0, 30);
+        ctx.textAlign = "center";
+        // ctx.font = "18px";
+        ctx.strokeText("火箭0号", 400, 200);
+        //火箭
+        ctx.beginPath();
+        ctx.moveTo(370, 100);
+        ctx.lineTo(400, 50);
+        ctx.lineTo(430, 100);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.rect(370, 100, 60, 105);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(370, 120);
+        ctx.lineTo(350, 180);
+        ctx.lineTo(370, 180);
+        ctx.moveTo(430, 120);
+        ctx.lineTo(450, 180);
+        ctx.lineTo(430, 180);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(400, 150, 20, 0, 2 * Math.PI, false);
+        ctx.save();
+        ctx.fillStyle = "#7bc9e9";
+        ctx.fill();
+        ctx.restore();
+
+        ctx.beginPath();
+        ctx.arc(400, 150, 18, 0, 2 * Math.PI, false);
+        ctx.save();
+        ctx.fillStyle = "#7ea5e5";
+        ctx.fill();
+        ctx.restore();
+
+        ctx.beginPath();
+        ctx.moveTo(370, 210);
+        ctx.lineTo(385, 230);
+        ctx.lineTo(400, 210);
+        ctx.lineTo(415, 230);
+        ctx.lineTo(430, 210);
+        ctx.closePath();
+        ctx.save();
+        ctx.fillStyle = "#f95977";
+        ctx.fill();
+        ctx.restore();
+
+        ctx.beginPath();
+        ctx.arc(400, 150, 130, 1 * Math.PI, 2 * Math.PI, false);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(400, 250);
+        ctx.bezierCurveTo(350, 270, 450, 290, 400, 300);
+        ctx.stroke();
+    </script>
+</body>
+
+</html>
