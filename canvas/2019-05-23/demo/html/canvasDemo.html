@@ -17,6 +17,13 @@
                 浏览器不支持canvas，请升级浏览器。
             </canvas>
         </div>
+        <div class="demo demo2">
+            <div class="title">Demo2</div>
+            <canvas id="demo2">
+                浏览器不支持canvas，请升级浏览器。
+            </canvas>
+        </div>
+    </div>
     </div>
 
     <script>
@@ -24,74 +31,130 @@
         线条+三角形+矩形+圆形+文字+贝塞尔曲线
         面向过程
         */
-        let canvas = document.getElementById("demo1");
-        let ctx = canvas.getContext('2d');
 
-        canvas.width = 800;
-        canvas.height = 350;
-        canvas.style.background = "-webkit-linear-gradient(bottom, #7ea5e5, #b0a8f6)";
-        //文字
-        ctx.beginPath();
-        ctx.strokeText("Demo1", 0, 10);
-        ctx.strokeText("线条+三角形+矩形+圆形+文字+贝塞尔曲线", 0, 20);
-        ctx.strokeText("面向过程", 0, 30);
-        ctx.textAlign = "center";
-        // ctx.font = "18px";
-        ctx.strokeText("火箭0号", 400, 200);
-        //火箭
-        ctx.beginPath();
-        ctx.moveTo(370, 100);
-        ctx.lineTo(400, 50);
-        ctx.lineTo(430, 100);
-        ctx.stroke();
+        (function () {
+            let canvas = document.getElementById("demo1");
+            let ctx = canvas.getContext('2d');
 
-        ctx.beginPath();
-        ctx.rect(370, 100, 60, 105);
-        ctx.stroke();
+            canvas.width = 800;
+            canvas.height = 350;
+            canvas.style.background = "-webkit-linear-gradient(bottom, #7ea5e5, #b0a8f6)";
+            //文字
+            ctx.beginPath();
+            ctx.strokeText("Demo1", 0, 10);
+            ctx.strokeText("线条+三角形+矩形+圆形+文字+贝塞尔曲线", 0, 20);
+            ctx.strokeText("面向过程", 0, 30);
+            ctx.textAlign = "center";
+            // ctx.font = "18px";
+            ctx.strokeText("火箭0号", 400, 200);
+            //火箭
+            ctx.beginPath();
+            ctx.moveTo(370, 100);
+            ctx.lineTo(400, 50);
+            ctx.lineTo(430, 100);
+            ctx.stroke();
 
-        ctx.beginPath();
-        ctx.moveTo(370, 120);
-        ctx.lineTo(350, 180);
-        ctx.lineTo(370, 180);
-        ctx.moveTo(430, 120);
-        ctx.lineTo(450, 180);
-        ctx.lineTo(430, 180);
-        ctx.stroke();
+            ctx.beginPath();
+            ctx.rect(370, 100, 60, 105);
+            ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(400, 150, 20, 0, 2 * Math.PI, false);
-        ctx.save();
-        ctx.fillStyle = "#7bc9e9";
-        ctx.fill();
-        ctx.restore();
+            ctx.beginPath();
+            ctx.moveTo(370, 120);
+            ctx.lineTo(350, 180);
+            ctx.lineTo(370, 180);
+            ctx.moveTo(430, 120);
+            ctx.lineTo(450, 180);
+            ctx.lineTo(430, 180);
+            ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(400, 150, 18, 0, 2 * Math.PI, false);
-        ctx.save();
-        ctx.fillStyle = "#7ea5e5";
-        ctx.fill();
-        ctx.restore();
+            ctx.beginPath();
+            ctx.arc(400, 150, 20, 0, 2 * Math.PI, false);
+            ctx.save();
+            ctx.fillStyle = "#7bc9e9";
+            ctx.fill();
+            ctx.restore();
 
-        ctx.beginPath();
-        ctx.moveTo(370, 210);
-        ctx.lineTo(385, 230);
-        ctx.lineTo(400, 210);
-        ctx.lineTo(415, 230);
-        ctx.lineTo(430, 210);
-        ctx.closePath();
-        ctx.save();
-        ctx.fillStyle = "#f95977";
-        ctx.fill();
-        ctx.restore();
+            ctx.beginPath();
+            ctx.arc(400, 150, 18, 0, 2 * Math.PI, false);
+            ctx.save();
+            ctx.fillStyle = "#7ea5e5";
+            ctx.fill();
+            ctx.restore();
 
-        ctx.beginPath();
-        ctx.arc(400, 150, 130, 1 * Math.PI, 2 * Math.PI, false);
-        ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(370, 210);
+            ctx.lineTo(385, 230);
+            ctx.lineTo(400, 210);
+            ctx.lineTo(415, 230);
+            ctx.lineTo(430, 210);
+            ctx.closePath();
+            ctx.save();
+            ctx.fillStyle = "#f95977";
+            ctx.fill();
+            ctx.restore();
 
-        ctx.beginPath();
-        ctx.moveTo(400, 250);
-        ctx.bezierCurveTo(350, 270, 450, 290, 400, 300);
-        ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(400, 150, 130, 1 * Math.PI, 2 * Math.PI, false);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(400, 250);
+            ctx.bezierCurveTo(350, 270, 450, 290, 400, 300);
+            ctx.stroke();
+        })();
+
+        /* demo2 */
+        (function () {
+            let canvas = document.getElementById("demo2");
+            let ctx = canvas.getContext("2d");
+
+            canvas.width = 800;
+            canvas.height = 450;
+            canvas.style.background = "-webkit-linear-gradient(bottom, #50aacb, #4bbeb2)";
+
+            //文字
+            ctx.beginPath();
+            ctx.strokeText("Demo1", 0, 10);
+            ctx.strokeText("绘图", 0, 20);
+            ctx.strokeText("面向过程", 0, 30);
+
+            //绘制图片
+            let image2 = new Image();
+            image2.src = "../img/canvas2.jpg";
+            image2.onload = function () {
+                ctx.drawImage(image2, 0, 0, 200, 200, 50, 50, 95, 95);
+                ctx.drawImage(image2, 200, 0, 200, 200, 150, 50, 95, 95);
+                ctx.drawImage(image2, 400, 0, 200, 200, 250, 50, 95, 95);
+                ctx.drawImage(image2, 600, 0, 200, 200, 350, 50, 95, 95);
+                ctx.drawImage(image2, 800, 0, 200, 200, 450, 50, 95, 95);
+                ctx.drawImage(image2, 1000, 0, 200, 200, 550, 50, 95, 95);
+                ctx.drawImage(image2, 1200, 0, 200, 200, 650, 50, 95, 95);
+
+                ctx.drawImage(image2, 0, 200, 200, 200, 50, 150, 95, 95);
+                ctx.drawImage(image2, 200, 200, 200, 200, 150, 150, 95, 95);
+                ctx.drawImage(image2, 400, 200, 200, 200, 250, 150, 95, 95);
+                ctx.drawImage(image2, 600, 200, 200, 200, 350, 150, 95, 95);
+                ctx.drawImage(image2, 800, 200, 200, 200, 450, 150, 95, 95);
+                ctx.drawImage(image2, 1000, 200, 200, 200, 550, 150, 95, 95);
+                ctx.drawImage(image2, 1200, 200, 200, 200, 650, 150, 95, 95);
+
+                ctx.drawImage(image2, 0, 400, 200, 200, 50, 250, 95, 95);
+                ctx.drawImage(image2, 200, 400, 200, 200, 150, 250, 95, 95);
+                ctx.drawImage(image2, 400, 400, 200, 200, 250, 250, 95, 95);
+                ctx.drawImage(image2, 600, 400, 200, 200, 350, 250, 95, 95);
+                ctx.drawImage(image2, 800, 400, 200, 200, 450, 250, 95, 95);
+                ctx.drawImage(image2, 1000, 400, 200, 200, 550, 250, 95, 95);
+                ctx.drawImage(image2, 1200, 400, 200, 200, 650, 250, 95, 95);
+
+                ctx.drawImage(image2, 0, 600, 200, 200, 50, 350, 95, 95);
+                ctx.drawImage(image2, 200, 600, 200, 200, 150, 350, 95, 95);
+                ctx.drawImage(image2, 400, 600, 200, 200, 250, 350, 95, 95);
+                ctx.drawImage(image2, 600, 600, 200, 200, 350, 350, 95, 95);
+                ctx.drawImage(image2, 800, 600, 200, 200, 450, 350, 95, 95);
+                ctx.drawImage(image2, 1000, 600, 200, 200, 550, 350, 95, 95);
+                ctx.drawImage(image2, 1200, 600, 200, 200, 650, 350, 95, 95);
+            }
+        })();
     </script>
 </body>
 
