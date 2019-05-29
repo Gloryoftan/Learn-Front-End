@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="randomIcons.css">
     <title>randomIcons</title>
 </head>
+
 <body>
-    
+    <!-- para:
+        *data-bg-color 背景色
+        *data-shadow-color 阴影颜色
+        *data-icon-color 图标颜色
+        *data-angle 阴影角度
+        *data-depth 阴影深度
+        *data-shape 背景圆角
+        *data-bg-transparency 背景透明度
+        *data-shadow-transparency 阴影透明度
+        *data-icon-transparency 图标透明度
+        *data-pos-x
+        *data-pos-y
+        *data-bg-size 背景大小
+        *data-icon-size icon大小
+     -->
+    <div class="flatty_shadow" data-bg-color="#3498db" data-shadow-color="#2980b9" data-icon-color="#ffffff"
+        data-angle="45" data-depth="6" data-shape="20" data-bg-transparency="1" data-shadow-transparency="1"
+        data-icon-transparency="1" data-pos-x="0" data-pos-y="0" data-bg-size="140" data-icon-size="80px">
+        <i class="fas fa-camera"></i></div>
+
+    <script src="../../lib/jquery-1.11.3.min.js"></script>
+    <!-- <script src="randomIcons2.js"></script> -->
+    <script src="randomIcons.js"></script>
+    <script type="text/javascript">
+        flattyShadow();
+    </script>
 </body>
+
 </html>
