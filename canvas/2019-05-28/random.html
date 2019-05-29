@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>random</title>
+</head>
+
+<body>
+    <canvas id="canv"></canvas>
+
+    <script>
+        var c;
+        var $;
+        var arr = [];
+        var msX;
+        var msY;
+
+        var mrad = 30;
+        var mw = 60;
+        var mh = 50;
+        var sp = 5;
+        var sz = 0.4;
+        var shape = 8.0;
+
+        c = document.getElementById("canv");
+        $ = c.getContext("2d");
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+
+        msX = c.width / 2;
+        msY = c.height / 2;
+
+        var draw = function () {
+            var type;
+            switch (Math.floor(Math.random() * 4)) {
+                case 0:
+                    type = "circ";
+                    break;
+                case 1:
+                    type = "rect";
+                    break;
+                case 2:
+                    type = "sq";
+                    break;
+                case 3:
+                    type = "tri";
+                    break;
+            }
+            arr.push(new obj(msX, msY, type));
+            var t = "Geometrics".split("").join(String.fromCharCode(0x2004));
+            $.font = "5em Poiret One";
+            $.fillStyle = 'hsla(260, 95%, 40%, 1)';
+            $.textBaseline = 'middle';
+            $.fillText(t, (c.width - $.measureText(t).width) * 0.5, c.height * 0.5);
+        }
+
+        var obj = function (x, y, t) {
+            this.x = x;
+            this.y = y;
+            this.r = ~~(Math.random() * 256);
+            this.g = ~~(Math.random() * 256);
+            this.b = ~~(Math.random() * 256);
+            this.rgba = "rgba(" + this.r + "," + this.g + "," + this.b + ", 1)";
+            this.vx = Math.random() * shape - (shape / 2);
+            this.vy = Math.random() * shape - (shape / 2);
+            this.cnt = 0;
+            this.rot = 0;
+            this.t = t;
+            switch (t) {
+                case "circ":
+                    this.rad = Math.ceil(Math.random() * mrad);
+                    break;
+                case "rect":
+                    this.width = Math.ceil(Math.random() * mw);
+                    this.height = Math.ceil(Math.random() * mh);
+                    break;
+                case "sq":
+                    this.width = this.height = Math.ceil(Math.random() * mw);
+                    break;
+                case "tri":
+                    this.width = this.height = Math.ceil(Math.random() * mw);
+                    break;
+            }
+        }
+
+        var upd = function () {
+            $.clearRect(0, 0, c.width, c.height);
+            $.globalCompositeOperation = "saturation";
+
+            for (var i in arr) {
+                var obj = arr[i];
+
+                switch (obj.t) {
+                    case "circ":
+                        obj.x += obj.vx * (0.05 * obj.cnt);
+                        obj.y += obj.vy * (0.05 * obj.cnt);
+                        obj.rad -= sz;
+                        obj.cnt++;
+
+                        if (obj.rad > 0) {
+                            $.save();
+                            $.beginPath();
+                            $.fillStyle = obj.rgba;
+                            $.arc(obj.x, obj.y, obj.rad, 0, Math.PI * 2, true);
+                            $.fill();
+                            $.restore();
+                        } else {
+                            delete obj;
+                            arr.splice(i, 1);
+                            i--;
+                        }
+                        break;
+
+                    case "rect":
+                        obj.x += obj.vx * (0.05 * obj.cnt);
+                        obj.y += obj.vy * (0.05 * obj.cnt);
+                        obj.width -= sz;
+                        obj.height -= sz;
+                        obj.rot += sp;
+                        if (360 < obj.rot) obj.rot = 0;
+                        obj.cnt++;
+                        if (obj.width > 0 && obj.height > 0) {
+                            $.save();
+                            $.beginPath();
+                            $.fillStyle = obj.rgba;
+                            $.translate(obj.x, obj.y);
+                            $.rotate(obj.rot * Math.PI / 180);
+                            $.translate(-obj.x, -obj.y);
+                            $.fillRect(obj.x - obj.width / 2, obj.y - obj.height / 2, obj.width, obj.height);
+                            $.restore();
+                        } else {
+                            delete obj;
+                            arr.splice(i, 1);
+                            i--;
+                        }
+                        break;
+
+                    case "sq":
+                        obj.x += obj.vx * (0.05 * obj.cnt);
+                        obj.y += obj.vy * (0.05 * obj.cnt);
+                        obj.width -= sz;
+                        obj.height -= sz;
+                        obj.rot += sp;
+                        if (360 < obj.rot) obj.rot = 0;
+                        obj.cnt++;
+                        if (obj.width > 0 && obj.height > 0) {
+                            $.save();
+                            $.beginPath();
+                            $.fillStyle = obj.rgba;
+                            $.translate(obj.x, obj.y);
+                            $.rotate(obj.rot * Math.PI / 180);
+                            $.translate(-obj.x, -obj.y);
+                            $.fillRect(obj.x - obj.width / 2, obj.y - obj.height / 2, obj.width, obj.height);
+                            $.restore();
+                        } else {
+                            delete obj;
+                            arr.splice(i, 1);
+                            i--;
+                        }
+                        break;
+
+                    case "tri":
+                        obj.x += obj.vx * (0.05 * obj.cnt);
+                        obj.y += obj.vy * (0.05 * obj.cnt);
+                        obj.width -= sz;
+                        obj.height -= sz;
+                        obj.rot += sp;
+                        if (360 < obj.rot) obj.rot = 0;
+                        obj.cnt++;
+                        if (obj.width > 0 && obj.height > 0) {
+                            $.save();
+                            $.beginPath();
+                            $.fillStyle = obj.rgba;
+                            $.translate(obj.x, obj.y);
+                            $.rotate(obj.rot * Math.PI / 180);
+                            $.translate(-obj.x, -obj.y);
+                            $.moveTo(obj.x - obj.width / 2, obj.y + obj.height * 0.333);
+                            $.lineTo(obj.x + obj.width / 2, obj.y + obj.height * 0.333);
+                            $.lineTo(obj.x, obj.y - (obj.height * 0.666));
+                            $.closePath();
+                            $.fill();
+                            $.restore();
+                        } else {
+                            delete obj;
+                            arr.splice(i, 1);
+                            i--;
+                        }
+                        break;
+                }
+            }
+        }
+        window.addEventListener('mousemove', function (e) {
+            msX = e.clientX;
+            msY = e.clientY;
+        }, false)
+
+        window.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+            msX = e.touches[0].clientX;
+            msY = e.touches[0].clientY;
+        }, false);
+
+        window.addEventListener('resize', function () {
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+        }, false);
+
+        var run = function () {
+            window.requestAnimationFrame(run);
+            upd();
+            draw();
+        }
+        run();
+    </script>
+</body>
+
+</html>
