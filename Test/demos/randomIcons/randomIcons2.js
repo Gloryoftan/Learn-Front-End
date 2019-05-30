@@ -18,6 +18,11 @@
  *posY
 
  *selectedIcon 图标
+
+ *randomIcons 是否随机图标
+ *randomBgColor 是否随机背景颜色
+
+ *iconsSet 随机图标库
  */
 function Icons(option) {
     this._init(option);
@@ -25,25 +30,28 @@ function Icons(option) {
 
 Icons.prototype = {
     _init: function (option) {
-        this.bgSize = option.bgSize;
-        this.iconSize = option.iconSize;
+        //icon 数组
+        this.iconsArr = option.iconsSet || [];
 
-        this.shadowAngle = option.shadowAngle;
-        this.shadowDepth = option.shadowDepth;
-        this.bgRadius = option.bgRadius;
+        this.bgSize = option.bgSize || 140;
+        this.iconSize = option.iconSize || 80;
 
-        this.bgTransparency = option.bgTransparency;
-        this.shadowTransparency = option.shadowTransparency;
-        this.iconTransparency = option.iconTransparency;
+        this.shadowAngle = option.shadowAngle || 45;
+        this.shadowDepth = option.shadowDepth || 6;
+        this.bgRadius = option.bgRadius || 20;
 
-        this.bgColor = this._hex2Rgb(option.bgColor);
+        this.bgTransparency = option.bgTransparency || 1;
+        this.shadowTransparency = option.shadowTransparency || 1;
+        this.iconTransparency = option.iconTransparency || 1;
+
+        this.bgColor = option.randomBgColor ? this._hex2Rgb(this.randomHexColor()) : this._hex2Rgb(option.bgColor);
         this.shadowColor = this._hex2Rgb(option.shadowColor);
         this.iconColor = this._hex2Rgb(option.iconColor);
 
         // this.posX = option.posX === 0 ? : option.posX || 0;
         // this.posY = option.posY === 0 ? : option.posX || 0;
 
-        this.selectedIcon = '<i class="' + option.selectedIcon + '"></i>';
+        this.selectedIcon = option.randomIcons ? '<i class="' + this.randomIcons() + '"></i>' : '<i class="' + option.selectedIcon + '"></i>';
 
         //阴影
         var x = 1.5 * Math.cos(option.shadowAngle * Math.PI / 180);
@@ -58,7 +66,7 @@ Icons.prototype = {
         }
         this.shadowSet = shadowSet.substr(0, shadowSet.length - 1);
     },
-
+    //渲染
     append: function () {
         $("#Icons").append('<div class="Icons_bg"><span class="Icons_icon">' +
             this.selectedIcon + '</span></div>');
@@ -76,7 +84,7 @@ Icons.prototype = {
         $("#Icons").children('.Icons_bg').find('.Icons_icon').css('font-size', this.iconSize + "px");
         $("#Icons").children('.Icons_bg').find('.Icons_icon').css('text-shadow', this.shadowSet);
     },
-
+    //十六进制颜色转rgb（带透明度）
     _hex2Rgb: function (hex) {
         var rgb = []; // 定义rgb数组
         if (/^\#[0-9A-F]{3}$/i.test(hex)) { //判断传入是否为#三位十六进制数
@@ -96,21 +104,38 @@ Icons.prototype = {
             return 'rgb(0,0,0)'; //默认颜色
         }
     },
+    //随机生成十六进制颜色
+    randomHexColor: function () {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
+    },
+    //随机选择font-awesome图标
+    randomIcons: function () {
+        var arr = this.iconsArr;
+        return arr[Math.floor((Math.random() * arr.length))];
+        // return arr[9];
+    },
 };
 
 var icons = new Icons({
     selectedIcon: "fas fa-camera",
+    randomIcons: 1,
+
     bgSize: 140,
     iconSize: 80,
     shadowAngle: 45,
     shadowDepth: 6,
     bgRadius: 20,
+
     bgColor: "#3498db",
+    randomBgColor: 1,
+
     shadowColor: "#2980b9",
     iconColor: "#ffffff",
     bgTransparency: 1,
     shadowTransparency: 1,
     iconTransparency: 1,
+
+    iconsSet: ["fas fa-charging-station", "fas fa-bolt", "fas fa-plug", "fas fa-car-battery", "fas fa-industry", "fas fa-broadcast-tower", "fas fa-gopuram", "fab fa-superpowers", "fas fa-torii-gate", "fas fa-monument", "fas fa-house-damage"],
 });
 
 icons.append();
