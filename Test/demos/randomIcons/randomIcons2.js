@@ -21,6 +21,7 @@
 
  *randomIcons 是否随机图标
  *randomBgColor 是否随机背景颜色
+ *randomGradientBgColor 是否随机渐变背景色
 
  *iconsSet 随机图标库
  */
@@ -40,6 +41,7 @@ Icons.prototype = {
         this.shadowTransparency = option.shadowTransparency || 1;
         this.iconTransparency = option.iconTransparency || 1;
         this.bgColor = option.randomBgColor ? this._hex2Rgb(this.randomHexColor()) : this._hex2Rgb(option.bgColor);
+        this.bgColor = option.randomGradientBgColor ? this._randomGradientBgColor() : this.bgColor;
         this.shadowColor = this._hex2Rgb(option.shadowColor);
         this.iconColor = this._hex2Rgb(option.iconColor);
         // this.posX = option.posX === 0 ? : option.posX || 0;
@@ -64,18 +66,22 @@ Icons.prototype = {
         $("#Icons").append('<div class="Icons_bg"><span class="Icons_icon">' +
             this.selectedIcon + '</span></div>');
         //bg setting
-        $("#Icons").children('.Icons_bg').css('display', "flex");
-        $("#Icons").children('.Icons_bg').css('justify-content', "center");
-        $("#Icons").children('.Icons_bg').css('align-items', "center");
-        $("#Icons").children('.Icons_bg').css('overflow', "hidden");
-        $("#Icons").children('.Icons_bg').css('width', this.bgSize);
-        $("#Icons").children('.Icons_bg').css('height', this.bgSize);
-        $("#Icons").children('.Icons_bg').css('background-color', this.bgColor);
-        $("#Icons").children('.Icons_bg').css('border-radius', this.bgRadius + "%");
+        $("#Icons .Icons_bg").css({
+            'display': 'flex',
+            'justify-content': 'center',
+            'align-items': 'center',
+            'overflow': 'hidden',
+            'width': this.bgSize,
+            'height': this.bgSize,
+            'background': this.bgColor,
+            'border-radius': this.bgRadius + "%",
+        });
         //icon setting
-        $("#Icons").children('.Icons_bg').find('.Icons_icon').css('color', this.iconColor);
-        $("#Icons").children('.Icons_bg').find('.Icons_icon').css('font-size', this.iconSize + "px");
-        $("#Icons").children('.Icons_bg').find('.Icons_icon').css('text-shadow', this.shadowSet);
+        $('#Icons .Icons_icon').css({
+            'color': this.iconColor,
+            'font-size': this.iconSize + "px",
+            'text-shadow': this.shadowSet,
+        });
     },
     //十六进制颜色转rgb（带透明度）
     _hex2Rgb: function (hex) {
@@ -107,6 +113,26 @@ Icons.prototype = {
         return arr[Math.floor((Math.random() * arr.length))];
         // return arr[9];
     },
+    //随机生成背景渐变色
+    _randomGradientBgColor: function () {
+        var _h = this.randomValue(0, 360);
+        var _h1 = _h + this.randomValue(20, 60);
+        var _s = this.randomValue(40, 60);
+        var _l = this.randomValue(50, 80);
+        var _ang = this.randomValue(0, 180);
+        var _gradient = 'linear-gradient(' + _ang + 'deg, hsl(' + _h + ', ' + _s + '%, ' + _l + '%), hsl(' + _h1 + ', ' + _s + '%, ' + _l + '%))';
+        return _gradient;
+    },
+    //范围随机数
+    randomValue: function (start, end) {
+        if (typeof start == "undefined") {
+            start = 0;
+        }
+        if (typeof end == "undefined") {
+            end = start + 100;
+        }
+        return start + Math.round(Math.random() * (end - start));
+    }
 };
 
 var icons = new Icons({
@@ -119,6 +145,7 @@ var icons = new Icons({
     bgRadius: 20,
     bgColor: "#3498db",
     randomBgColor: 1,
+    randomGradientBgColor: 1,
     shadowColor: "#2980b9",
     iconColor: "#ffffff",
     bgTransparency: 1,

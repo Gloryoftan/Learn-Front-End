@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <canvas id="canvas">你的浏览器不支持</canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d"); //使用context绘制
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        //context.fillStyle = "black";
+        /*线性渐变*/
+        var linearGrad = context.createLinearGradient(0, 0, 0, 700);
+        linearGrad.addColorStop(0.0, "#444");
+        linearGrad.addColorStop(1.0, "#000");
+        context.fillStyle = linearGrad; 
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        /*循环显示多少个星星*/
+        function run() {
+            for (var i = 0; i < 123; i++) {
+                var r = Math.random() * 5 + 1;
+                drawStar(context,
+                    r,
+                    2 * r,
+                    Math.random() * canvas.width,
+                    Math.random() * canvas.height);
+            }
+        }
+        run();
+        /*绘制五角星*/
+        function drawStar(cxt, r, R, x, y) {
+            cxt.beginPath();
+            var str = ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6); //随机生成
+            for (var i = 0; i < 5; i++) {
+                cxt.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI) * R + x,
+                    -Math.sin((18 + i * 72) / 180 * Math.PI) * R + y);
+                cxt.lineTo(Math.cos((54 + i * 72) / 180 * Math.PI) * r + x,
+                    -Math.sin((54 + i * 72) / 180 * Math.PI) * r + y);
+            }
+            cxt.fillStyle = "#" + str;
+            cxt.strokeStyle = "#" + str;
+            cxt.closePath();
+            cxt.fill();
+            cxt.stroke();
+        }
+    </script>
+</body>
+
+</html>
