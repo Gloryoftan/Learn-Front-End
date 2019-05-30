@@ -30,27 +30,20 @@ function Icons(option) {
 
 Icons.prototype = {
     _init: function (option) {
-        //icon 数组
         this.iconsArr = option.iconsSet || [];
-
         this.bgSize = option.bgSize || 140;
         this.iconSize = option.iconSize || 80;
-
         this.shadowAngle = option.shadowAngle || 45;
         this.shadowDepth = option.shadowDepth || 6;
         this.bgRadius = option.bgRadius || 20;
-
         this.bgTransparency = option.bgTransparency || 1;
         this.shadowTransparency = option.shadowTransparency || 1;
         this.iconTransparency = option.iconTransparency || 1;
-
         this.bgColor = option.randomBgColor ? this._hex2Rgb(this.randomHexColor()) : this._hex2Rgb(option.bgColor);
         this.shadowColor = this._hex2Rgb(option.shadowColor);
         this.iconColor = this._hex2Rgb(option.iconColor);
-
         // this.posX = option.posX === 0 ? : option.posX || 0;
         // this.posY = option.posY === 0 ? : option.posX || 0;
-
         this.selectedIcon = option.randomIcons ? '<i class="' + this.randomIcons() + '"></i>' : '<i class="' + option.selectedIcon + '"></i>';
 
         //阴影
@@ -119,23 +112,18 @@ Icons.prototype = {
 var icons = new Icons({
     selectedIcon: "fas fa-camera",
     randomIcons: 1,
-
     bgSize: 140,
     iconSize: 80,
     shadowAngle: 45,
     shadowDepth: 6,
     bgRadius: 20,
-
     bgColor: "#3498db",
     randomBgColor: 1,
-
     shadowColor: "#2980b9",
     iconColor: "#ffffff",
     bgTransparency: 1,
     shadowTransparency: 1,
     iconTransparency: 1,
-
     iconsSet: ["fas fa-charging-station", "fas fa-bolt", "fas fa-plug", "fas fa-car-battery", "fas fa-industry", "fas fa-broadcast-tower", "fas fa-gopuram", "fab fa-superpowers", "fas fa-torii-gate", "fas fa-monument", "fas fa-house-damage"],
 });
-
 icons.append();
