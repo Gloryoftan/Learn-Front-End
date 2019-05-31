@@ -115,16 +115,16 @@ Icons.prototype = {
     },
     //随机生成背景渐变色
     _randomGradientBgColor: function () {
-        var _h = this.randomValue(0, 360);
-        var _h1 = _h + this.randomValue(20, 60);
-        var _s = this.randomValue(40, 60);
-        var _l = this.randomValue(50, 80);
-        var _ang = this.randomValue(0, 180);
+        var _h = this._randomValue(0, 360);
+        var _h1 = _h + this._randomValue(20, 60);
+        var _s = this._randomValue(40, 60);
+        var _l = this._randomValue(50, 80);
+        var _ang = this._randomValue(0, 180);
         var _gradient = 'linear-gradient(' + _ang + 'deg, hsl(' + _h + ', ' + _s + '%, ' + _l + '%), hsl(' + _h1 + ', ' + _s + '%, ' + _l + '%))';
         return _gradient;
     },
     //范围随机数
-    randomValue: function (start, end) {
+    _randomValue: function (start, end) {
         if (typeof start == "undefined") {
             start = 0;
         }

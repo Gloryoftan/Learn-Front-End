@@ -1,0 +1,96 @@
+#btn--yp {
+    box-sizing: content-box;
+    position: fixed;
+    z-index: 9;
+    bottom: 1em;
+    right: 1em;
+    border: solid 1em transparent;
+    width: 4.625em;
+    height: 3.25em;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2017/icon-yp.svg) 50%/cover content-box;
+    font: 16px/ 1.25 trebuchet ms, sans-serif;
+    text-indent: 200vw;
+    text-shadow: none;
+    filter: grayscale(1) drop-shadow(0 0 1px #e8e0e0);
+    transition: .5s;
+    white-space: nowrap;
+  }
+  #btn--yp:before {
+    box-sizing: inherit;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    margin: 1em -.5em;
+    padding: .5em;
+    width: 100%;
+    border-radius: 5px;
+    background: #e8e0e0;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0vw;
+    white-space: normal;
+    animation: float 1s ease-in-out infinite alternate;
+    content: attr(data-txt);
+  }
+  #btn--yp:hover, #btn--yp:focus {
+    outline: none;
+    filter: grayscale(0) drop-shadow(0 0 1px crimson);
+  }
+  
+  @keyframes float {
+    to {
+      transform: translateY(0.75em);
+    }
+  }
+  body {
+    --p: .45;
+    overflow: hidden;
+    height: 100vh;
+    perspective: 25em;
+    background: gainsboro;
+  }
+  
+  .s4hedron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    animation: rot 15s linear calc((var(--p) - 1)*15s) infinite;
+  }
+  .s4hedron:before {
+    position: absolute;
+    margin: -1px;
+    padding: 1px;
+    transform: translatey(calc(12.37437vmin + 2em)) rotatex(90deg) rotate(45deg);
+    box-shadow: 0 0 5.05181vmin 11.61917vmin currentcolor;
+    background: currentcolor;
+    color: silver;
+    content: "";
+  }
+  .s4hedron__face {
+    --k: calc(var(--j) + 2*var(--i));
+    position: absolute;
+    margin: -20.20726vmin;
+    padding: 20.20726vmin;
+    transform: rotate(calc(var(--j)*.5turn)) rotatey(calc(var(--k)*.25turn)) rotatex(-35.26439deg) translatez(7.14435vmin);
+    background: #db533d;
+    filter: brightness(calc(1 + var(--j)*.1));
+    --shape: polygon(50% 0%, 93.30127% 75%, 6.69873% 75%);
+    -webkit-clip-path: var(--shape);
+    clip-path: var(--shape);
+    animation: shade 7.5s ease-in-out calc((var(--p) - var(--k)/var(--n))*15s) infinite alternate;
+    animation-play-state: inherit;
+  }
+  @keyframes rot {
+    0% {
+      transform: rotatey(1turn);
+    }
+  }
+  @keyframes shade {
+    to {
+      filter: brightness(calc(.5 + var(--j)*.1));
+    }
+  }
+  
+  

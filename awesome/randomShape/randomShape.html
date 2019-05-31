@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <title>randomShape</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            // settings
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+                background('#fff');
+                strokeWeight(1);
+                stroke('#fff');
+                // fps
+                frameRate(60);
+            }
+
+            // the function iterates
+            function draw() {
+                for (var i = 0; i < 200; i++) {
+                    // set random variables
+                    var r = random(255);
+                    var g = random(255);
+                    var b = random(255);
+                    var a = random(100);
+                    //random position width
+                    var w = random(width);
+                    //random position height
+                    var h = random(height);
+                    //random shape size
+                    var s = random(50);
+                    // rgba
+                    fill(r, g, b, a);
+                    // describe rectangle
+                    rect(w, h, s, s);
+                }
+            }
+
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+        })();
+    </script>
+</body>
+
+</html>
