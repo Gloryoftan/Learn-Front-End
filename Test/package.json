@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "html2canvas": "^1.0.0-rc.3",
     "spinkit": "^1.2.5"
   },
   "devDependencies": {

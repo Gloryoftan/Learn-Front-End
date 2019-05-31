@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <style>
+    div {
+      display: flex;
+      justify-content: center;
+      width: 650px;
+      height: 550px;
+      border: 5px solid black;
+      background: url('img/ChinaMap.jpeg') no-repeat;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="wrap">
+  </div>
+  <script type="text/javascript" src="js/html2canvas.js"></script>
+  <script type="text/javascript">
+  
+    let oWrap = document.getElementById('wrap');
+    oWrap.onmousedown = function (e) {
+      //获取鼠标初始位置
+      let sX = e.clientX;
+      let sY = e.clientY;
+
+      document.onmouseup = function (e) {
+        //获取鼠标当前位置
+        let mX = e.clientX;
+        let mY = e.clientY;
+
+        //计算出鼠标位置的变化量
+        let x = mX - sX;
+        let y = mY - sY;
+
+
+        html2canvas((document.body), {
+          "backgroundColor": "red",
+          'width': x,//大小
+          'height': y,
+          'x': sX,//div初始位置
+          'y': sY,
+        }).then(function (canvas) {
+          document.body.appendChild(canvas);
+        });
+
+      };
+    };
+  </script>
+</body>
+
+</html>
