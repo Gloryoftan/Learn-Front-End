@@ -23,7 +23,9 @@
   </div>
   <script type="text/javascript" src="js/html2canvas.js"></script>
   <script type="text/javascript">
-  
+    
+    // const html2canvas =require("html2canvas");
+    
     let oWrap = document.getElementById('wrap');
     oWrap.onmousedown = function (e) {
       //获取鼠标初始位置
@@ -42,9 +44,9 @@
 
         html2canvas((document.body), {
           "backgroundColor": "red",
-          'width': x,//大小
+          'width': x, //大小
           'height': y,
-          'x': sX,//div初始位置
+          'x': sX, //div初始位置
           'y': sY,
         }).then(function (canvas) {
           document.body.appendChild(canvas);

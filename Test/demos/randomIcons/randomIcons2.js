@@ -132,6 +132,10 @@ Icons.prototype = {
             end = start + 100;
         }
         return start + Math.round(Math.random() * (end - start));
+    },
+    //随机底纹
+    _randomShade:function(){
+        
     }
 };
 
