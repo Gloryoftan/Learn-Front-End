@@ -64,7 +64,9 @@ Icons.prototype = {
     //渲染
     append: function () {
         $("#Icons").append('<div class="Icons_bg"><span class="Icons_icon">' +
-            this.selectedIcon + '</span></div>');
+            this.selectedIcon + '</span><canvas id="Shade"></canvas></div>');
+
+
         //bg setting
         $("#Icons .Icons_bg").css({
             'display': 'flex',
@@ -82,6 +84,11 @@ Icons.prototype = {
             'font-size': this.iconSize + "px",
             'text-shadow': this.shadowSet,
         });
+        //shade index
+        $('#Icons span').css({
+            'position': 'absolute',
+            'z-inde': 9
+        })
     },
     //十六进制颜色转rgb（带透明度）
     _hex2Rgb: function (hex) {
@@ -132,10 +139,6 @@ Icons.prototype = {
             end = start + 100;
         }
         return start + Math.round(Math.random() * (end - start));
-    },
-    //随机底纹
-    _randomShade:function(){
-        
     }
 };
 
@@ -158,3 +161,56 @@ var icons = new Icons({
     iconsSet: ["fas fa-charging-station", "fas fa-bolt", "fas fa-plug", "fas fa-car-battery", "fas fa-industry", "fas fa-broadcast-tower", "fas fa-gopuram", "fab fa-superpowers", "fas fa-torii-gate", "fas fa-monument", "fas fa-house-damage"],
 });
 icons.append();
+
+//canvas底纹
+var canvas = document.getElementById('Shade');
+var ctx = canvas.getContext('2d');
+canvas.width = 140;
+canvas.height = 140;
+canvas.style.borderRadius = "20%";
+canvas.style.background = "transparent";
+
+
+// ctx.globalCompositeOperation = "#000000";
+
+ctx.globalAlpha = 0.5;
+// ctx.globalCompositeOperation = "source-over";
+
+function render() {
+    ctx.clearRect(0, 0, 140, 140);
+
+
+    for (let i = 0; i < 2; i++) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(randomValue(0, 140), randomValue(0, 40));
+        ctx.rotate(45 * Math.PI / 180);
+        ctx.scale(randomValue(2, 4), randomValue(2, 4));
+        let s = randomValue(2, 3);
+        ctx.scale(s, s);
+        ctx.rect(0, 0, 10, 10);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+        ctx.restore();
+    }
+
+    for (let i = 0; i < 1; i++) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(randomValue(0, 140), randomValue(0, 140), randomValue(25, 45), 0, 2 * Math.PI);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+        ctx.restore();
+    }
+}
+render();
+
+function randomValue(start, end) {
+    if (typeof start == "undefined") {
+        start = 0;
+    }
+    if (typeof end == "undefined") {
+        end = start + 100;
+    }
+    return start + Math.round(Math.random() * (end - start));
+}
