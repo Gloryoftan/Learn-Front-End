@@ -24,6 +24,28 @@
  *randomGradientBgColor 是否随机渐变背景色
 
  *iconsSet 随机图标库
+
+ *randomShade 是否随机底纹 默认否
+ *shadeTransparency 底纹透明度 默认0.5
+
+ *rectangleNum 长方形数量 默认2
+ *rectangleStartPositionX0 长方形起始点位置X0 默认为0 
+ *rectangleStartPositionX 长方形起始点位置X  默认为1 即0-1 (容器左边为0,右边为1)
+ *rectangleStartPositionY0 长方形起始点位置Y0 默认为0 
+ *rectangleStartPositionY 长方形起始点位置Y 默认为1/2 即0-1/2 (容器顶部为0,底部为1)
+ *rectRotate 长方形旋转角度 默认45
+ *rectRatio 长方形宽高比 默认为2 （宽高比为1时只出现正方形）
+ *rectOnly 只出现长方形 默认为否
+ *rectScaleMin 长方形大小 最小值 默认40
+ *rectScaleMax 长方形大小 最大值 默认50
+
+ *circleNum 圆形数量 默认1
+ *circleCenterX0 圆形圆心位置X0 默认为0
+ *circleCenterX 圆形圆心位置X 默认为1 即0-1 (容器左边为0,右边为1)
+ *circleCenterY0 圆形圆心位置Y0 默认为0
+ *circleCenterY 圆形圆心位置Y 默认为1 即0-1 (容器顶部为0,底部为1)
+ *circleRMin 圆形半径最小值 默认25
+ *circleRMax 圆形半径最大值 默认45
  */
 function Icons(option) {
     this._init(option);
@@ -48,6 +70,28 @@ Icons.prototype = {
         // this.posY = option.posY === 0 ? : option.posX || 0;
         this.selectedIcon = option.randomIcons ? '<i class="' + this.randomIcons() + '"></i>' : '<i class="' + option.selectedIcon + '"></i>';
 
+        //canvas 底纹
+        this.randomShade = option.randomShade || 0;
+        this.shadeTransparency = option.shadeTransparency === 0 ? 0 : option.shadeTransparency || 0.5;
+        this.rectangleNum = option.rectangleNum === 0 ? 0 : option.rectangleNum || 2;
+        this.rectangleStartPositionX0 = option.rectangleStartPositionX0 || 0;
+        this.rectangleStartPositionX = option.rectangleStartPositionX === 0 ? 0 : option.rectangleStartPositionX || 1;
+        this.rectangleStartPositionY0 = option.rectangleStartPositionY0 || 0;
+        this.rectangleStartPositionY = option.rectangleStartPositionY === 0 ? 0 : option.rectangleStartPositionY || 1 / 2;
+        this.rectRotate = option.circleNum === 0 ? 0 : option.rectRotate || 45;
+        this.rectRatio = option.rectRatio || 2;
+        this.rectOnly = option.rectOnly || 0;
+        this.rectScaleMin = option.rectScaleMin === 0 ? 0 : option.rectScaleMin || 40;
+
+        this.circleNum = option.circleNum === 0 ? 0 : option.circleNum || 1;
+        this.rectScaleMax = option.rectScaleMax === 0 ? 0 : option.rectScaleMax || 50;
+        this.circleCenterX0 = option.circleCenterX0 || 0;
+        this.circleCenterX = option.circleCenterX === 0 ? 0 : option.circleCenterX || 1;
+        this.circleCenterY0 = option.circleCenterY0 || 0;
+        this.circleCenterY = option.circleCenterY === 0 ? 0 : option.circleCenterY || 1;
+        this.circleRMin = option.circleRMin === 0 ? 0 : option.circleRMin || 25;
+        this.circleRMax = option.circleRMax === 0 ? 0 : option.circleRMax || 25;
+
         //阴影
         var x = 1.5 * Math.cos(option.shadowAngle * Math.PI / 180);
         var y = 1.5 * Math.sin(option.shadowAngle * Math.PI / 180);
@@ -64,9 +108,7 @@ Icons.prototype = {
     //渲染
     append: function () {
         $("#Icons").append('<div class="Icons_bg"><span class="Icons_icon">' +
-            this.selectedIcon + '</span><canvas id="Shade"></canvas></div>');
-
-
+            this.selectedIcon + '</span><canvas id="Shade">浏览器不支持Canvas，求求你换一个浏览器吧！</canvas></div>');
         //bg setting
         $("#Icons .Icons_bg").css({
             'display': 'flex',
@@ -88,7 +130,10 @@ Icons.prototype = {
         $('#Icons span').css({
             'position': 'absolute',
             'z-inde': 9
-        })
+        });
+        if (this.randomShade != 0) {
+            this._randomShade();
+        }
     },
     //十六进制颜色转rgb（带透明度）
     _hex2Rgb: function (hex) {
@@ -139,6 +184,45 @@ Icons.prototype = {
             end = start + 100;
         }
         return start + Math.round(Math.random() * (end - start));
+    },
+    //随机底纹
+    _randomShade: function () {
+        var canvas = document.getElementById('Shade');
+        var ctx = canvas.getContext('2d');
+        canvas.width = this.bgSize;
+        canvas.height = this.bgSize;
+        canvas.style.borderRadius = this.bgRadius + '%';
+        canvas.style.background = "transparent";
+        ctx.globalAlpha = this.shadeTransparency;
+
+        ctx.clearRect(0, 0, this.bgSize, this.bgSize);
+        //rectangle
+        for (let i = 0; i < this.rectangleNum; i++) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.translate(this._randomValue(this.bgSize * this.rectangleStartPositionX0, this.bgSize * this.rectangleStartPositionX), this._randomValue(this.bgSize * this.rectangleStartPositionY0, this.bgSize * this.rectangleStartPositionY));
+            ctx.rotate(this.rectRotate * Math.PI / 180);
+            if (this.rectOnly !== 0) {
+                ctx.scale(1, this.rectRatio);
+            } else {
+                ctx.scale(this._randomValue(1, this.rectRatio), this._randomValue(1, this.rectRatio));
+            }
+            let s = this._randomValue(this.rectScaleMin, this.rectScaleMax);
+            ctx.scale(s, s);
+            ctx.rect(0, 0, 1, 1);
+            ctx.fillStyle = "#ffffff";
+            ctx.fill();
+            ctx.restore();
+        }
+
+        for (let i = 0; i < this.circleNum; i++) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(this._randomValue(this.bgSize * this.circleCenterX0, this.bgSize * this.circleCenterX), this._randomValue(this.bgSize * this.circleCenterY0, this.bgSize * this.circleCenterY), this._randomValue(this.circleRMin, this.circleRMax), 0, 2 * Math.PI);
+            ctx.fillStyle = "#ffffff";
+            ctx.fill();
+            ctx.restore();
+        }
     }
 };
 
@@ -159,58 +243,28 @@ var icons = new Icons({
     shadowTransparency: 1,
     iconTransparency: 1,
     iconsSet: ["fas fa-charging-station", "fas fa-bolt", "fas fa-plug", "fas fa-car-battery", "fas fa-industry", "fas fa-broadcast-tower", "fas fa-gopuram", "fab fa-superpowers", "fas fa-torii-gate", "fas fa-monument", "fas fa-house-damage"],
+
+    randomShade: 1,
+    shadeTransparency: 0.5,
+    //长方形
+    rectangleNum: 2,
+    rectangleStartPositionX0: 0,
+    rectangleStartPositionX: 1,
+    rectangleStartPositionY0: 0,
+    rectangleStartPositionY: 1 / 2,
+    rectRotate: 45,
+    rectRatio: 3,
+    rectOnly: 0,
+    rectScaleMin: 40,
+    rectScaleMax: 50,
+    //圆形
+    circleNum: 1,
+    circleCenterX0: 0,
+    circleCenterX: 1,
+    circleCenterY0: 0,
+    circleCenterY: 1,
+    circleRMin: 25,
+    circleRMax: 45,
+
 });
 icons.append();
-
-//canvas底纹
-var canvas = document.getElementById('Shade');
-var ctx = canvas.getContext('2d');
-canvas.width = 140;
-canvas.height = 140;
-canvas.style.borderRadius = "20%";
-canvas.style.background = "transparent";
-
-
-// ctx.globalCompositeOperation = "#000000";
-
-ctx.globalAlpha = 0.5;
-// ctx.globalCompositeOperation = "source-over";
-
-function render() {
-    ctx.clearRect(0, 0, 140, 140);
-
-
-    for (let i = 0; i < 2; i++) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.translate(randomValue(0, 140), randomValue(0, 40));
-        ctx.rotate(45 * Math.PI / 180);
-        ctx.scale(randomValue(2, 4), randomValue(2, 4));
-        let s = randomValue(2, 3);
-        ctx.scale(s, s);
-        ctx.rect(0, 0, 10, 10);
-        ctx.fillStyle = "#ffffff";
-        ctx.fill();
-        ctx.restore();
-    }
-
-    for (let i = 0; i < 1; i++) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(randomValue(0, 140), randomValue(0, 140), randomValue(25, 45), 0, 2 * Math.PI);
-        ctx.fillStyle = "#ffffff";
-        ctx.fill();
-        ctx.restore();
-    }
-}
-render();
-
-function randomValue(start, end) {
-    if (typeof start == "undefined") {
-        start = 0;
-    }
-    if (typeof end == "undefined") {
-        end = start + 100;
-    }
-    return start + Math.round(Math.random() * (end - start));
-}
