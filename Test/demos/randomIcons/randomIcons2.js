@@ -62,7 +62,7 @@ Icons.prototype = {
         this.bgTransparency = option.bgTransparency || 1;
         this.shadowTransparency = option.shadowTransparency || 1;
         this.iconTransparency = option.iconTransparency || 1;
-        this.bgColor = option.randomBgColor ? this._hex2Rgb(this.randomHexColor()) : this._hex2Rgb(option.bgColor);
+        this.bgColor = option.randomBgColor ? this._hex2Rgb(this._randomHexColor()) : this._hex2Rgb(option.bgColor);
         this.bgColor = option.randomGradientBgColor ? this._randomGradientBgColor() : this.bgColor;
         this.shadowColor = this._hex2Rgb(option.shadowColor);
         this.iconColor = this._hex2Rgb(option.iconColor);
@@ -151,12 +151,12 @@ Icons.prototype = {
             });
             return `rgb(${rgb.join(',')},${this.bgTransparency})`; //输出RGB格式颜色
         } else {
-            console.log(`Input ${hex} is wrong!`);
+            // console.log(`Input ${hex} is wrong!`);
             return 'rgb(0,0,0)'; //默认颜色
         }
     },
     //随机生成十六进制颜色
-    randomHexColor: function () {
+    _randomHexColor: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
     },
     //随机选择font-awesome图标
