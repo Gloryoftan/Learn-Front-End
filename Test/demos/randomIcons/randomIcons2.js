@@ -62,17 +62,17 @@ Icons.prototype = {
         this.bgTransparency = option.bgTransparency || 1;
         this.shadowTransparency = option.shadowTransparency || 1;
         this.iconTransparency = option.iconTransparency || 1;
-        this.bgColor = option.randomBgColor ? this._hex2Rgb(this._randomHexColor()) : this._hex2Rgb(option.bgColor);
+        this.bgColor = option.randomBgColor ? this._randomBgColor() : option.bgColor;
         this.bgColor = option.randomGradientBgColor ? this._randomGradientBgColor() : this.bgColor;
-        this.shadowColor = this._hex2Rgb(option.shadowColor);
-        this.iconColor = this._hex2Rgb(option.iconColor);
+        this.shadowColor = option.shadowColor;
+        this.iconColor = option.iconColor;
         // this.posX = option.posX === 0 ? : option.posX || 0;
         // this.posY = option.posY === 0 ? : option.posX || 0;
         this.selectedIcon = option.randomIcons ? '<i class="' + this.randomIcons() + '"></i>' : '<i class="' + option.selectedIcon + '"></i>';
-
+        
         //canvas 底纹
         this.randomShade = option.randomShade || 0;
-        this.shadeTransparency = option.shadeTransparency === 0 ? 0 : option.shadeTransparency || 0.5;
+        this.shadeTransparency = option.shadeTransparency === 0 ? 0 : option.shadeTransparency || 0.2;
         this.rectangleNum = option.rectangleNum === 0 ? 0 : option.rectangleNum || 2;
         this.rectangleStartPositionX0 = option.rectangleStartPositionX0 || 0;
         this.rectangleStartPositionX = option.rectangleStartPositionX === 0 ? 0 : option.rectangleStartPositionX || 1;
@@ -120,6 +120,7 @@ Icons.prototype = {
             'background': this.bgColor,
             'border-radius': this.bgRadius + "%",
         });
+        console.log(this.bgColor);
         //icon setting
         $('#Icons .Icons_icon').css({
             'color': this.iconColor,
@@ -128,42 +129,33 @@ Icons.prototype = {
         });
         //shade index
         $('#Icons span').css({
+            'display': 'flex',
+            'justify-content': 'center',
+            'align-items': 'center',
+            'overflow': 'hidden',
+            'width':this.bgSize,
+            'height':this.bgSize,
             'position': 'absolute',
-            'z-inde': 9
+            'border-radius': this.bgRadius + "%",
+            'z-inde': 9,
         });
         if (this.randomShade != 0) {
             this._randomShade();
         }
-    },
-    //十六进制颜色转rgb（带透明度）
-    _hex2Rgb: function (hex) {
-        var rgb = []; // 定义rgb数组
-        if (/^\#[0-9A-F]{3}$/i.test(hex)) { //判断传入是否为#三位十六进制数
-            let sixHex = '#';
-            hex.replace(/[0-9A-F]/ig, function (kw) {
-                sixHex += kw + kw; //把三位16进制数转化为六位
-            });
-            hex = sixHex; //保存回hex
-        }
-        if (/^#[0-9A-F]{6}$/i.test(hex)) { //判断传入是否为#六位十六进制数
-            hex.replace(/[0-9A-F]{2}/ig, function (kw) {
-                rgb.push(eval('0x' + kw)); //十六进制转化为十进制并存如数组
-            });
-            return `rgb(${rgb.join(',')},${this.bgTransparency})`; //输出RGB格式颜色
-        } else {
-            // console.log(`Input ${hex} is wrong!`);
-            return 'rgb(0,0,0)'; //默认颜色
-        }
-    },
-    //随机生成十六进制颜色
-    _randomHexColor: function () {
-        return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
     },
     //随机选择font-awesome图标
     randomIcons: function () {
         var arr = this.iconsArr;
         return arr[Math.floor((Math.random() * arr.length))];
         // return arr[9];
+    },
+    //随机生成背景色
+    _randomBgColor:function(){
+        var _h = this._randomValue(0, 360);
+        var _s = this._randomValue(40, 60);
+        var _l = this._randomValue(50, 80);
+        var _hsl = 'hsl('+_h+','+_s+'%,'+_l+'%)';
+        return _hsl;
     },
     //随机生成背景渐变色
     _randomGradientBgColor: function () {
@@ -234,18 +226,18 @@ var icons = new Icons({
     shadowAngle: 45,
     shadowDepth: 6,
     bgRadius: 20,
-    bgColor: "#3498db",
+    bgColor: "hsl(219,85,36)",
     randomBgColor: 1,
     randomGradientBgColor: 1,
-    shadowColor: "#2980b9",
-    iconColor: "#ffffff",
+    shadowColor: "hsl(204,78%,48%)",
+    iconColor: "hsl(0,0%,100%)",
     bgTransparency: 1,
     shadowTransparency: 1,
     iconTransparency: 1,
     iconsSet: ["fas fa-charging-station", "fas fa-bolt", "fas fa-plug", "fas fa-car-battery", "fas fa-industry", "fas fa-broadcast-tower", "fas fa-gopuram", "fab fa-superpowers", "fas fa-torii-gate", "fas fa-monument", "fas fa-house-damage"],
 
     randomShade: 1,
-    shadeTransparency: 0.5,
+    shadeTransparency: 0.2,
     //长方形
     rectangleNum: 2,
     rectangleStartPositionX0: 0,
