@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas</title>
+</head>
+
+<body>
+    <canvas id='canvas'>您的浏览器不支持canvas,求你换个浏览器吧！</canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        canvas.width = 200;
+        canvas.height = 200;
+        canvas.style.background = "aqua";
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.strokeRect(0, 0, 20, 40);
+
+            // var imgURI = canvas.toDataURL('img/png');
+            // var image = document.createElement('img');
+            // image.src = imgURI;
+            // document.body.appendChild(image);
+
+            ctx.beginPath();
+            ctx.arc(100,100,50,0,2*Math.PI,false);
+            ctx.moveTo(130,100);
+            ctx.arc(100,100,30,0,2*Math.PI,false);
+            ctx.stroke();
+        }
+    </script>
+</body>
+
+</html>
