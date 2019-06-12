@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clipPath</title>
+    <style>
+        img {
+            clip-path: url(#svgTextPath);
+        }
+    </style>
+</head>
+
+<body>
+    <svg height="0" width="0">
+        <defs>
+            <clipPath id="svgTextPath">
+                <text x="0" y="300" textLength="600px" lengthAdjust="spacing" font-family="Vollkorn" font-size="230px"
+                    font-weight="700" font-style="italic"> China </text>
+            </clipPath>
+        </defs>
+    </svg>
+    <img src="../../img/ChinaMap.jpeg" alt="">
+</body>
+
+</html>

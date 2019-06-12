@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="gooey.min.css">
+    <style>
+
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <nav id="gooey-upper">
+        <input type="checkbox" class="menu-open" name="menu-open1" id="menu-open1" />
+        <label class="open-button" for="menu-open1">
+            全国
+        </label>
+        <div id="aArray">
+            <a href="javascript:void(0);" class="gooey-menu-item" id="btn">华东</a>
+        </div>
+        <!-- <a href="" class="gooey-menu-item">华东2</a>
+        <a href="" class="gooey-menu-item">华东3</a>
+        <a href="" class="gooey-menu-item">华东4</a>
+        <a href="" class="gooey-menu-item">华东5</a>
+        <a href="" class="gooey-menu-item">华东6</a> -->
+    </nav>
+
+
+    <script src="../../lib/jquery-1.11.3.min.js"></script>
+    <script src="gooey.min.js"></script>
+    <script>
+        $("#gooey-upper").gooeymenu({
+            bgColor: "#ff6666",
+            contentColor: "white",
+            style: "circle",
+            horizontal: {
+                menuItemPosition: "glue"
+            },
+            vertical: {
+                menuItemPosition: "spaced",
+                direction: "up"
+            },
+            circle: {
+                radius: 80
+            },
+            margin: "small",
+            size: 90,
+            bounce: true,
+            bounceLength: "small",
+            transitionStep: 500,
+            hover: "#e55b5b"
+        });
+
+        $("#btn").click(function () {
+            $('#menu-open1').trigger("click");
+            $('#gooey-upper label').text('华东');
+            setTimeout( $('#aArray').append('<a href="javascript:void(0);" class="gooey-menu-item">华东1</a>'),500);
+           
+        });
+    </script>
+</body>
+
+</html>
