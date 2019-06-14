@@ -1,0 +1,158 @@
+:root {
+    --bgc: #A5E2F3;
+    --sub-bgc: aqua;
+}
+
+#nav {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 250px auto;
+    font-size: 12px;
+}
+
+#nav .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 30%;
+    height:30%;
+    border-radius: 50%;
+    background-color: green;
+    z-index: 10;
+}
+
+.menu {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    list-style: none;
+    margin: 0;
+    /* padding trick for maintaining aspect ratio */
+    height: 0;
+    padding: 0;
+    padding-top: 50%;
+    width: 50%;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.menu li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: url(#sector);
+}
+
+.menu li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.menu li:hover {
+    background-color: gold;
+}
+
+.menu .one {
+    background-color: var(--bgc);
+    transform: rotate(0deg);
+    transition:1s;
+}
+
+.menu .two {
+    background-color: var(--bgc);
+    transform: rotate(-60deg);
+    transition:1s;
+}
+
+.menu .three {
+    background-color: var(--bgc);
+    transform: rotate(-120deg);
+    transition:1s;
+}
+
+.menu .four {
+    background-color: var(--bgc);
+    transform: rotate(-180deg);
+    transition:1s;
+}
+
+.menu .five {
+    background-color: var(--bgc);
+    transform: rotate(-240deg);
+    transition:1s;
+}
+
+.menu .six {
+    background-color: var(--bgc);
+    transform: rotate(-300deg);
+    transition:1s;
+}
+
+.icon {
+    position: absolute;
+    /* exact values here depend on what you are placing inside the items (icon, image, text, etc.) */
+    right: 5%;
+    top: 25%;
+    /* angle of rotation = angle of the sector itself */
+    transform: rotate(60deg);
+    /* style further as needed */
+}
+
+.sub-menu {
+    position: absolute;
+    top: 13%;
+    left: 12.5%;
+    list-style: none;
+    margin: 0;
+    /* padding trick for maintaining aspect ratio */
+    height: 0;
+    padding: 0;
+    padding-top: 75%;
+    width: 75%;
+    z-index: 10;
+}
+
+.sub-menu li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: url(#sub-sector);
+}
+
+.sub-menu li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sub-menu li:hover {
+    background-color: gold;
+}
+
+.sub-menu .one {
+    background-color: var(--sub-bgc);
+    transform: rotate(-60deg);
+    /* transition:1s; */
+}
+
+.sub-menu .two {
+    background-color: var(--sub-bgc);
+    transform: rotate(0deg);
+    /* transition:1s; */
+}
+
+.sub-menu .three {
+    background-color: var(--sub-bgc);
+    transform: rotate(60deg);
+    /* transition:1s; */
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="circleNav.css">
+    <title>circleNav</title>
+</head>
+
+<body>
+    <div id="nav">
+        <div class="main">
+            全国
+        </div>
+        <ul class="menu">
+            <li class="one">
+                <a href="#">
+                    <span class="icon">华东</span>
+                </a>
+            </li>
+            <li class="two">
+                <a href="#">
+                    <span class="icon">华中</span>
+                </a>
+            </li>
+            <li class="three">
+                <a href="#">
+                    <span class="icon">华北</span>
+                </a>
+            </li>
+            <li class="four">
+                <a href="#">
+                    <span class="icon">东北</span>
+                </a>
+            </li>
+            <li class="five">
+                <a href="#">
+                    <span class="icon">西北</span>
+                </a>
+            </li>
+            <li class="six">
+                <a href="#">
+                    <span class="icon">西南</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="sub-menu">
+            <li class="one">
+                <a href="">
+                    <span class="icon">icon-1</span>
+                </a>
+            </li>
+            <li class="two">
+                    <a href="">
+                        <span class="icon">icon-1</span>
+                    </a>
+                </li>
+                <li class="three">
+                        <a href="">
+                            <span class="icon">icon-1</span>
+                        </a>
+                    </li>
+
+        </ul>
+
+
+    </div>
+
+    <svg height="0" width="0">
+        <defs>
+            <clipPath clipPathUnits="objectBoundingBox" id="sector">
+                <path fill="none" stroke="#111" stroke-width="1" class="sector"
+                    d="M0.5,0.5 l0.5,0 A0.5,0.5 0 0,0 0.75,.066987298 z"></path>
+            </clipPath>
+        </defs>
+    </svg>
+    <svg height="0" width="0">
+            <defs>
+                <clipPath  id="sub-sector">
+                    <path fill="none" stroke="#111" stroke-width="1" class="sector"
+                        d="M0.5,0.5 l0.45,0 A0.5,0.5 0 0,1 0.8660254038,0.75 z"></path>
+                </clipPath>
+            </defs>
+        </svg>
+</body>
+
+</html>
