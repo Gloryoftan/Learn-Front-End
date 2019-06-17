@@ -19,15 +19,25 @@
             clip-path: border-box;
             border-radius: 25%;
         } */
-        div{
-            margin: auto;
+        li{
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 500px;
             height: 500px;
             background-color: #000;
             clip-path: url(#sector);
         }
-        #div{
-            transform: rotate(60deg);
+        .one{
+            transform:  rotate(0deg);
+        }
+        .two{
+            background-color: red;
+            transform: rotate(-30deg);
+        }
+        .three{
+            background-color: blue;
+            transform: rotate(-60deg);
         }
     </style>
 </head>
@@ -73,8 +83,13 @@
     </svg> -->
     <!-- <img src="../../img/ChinaMap.jpeg" alt=""> -->
     <!-- <img src="../../img/awesomeBg.jpg" alt=""> -->
-    <div></div>
-    <div id="div"></div>
+    <ul>
+        <li class="one"></li>
+        <li class="two"></li>
+        <li class="three"></li>
+        <li class="four"></li>
+        <li class="five"></li>
+    </ul>
     <svg height="0" width="0">
         <defs>
             <clipPath  id="sector">
