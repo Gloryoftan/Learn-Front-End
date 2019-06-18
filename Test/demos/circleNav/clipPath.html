@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
         }
+
         /* img {
             clip-path: url(#svgTextPath);
             clip-path: url(#svgPath);
@@ -19,7 +20,7 @@
             clip-path: border-box;
             border-radius: 25%;
         } */
-        li{
+        li {
             position: absolute;
             top: 0;
             left: 0;
@@ -28,14 +29,17 @@
             background-color: #000;
             clip-path: url(#sector);
         }
-        .one{
-            transform:  rotate(0deg);
+
+        .one {
+            transform: rotate(0deg);
         }
-        .two{
+
+        .two {
             background-color: red;
             transform: rotate(-30deg);
         }
-        .three{
+
+        .three {
             background-color: blue;
             transform: rotate(-60deg);
         }
@@ -92,23 +96,29 @@
     </ul>
     <svg height="0" width="0">
         <defs>
-            <clipPath  id="sector">
+            <clipPath id="sector">
                 <path fill="none" stroke="#111" stroke-width="1" class="sector"
                     d="M250,250 l250,0 A250,250 0 0,0 466.5063509461097,125 z"></path>
             </clipPath>
         </defs>
     </svg>
 
+    <script src="../../lib/jquery-1.11.3.min.js"></script>
     <script>
         let oUl = document.getElementById("test");
         let aLi = document.querySelectorAll("#test li")
 
         let _html = `<li class="one"></li>`;
-        for(i=0;i<100;i++){
-            oUl.append(_html);
+        for (i = 0; i < 100; i++) {
+            $(oUl).append(_html);
+            $("li").css({
+                "transform": "rotate(" + (i * Math.random() * 100) + "deg)",
+                "transition":"transform 5s",
+            });
         }
+        $(oUl).trigger("create");
+
         console.log(aLi);
-        
     </script>
 </body>
 
