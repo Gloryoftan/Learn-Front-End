@@ -60,18 +60,33 @@
     <script src="../../../lib/jquery-1.11.3.min.js"></script>
     <script>
         (function () {
-            let aL1Menuli = document.querySelectorAll("#circleNav .l1Menu li");
-            let oHome = document.querySelector("#circleNav .home");
-            let oL1Menu = document.querySelector("#circleNav .l1Menu");
-            let oL2Menu = document.querySelector("#circleNav .l2Menu");
-            let aL2Data = [{
-                    id: 1,
-                    data: ["江苏", "安徽", "上海", "浙江", "福建"]
-                },
-                {
-                    id: 2,
-                    data: ["湖北","湖南","河南","四川"]
-                }
+                let aL1Menuli = document.querySelectorAll("#circleNav .l1Menu li");
+                let oHome = document.querySelector("#circleNav .home");
+                let oL1Menu = document.querySelector("#circleNav .l1Menu");
+                let oL2Menu = document.querySelector("#circleNav .l2Menu");
+                let aL2Data = [{
+                        index: 0,
+                        data: ["江苏", "安徽", "上海", "浙江", "福建"]
+                    },
+                    {
+                        index: 1,
+                        data: ["湖北", "湖南", "河南", "四川", "重庆", "江西"]
+                    }, {
+                        index: 2,
+                        data: ["北京", "天津", "河北", "山东", "山西"]
+                    },
+                    {
+                        index: 3,
+                        data: ["东北1", "东北2", "东北3", "东北4", "东北5", "东北6"]
+                    },
+
+                    {
+                        index: 4,
+                        data: ["西北1", "西北2", "西北3", "西北4", "西北5", "西北6"]
+                    }, {
+                        index: 5,
+                        data: ["西南1", "西南2", "西南3", "西南4", "西南5", "西南6"]
+                    }
             ]
 
 
@@ -97,14 +112,20 @@
                     }
                     $(oL1Menu).css("transform", "rotate(" + degIndex + "deg)")
                     aRotate = degIndex;
-                    $(oL2Menu).html("");
-                    _subMenuAppend();
+                    $(oL2Menu).empty("");
+
+                    let _html = "";
+                    let para = i;
+                    for (let j = 0; j < aL2Data[para].data.length; j++) {
+                        _html += `<li><span class='icon'>${aL2Data[para].data[j]}</span></li>`;
+                    }
+                    _subMenuAppend(_html, para);
                 }
             }
 
             //Append方法
-            let _subMenuAppend = function (para) {
-                let _html = `<li class="one"></li><li class="two"></li><li class="three"></li>`;
+
+            let _subMenuAppend = function (_html, para) {
                 $(oL2Menu).append(_html);
                 $(oL2Menu).trigger("create");
                 setTimeout(function () {
@@ -114,7 +135,6 @@
                     }
                 }, 10);
             }
-
         })();
     </script>
 </body>

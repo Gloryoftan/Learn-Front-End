@@ -5,9 +5,10 @@
     --l1Menu3: hsl(178.0, 60.0%, 42%);
     --l1Menu-hover: hsl(178.0, 60.0%, 52.0%);
 }
-*{
+
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
 }
 
 #circleNav {
@@ -45,19 +46,21 @@
 }
 
 #circleNav .l1Menu {
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    border:1px solid #fff;
     transform: rotate(0deg);
     transition: transform 0.5s;
 }
 
 #circleNav .l1Menu li {
     position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
-    background-color: #000;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
     clip-path: url(#sector);
     transform: rotate(0deg);
     /* transition:transform 0.5s; */
@@ -87,7 +90,8 @@
     background-color: var(--l1Menu3);
 }
 
-#circleNav .l1Menu li:hover {
+#circleNav .l1Menu li:hover,
+#circleNav .l2Menu li:hover {
     background-color: var(--l1Menu-hover);
 }
 
@@ -100,19 +104,29 @@
     color: #ffffff;
 }
 
-#circleNav .l2Menu li{
+#circleNav .l2Menu li {
     position: absolute;
     top: 13%;
     left: 13%;
     width: 75%;
     height: 75%;
-    background-color: #000;
     clip-path: url(#sector2);
     transform: rotate(0deg);
-    transition: transform 0.5s;
+    transition: transform 0.75s;
     z-index: -2;
 }
 
-#circleNav .l2Menu li:hover{
-    background-color: #fff;
+
+#circleNav .l2Menu li {
+    background-color: var(--l1Menu1);
+}
+
+#circleNav .l2Menu li .icon {
+    position: absolute;
+    right: 55%;
+    top: 3%;
+    transform: rotate(-14deg);
+    font-size: 10px;
+    color: #ffffff;
+    z-index: 2;
 }
