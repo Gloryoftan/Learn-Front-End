@@ -16,12 +16,107 @@
         </div>
 
         <ul class="l1Menu">
-
+            <li class="one">
+                <span class="icon">华东</span>
+            </li>
+            <li class="two">
+                <span class="icon">华中</span>
+            </li>
+            <li class="three">
+                <span class="icon">华北</span>
+            </li>
+            <li class="four">
+                <span class="icon">东北</span>
+            </li>
+            <li class="five">
+                <span class="icon">西北</span>
+            </li>
+            <li class="six">
+                <span class="icon">西南</span>
+            </li>
         </ul>
 
+        <ul class="l2Menu">
+        </ul>
+
+        <svg height="0" width="0">
+            <defs>
+                <clipPath clipPathUnits="objectBoundingBox" id="sector">
+                    <path fill="none" stroke="#000" stroke-width="5" class="sector"
+                        d="M0.5,0.5 l0.5,0 A0.5,0.5 0 0,0 0.75,.066987298 z"></path>
+                </clipPath>
+            </defs>
+        </svg>
+        <svg height="0" width="0">
+            <defs>
+                <clipPath clipPathUnits="objectBoundingBox" id="sector2">
+                    <path fill="none" stroke="#000" stroke-width="5" class="sector"
+                        d="M0.5,0.5 l0,-0.5 A0.5,0.5 0 0,0 0.25,.066987298 z"></path>
+                </clipPath>
+            </defs>
+        </svg>
     </div>
 
     <script src="../../../lib/jquery-1.11.3.min.js"></script>
+    <script>
+        (function () {
+            let aL1Menuli = document.querySelectorAll("#circleNav .l1Menu li");
+            let oHome = document.querySelector("#circleNav .home");
+            let oL1Menu = document.querySelector("#circleNav .l1Menu");
+            let oL2Menu = document.querySelector("#circleNav .l2Menu");
+            let aL2Data = [{
+                    id: 1,
+                    data: ["江苏", "安徽", "上海", "浙江", "福建"]
+                },
+                {
+                    id: 2,
+                    data: ["湖北","湖南","河南","四川"]
+                }
+            ]
+
+
+
+            window.onload = function () {
+                for (let i = 0; i < aL1Menuli.length; i++) {
+                    $(aL1Menuli[i]).css("transform", "rotate(" + i * 60 + "deg)")
+                }
+                $(oHome).css("transform", "rotate(360deg)");
+                $(oL1Menu).css("transform", "rotate(-120deg)");
+            };
+
+            //旋转算法
+            let aRotate = -120;
+            for (let i = 0; i < aL1Menuli.length; i++) {
+                aL1Menuli[i].onclick = function () {
+                    let degIndex = (i - 1) * -60 - 120;
+                    let differ = degIndex - aRotate;
+                    if (differ < -180) {
+                        degIndex += 360;
+                    } else if (differ > 180) {
+                        degIndex -= 360;
+                    }
+                    $(oL1Menu).css("transform", "rotate(" + degIndex + "deg)")
+                    aRotate = degIndex;
+                    $(oL2Menu).html("");
+                    _subMenuAppend();
+                }
+            }
+
+            //Append方法
+            let _subMenuAppend = function (para) {
+                let _html = `<li class="one"></li><li class="two"></li><li class="three"></li>`;
+                $(oL2Menu).append(_html);
+                $(oL2Menu).trigger("create");
+                setTimeout(function () {
+                    let aL2Menuli = document.querySelectorAll("#circleNav .l2Menu li");
+                    for (let i = 0; i < aL2Menuli.length; i++) {
+                        $(aL2Menuli[i]).css("transform", "rotate(" + i * 30 + "deg)")
+                    }
+                }, 10);
+            }
+
+        })();
+    </script>
 </body>
 
 </html>

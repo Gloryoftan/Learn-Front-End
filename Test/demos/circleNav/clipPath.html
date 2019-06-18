@@ -23,15 +23,17 @@
         li {
             position: absolute;
             top: 0;
-            left: 0;
+            left: 19px;
             width: 500px;
             height: 500px;
             background-color: #000;
             clip-path: url(#sector);
+            z-index: 100;
         }
 
         .one {
             transform: rotate(0deg);
+            left: 275px;
         }
 
         .two {
@@ -93,32 +95,147 @@
         <li class="three"></li>
         <li class="four"></li>
         <li class="five"></li>
+        <li class="1"></li>
+        <li class="2"></li>
+        <li class="3"></li>
+        <li class="4"></li>
+        <li class="5"></li>
+        <li class="6"></li>
+        <li class="7"></li>
+        <li class="8"></li>
+        <li class="9"></li>
+        <li class="10"></li>
+        <li class="11"></li>
+        <li class="12"></li>
+        <li class="13"></li>
+        <li class="14"></li>
+        <li class="15"></li>
+        <li class="16"></li>
+        <li class="17"></li>
+        <li class="18"></li>
+        <li class="19"></li>
+        <li class="20"></li>
+        <li class="21"></li>
+        <li class="22"></li>
+        <li class="23"></li>
+        <li class="24"></li>
+        <li class="25"></li>
+        <li class="26"></li>
+        <li class="27"></li>
+        <li class="28"></li>
+        <li class="29"></li>
+        <li class="30"></li>
+        <li class="31"></li>
+        <li class="32"></li>
+        <li class="33"></li>
+        <li class="34"></li>
+        <li class="35"></li>
+        <li class="36"></li>
+        <li class="37"></li>
+        <li class="38"></li>
+        <li class="39"></li>
+        <li class="40"></li>
+        <li class="41"></li>
+        <li class="42"></li>
+        <li class="43"></li>
+        <li class="44"></li>
+        <li class="45"></li>
+        <li class="46"></li>
+        <li class="47"></li>
+        <li class="48"></li>
+        <li class="49"></li>
+        <li class="50"></li>
+        <li class="51"></li>
+        <li class="52"></li>
+        <li class="53"></li>
+        <li class="54"></li>
+        <li class="55"></li>
+        <li class="56"></li>
+        <li class="57"></li>
+        <li class="58"></li>
+        <li class="59"></li>
+        <li class="60"></li>
+        <li class="61"></li>
+        <li class="62"></li>
+        <li class="63"></li>
+        <li class="64"></li>
+        <li class="65"></li>
+        <li class="66"></li>
+        <li class="67"></li>
+        <li class="68"></li>
+        <li class="69"></li>
+        <li class="70"></li>
+        <li class="71"></li>
+        <li class="72"></li>
+        <li class="73"></li>
+        <li class="74"></li>
+        <li class="75"></li>
+        <li class="76"></li>
+        <li class="77"></li>
+        <li class="78"></li>
+        <li class="79"></li>
+        <li class="80"></li>
+        <li class="81"></li>
+        <li class="82"></li>
+        <li class="83"></li>
+        <li class="84"></li>
+        <li class="85"></li>
+        <li class="86"></li>
+        <li class="87"></li>
+        <li class="88"></li>
+        <li class="89"></li>
+        <li class="90"></li>
+        <li class="91"></li>
+        <li class="92"></li>
+        <li class="93"></li>
+        <li class="94"></li>
+        <li class="95"></li>
+        <li class="96"></li>
+        <li class="97"></li>
+        <li class="98"></li>
+        <li class="99"></li>
+        <li class="100"></li>
     </ul>
     <svg height="0" width="0">
         <defs>
-            <clipPath id="sector">
+            <!-- <clipPath id="sector">
                 <path fill="none" stroke="#111" stroke-width="1" class="sector"
                     d="M250,250 l250,0 A250,250 0 0,0 466.5063509461097,125 z"></path>
-            </clipPath>
+            </clipPath> -->
+            <!-- <clipPath id="sector">
+                <path fill="none" stroke="#111" stroke-width="1" class="sector"
+                    d="M250,250 l0,-250 A250,250 0 0,0 125,33.493649053890 z"></path>
+            </clipPath> -->
+            <clipPath id="sector">
+                    <path fill="none" stroke="#111" stroke-width="1" class="sector"
+                        d="M250,250 l0,-250 A250,250 0 0,0 125,33.493649053890 z"></path>
+                </clipPath>
         </defs>
     </svg>
 
     <script src="../../lib/jquery-1.11.3.min.js"></script>
     <script>
-        let oUl = document.getElementById("test");
-        let aLi = document.querySelectorAll("#test li")
+        // let oUl = document.getElementById("test");
+        // let aLi = document.querySelectorAll("#test li")
 
-        let _html = `<li class="one"></li>`;
-        for (i = 0; i < 100; i++) {
-            $(oUl).append(_html);
-            $("li").css({
-                "transform": "rotate(" + (i * Math.random() * 100) + "deg)",
-                "transition":"transform 5s",
-            });
-        }
-        $(oUl).trigger("create");
+        // let _html = `<li class="one"></li>`;
+        // for (i = 0; i < 100; i++) {
+        //     $(oUl).append(_html);
+        //     $("li").css({
+        //         "transform": "rotate(" + (i * Math.random() * 100) + "deg)",
+        //         "transition":"transform 5s",
+        //     });
+        // }
+        // $(oUl).trigger("create");
 
-        console.log(aLi);
+        // console.log(aLi);
+        // let aLi = document.querySelectorAll("#test li");
+        // for (let i = 0; i < 1000; i++) {
+        //     $(aLi[i]).css({
+        //         "transform": "rotate(" + i * 10 * Math.random() + "deg)",
+        //         "transition": "transform 5s"
+        //     })
+        // }
     </script>
 </body>
 

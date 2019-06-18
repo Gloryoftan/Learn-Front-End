@@ -5,6 +5,10 @@
     --l1Menu3: hsl(178.0, 60.0%, 42%);
     --l1Menu-hover: hsl(178.0, 60.0%, 52.0%);
 }
+*{
+    margin: 0;
+    padding:0;
+}
 
 #circleNav {
     position: relative;
@@ -29,11 +33,86 @@
     border-radius: 50%;
     border: 1px solid #ffffff;
     background: radial-gradient(hsl(180, 60%, 40%), hsl(180, 60%, 40%), hsl(180, 60%, 24%));
-
     color: #ffffff;
     font-size: 16px;
-
     transform: rotate(0deg);
-    
-    z-index: 10;
+    transition: transform 0.75s;
+    z-index: 1;
+}
+
+#circleNav .home:hover {
+    background: radial-gradient(hsl(180, 55%, 60%), hsl(180, 55%, 60%), hsl(180, 55%, 70%));
+}
+
+#circleNav .l1Menu {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+    transition: transform 0.5s;
+}
+
+#circleNav .l1Menu li {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: #000;
+    clip-path: url(#sector);
+    transform: rotate(0deg);
+    /* transition:transform 0.5s; */
+}
+
+#circleNav .l1Menu li.one {
+    background-color: var(--l1Menu1);
+}
+
+#circleNav .l1Menu li.two {
+    background-color: var(--l1Menu2);
+}
+
+#circleNav .l1Menu li.three {
+    background-color: var(--l1Menu3);
+}
+
+#circleNav .l1Menu li.four {
+    background-color: var(--l1Menu1);
+}
+
+#circleNav .l1Menu li.five {
+    background-color: var(--l1Menu2);
+}
+
+#circleNav .l1Menu li.six {
+    background-color: var(--l1Menu3);
+}
+
+#circleNav .l1Menu li:hover {
+    background-color: var(--l1Menu-hover);
+}
+
+#circleNav .l1Menu li .icon {
+    position: absolute;
+    right: 5%;
+    top: 22%;
+    transform: rotate(60deg);
+    font-size: 11px;
+    color: #ffffff;
+}
+
+#circleNav .l2Menu li{
+    position: absolute;
+    top: 13%;
+    left: 13%;
+    width: 75%;
+    height: 75%;
+    background-color: #000;
+    clip-path: url(#sector2);
+    transform: rotate(0deg);
+    transition: transform 0.5s;
+    z-index: -2;
+}
+
+#circleNav .l2Menu li:hover{
+    background-color: #fff;
 }
