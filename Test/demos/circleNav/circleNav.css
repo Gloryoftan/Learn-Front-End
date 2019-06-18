@@ -1,6 +1,11 @@
 :root {
     --bgc: #A5E2F3;
     --sub-bgc: aqua;
+    --mainbg: hsl(178.0, 60.0%, 27%);
+    --menu1: hsl(178.0, 60.0%, 32%);
+    --menu2: hsl(178.0, 60.0%, 37%);
+    --menu3: hsl(178.0, 60.0%, 42%);
+    --menu-hover: hsl(178.0, 60.0%, 52.0%);
 }
 
 #nav {
@@ -12,6 +17,8 @@
     justify-content: center;
     margin: 250px auto;
     font-size: 12px;
+    cursor: pointer;
+    user-select: none;
 }
 
 #nav .main {
@@ -22,12 +29,19 @@
     width: 25%;
     height: 25%;
     border-radius: 50%;
+    border: 1px solid #ffffff;
     color: #ffffff;
-    background-color: hsla(178, 60%, 28%, 1);
+    /* background-color: hsla(180, 60%, 28%, 1); */
+    background: radial-gradient(hsl(180, 60%, 40%), hsl(180, 60%, 40%), hsl(180, 60%, 24%));
     font-size: 16px;
     z-index: 10;
     transform: rotate(-360deg);
     transition: transform 1s;
+}
+
+#nav .main:hover {
+    /* background: hsl(180, 55%, 59%); */
+    background: radial-gradient(hsl(180, 55%, 60%), hsl(180, 55%, 60%), hsl(180, 55%, 70%));
 }
 
 .menu {
@@ -42,6 +56,7 @@
     padding-top: 50%;
     width: 50%;
     border-radius: 50%;
+    border: 1px solid #ffffff;
     font-size: 10px;
     z-index: 2;
 }
@@ -62,68 +77,70 @@
 }
 
 .menu li:hover {
-    background-color: gold;
+    background-color: var(--menu-hover);
 }
 
 .menu .one {
-    background-color: hsl(180, 60%, 32%);
+    background-color: var(--menu1);
     transform: rotate(-60deg);
-    transition: transform 1s;
 }
 
 .menu .two {
-    background-color: hsl(180, 60%, 36%);
+    background-color: var(--menu2);
     transform: rotate(-120deg);
-    transition: transform 1s;
 }
 
 .menu .three {
-    background-color: hsl(180, 60%, 40%);
+    background-color: var(--menu3);
     transform: rotate(-180deg);
-    transition: transform 1s;
 }
 
 .menu .four {
-    background-color: hsl(180, 60%, 32%);
+    background-color: var(--menu1);
     transform: rotate(-240deg);
-    transition: transform 1s;
 }
 
 .menu .five {
-    background-color: hsl(180, 60%, 36%);
+    background-color: var(--menu2);
     transform: rotate(-300deg);
-    transition: transform 1s;
 }
 
 .menu .six {
-    background-color: hsl(180, 60%, 40%);
+    background-color: var(--menu3);
     transform: rotate(-360deg);
-    transition: transform 1s;
+}
+
+#nav .menu li.on {
+    background-color: var(--menu-hover);
 }
 
 .menu .icon {
     position: absolute;
-    /* exact values here depend on what you are placing inside the items (icon, image, text, etc.) */
     right: 5%;
     top: 25%;
-    /* angle of rotation = angle of the sector itself */
     transform: rotate(60deg);
-    /* style further as needed */
     color: #ffffff;
 }
 
 .sub-menu {
+    visibility: hidden;
     position: absolute;
     top: 13.5%;
-    left: 12.5%;
+    left: 121.5%;
     list-style: none;
     margin: 0;
-    /* padding trick for maintaining aspect ratio */
     height: 0;
     padding: 0;
     padding-top: 75%;
     width: 75%;
+    border-radius: 50%;
+    /* transform: scale(0.6); */
     z-index: 1;
+}
+
+.sub-menu.fade {
+    /* transform: scale(0.3); */
+    transition: transform 1s;
 }
 
 .sub-menu li {
@@ -142,48 +159,39 @@
 }
 
 .sub-menu li:hover {
-    background-color: gold;
+    background-color: var(--menu-hover);
+    transition: transform 1s;
 }
 
 .sub-menu .one {
-    background-color: hsl(180, 80%, 24%);
-    transform: rotate(-90deg);
-    transition: transform 1s;
+    background-color:var(--menu1);
 }
 
 .sub-menu .two {
-    background-color: var(--sub-bgc);
-    transform: rotate(-60deg);
-    transition: transform 1s;
+    background-color: var(--menu2);
 }
 
 .sub-menu .three {
-    background-color: var(--sub-bgc);
-    transform: rotate(-30deg);
-    transition: transform 1s;
+    background-color:var(--menu3);
 }
 
 .sub-menu .four {
-    background-color: var(--sub-bgc);
-    transform: rotate(0deg);
-    transition: transform 1s;
+    background-color: var(--menu1);
 }
 
 .sub-menu .five {
-    background-color: var(--sub-bgc);
-    transform: rotate(30deg);
-    transition: transform 1s;
+    background-color: var(--menu2);
 }
 
 .sub-menu .six {
-    background-color: var(--sub-bgc);
-    transform: rotate(60deg);
-    transition: transform 1s;
+    background-color: var(--menu3);
 }
 
 .sub-menu .icon {
     position: absolute;
     right: 1%;
     top: 33%;
+    color: #ffffff;
+    font-size: 10px;
     transform: rotate(73deg);
 }

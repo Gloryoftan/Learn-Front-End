@@ -83,7 +83,7 @@
     </svg> -->
     <!-- <img src="../../img/ChinaMap.jpeg" alt=""> -->
     <!-- <img src="../../img/awesomeBg.jpg" alt=""> -->
-    <ul>
+    <ul id="test">
         <li class="one"></li>
         <li class="two"></li>
         <li class="three"></li>
@@ -98,6 +98,18 @@
             </clipPath>
         </defs>
     </svg>
+
+    <script>
+        let oUl = document.getElementById("test");
+        let aLi = document.querySelectorAll("#test li")
+
+        let _html = `<li class="one"></li>`;
+        for(i=0;i<100;i++){
+            oUl.append(_html);
+        }
+        console.log(aLi);
+        
+    </script>
 </body>
 
 </html>
