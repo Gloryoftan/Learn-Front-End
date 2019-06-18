@@ -34,9 +34,11 @@
     /* background-color: hsla(180, 60%, 28%, 1); */
     background: radial-gradient(hsl(180, 60%, 40%), hsl(180, 60%, 40%), hsl(180, 60%, 24%));
     font-size: 16px;
-    z-index: 10;
+    
     transform: rotate(-360deg);
     transition: transform 1s;
+
+    z-index: 10;
 }
 
 #nav .main:hover {
