@@ -41,17 +41,21 @@
 
         <svg height="0" width="0">
             <defs>
-                <clipPath clipPathUnits="objectBoundingBox" id="sector">
+                <clipPath clipPathUnits="objectBoundingBox" id="sector-60">
                     <path fill="none" stroke="#000" stroke-width="5" class="sector"
                         d="M0.5,0.5 l0.5,0 A0.5,0.5 0 0,0 0.75,.066987298 z"></path>
                 </clipPath>
-            </defs>
-        </svg>
-        <svg height="0" width="0">
-            <defs>
-                <clipPath clipPathUnits="objectBoundingBox" id="sector2">
+                <clipPath clipPathUnits="objectBoundingBox" id="sector-30">
                     <path fill="none" stroke="#000" stroke-width="5" class="sector"
                         d="M0.5,0.5 l0,-0.5 A0.5,0.5 0 0,0 0.25,.066987298 z"></path>
+                </clipPath>
+                <clipPath clipPathUnits="objectBoundingBox" id="sector-40">
+                    <path fill="none" stroke="#000" stroke-width="5" class="sector"
+                        d="M0.5,0.5 l0,-0.5 A0.5,0.5 0 0,0 0.17860619515673035,0.11697777844051098 z"></path>
+                </clipPath>
+                <clipPath clipPathUnits="objectBoundingBox" id="sector-50">
+                    <path fill="none" stroke="#000" stroke-width="5" class="sector"
+                        d="M0.5,0.5 l0,-0.5 A0.5,0.5 0 0,0 0.11697777844051098,0.17860619515673035 z"></path>
                 </clipPath>
             </defs>
         </svg>
@@ -60,36 +64,34 @@
     <script src="../../../lib/jquery-1.11.3.min.js"></script>
     <script>
         (function () {
-                let aL1Menuli = document.querySelectorAll("#circleNav .l1Menu li");
-                let oHome = document.querySelector("#circleNav .home");
-                let oL1Menu = document.querySelector("#circleNav .l1Menu");
-                let oL2Menu = document.querySelector("#circleNav .l2Menu");
-                let aL2Data = [{
-                        index: 0,
-                        data: ["江苏", "安徽", "上海", "浙江", "福建"]
-                    },
-                    {
-                        index: 1,
-                        data: ["湖北", "湖南", "河南", "四川", "重庆", "江西"]
-                    }, {
-                        index: 2,
-                        data: ["北京", "天津", "河北", "山东", "山西"]
-                    },
-                    {
-                        index: 3,
-                        data: ["东北1", "东北2", "东北3", "东北4", "东北5", "东北6"]
-                    },
+            let aL1Menuli = document.querySelectorAll("#circleNav .l1Menu li");
+            let oHome = document.querySelector("#circleNav .home");
+            let oL1Menu = document.querySelector("#circleNav .l1Menu");
+            let oL2Menu = document.querySelector("#circleNav .l2Menu");
+            let aL2Data = [{
+                    index: 0,
+                    data: ["江苏", "安徽", "上海", "浙江", "福建"]
+                },
+                {
+                    index: 1,
+                    data: ["湖北", "湖南", "河南", "四川", "重庆", "江西"]
+                }, {
+                    index: 2,
+                    data: ["北京", "天津", "河北", "山东", "山西"]
+                },
+                {
+                    index: 3,
+                    data: ["东北一", "东北二", "东北三", "东北四", "东北四字", "东北六"]
+                },
 
-                    {
-                        index: 4,
-                        data: ["西北1", "西北2", "西北3", "西北4", "西北5", "西北6"]
-                    }, {
-                        index: 5,
-                        data: ["西南1", "西南2", "西南3", "西南4", "西南5", "西南6"]
-                    }
+                {
+                    index: 4,
+                    data: ["西北一", "西北二", "西北四字", "西北四", "西北五", "西北六"]
+                }, {
+                    index: 5,
+                    data: ["西南四字", "西南二", "西南三", "西南四", "西南五", "西南六"]
+                }
             ]
-
-
 
             window.onload = function () {
                 for (let i = 0; i < aL1Menuli.length; i++) {
@@ -99,10 +101,12 @@
                 $(oL1Menu).css("transform", "rotate(-120deg)");
             };
 
-            //旋转算法
+
             let aRotate = -120;
             for (let i = 0; i < aL1Menuli.length; i++) {
+                //点击事件
                 aL1Menuli[i].onclick = function () {
+                    //旋转算法
                     let degIndex = (i - 1) * -60 - 120;
                     let differ = degIndex - aRotate;
                     if (differ < -180) {
@@ -114,24 +118,33 @@
                     aRotate = degIndex;
                     $(oL2Menu).empty("");
 
+                    //生成li标签内容
                     let _html = "";
                     let para = i;
                     for (let j = 0; j < aL2Data[para].data.length; j++) {
-                        _html += `<li><span class='icon'>${aL2Data[para].data[j]}</span></li>`;
+                        _html +=
+                            `<li class='len${aL2Data[para].data[j].length} col${j}' len='${aL2Data[para].data[j].length}'><span class='icon'>${aL2Data[para].data[j]}</span></li>`;
+                        console.log(aL2Data[para].data[j], aL2Data[para].data[j].length);
+
                     }
                     _subMenuAppend(_html, para);
                 }
             }
 
             //Append方法
-
             let _subMenuAppend = function (_html, para) {
                 $(oL2Menu).append(_html);
                 $(oL2Menu).trigger("create");
                 setTimeout(function () {
                     let aL2Menuli = document.querySelectorAll("#circleNav .l2Menu li");
+                    let rotateDeg = 0;
                     for (let i = 0; i < aL2Menuli.length; i++) {
-                        $(aL2Menuli[i]).css("transform", "rotate(" + i * 30 + "deg)")
+                        if (i == 0) {
+                            $(aL2Menuli[i]).css("transform", "rotate(0deg)");
+                        } else {
+                            rotateDeg = $(aL2Menuli[i]).attr("len") * 10 + 10 + rotateDeg;
+                            $(aL2Menuli[i]).css("transform", "rotate(" + rotateDeg + "deg)");
+                        }
                     }
                 }, 10);
             }
