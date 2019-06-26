@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .watercolor {
+            z-index: 1;
+        }
+
+        .glow {
+            z-index: 2;
+        }
+
+        .string-container {
+            z-index: 3;
+        }
+
+        .logo {
+            z-index: 4;
+        }
+
+        body {
+            background: #fff;
+            transition: background 0.5s;
+        }
+
+        body .logo {
+            background: url("https://i.imgur.com/cv8ozjl.png") top no-repeat;
+            background-size: 500px;
+        }
+
+        body .watercolor {
+            background: url("https://i.imgur.com/OaqvM6f.png") top no-repeat;
+            position: absolute;
+            left: -5px;
+            top: 0;
+            opacity: 0;
+            transition: opacity 0.5s;
+            transition-delay: 0.1s;
+            width: 539px;
+            height: 549px;
+        }
+
+        body.lights-out {
+            background: #003;
+        }
+
+        body.lights-out .logo {
+            background: url("https://i.imgur.com/7jdWLeh.png") top no-repeat;
+            background-size: 500px;
+        }
+
+        body.lights-out .chain {
+            border-left: 1px dotted white;
+        }
+
+        body.lights-out .watercolor {
+            opacity: 1;
+        }
+
+        .logo-container {
+            margin: 0 auto;
+            padding: 200px 0;
+            position: relative;
+            width: 540px;
+            transition: background 0.25s;
+        }
+
+        .logo {
+            display: block;
+            width: 100%;
+            height: 154px;
+            position: relative;
+        }
+
+        .string-container {
+            width: 50px;
+            height: 125px;
+            overflow: hidden;
+            position: absolute;
+            left: 274px;
+            top: 320px;
+        }
+
+        .string {
+            cursor: pointer;
+            width: 50px;
+            height: 125px;
+            margin-top: -15px;
+            position: relative;
+            -webkit-animation: swing 10s ease-in-out 0s infinite;
+            animation: swing 10s ease-in-out 0s infinite;
+            -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+            transition: left 0.25s;
+        }
+
+        .string.ui-draggable-dragging {
+            cursor: -webkit-grabbing;
+            cursor: grabbing;
+            -webkit-animation-play-state: paused;
+            animation-play-state: paused;
+        }
+
+        .chain {
+            border-left: 1px dotted black;
+            width: 2px;
+            height: 94px;
+            margin-left: 24px;
+        }
+
+        .nub {
+            background: linear-gradient(140deg, #808080 0%, #000000 100%);
+            border-radius: 5px;
+            width: 10px;
+            height: 18px;
+            position: absolute;
+            left: 20px;
+            bottom: 15px;
+        }
+
+        @-webkit-keyframes swing {
+            0% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+
+            10% {
+                -webkit-transform: rotate(3deg);
+                transform: rotate(3deg);
+            }
+
+            20% {
+                -webkit-transform: rotate(-2deg);
+                transform: rotate(-2deg);
+            }
+
+            30% {
+                -webkit-transform: rotate(1deg);
+                transform: rotate(1deg);
+            }
+
+            40% {
+                -webkit-transform: rotate(-2deg);
+                transform: rotate(-2deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(1deg);
+                transform: rotate(1deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(-1deg);
+                transform: rotate(-1deg);
+            }
+
+            70% {
+                -webkit-transform: rotate(2deg);
+                transform: rotate(2deg);
+            }
+
+            80% {
+                -webkit-transform: rotate(-3deg);
+                transform: rotate(-3deg);
+            }
+
+            90% {
+                -webkit-transform: rotate(3deg);
+                transform: rotate(3deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+        }
+
+        @keyframes swing {
+            0% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+
+            10% {
+                -webkit-transform: rotate(3deg);
+                transform: rotate(3deg);
+            }
+
+            20% {
+                -webkit-transform: rotate(-2deg);
+                transform: rotate(-2deg);
+            }
+
+            30% {
+                -webkit-transform: rotate(1deg);
+                transform: rotate(1deg);
+            }
+
+            40% {
+                -webkit-transform: rotate(-2deg);
+                transform: rotate(-2deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(1deg);
+                transform: rotate(1deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(-1deg);
+                transform: rotate(-1deg);
+            }
+
+            70% {
+                -webkit-transform: rotate(2deg);
+                transform: rotate(2deg);
+            }
+
+            80% {
+                -webkit-transform: rotate(-3deg);
+                transform: rotate(-3deg);
+            }
+
+            90% {
+                -webkit-transform: rotate(3deg);
+                transform: rotate(3deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+        }
+
+        .debug .logo-container,
+        .debug .string-container {
+            overflow: visible;
+            border: 1px solid red;
+        }
+
+        .debug .string {
+            background: red;
+            border-color: red;
+        }
+    </style>
+    <title>swithcDemo</title>
+</head>
+
+<body>
+    <!-- Version 1 -->
+
+    <!-- v2: https://codepen.io/matthewmcvickar/details/IHJjk -->
+
+    <!-- For thenightlight.com. -->
+
+    <div class="logo-container">
+        <div class="watercolor"></div>
+        <div class="logo"></div>
+
+        <div class="string-container">
+            <div class="string">
+                <div class="chain"></div>
+                <div class="nub"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Requires jQuery, jQuery UI
+
+        // Includes jQuery UI Touch Punch for mobile touch events.
+        // https://github.com/furf/jquery-ui-touch-punch
+
+
+        var x1 = 0,
+            x2 = 0,
+            y1 = 0,
+            y2 = 0,
+            string = $('.string'),
+            lightsOn = areTheLightsOn();
+
+        string.draggable({
+            axis: 'y',
+            containment: 'parent',
+            revert: true,
+            revertDuration: 80,
+            scroll: false,
+
+            drag: function (e, ui) {
+
+                // Resistance calculation adapted from:
+                // http://stackoverflow.com/questions/9114591/
+                x2 = ui.position.left;
+                y2 = ui.position.top;
+                distance = parseInt(Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)), 10);
+
+                // The `35` in this function should be changed according
+                // to the height of the containment area in order to 
+                // give a proper amount of 'resistance.'
+                ui.position.top = ui.position.top * (1 - (distance / 35));
+
+
+                // Switch the lights on or off.
+
+                // The drag function doesn't report every moved pixel,
+                // so we need a generous range of a breakpoint.
+                if (ui.position.top > 0 && ui.position.top < 7)
+                    lightsOn = areTheLightsOn();
+
+                // Now that we know whether they are on, do the switch.
+                if (ui.position.top > 8) {
+                    if (lightsOn === true)
+                        turnLightsOff();
+                    else
+                        turnLightsOn();
+                }
+
+            },
+
+            start: function (e, ui) {
+                x1 = ui.position.left;
+                y1 = ui.position.top;
+            },
+
+            stop: function (e, ui) {
+                // There appears to be a bug in the revert action of
+                // jQuery Draggable where sometimes the element returns
+                // to the wrong place by about 5px horizontally. This
+                // workaround fixes that problem by moving the element
+                // back to its 1,1 origin whenever let go after dragging.
+                $('.string').css('left', '1px');
+            }
+        });
+
+        function areTheLightsOn() {
+            if ($('body').hasClass('lights-out'))
+                return false;
+            else
+                return true;
+        }
+
+        function turnLightsOff() {
+            ($('body').addClass('lights-out'))
+        }
+
+        function turnLightsOn() {
+            ($('body').removeClass('lights-out'))
+        }
+    </script>
+</body>
+
+</html>
