@@ -10,3 +10,19 @@
     console.log(variable4);
     console.log(variable5);
 })();
+
+function reservedNames() {
+    console.log('this is a test for reservedNames')
+}
+
+function reservedNames1() {
+    console.log('this is a test for reservedNames')
+}
+
+function reservedNames2() {
+    console.log('this is a test for reservedNames')
+}
+
+function reservedNames3() {
+    console.log(test);
+}

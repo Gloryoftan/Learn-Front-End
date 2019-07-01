@@ -3,6 +3,22 @@ const fs = require("fs");
 const JavaScriptObfuscator = require('javascript-obfuscator');
 const path = require("path");
 
+let reservedNamesArray = [];
+
+//读取方法名
+fs.readFile("reserve.txt", {
+    flag: 'r+',
+    encoding: 'utf8'
+}, function (error, data) {
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+    reservedNamesArray = data.split("\n");
+});
+
+
 //fs  核心模块中提供了一个  fs.readFile方法,来读取指定目录下的文件
 //fs.resdFile 三个参数
 
@@ -41,7 +57,9 @@ fs.readdir(pathName, function (err, files) {
                 var obfuscationResult = JavaScriptObfuscator.obfuscate(
                     `${data}`, {
                         compact: false,
-                        controlFlowFlattening: true
+                        controlFlowFlattening: true,
+                        renameGlobals: true,
+                        reservedNames: ["reservedNames2","reservedNames1"],
                     }
                 );
                 let res = obfuscationResult.getObfuscatedCode();
