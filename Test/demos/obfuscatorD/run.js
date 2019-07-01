@@ -58,8 +58,13 @@ fs.readdir(pathName, function (err, files) {
                     `${data}`, {
                         compact: false,
                         controlFlowFlattening: true,
+                        reservedNames: [
+                            '^variable',
+                            '^variable2',
+                            'reservedNames2'
+                        ],
                         renameGlobals: false,
-                        reservedNames: ["reservedNames2","reservedNames1"],
+
                     }
                 );
                 let res = obfuscationResult.getObfuscatedCode();
