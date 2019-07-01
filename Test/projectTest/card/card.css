@@ -1,0 +1,297 @@
+:root{
+ --card-title-height: 3vh;
+ --card-bg-color: hsl(
+    var(--base-bg-hue),
+    var(--card-bg-stat),
+    var(--card-bg-light)
+  );
+}
+.card-title::before {
+  position: relative;
+  padding-right: 6px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  color: currentColor;
+}
+
+.minicard-container {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  height: 100%;
+  margin: 0;
+  transform-origin: bottom;
+  transition: all 200ms;
+}
+
+
+.card-title {
+  display: inline-block;
+  position: absolute;
+  width: auto;
+  min-width: 20vh;
+  /* max-width: 0; */
+  padding: 0 var(--card-title-height) 0 1vh;
+  margin: 0px;
+  height: var(--card-title-height);
+  --bg-color-s: hsl(176.6, 39.3%, 36.5%);
+  --bg-color-e: hsl(176.6, 39.3%, 43.5%);
+  --bg-color-t: hsl(0, 0%, 97%);
+  background: linear-gradient(
+    90deg,
+    var(--bg-color-s) 0%,
+    var(--bg-color-e)
+      calc(100% - var(--card-title-height) - var(--card-title-height)),
+    var(--bg-color-e) calc(100% - var(--card-title-height)),
+    var(--bg-color-t) calc(100% - var(--card-title-height))
+  );
+  color: white;
+  font-size: calc(var(--card-title-height) * 0.57);
+  line-height: var(--card-title-height);
+  overflow: hidden;
+  z-index: -1;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  white-space: nowrap;
+  transition: width 1.5s;
+}
+
+.card-title::after {
+  left: calc(100% - var(--card-title-height) * 1.41);
+  position: absolute;
+  content: "";
+  width: var(--card-title-height);
+  height: var(--card-title-height);
+  background: var(--bg-color-e);
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  border-radius: 3px;
+  z-index: -1;
+}
+
+.card {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--card-bg-color);
+  border-width: 0px;
+  border-radius: 4px !important;
+  overflow: hidden;
+  z-index: 899;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--card-title-height);
+  background: hsl(0, 0%, 97%);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  z-index: -1;
+}
+
+.card.no-frame,
+.card.no-frame::before,
+.card.no-frame::after {
+  box-shadow: none !important;
+  background: none !important;
+  border: none !important;
+  z-index: 600;
+}
+
+.card.no-frame .card-title,
+.card.no-frame .card-title::before {
+  color: hsl(178, 40%, 28%) !important;
+  border-radius: 4px !important;
+  --bg-color-s: white;
+  --bg-color-e: hsla(0, 0%, 98%, 0.8);
+  z-index: 1003;
+}
+
+.card-body {
+  width: 200px;
+  position: absolute;
+  /* width: 100%; */
+  /* top: var(--card-title-height); */
+  /* height: calc(100% - var(--card-title-height)); */
+  /* bottom: 0; */
+  /* padding: 1.6vh; */
+  /* overflow: hidden; */
+  /* z-index: 999; */
+  /* border-bottom-left-radius: inherit; */
+  border-bottom-right-radius: inherit;
+}
+
+
+.card-title .icon {
+  margin-right: 0.5vh;
+}
+
+.butt-container .close-butt i::after {
+  background: hsl(178.1, 39%, 38%);
+}
+
+.butt-container .close-butt:hover i {
+  color: hsl(178.1, 39%, 50%);
+}
+
+.butt-container .close-butt:active i {
+  color: hsl(178.1, 39%, 40%);
+}
+
+.nice-hover-1 {
+  border-style: solid;
+  border-color: transparent;
+  box-shadow: 0px 4px 12px hsla(0, 0%, 0%, 0.15);
+  transition: border-color 0.3s, box-shadow 1000ms,background-color 0.3s;
+}
+
+
+.nice-hover-1::after {
+  display: block;
+  position: absolute;
+  content: "";
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: hsla(178.1, 69%, 32.9%, 0.9);
+  opacity: 0;
+  z-index: 1002;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.nice-hover-1:hover {
+  background-color: hsl(210,10%,95%);
+  box-shadow: 0 15px 35px hsla(0, 0%, 0%, 0.1),  0 5px 15px hsla(0, 0%, 0%, 0.07);
+}
+
+.nice-hover-1:hover::after {
+  opacity: 1;
+}
+
+.card.mini {
+  display: block;
+  width: 8.6vh;
+  height: auto;
+  margin: 0vh 0.2vh 0.6vh 0.2vh;
+  position: relative;
+  background: hsla(178, 50%, 100%, 0.98);
+  box-shadow: 0px 1px 9px hsla(0, 0%, 0%, 0.25);
+  cursor: pointer;
+  overflow: visible;
+  border-radius: 6px !important;
+  border-collapse: collapse;
+  transform: scale(0.85);
+  transform-origin: bottom;
+}
+
+
+
+
+
+div#griddata-minicard {
+}
+
+.card.mini .card-title {
+  position: relative;
+  min-width: 0;
+  top: 0;
+  height: 2vh;
+  line-height: 2vh;
+  font-size: 1.4vh;
+  padding: 0 0.5vh;
+  text-align: right;
+  width: 90%;
+  background: hsl(178, 65%, 38%);
+  overflow: visible;
+  border-radius: 6px 6px 0px 0px;
+}
+
+.card.mini.almost-no-title .card-title {
+  height: 4px;
+}
+
+.card.mini .card-title::after {
+  display: none;
+}
+
+.card.mini .card-title .icon {
+  position: absolute;
+  background: linear-gradient(158deg, hsl(0, 0%, 100%), hsl(0, 0%, 90%));
+  --mini-icon-size: 2.5vh;
+  top: calc(0px - var(--mini-icon-size) / 6);
+  left: calc(0px - var(--mini-icon-size) / 3);
+  width: var(--mini-icon-size);
+  height: var(--mini-icon-size);
+  border-radius: 100%;
+  color: hsl(178, 36%, 45%);
+  line-height: var(--mini-icon-size);
+  text-align: center;
+  font-size: calc(var(--mini-icon-size) / 1.8);
+  box-shadow: 1px 2px 10px hsla(0, 0%, 0%, 0.5);
+  /* background: none; */
+  /* box-shadow: none; */
+  /* font-size: 2.8vh; */
+  /* top: -0.6vh; */
+  /* left: -0.5vh; */
+  /* color: hsl(0, 0%, 100%); */
+  /* text-shadow: 1px 4px 4px hsla(0, 0%, 0%, 0.35); */
+}
+
+.card.mini .card-body {
+  position: relative;
+  padding: 0 0.4vh;
+  height: 3.2vh;
+  line-height: 3.2vh;
+  top: 0vh;
+  text-align: right;
+  font-size: 2vh;
+  color: hsl(178, 36%, 45%);
+}
+
+.card.mini.no-icon .card-body {
+  text-align: center;
+  padding: 0;
+}
+
+.card.mini.no-frame .card-title {
+  height: 0;
+}
+
+.card.window {
+  position: absolute;
+  transition: top 0.3s, left 0.3s,height 0.3s, width 0.3s,opacity 0.3s;
+  overflow: hidden;
+}
+
+.card .ui-resizable-handle {
+  z-index: 10086 !important;
+}
+
+.card .ui-resizable-e,
+.card .ui-resizable-w {
+  width: 10px;
+}
+
+.card .ui-resizable-n,
+.card .ui-resizable-s {
+  height: 10px;
+}
+
+.card .ui-resizable-sw,
+.card .ui-resizable-ne,
+.card .ui-resizable-nw,
+.card .ui-resizable-se {
+  height: 15px;
+  width: 15px;
+  z-index: 10087 !important;
+}
