@@ -58,7 +58,7 @@ fs.readdir(pathName, function (err, files) {
                     `${data}`, {
                         compact: false,
                         controlFlowFlattening: true,
-                        renameGlobals: true,
+                        renameGlobals: false,
                         reservedNames: ["reservedNames2","reservedNames1"],
                     }
                 );
