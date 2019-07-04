@@ -1,0 +1,80 @@
+body {
+    font-family: helvetica, arial;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.draggable-droppable {
+    cursor: pointer;
+    width: 100px;
+    display: inline-block;
+    margin: 10px;
+    height: 100px;
+    border-radius: 8px;
+    padding: 2px;
+    border: 2px solid transparent;
+    line-height: 100px;
+}
+
+.draggable-droppable span {
+    verticle-align: middle;
+    display: inline-block;
+    line-height: normal;
+}
+
+.draggable-droppable>[class^="box-"] {
+    pointer-events: none;
+}
+
+.draggable-droppable:hover {
+    box-shadow: 0 0 3px #cfd1d1;
+}
+
+[class^="box-"] {
+    height: inherit;
+    text-align: center;
+    border-radius: 8px;
+    text-shadow: 0px 1px 1px #eee;
+    box-shadow: 0 1px 2px #EAEBE8;
+    height: 92px;
+    width: 92px;
+}
+
+.box-2 {
+    height: inherit;
+    text-align: center;
+    border-radius: 8px;
+    text-shadow: 0px 1px 1px #eee;
+    box-shadow: 0 1px 2px #EAEBE8;
+    height: 92px;
+    width: 92px;
+}
+
+.box-1 {
+    background: linear-gradient(to top, #F7C95E, #F7D483);
+}
+
+.box-2 {
+    background: linear-gradient(to top, #F2A5EC, #D1A5F2);
+}
+
+.box-3 {
+    background: linear-gradient(to top, #C1F2A5, #CAF7B0);
+}
+
+.box-4 {
+    background: linear-gradient(to top, #84F8FA, #BFFEFF);
+}
+
+.box-5 {
+    background: linear-gradient(to top, #FFB5B5, #FFC7C7);
+}
+
+.box-6 {
+    background: linear-gradient(to top, #FAFF94, #FCFFBA);
+}
