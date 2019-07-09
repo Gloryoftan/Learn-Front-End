@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style lang="">
+        .switcher-wrap {
+            position: relative;
+            top: 20px;
+            width: 230px;
+            height: 100px;
+            border-radius: 60px;
+            margin: 0 auto;
+        }
+
+        .wrap-sun {
+            background-color: #9BE3FC;
+            border: 4px solid #84C3D8;
+        }
+
+        .wrap-moon {
+            background-color: #3C4145;
+            border: 4px solid #1C1C1C;
+        }
+
+        .sun-moon {
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            transition: .3s cubic-bezier(.68, .45, .44, .73);
+            cursor: pointer;
+        }
+
+        .moon {
+            background-color: #FFFFFF;
+            border: 4px solid #E3E8C6;
+            position: relative;
+            /* animation: transformation .3s ease-in-out; */
+        }
+
+        /* moon small pots */
+        .moon:before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            top: 60px;
+            left: 25px;
+            border: 5px solid #E3E8C6;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+        }
+
+        .moon:after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            top: 55px;
+            left: 15px;
+            border: 3px solid #E3E8C6;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+        }
+
+        .sun {
+            background-color: #FFE063;
+            border: 4px solid #E2C43A;
+            /* animation: transformation .3s ease-in-out; */
+        }
+
+        /* gisher */
+
+        .ketikner1 {
+            content: '';
+            width: 10px;
+            height: 10px;
+            top: 60px;
+            left: 25px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner1:before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            top: 10px;
+            left: 25px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner1:after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            top: -40px;
+            left: 36px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        /* ketikner2 */
+
+        .ketikner2 {
+            content: '';
+            width: 10px;
+            height: 10px;
+            top: 20px;
+            left: 15px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner2:before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            top: 10px;
+            left: 75px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner2:after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            top: 30px;
+            left: 60px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        /* cerek */
+        .ketikner-cerek1 {
+            content: '';
+            width: 30px;
+            height: 30px;
+            top: 40px;
+            left: 70px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner-cerek1:before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            top: -8px;
+            left: 17px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner-cerek1:after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            top: 0px;
+            left: 36px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        /* ketikner2 */
+
+        .ketikner-cerek2 {
+            content: '';
+            width: 30px;
+            height: 30px;
+            top: 51px;
+            left: 87px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner-cerek2:before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            top: -42px;
+            left: 70px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+        .ketikner-cerek2:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            top: -42px;
+            left: 85px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            animation: ketikner .3s ease-in-out;
+        }
+
+
+        @keyframes ketikner {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap" class="switcher-wrap">
+        <div id="sunMoon" class="sun-moon"> </div>
+        <div id="ketikner1"></div>
+        <div id="ketikner2"></div>
+    </div>
+
+    <script>
+        (function () {
+            const sunMoon = document.getElementById('sunMoon');
+            const wrap = document.getElementById('wrap');
+            const ketikner1 = document.getElementById('ketikner1');
+            const ketikner2 = document.getElementById('ketikner2');
+
+            let toggle = false;
+
+            sunMoon.onclick = () => {
+                toggle = !toggle;
+
+
+                if (toggle) {
+                    sunMoon.style.left = '130px';
+                    sunMoon.className = 'sun-moon moon';
+                    wrap.className = 'switcher-wrap wrap-moon';
+                    ketikner1.className = 'ketikner1';
+                    ketikner2.className = 'ketikner2';
+
+
+                } else {
+                    flag = 'sun';
+                    sunMoon.style.left = '0';
+                    sunMoon.className = 'sun-moon sun';
+                    wrap.className = 'switcher-wrap wrap-sun';
+                    ketikner1.className = 'ketikner-cerek1';
+                    ketikner2.className = 'ketikner-cerek2';
+                }
+                return flag;
+
+            }
+            sunMoon.className = 'sun-moon sun';
+            wrap.className = 'switcher-wrap wrap-sun';
+            ketikner1.className = 'ketikner-cerek1';
+            ketikner2.className = 'ketikner-cerek2';
+
+        })();
+    </script>
+</body>
+
+</html>

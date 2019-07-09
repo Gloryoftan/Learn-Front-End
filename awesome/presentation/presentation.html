@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Presentation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            background-image: url(http://garro.me/pp/sw/background@2x.png);
+            background-size: 100% 100%;
+            width: 100%;
+            height: 500px;
+            text-align: center;
+        }
+
+        .central {
+            font-family: Open Sans;
+            position: relative;
+            display: inline-block;
+            height: 460px;
+            width: 660px;
+            margin: 15px auto;
+            box-shadow: rgba(0, 0, 0, 0.19);
+        }
+
+        .mainpic {
+            position: absolute;
+            left: 0;
+            width: 330px;
+            height: 460px;
+            display: inline-block;
+            border-radius: 4px 0 4px 0;
+            animation-name: picsanimation;
+            animation-duration: 1s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.2s;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes picsanimation {
+            0% {
+                visibility: hidden;
+            }
+
+            25% {
+                visibility: hidden;
+            }
+
+            30% {
+                transform: scale(1);
+                opacity: 1;
+                width: 330px;
+                height: 460px;
+                left: 165px;
+                visibility: hidden;
+                border-radius: 100%;
+                visibility: hidden;
+            }
+
+            50% {
+                transform: scale(1);
+                opacity: 1;
+                width: 330px;
+                height: 460px;
+                left: 165px;
+                border-radius: 100%;
+                visibility: hidden;
+            }
+
+            75% {
+                transform: scale(1);
+                opacity: 0.5;
+                width: 330px;
+                height: 460px;
+                left: 165px;
+                border-radius: 100%;
+            }
+
+            80% {
+                transform: scale(1);
+                opacity: 0.6;
+                width: 330px;
+                height: 460px;
+                left: 165px;
+                border-radius: 100%;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                width: 330px;
+                height: 460px;
+            }
+        }
+
+        .info {
+            display: inline-block;
+            width: 330px;
+            height: 460px;
+            position: absolute;
+            right: 0;
+            background-color: #ffffff;
+            animation-name: first_animation;
+            animation-duration: 1.4s;
+            animation-timing-function: cubic-bezier(0, .38, .5, 1.17);
+            animation-delay: 0;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes first_animation {
+            0% {
+                transform: scale(0.2);
+                opacity: 0.1;
+                right: 165px;
+                position: relatives;
+
+            }
+
+            25% {
+                transform: scale(0.2);
+                opacity: 0.1;
+                right: 165px;
+                position: absolute;
+
+
+            }
+
+            50% {
+
+                transform: scale(1);
+                opacity: 1;
+                right: 165px;
+                position: absolute;
+
+            }
+
+            75% {
+                opacity: 1;
+                right: 165px;
+                position: absolute;
+
+            }
+
+            80% {
+                opacity: 1;
+                width: 330px;
+                height: 460px;
+                position: absolute;
+
+
+            }
+
+            100% {
+                width: 330px;
+                height: 460px;
+                position: absolute;
+
+            }
+        }
+
+        .close {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            right: 21px;
+            top: 21px;
+            cursor: pointer;
+            animation-name: close;
+            animation-duration: 3s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.15s;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes close {
+            0% {
+                transform: rotate(315deg);
+            }
+
+            25% {
+                transform: rotate(315deg);
+            }
+
+            50% {
+                transform: rotate(315deg);
+            }
+
+            75% {
+                transform: rotate(315deg);
+            }
+
+            100% {
+                visibility: visible;
+                transform: scale(1);
+                transform: rotate(360deg);
+            }
+        }
+
+        .title {
+            text-align: center;
+            animation-name: titleanimation;
+            animation-duration: 3.8s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.2s;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes titleanimation {
+            0% {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            50% {
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            100% {}
+        }
+
+        .maintitle {
+            display: inline-block;
+            font-size: 28px;
+            color: #4d4d4d;
+            font-weight: 600;
+            margin-bottom: 0;
+            margin-top: 45px;
+            animation-name: titleanimation;
+            animation-duration: 3.8s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.2s;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes titleanimation {
+            0% {
+                color: rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            100% {}
+        }
+
+        .title p {
+            font-size: 18px;
+            color: #4d4d4d;
+            font-weight: 400;
+            padding-top: 0;
+            margin-top: 0px;
+            margin-bottom: 6px;
+            animation-name: titleanimation;
+            animation-duration: 3.8s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.2s;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes titleanimation {
+            0% {
+                color: rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            100% {}
+        }
+
+        .onder_title {
+            display: inline-block;
+            color: #d4d4d4;
+            font-size: 14px;
+            border-bottom: 1px solid #d4d4d4;
+            padding-bottom: 15.5px;
+            width: 235px;
+            animation-name: titleanimation;
+            animation-duration: 3.8s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.2s;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes titleanimation {
+            0% {
+                color: rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            100% {}
+        }
+
+        .long {
+            font-size: 13px;
+            color: #4d4d4d;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            width: 294px;
+            margin: 50px auto;
+            text-align: left;
+            animation-name: titleanimation;
+            animation-duration: 3.8s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.2s;
+            animation-direction: alternate;
+            animation-iteration-count: one;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        @keyframes titleanimation {
+            0% {
+                color: rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            100% {}
+        }
+
+        .button {
+            cursor: pointer;
+            display: inline-block;
+            border: 1px solid #6dabd2;
+            border-radius: 100px;
+            background-color: #6dabd2;
+            color: #ffffff;
+            width: 220px;
+            height: 48px;
+            line-height: 48px;
+            animation-name: buttonsanimation;
+            animation-duration: 2s;
+        }
+
+        @keyframes buttonsanimation {
+            0% {
+                visibility: hidden;
+            }
+
+            25% {
+                visibility: hidden;
+            }
+
+            50% {
+                visibility: hidden;
+            }
+
+            75% {
+                visibility: visible;
+
+                /*transform: scale(2);*/
+                border-radius: 100%;
+                width: 48px;
+                height: 48px;
+                color: transparent;
+            }
+
+            100% {
+                visibility: visible;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="central">
+            <div class="mainpic">
+                <img src="http://garlucynations.com/lucy/assets/star.jpeg" width="330" height="460">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <div class="maintitle">STAR WARS</div>
+                    <p> THE FORCE AWAKENS </p>
+                    <span class="onder_title">December 18, 2015</span>
+                </div>
+
+                <p class="long"> Thirty years after defeating the Galactic Empire,
+                    Han Solo and his allies face a new threat from
+                    the evil Kylo Ren and his army of Stormtroopers.</p>
+
+                <div class="button">
+                    <span>Learn More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
