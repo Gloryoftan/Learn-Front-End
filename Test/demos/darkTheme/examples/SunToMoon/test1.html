@@ -17,7 +17,7 @@
         }
 
         .wrap-sun {
-            background-color: #9BE3FC;
+            background-color: #9be3fc;
             border: 4px solid #84C3D8;
         }
 
@@ -137,6 +137,7 @@
             box-sizing: border-box;
             transition: .3s ease-in-out;
             animation: ketikner .3s ease-in-out;
+            /* clip-path: url(#sector-60); */
         }
 
         .ketikner2:before {
@@ -252,8 +253,8 @@
             box-sizing: border-box;
             transition: .3s ease-in-out;
             animation: ketikner .3s ease-in-out;
-        }
 
+        }
 
         @keyframes ketikner {
             0% {
@@ -286,7 +287,6 @@
             sunMoon.onclick = () => {
                 toggle = !toggle;
 
-
                 if (toggle) {
                     sunMoon.style.left = '130px';
                     sunMoon.className = 'sun-moon moon';
@@ -303,8 +303,6 @@
                     ketikner1.className = 'ketikner-cerek1';
                     ketikner2.className = 'ketikner-cerek2';
                 }
-                return flag;
-
             }
             sunMoon.className = 'sun-moon sun';
             wrap.className = 'switcher-wrap wrap-sun';
