@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style lang="scss">
+        @import url(https://fonts.googleapis.com/css?family=Raleway:100,900);
+
+        $yellow : #FDCD2F;
+        $cyan : #4EC0B6;
+        $navy : #3967CB;
+        $red : #E23942;
+
+        $colors : $cyan,
+        $navy,
+        $yellow,
+        $red;
+        $background: #111;
+        $chars : 9;
+        $duration : 8s;
+        $easing : cubic-bezier(.94, .39, .91, .74);
+        $easing: ease-out;
+        $shade : 15%;
+
+        // Diagonal clipping 
+        $left : 0 0 100% 0,
+        100% 100%;
+        $right : 0 0,
+        100% 100%,
+        0 100%;
+
+        // Vertical clipping
+        // $left : 0 0, 50% 0, 50% 100%, 0 100%;
+        // $right : 50% 0, 100% 0, 100% 100%, 50% 100%;
+
+        @mixin clip($path) {
+            -webkit-clip-path: polygon($path);
+            clip-path: polygon($path);
+        }
+
+        @mixin color($color) {
+            &:before {
+                color: $color;
+            }
+
+            &:after {
+                color: adjust-hue($color, 20deg)
+            }
+        }
+
+
+        @keyframes flip-top {
+            from {
+                transform:
+                    rotate(50deg) translateY(120vh);
+            }
+        }
+
+        @keyframes flip-bottom {
+            from {
+                transform:
+                    rotate(-50deg) translateY(120vh);
+            }
+        }
+
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: $background;
+            animation: glow $duration both;
+        }
+
+
+        span {
+            font: 900 15vw Raleway;
+            position: relative;
+            display: inline-block;
+            perspective: 500px;
+
+            &:nth-child(odd) {
+                &:before {
+                    animation-name: flip-top;
+                }
+
+                &:after {
+                    animation-name: flip-bottom;
+                }
+            }
+
+            &:nth-child(even) {
+                &:before {
+                    animation-name: flip-bottom;
+                }
+
+                &:after {
+                    animation-name: flip-top;
+                }
+            }
+
+
+            @for $i from 1 through length($colors) {
+                &:nth-child(#{$i}n + #{$i - 1}) {
+                    @include color(nth($colors, $i));
+                }
+            }
+
+            @for $i from 1 through $chars {
+                &:nth-child(#{$i}) {
+                    &:before {
+                        $delay: sin($i/$chars) * $duration;
+                        animation-delay: $delay;
+                    }
+
+                    &:after {
+                        $delay: sin(($i+.5)/$chars) * $duration;
+                        animation-delay: $delay;
+                    }
+                }
+            }
+
+
+            &:before,
+            &:after {
+                display: block;
+                content: attr(data-text);
+                animation: $duration/$chars $easing both;
+                animation-name: inherit;
+                text-shadow: 0 0 1em;
+            }
+
+            &:before {
+                @include clip($left);
+                position: absolute;
+                transform-origin: left center;
+                color: nth($colors, 1);
+            }
+
+            &:after {
+                @include clip($right);
+                color: nth($colors, 2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <span data-text="M"></span>
+    <span data-text="A"></span>
+    <span data-text="G"></span>
+    <span data-text="N"></span>
+    <span data-text="E"></span>
+    <span data-text="T"></span>
+    <span data-text="Y"></span>
+    <span data-text="P"></span>
+    <span data-text="E"></span>
+</body>
+
+</html>
