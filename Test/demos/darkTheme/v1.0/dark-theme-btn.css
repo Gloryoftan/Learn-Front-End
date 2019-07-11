@@ -6,6 +6,7 @@
     position: relative;
     width: calc(2.3*var(--btnHeight));
     height: var(--btnHeight);
+    top: 100px;
     border-radius: calc(0.6*var(--btnHeight));
     margin: 0 auto;
 }

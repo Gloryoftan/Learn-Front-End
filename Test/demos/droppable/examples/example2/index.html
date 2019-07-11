@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../lib/jquery-ui.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding: 15px 15px;
+            display: table;
+            width: 100%;
+        }
+
+        .container::before,
+        .container::after {
+            content: '';
+            clear: both;
+        }
+
+        .container::after {
+            display: table;
+        }
+
+        .container .col {
+            width: 20%;
+            display: table-cell;
+            padding: 5px;
+            border: 5px solid #fff;
+            min-height: 1px;
+            verticle-align: top;
+            background: #ddd;
+            margin: 10px;
+        }
+
+        .card {
+            background: #f7f7f7;
+            border-radius: 2px;
+            padding: 15px;
+            z-index: 999;
+        }
+
+        .output {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background: #f7f7f7;
+            padding: 30px;
+            width: 200px;
+            transition: all 0.4s ease-in-out;
+            display: none;
+        }
+
+        .ui-state-active,
+        .ui-droppable-active {
+            position: relative;
+        }
+
+        .ui-state-active::after,
+        .ui-droppable-active::after {
+            content: "Drop Here";
+            font-color: green;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            bottom: 3px;
+            right: 3px;
+            border-width: 2px !important;
+            border-style: dashed !important;
+            border-color: green !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col">
+            <div class="card-container">
+                <div class="card"> <span>text1</span>
+                    <p>some more dummy text</p>
+                    <p>kasjdlkfj</p>
+                    <p>asdjfla</p>
+                    <p>asdlkfjalsf</p>
+                    <p>lkajsdlkfja</p>
+                    <p>lakjsdflk</p>
+                    <p>alksjdflkja</p>
+                    <p>lkajslkfdjalksjdf</p>
+                    <p>lkjaskldfjlkajsf</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-container" id="card">
+                <div class="card"> <span>text2</span></div>
+                <div class="card"> <span>text21</span></div>
+                <div class="card"> <span>text22</span></div>
+                <div class="card"> <span>text23</span></div>
+                <div class="card"> <span>text24</span></div>
+                <div class="card"> <span>text25</span></div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-container">
+                <div class="card"> <span>text3</span></div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-container">
+                <div class="card"> <span>text4</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="output"></div>
+
+    <script src="../../../../lib/jQuery-v3.4.1.js"></script>
+    <script src="../../../../lib/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".card-container").sortable({
+                revert: true
+            });
+
+            $(".card").draggable({
+                connectToSortable: ".card-container",
+                revert: "invalid"
+            });
+
+            $(".card").disableSelection();
+
+            $(".col").droppable({
+                classes: {
+                    "ui-droppable-active": "ui-state-active",
+                    "ui-droppable-hover": "ui-state-hover"
+                },
+                drop: function (event, ui) {
+                    $(this)
+                        .addClass("ui-state-highlight");
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
