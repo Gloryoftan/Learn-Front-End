@@ -1,4 +1,7 @@
 /* para:
+
+ *parentId 父容器ID
+
  *bgColor 背景色
  *shadowColor 阴影颜色
  *iconColor 图标颜色
@@ -53,6 +56,7 @@ function Icons(option) {
 
 Icons.prototype = {
     _init: function (option) {
+        this.parentId = option.parentId || "body";
         this.iconsArr = option.iconsSet || [];
         this.bgSize = option.bgSize || 140;
         this.iconSize = option.iconSize || 80;
@@ -69,7 +73,7 @@ Icons.prototype = {
         // this.posX = option.posX === 0 ? : option.posX || 0;
         // this.posY = option.posY === 0 ? : option.posX || 0;
         this.selectedIcon = option.randomIcons ? '<i class="' + this.randomIcons() + '"></i>' : '<i class="' + option.selectedIcon + '"></i>';
-        
+
         //canvas 底纹
         this.randomShade = option.randomShade || 0;
         this.shadeTransparency = option.shadeTransparency === 0 ? 0 : option.shadeTransparency || 0.2;
@@ -106,11 +110,11 @@ Icons.prototype = {
         this.shadowSet = shadowSet.substr(0, shadowSet.length - 1);
     },
     //渲染
-    append: function () {
-        $("#Icons").append('<div class="Icons_bg"><span class="Icons_icon">' +
-            this.selectedIcon + '</span><canvas id="Shade">浏览器不支持Canvas，求求你换一个浏览器吧！</canvas></div>');
+    iconAppend: function () {
+        $("#" + this.parentId).append('<div class="Icons_bg"><span class="Icons_icon">' +
+            this.selectedIcon + '</span><canvas id="' + this.parentId + 'Shade">浏览器不支持Canvas，求求你换一个浏览器吧！</canvas></div>');
         //bg setting
-        $("#Icons .Icons_bg").css({
+        $("#" + this.parentId + " .Icons_bg").css({
             'display': 'flex',
             'justify-content': 'center',
             'align-items': 'center',
@@ -133,8 +137,8 @@ Icons.prototype = {
             'justify-content': 'center',
             'align-items': 'center',
             'overflow': 'hidden',
-            'width':this.bgSize,
-            'height':this.bgSize,
+            'width': this.bgSize,
+            'height': this.bgSize,
             'position': 'absolute',
             'border-radius': this.bgRadius + "%",
             'z-inde': 9,
@@ -150,11 +154,11 @@ Icons.prototype = {
         // return arr[9];
     },
     //随机生成背景色
-    _randomBgColor:function(){
+    _randomBgColor: function () {
         var _h = this._randomValue(0, 360);
         var _s = this._randomValue(40, 60);
         var _l = this._randomValue(50, 80);
-        var _hsl = 'hsl('+_h+','+_s+'%,'+_l+'%)';
+        var _hsl = 'hsl(' + _h + ',' + _s + '%,' + _l + '%)';
         return _hsl;
     },
     //随机生成背景渐变色
@@ -179,7 +183,7 @@ Icons.prototype = {
     },
     //随机底纹
     _randomShade: function () {
-        var canvas = document.getElementById('Shade');
+        var canvas = document.getElementById(this.parentId + 'Shade');
         var ctx = canvas.getContext('2d');
         canvas.width = this.bgSize;
         canvas.height = this.bgSize;
@@ -219,6 +223,7 @@ Icons.prototype = {
 };
 
 var icons = new Icons({
+    parentId: "Icons",
     selectedIcon: "fas fa-camera",
     randomIcons: 1,
     bgSize: 140,
@@ -259,4 +264,11 @@ var icons = new Icons({
     circleRMax: 45,
 
 });
-icons.append();
+icons.iconAppend();
+
+
+var icons2 = new Icons({
+
+})
+
+icons2.iconAppend();
