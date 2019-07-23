@@ -126,13 +126,13 @@ Icons.prototype = {
         });
         console.log(this.bgColor);
         //icon setting
-        $('#Icons .Icons_icon').css({
+        $("#" + this.parentId + " .Icons_icon").css({
             'color': this.iconColor,
             'font-size': this.iconSize + "px",
             'text-shadow': this.shadowSet,
         });
         //shade index
-        $('#Icons span').css({
+        $("#" + this.parentId + " span").css({
             'display': 'flex',
             'justify-content': 'center',
             'align-items': 'center',
@@ -223,7 +223,7 @@ Icons.prototype = {
 };
 
 var icons = new Icons({
-    parentId: "Icons",
+    parentId: "Icons2",
     selectedIcon: "fas fa-camera",
     randomIcons: 1,
     bgSize: 140,
