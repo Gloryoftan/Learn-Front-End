@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>trashcan</title>
+	<style>
+		:root {
+			--TrashCanHeight: 12px;
+		}
+
+		section {
+			margin-top: 40px;
+
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
+
+
+		.trash {
+			background: hsl(356, 100%, 70%);
+			width: calc(5.5*var(--TrashCanHeight));
+			height: calc(6.67*var(--TrashCanHeight));
+			display: inline-block;
+			margin: 0 auto;
+			position: relative;
+			-webkit-border-bottom-right-radius: calc(0.5*var(--TrashCanHeight));
+			-webkit-border-bottom-left-radius: calc(0.5*var(--TrashCanHeight));
+			-moz-border-radius-bottomright: calc(0.5*var(--TrashCanHeight));
+			-moz-border-radius-bottomleft: calc(0.5*var(--TrashCanHeight));
+			border-bottom-right-radius: calc(0.5*var(--TrashCanHeight));
+			border-bottom-left-radius: calc(0.5*var(--TrashCanHeight));
+		}
+
+		/* .trash:after {
+	content: 'Mouse hover on Recile Bin';
+	position: absolute;
+	left: -99px;
+	right: 0;
+	bottom: -calc(4.16*var(--TrashCanHeight));
+	width: 300px;
+} */
+		.trash span {
+			position: absolute;
+			height: calc(1*var(--TrashCanHeight));
+			background: #ff6873;
+			top: calc(-1.58*var(--TrashCanHeight));
+			left: calc(-0.83*var(--TrashCanHeight));
+			right: calc(-0.83*var(--TrashCanHeight));
+
+			border-top-left-radius: calc(0.83*var(--TrashCanHeight));
+			border-top-right-radius: calc(0.83*var(--TrashCanHeight));
+			transform: rotate(0deg);
+			transition: transform 250ms;
+			transform-origin: 19% 100%;
+		}
+
+		.trash span:after {
+			content: '';
+			position: absolute;
+			width: calc(2.25*var(--TrashCanHeight));
+			height: calc(0.58*var(--TrashCanHeight));
+			background: #ff6873;
+			top: calc(-0.83*var(--TrashCanHeight));
+
+			border-top-left-radius: calc(0.83*var(--TrashCanHeight));
+			border-top-right-radius: calc(0.83*var(--TrashCanHeight));
+			transform: rotate(0deg);
+			transition: transform 250ms;
+			transform-origin: 19% 100%;
+			left: calc(2.25*var(--TrashCanHeight));
+		}
+
+
+		.trash i {
+			position: relative;
+			width: calc(0.416*var(--TrashCanHeight));
+			height: calc(4.16*var(--TrashCanHeight));
+			background: #fff;
+			display: block;
+			margin: calc(1.16*var(--TrashCanHeight)) auto;
+			border-radius: calc(0.416*var(--TrashCanHeight));
+		}
+
+		.trash i:after {
+			content: '';
+			width: calc(0.416*var(--TrashCanHeight));
+			height: calc(4.16*var(--TrashCanHeight));
+			background: #fff;
+			position: absolute;
+			left: calc(-1.5*var(--TrashCanHeight));
+			border-radius: calc(0.416*var(--TrashCanHeight));
+		}
+
+		.trash i:before {
+			content: '';
+			width: calc(0.416*var(--TrashCanHeight));
+			height: calc(4.16*var(--TrashCanHeight));
+			background: #fff;
+			position: absolute;
+			right: calc(-1.5*var(--TrashCanHeight));
+			border-radius: calc(0.416*var(--TrashCanHeight));
+		}
+
+		.trash:hover span {
+			transform: rotate(-45deg);
+			transition: transform 250ms;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<span class="trash">
+			<span></span>
+			<i></i>
+		</span>
+	</section>
+</body>
+
+</html>
