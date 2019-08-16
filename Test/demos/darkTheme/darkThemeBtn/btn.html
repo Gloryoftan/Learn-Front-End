@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .add-new-button {
+            right: 250px;
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background-color: #1BA1FC;
+            border-radius: 40px;
+            transition: width 0.3s;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .add-new-button-icon {
+            top: 0;
+            right: 0;
+            z-index: 4;
+            position: absolute;
+            color: #fff;
+            transition: transform 0.2s;
+            width: 40px;
+            height: 40px;
+        }
+
+        .add-new-button-icon i {
+            top: 12px;
+            height: 100%;
+            margin-left: 14px;
+            position: relative;
+        }
+
+        .add-new-button:hover {
+            width: 110px;
+        }
+
+        .add-new-button:hover .add-new-button-icon {
+            transform: rotate(90deg);
+        }
+
+        .add-new-button-label {
+            width: 80px;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-size: 14px;
+            text-align: center;
+            font-family: "Source Sans Pro", sans-serif !important;
+            font-weight: 700;
+            position: relative;
+            margin-top: 5px;
+            padding-left: 10px;
+            -moz-transition: all 200ms ease-in;
+            -webkit-transition: all 200ms ease-in;
+            -o-transition: all 200ms ease-in;
+            transition: all 200ms ease-in;
+            opacity: 0;
+        }
+
+        .add-new-button:hover .add-new-button-label {
+            transition-delay: 0.1s;
+            visibility: visible;
+            opacity: 1;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="add-new-button">
+        <div class="add-new-button-label">
+            Add
+        </div>
+        <div class="add-new-button-icon">
+            <i class="fa fa-plus"></i>
+        </div>
+    </div>
+</body>
+
+</html>
