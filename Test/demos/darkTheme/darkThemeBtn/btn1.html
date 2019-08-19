@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .btnExpand {
+            display: inline-block;
+            height: 20px;
+            width: 19px;
+            overflow: hidden;
+            border: 2px solid;
+            border-radius: 20px;
+            -webkit-transition: all 0.2s linear;
+            -moz-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+
+        .btnIcon {
+            width: 12px;
+            height: 20px;
+            line-height: 20px;
+            padding-left: 3px;
+            display: inline-block;
+            -webkit-transition: all 0.2s linear;
+            -moz-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+
+        .btnText {
+            font-family: Verdana;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 20px;
+            vertical-align: top;
+            padding-top: 1px;
+        }
+
+        .btnExpand:hover .btnIcon {
+            color: red;
+        }
+
+        .btnExpand:hover {
+            background-color: #ccc;
+            width: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#" class="btnExpand">
+        <i class="btnIcon fa fa-times"></i>
+        <span class="btnText"> Close</span>
+    </a>
+</body>
+
+</html>

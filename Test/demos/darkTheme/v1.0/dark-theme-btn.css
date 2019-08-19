@@ -1,5 +1,23 @@
 :root {
-    --btnHeight: 40px;
+    --btnHeight: 24px;
+}
+
+#wrap {
+    /* display: none; */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--btnHeight);
+    height: var(--btnHeight);
+    border: 1px solid red;
+    border-radius: 50%;
+    transition: ease-in-out .5s;
+}
+
+#wrap.active {
+    width: calc(2.3*var(--btnHeight));
+    border-radius: calc(0.6*var(--btnHeight));
+    cursor: pointer;
 }
 
 .switcher-wrap {
@@ -19,6 +37,18 @@
 .wrap-moon {
     background-color: hsl(207, 7%, 25%);
     border: calc(0.04*var(--btnHeight)) solid hsl(0, 0%, 11%);
+    /* border: calc(0.04*var(--btnHeight)) solid hsl(0, 0%, 100%); */
+}
+
+/* sun-moon */
+.before-sun-moon {
+    position: absolute;
+    left: calc(0.15*var(--btnHeight));
+    top: calc(0.125*var(--btnHeight));
+    width: calc(0.75*var(--btnHeight));
+    height: calc(0.5*var(--btnHeight));
+    border: 1px solid red;
+    transition: ease-in-out .5s;
 }
 
 .sun-moon {
@@ -29,10 +59,11 @@
     height: calc(0.9*var(--btnHeight));
     border-radius: 50%;
     transition: .3s cubic-bezier(.68, .45, .44, .73);
-    cursor: pointer;
 }
 
 .moon {
+    left: calc(0.9*var(--btnHeight));
+    top: calc(0.01*var(--btnHeight));
     background-color: hsl(0, 0%, 100%);
     border: calc(0.04*var(--btnHeight)) solid hsl(69, 42%, 84%);
     position: relative;
@@ -45,10 +76,10 @@
     width: calc(0.2*var(--btnHeight));
     height: calc(0.2*var(--btnHeight));
     top: calc(0.6*var(--btnHeight));
-    left: calc(0.25*var(--btnHeight));
+    left: calc(0.27*var(--btnHeight));
     border: calc(0.05*var(--btnHeight)) solid hsl(69, 42%, 84%);
     position: absolute;
-    border-radius: 50%;
+    border-radius: 51%;
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
@@ -75,6 +106,47 @@
 }
 
 /* gisher */
+.before-nebula1 {
+    content: '';
+    width: calc(0.2*var(--btnHeight));
+    height: calc(0.2*var(--btnHeight));
+    top: calc(0.6*var(--btnHeight));
+    left: calc(0.25*var(--btnHeight));
+    position: absolute;
+    border-radius: 50%;
+    background-color: hsl(0, 100%, 52%);
+    box-sizing: border-box;
+    transition: .3s ease-in-out;
+    animation: nebula .3s ease-in-out;
+}
+
+.before-nebula1:before {
+    content: '';
+    width: calc(0.2*var(--btnHeight));
+    height: calc(0.2*var(--btnHeight));
+    top: calc(0.6*var(--btnHeight));
+    left: calc(0.25*var(--btnHeight));
+    position: absolute;
+    border-radius: 50%;
+    background-color: hsl(0, 100%, 52%);
+    box-sizing: border-box;
+    transition: .3s ease-in-out;
+    animation: nebula .3s ease-in-out;
+}
+
+.before-nebula1:after {
+    content: '';
+    width: calc(0.2*var(--btnHeight));
+    height: calc(0.2*var(--btnHeight));
+    top: calc(0.6*var(--btnHeight));
+    left: calc(0.25*var(--btnHeight));
+    position: absolute;
+    border-radius: 50%;
+    background-color: hsl(0, 100%, 52%);
+    box-sizing: border-box;
+    transition: .3s ease-in-out;
+    animation: nebula .3s ease-in-out;
+}
 
 .nebula1 {
     content: '';
@@ -119,6 +191,44 @@
 }
 
 /* nebula2 */
+.before-nebula2 {
+    content: '';
+    width: calc(0.2*var(--btnHeight));
+    height: calc(0.2*var(--btnHeight));
+    top: calc(0.1*var(--btnHeight));
+    left: calc(0.15*var(--btnHeight));
+    position: absolute;
+    background-color: hsl(0, 100%, 52%);
+    box-sizing: border-box;
+    transition: .3s ease-in-out;
+    animation: nebula .3s ease-in-out;
+}
+
+.before-nebula2:before {
+    content: '';
+    width: calc(0.2*var(--btnHeight));
+    height: calc(0.2*var(--btnHeight));
+    top: calc(0.1*var(--btnHeight));
+    left: calc(0.15*var(--btnHeight));
+    position: absolute;
+    background-color: hsl(0, 100%, 52%);
+    box-sizing: border-box;
+    transition: .3s ease-in-out;
+    animation: nebula .3s ease-in-out;
+}
+
+.before-nebula2:after {
+    content: '';
+    width: calc(0.2*var(--btnHeight));
+    height: calc(0.2*var(--btnHeight));
+    top: calc(0.1*var(--btnHeight));
+    left: calc(0.15*var(--btnHeight));
+    position: absolute;
+    background-color: hsl(0, 100%, 52%);
+    box-sizing: border-box;
+    transition: .3s ease-in-out;
+    animation: nebula .3s ease-in-out;
+}
 
 .nebula2 {
     content: '';
@@ -132,7 +242,6 @@
     box-sizing: border-box;
     transition: .3s ease-in-out;
     animation: nebula .3s ease-in-out;
-    /* clip-path: url(#sector-60); */
 }
 
 .nebula2:before {
@@ -146,7 +255,6 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula2:after {
@@ -175,7 +283,6 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula-cerek1:before {
@@ -189,7 +296,6 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula-cerek1:after {
@@ -203,7 +309,6 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 /* nebula2 */
@@ -219,7 +324,6 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula-cerek2:before {
@@ -227,13 +331,12 @@
     width: calc(0.2*var(--btnHeight));
     height: calc(0.2*var(--btnHeight));
     top: calc(-0.42*var(--btnHeight));
-    left: calc(0.7*var(--btnHeight));
+    left: calc(0.71*var(--btnHeight));
     position: absolute;
     border-radius: 50%;
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula-cerek2:after {
@@ -247,9 +350,9 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
-
 }
+
+/* 
 
 @keyframes nebula {
     0% {
@@ -259,4 +362,4 @@
     100% {
         transform: scale(1);
     }
-}
+} */

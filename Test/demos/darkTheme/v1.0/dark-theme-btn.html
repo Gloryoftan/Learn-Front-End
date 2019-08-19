@@ -11,47 +11,55 @@
 
 <body>
     <div id="wrap" class="switcher-wrap">
-        <div id="sunMoon" class="sun-moon"> </div>
-        <div id="nebula1"></div>
-        <div id="nebula2"></div>
+        <div id="sunMoon" class="before-sun-moon"> </div>
+        <div id="nebula1" class="before-nebula1"></div>
+        <div id="nebula2" class="before-nebula2"></div>
     </div>
 
     <div>
 
     </div>
-    
+
     <script>
         (function () {
-            const sunMoon = document.getElementById('sunMoon');
             const wrap = document.getElementById('wrap');
+            const sunMoon = document.getElementById('sunMoon');
             const nebula1 = document.getElementById('nebula1');
             const nebula2 = document.getElementById('nebula2');
             const style = getComputedStyle(document.body);
+            let btnHeight = parseInt(style.getPropertyValue('--btnHeight'));
+
+            wrap.onmouseenter = function () {
+                wrap.className = 'active switcher-wrap wrap-sun';
+                sunMoon.className = 'sun-moon sun';
+                nebula1.className = 'nebula-cerek1';
+                nebula2.className = 'nebula-cerek2';
+            }
+
+            wrap.onmouseleave = function () {
+                wrap.className = 'switcher-wrap';
+                sunMoon.className = 'before-sun-moon';
+                nebula1.className = 'before-nebula1';
+                nebula2.className = 'before-nebula2';
+            }
 
             let toggle = false;
 
-            sunMoon.onclick = () => {
+            wrap.onclick = () => {
                 toggle = !toggle;
 
                 if (toggle) {
-                    let btnHeight = parseInt(style.getPropertyValue('--btnHeight'));
-                    sunMoon.style.left = 1.3 * btnHeight + "px";
                     sunMoon.className = 'sun-moon moon';
-                    wrap.className = 'switcher-wrap wrap-moon';
+                    wrap.className = 'active switcher-wrap wrap-moon';
                     nebula1.className = 'nebula1';
                     nebula2.className = 'nebula2';
                 } else {
-                    sunMoon.style.left = '0';
                     sunMoon.className = 'sun-moon sun';
-                    wrap.className = 'switcher-wrap wrap-sun';
+                    wrap.className = 'active switcher-wrap wrap-sun';
                     nebula1.className = 'nebula-cerek1';
                     nebula2.className = 'nebula-cerek2';
                 }
             }
-            sunMoon.className = 'sun-moon sun';
-            wrap.className = 'switcher-wrap wrap-sun';
-            nebula1.className = 'nebula-cerek1';
-            nebula2.className = 'nebula-cerek2';
         })();
     </script>
 </body>
