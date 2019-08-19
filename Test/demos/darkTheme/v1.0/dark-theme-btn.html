@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>dark-theme-btn</title>
     <link rel="stylesheet" href="dark-theme-btn.css">
+    <style>
+        img {
+            margin-top: -201px;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,25 +20,33 @@
         <div id="nebula1" class="before-nebula1"></div>
         <div id="nebula2" class="before-nebula2"></div>
     </div>
+    <img src="../../../img/formatcolorfill.png" alt="">
+    <button id="test" style="margin-top:200px"></button>
 
-    <div>
 
-    </div>
-
+    <script src="../../../lib/jQuery-v3.4.1.js"></script>
     <script>
+        let toggle = false;
         (function () {
             const wrap = document.getElementById('wrap');
             const sunMoon = document.getElementById('sunMoon');
             const nebula1 = document.getElementById('nebula1');
             const nebula2 = document.getElementById('nebula2');
             const style = getComputedStyle(document.body);
-            let btnHeight = parseInt(style.getPropertyValue('--btnHeight'));
+            // let btnHeight = parseInt(style.getPropertyValue('--btnHeight'));
 
             wrap.onmouseenter = function () {
-                wrap.className = 'active switcher-wrap wrap-sun';
-                sunMoon.className = 'sun-moon sun';
-                nebula1.className = 'nebula-cerek1';
-                nebula2.className = 'nebula-cerek2';
+                if (!toggle) {
+                    wrap.className = 'active switcher-wrap wrap-sun';
+                    sunMoon.className = 'sun-moon sun';
+                    nebula1.className = 'nebula-cerek1';
+                    nebula2.className = 'nebula-cerek2';
+                } else {
+                    sunMoon.className = 'sun-moon moon';
+                    wrap.className = 'active switcher-wrap wrap-moon';
+                    nebula1.className = 'nebula1';
+                    nebula2.className = 'nebula2';
+                }
             }
 
             wrap.onmouseleave = function () {
@@ -43,11 +56,10 @@
                 nebula2.className = 'before-nebula2';
             }
 
-            let toggle = false;
-
             wrap.onclick = () => {
                 toggle = !toggle;
 
+                console.log(toggle);
                 if (toggle) {
                     sunMoon.className = 'sun-moon moon';
                     wrap.className = 'active switcher-wrap wrap-moon';
@@ -61,6 +73,11 @@
                 }
             }
         })();
+
+        const test = document.getElementById('test');
+        test.onclick = function () {
+            $(wrap).trigger('click');
+        }
     </script>
 </body>
 

@@ -1,20 +1,22 @@
 :root {
     --btnHeight: 24px;
+    --theme-btn-color: hsl(178, 100%, 29%);
 }
 
 #wrap {
     /* display: none; */
     position: absolute;
-    left: 0;
+    left: 40px;
     top: 0;
     width: var(--btnHeight);
     height: var(--btnHeight);
-    border: 1px solid red;
+    border: 1px solid var(--theme-btn-color);
     border-radius: 50%;
     transition: ease-in-out .5s;
 }
 
 #wrap.active {
+    left: calc(40px - 1.3*var(--btnHeight));
     width: calc(2.3*var(--btnHeight));
     border-radius: calc(0.6*var(--btnHeight));
     cursor: pointer;
@@ -43,11 +45,13 @@
 /* sun-moon */
 .before-sun-moon {
     position: absolute;
-    left: calc(0.15*var(--btnHeight));
-    top: calc(0.125*var(--btnHeight));
-    width: calc(0.75*var(--btnHeight));
-    height: calc(0.5*var(--btnHeight));
-    border: 1px solid red;
+    left: calc(0.30*var(--btnHeight));
+    top: calc(0.20*var(--btnHeight));
+    width: calc(0.3*var(--btnHeight));
+    height: calc(0.3*var(--btnHeight));
+    transform: rotate(45deg);
+    border: calc(0.035*var(--btnHeight))solid var(--theme-btn-color);
+    border-radius: 10%;
     transition: ease-in-out .5s;
 }
 
@@ -62,7 +66,7 @@
 }
 
 .moon {
-    left: calc(0.9*var(--btnHeight));
+    left: calc(1.3*var(--btnHeight));
     top: calc(0.01*var(--btnHeight));
     background-color: hsl(0, 0%, 100%);
     border: calc(0.04*var(--btnHeight)) solid hsl(69, 42%, 84%);
@@ -108,44 +112,18 @@
 /* gisher */
 .before-nebula1 {
     content: '';
-    width: calc(0.2*var(--btnHeight));
-    height: calc(0.2*var(--btnHeight));
-    top: calc(0.6*var(--btnHeight));
-    left: calc(0.25*var(--btnHeight));
+    width: calc(0.1*var(--btnHeight));
+    height: calc(0.1*var(--btnHeight));
+    top: calc(0.5*var(--btnHeight));
+    left: calc(0.65*var(--btnHeight));
     position: absolute;
     border-radius: 50%;
-    background-color: hsl(0, 100%, 52%);
+    background-color: var(--theme-btn-color);
     box-sizing: border-box;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    border: 2px solid var(--theme-btn-color);
+    transform: rotate(-45deg);
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
-}
-
-.before-nebula1:before {
-    content: '';
-    width: calc(0.2*var(--btnHeight));
-    height: calc(0.2*var(--btnHeight));
-    top: calc(0.6*var(--btnHeight));
-    left: calc(0.25*var(--btnHeight));
-    position: absolute;
-    border-radius: 50%;
-    background-color: hsl(0, 100%, 52%);
-    box-sizing: border-box;
-    transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
-}
-
-.before-nebula1:after {
-    content: '';
-    width: calc(0.2*var(--btnHeight));
-    height: calc(0.2*var(--btnHeight));
-    top: calc(0.6*var(--btnHeight));
-    left: calc(0.25*var(--btnHeight));
-    position: absolute;
-    border-radius: 50%;
-    background-color: hsl(0, 100%, 52%);
-    box-sizing: border-box;
-    transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula1 {
@@ -159,7 +137,6 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula1:before {
@@ -173,7 +150,6 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 .nebula1:after {
@@ -187,47 +163,50 @@
     background-color: hsl(0, 0%, 100%);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
 }
 
 /* nebula2 */
 .before-nebula2 {
     content: '';
-    width: calc(0.2*var(--btnHeight));
-    height: calc(0.2*var(--btnHeight));
-    top: calc(0.1*var(--btnHeight));
-    left: calc(0.15*var(--btnHeight));
+    width: calc(0.05*var(--btnHeight));
+    height: calc(0.42*var(--btnHeight));
+    top: calc(0.03*var(--btnHeight));
+    left: calc(0.55*var(--btnHeight));
     position: absolute;
-    background-color: hsl(0, 100%, 52%);
+    background-color: var(--theme-btn-color);
     box-sizing: border-box;
     transition: .3s ease-in-out;
+    transform: rotate(-45deg);
+    border-radius: 50%;
     animation: nebula .3s ease-in-out;
 }
 
 .before-nebula2:before {
     content: '';
-    width: calc(0.2*var(--btnHeight));
-    height: calc(0.2*var(--btnHeight));
-    top: calc(0.1*var(--btnHeight));
-    left: calc(0.15*var(--btnHeight));
+    width: calc(0*var(--btnHeight));
+    height: calc(0*var(--btnHeight));
+    top: calc(0.11*var(--btnHeight));
+    left: calc(-0.3*var(--btnHeight));
     position: absolute;
-    background-color: hsl(0, 100%, 52%);
+    background-color: var(--theme-btn-color);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
+    border: calc(0.15*var(--btnHeight)) solid var(--theme-btn-color);
+    border-top-color: white;
+    border-right-color: white;
 }
 
 .before-nebula2:after {
     content: '';
-    width: calc(0.2*var(--btnHeight));
-    height: calc(0.2*var(--btnHeight));
-    top: calc(0.1*var(--btnHeight));
-    left: calc(0.15*var(--btnHeight));
+    width: calc(0.12*var(--btnHeight));
+    height: calc(0.54*var(--btnHeight));
+    top: calc(0.30*var(--btnHeight));
+    left: calc(-0.47*var(--btnHeight));
     position: absolute;
-    background-color: hsl(0, 100%, 52%);
+    background-color: var(--theme-btn-color);
     box-sizing: border-box;
     transition: .3s ease-in-out;
-    animation: nebula .3s ease-in-out;
+    transform: rotate(-45deg);
 }
 
 .nebula2 {
