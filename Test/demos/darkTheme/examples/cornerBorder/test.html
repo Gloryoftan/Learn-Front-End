@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../lib/jquery-ui.css">
+    <style>
+        #test {
+            --border: 1vh;
+            --border-len: 4vh;
+            --size: 20vh;
+            position: relative;
+            width: var(--size);
+            height: var(--size);
+            border: var(--border) solid black;
+            background-color: white;
+        }
+
+        #content {
+            position: relative;
+            z-index: 1;
+        }
+
+        #test.border::before {
+            content: "";
+            z-index: 0;
+            position: absolute;
+            top: calc(0px - var(--border));
+            bottom: calc(0px - var(--border));
+            left: var(--border-len);
+            right: var(--border-len);
+            background-color: white;
+        }
+
+        #test.border::after {
+            content: "";
+            z-index: 0;
+            position: absolute;
+            top: var(--border-len);
+            bottom: var(--border-len);
+            left: calc(0px - var(--border));
+            right: calc(0px - var(--border));
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test" class="border">
+        <div id="content">
+            这是准星边框的🌰哦
+        </div>
+    </div>
+
+    <script src="../../../../lib/jQuery-v3.4.1.js"></script>
+    <script src="../../../../lib/jquery-ui.js"></script>
+
+    <script>
+        $('#test').draggable();
+        $('#test').resizable();
+    </script>
+</body>
+
+</html>
