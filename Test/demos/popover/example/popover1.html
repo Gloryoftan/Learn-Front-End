@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        :root {
+            --arrow-width: 24px;
+            --arrow-height: calc(var(--arrow-width * (20 / 12)));
+            --fill-color: #f1f1f1;
+            --shadow: 0px 2px 5px rgba(0, 0, 0, .5);
+        }
+
+        body {
+            padding: 40px;
+        }
+
+        .shadow {
+            filter: drop-shadow(var(--shadow));
+        }
+
+        .popover {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .popover-box {
+            order: 2;
+            width: 300px;
+            height: 150px;
+            background-color: var(--fill-color);
+            border-radius: 5px;
+        }
+
+        .popover-arrow {
+            order: 1;
+            padding: 10px;
+            padding-bottom: 0;
+            overflow: hidden;
+        }
+
+        .triangle {
+            margin-bottom: -3px;
+            color: var(--fill-color);
+            display: block;
+            width: var(--arrow-width);
+            height: var(--arrow-height);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popover">
+        <div class="popover-box shadow"></div>
+        <div class="popover-arrow">
+            <svg width="24" height="16" viewBox="0 0 24 16" fill="currentColor"
+                stroke="currentColor" stroke-width="4" class="triangle shadow">
+                <polygon points="12,4 20,12 4,12" />
+            </svg>
+        </div>
+    </div>
+</body>
+
+</html>
