@@ -45,13 +45,90 @@
             right: calc(0px - var(--border));
             background-color: white;
         }
+
+        #test2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 200px;
+            min-height: 10vh;
+            font-family: sans-serif;
+            letter-spacing: 0.var(--border-width);
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: blue;
+            background-color: #333;
+            margin-bottom: 5px;
+
+            padding: var(--border-width);
+            background-image: linear-gradient(#333, #333),
+                linear-gradient(currentcolor, currentcolor),
+                linear-gradient(currentcolor, currentcolor),
+                linear-gradient(currentcolor, currentcolor),
+                linear-gradient(currentcolor, currentcolor);
+            background-position: center center,
+                top left, top right,
+                bottom left, bottom right;
+            background-size: calc(100% - .5em) calc(100% - .5em),
+                var(--border-width) var(--border-width), var(--border-width) var(--border-width),
+                var(--border-width) var(--border-width), var(--border-width) var(--border-width);
+            background-repeat: no-repeat;
+        }
+
+        #content2,
+        #content3 {
+            width: 200px;
+        }
+
+
+        :root{
+           --border-width:5vh;
+        }
+        #test3 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 200px;
+            min-height: 15vh;
+            font-size: 5vh;
+            font-weight: bold;
+            color: red;
+            background-color: #333;
+            background-image:
+                linear-gradient(blue, #333), linear-gradient(currentcolor, currentcolor),
+                linear-gradient(currentcolor, currentcolor),
+                linear-gradient(currentcolor, currentcolor),
+                linear-gradient(currentcolor, currentcolor);
+            background-position:
+                center center,
+                top left, top right,
+                bottom left, bottom right;
+            background-size: calc(100% - var(--border-width) / 2) calc(100% - var(--border-width) / 2),
+                var(--border-width) var(--border-width), var(--border-width) var(--border-width),
+                var(--border-width) var(--border-width), var(--border-width) var(--border-width);
+            background-repeat: no-repeat;
+        }
     </style>
 </head>
 
 <body>
     <div id="test" class="border">
         <div id="content">
-            这是准星边框的🌰哦
+            这是准星边框的🌰1哦
+        </div>
+    </div>
+
+    <div id="test2">
+        <div id="content2">
+            我是🌰2
+        </div>
+    </div>
+
+    <div id="test3">
+        <div id="content3">
+            我是🌰3
         </div>
     </div>
 

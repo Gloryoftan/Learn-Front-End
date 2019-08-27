@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto");
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        .hero-banner {
+            align-items: center;
+            background-image: url("https://images.unsplash.com/photo-1466853817435-05b43fe45b39?dpr=1&auto=format&fit=crop&w=1500&h=1090&q=80&cs=tinysrgb&crop=");
+            background-position: center center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            font-size: 6rem;
+            height: 100vh;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-banner__content {
+            color: #fff;
+            max-width: 850px;
+            padding: 60px 20px;
+            position: relative;
+            text-align: center;
+            text-shadow: 0px 0px 10px black;
+            text-transform: uppercase;
+        }
+
+        p {
+            line-height: 1.2;
+        }
+
+        .corner-borders::before,
+        .corner-borders::after {
+            border-color: white;
+            border-width: 8px;
+            content: '';
+            display: block;
+            height: 50px;
+            pointer-events: none;
+            position: absolute;
+            width: 50px;
+        }
+
+        .corner-borders--left::before,
+        .corner-borders--left::after {
+            left: 0;
+        }
+
+        .corner-borders--left::before {
+            border-left-style: solid;
+            border-top-style: solid;
+            top: 0;
+        }
+
+        .corner-borders--left::after {
+            border-bottom-style: solid;
+            border-left-style: solid;
+            bottom: 0;
+        }
+
+        .corner-borders--right::before,
+        .corner-borders--right::after {
+            right: 0;
+        }
+
+        .corner-borders--right::before {
+            border-right-style: solid;
+            border-top-style: solid;
+            top: 0;
+        }
+
+        .corner-borders--right::after {
+            border-bottom-style: solid;
+            border-right-style: solid;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Image from Unsplash -->
+    <!-- Any other ideas how I can achieve this effect on the borders, including a transparent background? I have seen it done with a circle/shape covering part of its parents border, but this needs to be transparent-->
+    <section class="hero-banner">
+        <div class="hero-banner__content">
+            <div class="corner-borders corner-borders--left"></div>
+            <div class="corner-borders corner-borders--right"></div>
+            <p>This bad boy has borders on the corners</p>
+        </div>
+    </section>
+</body>
+
+</html>

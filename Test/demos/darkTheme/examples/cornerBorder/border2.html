@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+        }
+
+        .border-corner {
+            display: inline-block;
+            position: relative;
+            padding: 25px;
+            margin: 25px;
+            animation: pad linear infinite 1.5s 2s;
+        }
+
+        .border-corner:after {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 20px;
+            height: 20px;
+            animation: wh linear 1.5s;
+            border-left: 1px solid #fff;
+            border-top: 1px solid #fff;
+        }
+
+        .border-corner:before {
+            content: "";
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 20px;
+            height: 20px;
+            animation: wh linear 1.5s;
+            border-right: 1px solid #fff;
+            border-top: 1px solid #fff;
+        }
+
+        .border-corner>div:after {
+            content: "";
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 20px;
+            height: 20px;
+            animation: wh linear 1.5s;
+            border-right: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        .border-corner>div:before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 20px;
+            height: 20px;
+            animation: wh linear 1.5s;
+            border-left: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        /* @keyframes wh {
+            0% {
+                width: 0px;
+                height: 0px;
+            }
+
+            50% {
+                width: 20px;
+                height: 0px;
+            }
+
+            100% {
+                width: 20px;
+                height: 20px;
+            }
+        } */
+
+        /* @keyframes pad {
+            0% {
+                padding: 25px;
+                margin: 25px;
+            }
+
+            30% {
+                filter: blur(0px);
+            }
+
+            50% {
+                padding: 50px;
+                margin: 0px;
+                filter: blur(3px);
+            }
+
+            70% {
+                filter: blur(0px);
+            }
+
+            100% {
+                padding: 25px;
+                margin: 25px;
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="border-corner">
+        <div>
+            Corner Border
+        </div>
+    </div>
+</body>
+
+</html>
