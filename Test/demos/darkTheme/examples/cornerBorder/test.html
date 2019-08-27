@@ -76,7 +76,7 @@
             background-repeat: no-repeat;
         }
 
-        #test2:hover{
+        #test2:hover {
             width: 400px;
         }
 
@@ -86,9 +86,10 @@
         }
 
 
-        :root{
-           --border-width:5vh;
+        :root {
+            --border-width: 5vh;
         }
+
         #test3 {
             display: flex;
             align-items: center;
@@ -105,7 +106,7 @@
                 linear-gradient(currentcolor, currentcolor),
                 linear-gradient(currentcolor, currentcolor),
                 linear-gradient(currentcolor, currentcolor);
-            background-position: center center,                  left, top right,                 bottom left, bottom right;
+            background-position: center center, left, top right, bottom left, bottom right;
             background-size: calc(100% - var(--border-width) / 2) calc(100% - var(--border-width) / 2),
                 var(--border-width) var(--border-width), var(--border-width) var(--border-width),
                 var(--border-width) var(--border-width), var(--border-width) var(--border-width);
@@ -148,7 +149,7 @@
 
         $('#test2').draggable();
         $('#test2').resizable();
-        
+
         $('#test3').draggable();
         $('#test3').resizable();
     </script>
