@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="canvas.css">
+</head>
+
+<body>
+    <div id="content">
+        <!-- demo1 -->
+        <div class="demo demo1">
+            <div class="title">Demo1 => 线 & 三角形 & 样式</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. moveTo
+                        <span>JavaScript 语法: context.lineTo(x,y);</span>
+                    </li>
+                    <li>2. lineTo
+                        <span>JavaScript 语法: context.moveTo(x,y);</span>
+                    </li>
+                    <li>3. stroke
+                        <span>JavaScript 语法: context.stroke();</span>
+                    </li>
+                    <li>4. fill
+                        <span>JavaScript 语法: context.fill();</span>
+                    </li>
+                    <li>5. fillStyle
+                        <span>JavaScript 语法: context.fillStyle=color|gradient|pattern;</span>
+                    </li>
+                    <li>6. strokeStyle
+                        <span>JavaScript 语法: context.strokeStyle=color|gradient|pattern;</span>
+                    </li>
+                    <li>7. createLinearGradient
+                        <span>JavaScript 语法: context.createLinearGradient(x0,y0,x1,y1);</span>
+                    </li>
+                    <li>8. createRadialGradient
+                        <span>JavaScript 语法: context.createRadialGradient(x0,y0,r0,x1,y1,r1);</span>
+                    </li>
+                    <li>9. createPattern
+                        <span>JavaScript 语法: context.createPattern(image,"repeat|repeat-x|repeat-y|no-repeat");</span>
+                    </li>
+                    <li>10. shadowColor
+                        <span>JavaScript 语法: context.shadowColor=color;</span>
+                    </li>
+                    <li>11. shadowBlur
+                        <span>JavaScript 语法: context.shadowBlur=number;</span>
+                    </li>
+                    <li>12. shadowOffset
+                        <span>JavaScript 语法: context.shadowOffsetX=number; & context.shadowOffsetY=number;</span>
+                    </li>
+                </ul>
+                <canvas id="demo1">
+                    浏览器不支持canvas，请升级浏览器。
+                </canvas>
+            </div>
+        </div>
+
+        <!-- demo2 -->
+        <div class="demo demo2">
+            <div class="title">Demo2 => 线 & 样式</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. lineWidth
+                        <span>JavaScript 语法: context.lineWidth=number;</span>
+                    </li>
+                    <li>2. lineCap
+                        <span>JavaScript 语法: context.lineCap="butt|round|square";</span>
+                    </li>
+                    <li>3. lineJoin
+                        <span>JavaScript 语法: context.lineJoin="bevel|round|miter";</span>
+                    </li>
+                    <li>4. miterLimit
+                        <span>JavaScript 语法: context.miterLimit=number;</span>
+                    </li>
+                </ul>
+                <canvas id="demo2">
+                    浏览器不支持canvas，请升级浏览器。
+                </canvas>
+            </div>
+        </div>
+
+        <!-- demo3 -->
+        <div class="demo demo3">
+            <div class="title">Demo3 => 矩形 & 清除</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. rect
+                        <span>JavaScript 语法： context.rect(x,y,width,height);</span>
+                    </li>
+                    <li>2. strokeRect
+                        <span>JavaScript 语法：context.strokeRect(x,y,width,height);</span>
+                    </li>
+                    <li>3. fillRect
+                        <span>JavaScript 语法： context.fillRect(x,y,width,height);</span>
+                    </li>
+                    <li>4. clearRect
+                        <span>JavaScript 语法：context.clearRect(x,y,width,height);</span>
+                    </li>
+                </ul>
+                <canvas id="demo3">
+                    浏览器不支持canvas，请升级浏览器。
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* demo-mark-1 */
+        (function () {
+            let canvas = document.getElementById('demo1');
+            let context = canvas.getContext('2d');
+
+            canvas.width = 800;
+            canvas.height = 500;
+            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+
+            // context.moveTo(100, 100);
+            // context.lineTo(100, 400);
+            // context.lineTo(500, 400);
+            // context.lineTo(100, 100);
+
+            /* stroke */
+            // context.strokeStyle = "hsl(0, 83%, 73%)";
+            // context.stroke();
+
+            /* fill */
+            // context.fillStyle = "hsl(196, 54%, 55%)";
+            // context.fill();
+
+            /* 渐变 */
+            // let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+            // let my_gradient = context.createLinearGradient(100, 100, 400, 100);
+            // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+            // my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+            // my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+            // context.fillStyle = my_gradient;
+            // context.fill();
+
+            /* 辐射渐变 */
+            // var my_gradient = context.createRadialGradient(200, 300, 25, 200, 300, 150);
+            // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+            // my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+            // context.fillStyle = my_gradient;
+            // context.fill();
+
+            /* 图案pattern */
+            // var imgs = new Image();
+            // imgs.src = "img/icecream.png";
+            // imgs.width = '50';
+            // imgs.height = '50';
+            // imgs.id = 'pic';
+            // document.querySelector("body .demo1").appendChild(imgs);
+            // setTimeout(() => {
+            //     var img1 = document.getElementById("pic");
+            //     var pat = context.createPattern(img1, "repeat");
+            //     context.fillStyle = pat;
+            //     context.fill();
+            // }, 150);
+
+            /* 阴影 */
+            // canvas.style.background = "hsl(0,0%,90%)";
+            // context.fillStyle = "hsl(0,0%,100%)";
+            // context.shadowBlur = 6;
+            // context.shadowColor = "black";
+            // context.fill();
+
+            /* 阴影偏移 */
+            // canvas.style.background = "hsl(0,0%,90%)";
+            // context.fillStyle = "hsl(0,0%,100%)";
+            // context.shadowBlur = 10;
+            // context.shadowColor = "black";
+            // context.shadowOffsetX = 30;
+            // context.shadowOffsetY = 10;
+            // context.fill();
+
+            let oDemo = document.querySelector('#content .demo1 .title')
+            let aLi = document.querySelectorAll('#content .demo1 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+                context.shadowBlur = 0;
+                context.shadowOffsetX = 0;
+                context.shadowOffsetY = 0;
+            }
+
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                context.strokeStyle = "hsl(0,0%,0%)";
+                context.stroke();
+            }
+            aLi[3].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                context.fillStyle = "hsl(0,0%,0%)";
+                context.fill();
+            }
+            aLi[4].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                context.fillStyle = "hsl(196, 54%, 55%)";
+                context.fill();
+            }
+            aLi[5].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                context.strokeStyle = "hsl(0, 83%, 73%)";
+                context.stroke();
+            }
+            aLi[6].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+                my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+                my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+                my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+                context.fillStyle = my_gradient;
+                context.fill();
+            }
+            aLi[7].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                var my_gradient = context.createRadialGradient(200, 300, 25, 200, 300, 150);
+                my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+                my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+                context.fillStyle = my_gradient;
+                context.fill();
+            }
+            aLi[8].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                var imgs = new Image();
+                imgs.src = "img/icecream.png";
+                imgs.width = '50';
+                imgs.height = '50';
+                imgs.id = 'pic';
+                document.querySelector("body .demo1").appendChild(imgs);
+                setTimeout(() => {
+                    var img1 = document.getElementById("pic");
+                    var pat = context.createPattern(img1, "repeat");
+                    context.fillStyle = pat;
+                    context.fill();
+                }, 150);
+            }
+            aLi[9].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                canvas.style.background = "hsl(0,0%,90%)";
+                context.fillStyle = "hsl(0,0%,100%)";
+                context.shadowBlur = 6;
+                context.shadowColor = "black";
+                context.fill();
+            }
+            aLi[10].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                canvas.style.background = "hsl(0,0%,90%)";
+                context.fillStyle = "hsl(0,0%,100%)";
+                context.shadowOffsetX = 0;
+                context.shadowOffsetY = 0;
+                context.shadowBlur = 6;
+                context.shadowColor = "black";
+                context.fill();
+            }
+            aLi[11].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(100, 400);
+                context.lineTo(500, 400);
+                context.lineTo(100, 100);
+                canvas.style.background = "hsl(0,0%,90%)";
+                context.fillStyle = "hsl(0,0%,100%)";
+                context.shadowBlur = 10;
+                context.shadowColor = "black";
+                context.shadowOffsetX = 30;
+                context.shadowOffsetY = 10;
+                context.fill();
+            }
+        })();
+
+        /* demo-mark-2 */
+        (function () {
+            let canvas = document.getElementById('demo2');
+            let context = canvas.getContext('2d');
+
+            canvas.width = 800;
+            canvas.height = 500;
+            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+
+            context.moveTo(200, 300);
+            context.lineTo(500, 300);
+
+            /* lineWidth */
+            // context.lineWidth = 20;
+            // context.stroke();
+
+            /* lineCap 线帽 */
+            // context.lineWidth = 30;
+            // context.beginPath();
+            // context.moveTo(200, 300);
+            // context.lineTo(500, 300);
+            // context.lineCap = 'butt';
+            // context.stroke();
+
+            // context.beginPath();
+            // context.moveTo(200, 100);
+            // context.lineTo(500, 100);
+            // context.lineCap = 'round';
+            // context.stroke();
+
+            // context.beginPath();
+            // context.moveTo(200, 200);
+            // context.lineTo(500, 200);
+            // context.lineCap = 'square';
+
+            // context.stroke();
+
+            /* lineJoin */
+            // context.moveTo(200, 300);
+            // context.lineTo(500, 300);
+            // context.lineTo(200, 100);
+            // context.lineWidth = 30;
+            // context.lineJoin = 'bevel';
+            // context.stroke();
+
+            // context.lineWidth = 30;
+            // context.beginPath();
+            // context.moveTo(20, 300);
+            // context.lineTo(220, 300);
+            // context.lineTo(20, 200);
+            // context.lineJoin = 'bevel';
+            // context.stroke();
+
+            // context.beginPath();
+            // context.moveTo(270, 300);
+            // context.lineTo(470, 300);
+            // context.lineTo(270, 200);
+            // context.lineJoin = 'round';
+            // context.stroke();
+
+            // context.beginPath();
+            // context.moveTo(520, 300);
+            // context.lineTo(720, 300);
+            // context.lineTo(520, 200);
+            // context.lineJoin = 'miter';
+            // context.stroke();
+
+            /* miterLimit */
+            // context.moveTo(200, 300);
+            // context.lineTo(500, 300);
+            // context.lineTo(200, 100);
+            // context.lineWidth = 30;
+            // context.miterLimit = 10;
+            // context.stroke();
+
+            let oDemo = document.querySelector('#content .demo2 .title')
+            let aLi = document.querySelectorAll('#content .demo2 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(200, 300);
+                context.lineTo(500, 300);
+                context.lineWidth = 20;
+                context.stroke();
+            }
+
+            aLi[1].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.lineWidth = 30;
+                context.beginPath();
+                context.moveTo(200, 300);
+                context.lineTo(500, 300);
+                context.lineCap = 'butt';
+                context.stroke();
+
+                context.beginPath();
+                context.moveTo(200, 100);
+                context.lineTo(500, 100);
+                context.lineCap = 'round';
+                context.stroke();
+
+                context.beginPath();
+                context.moveTo(200, 200);
+                context.lineTo(500, 200);
+                context.lineCap = 'square';
+
+                context.stroke();
+            }
+        })();
+
+        /* demo-mark-3 */
+        (function () {
+            let canvas = document.getElementById('demo3');
+            let context = canvas.getContext('2d');
+
+            canvas.width = 800;
+            canvas.height = 500;
+            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+
+            /* rect */
+            context.lineWidth = 6;
+            // context.moveTo(300, 200);
+            // context.lineTo(500,200);
+            // context.lineTo(500,300);
+            // context.lineTo(300,300);
+            // context.lineTo(300, 200);
+            // context.stroke();
+
+            // context.rect(300,200,200,100);
+            // context.lineJoin = 'round';
+            // context.stroke();
+
+            /* strokeRect */
+            // context.lineJoin = 'bevel';
+            // context.strokeStyle = 'hsl(47, 95%, 76%)';
+            // context.strokeRect(300,200,200,100);
+
+            /* fillRect */
+            // let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+            // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+            // my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+            // my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+            // context.fillStyle = my_gradient;
+            // context.fillRect(300, 200, 200, 100);
+
+            /* clearRect */
+            // let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+            // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+            // my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+            // my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+            // context.fillStyle = my_gradient;
+            // context.fillRect(100, 100, 600, 300);
+            // context.clearRect(150, 150, 50, 50);
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+:root {
+    --color-1: hsl(217, 66%, 70%);
+    --color-2: hsl(246, 81%, 81%);
+
+    --color-3: hsl(196, 54%, 55%);
+    --color-4: hsl(174, 47%, 52%);
+
+    --color-5: hsl(209, 71%, 62%);
+    --color-6: hsl(195, 66%, 60%);
+
+    --color-7: hsl(0, 83%, 73%);
+    --color-8: hsl(47, 95%, 76%);
+    --color-9: hsl(87, 100%, 91%);
+    --color-10: hsl(169, 56%, 73%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    background: #333;
+}
+
+#content,
+.demo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.blackboard {
+    display: flex;
+    flex-direction: row;
+}
+
+ul.knowledge {
+    padding: 30px;
+    width: 280px;
+}
+
+ul.knowledge li {
+    margin-bottom: 10px;
+    list-style: none;
+    /* transition:  font-size ease-in-out .1s; */
+    cursor: pointer;
+}
+
+ul.knowledge li span {
+    position: absolute;
+    top: 33px;
+    left: 0;
+    margin-left: -50px;
+    display: none;
+}
+
+ul.knowledge li:hover {
+    font-size: 26px;
+}
+
+ul.knowledge li:hover span {
+    display: flex;
+}
+
+canvas {
+    background-color: hsl(0, 0%, 30%);
+    margin: 20px 0 100px 0;
+}
+
+#pic {
+    display: none;
+}
