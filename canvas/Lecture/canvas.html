@@ -142,14 +142,70 @@
                     <li>2. closePath
                         <span>JavaScript 语法： context.closePath();</span>
                     </li>
-                    <li>3.
-                        <span>JavaScript 语法： context.fillRect(x,y,width,height);</span>
-                    </li>
-                    <li>4.
-                        <span>JavaScript 语法： context.clearRect(x,y,width,height);</span>
-                    </li>
                 </ul>
                 <canvas id="demo5">
+                    浏览器不支持canvas，请升级浏览器。
+                </canvas>
+            </div>
+        </div>
+
+        <!-- demo6 -->
+        <div class="demo demo6">
+            <div class="title">Demo6 => 文本</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. strokeText
+                        <span>JavaScript 语法： context.strokeText(text,x,y,maxWidth);</span>
+                    </li>
+                    <li>2. fillText
+                        <span>JavaScript 语法： context.fillText(text,x,y,maxWidth);</span>
+                    </li>
+                    <li>3. font
+                        <span>JavaScript 语法： context.font="font-style font-variant font-weight font-size
+                            font-family";</span>
+                    </li>
+                    <li>3.1 font-size & font-family
+                        <span>JavaScript 语法： context.font="font-size font-family";</span>
+                    </li>
+                    <li>3.2 font-style
+                        <span>JavaScript 语法： context.font="font-style font-size font-family";</span>
+                    </li>
+                    <li>3.3 font-variant
+                        <span>JavaScript 语法： context.font="font-variant font-size font-family";</span>
+                    </li>
+                    <li>3.4 font-weight
+                        <span>JavaScript 语法： context.font="font-weight font-size font-family";</span>
+                    </li>
+                    <li>4. textAlign
+                        <span>JavaScript 语法： context.textAlign="center|end|left|right|start";</span>
+                    </li>
+                    <li>5. textBaseline
+                        <span>JavaScript 语法：
+                            context.textBaseline="alphabetic|top|hanging|middle|ideographic|bottom";</span>
+                    </li>
+                </ul>
+                <canvas id="demo6">
+                    浏览器不支持canvas，请升级浏览器。
+                </canvas>
+            </div>
+        </div>
+
+        <!-- demo7 -->
+        <div class="demo demo7">
+            <div class="title">Demo7 => 图像</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. drawImage
+                        <span>JavaScript 语法： context.drawImage(img,x,y);</span>
+                    </li>
+                    <li>2. drawImage
+                        <span>JavaScript 语法： context.drawImage(img,x,y,width,height);</span>
+                    </li>
+                    <li>3. drawImage
+                        <span>JavaScript 语法： context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);</span>
+                    </li>
+                </ul>
+                <canvas id="demo7">
                     浏览器不支持canvas，请升级浏览器。
                 </canvas>
             </div>
@@ -166,6 +222,9 @@
                     </li>
                     <li>2. isPointInPath
                         <span>JavaScript 语法： context.isPointInPath(x,y);</span>
+                    </li>
+                    <li>3. measureText
+                        <span>JavaScript 语法： context.measureText(text).width;</span>
                     </li>
 
 
@@ -236,13 +295,11 @@
             // imgs.width = '50';
             // imgs.height = '50';
             // imgs.id = 'pic';
-            // document.querySelector("body .demo1").appendChild(imgs);
-            // setTimeout(() => {
-            //     var img1 = document.getElementById("pic");
-            //     var pat = context.createPattern(img1, "repeat");
+            // imgs.onload = function () {
+            //     var pat = context.createPattern(imgs, "repeat");
             //     context.fillStyle = pat;
             //     context.fill();
-            // }, 150);
+            // }
 
             /* 阴影 */
             // canvas.style.background = "hsl(0,0%,90%)";
@@ -350,13 +407,11 @@
                 imgs.width = '50';
                 imgs.height = '50';
                 imgs.id = 'pic';
-                document.querySelector("body .demo1").appendChild(imgs);
-                setTimeout(() => {
-                    var img1 = document.getElementById("pic");
-                    var pat = context.createPattern(img1, "repeat");
+                imgs.onload = function () {
+                    var pat = context.createPattern(imgs, "repeat");
                     context.fillStyle = pat;
                     context.fill();
-                }, 150);
+                }
             }
             aLi[9].onclick = function () {
                 context.clearRect(0, 0, 800, 500);
@@ -571,7 +626,7 @@
 
             canvas.width = 800;
             canvas.height = 500;
-            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
             /* quadraticCurveTo */
             // context.lineWidth=10;
@@ -601,7 +656,7 @@
             // context.bezierCurveTo(200, 400, 600, 400, 600, 200);
             // context.stroke();
 
-            /* 显示控制线  */
+            /* 显示控制线 */
             // context.lineWidth = 10;
             // context.moveTo(200, 200);
             // context.bezierCurveTo(200, 400, 600, 400, 600, 200);
@@ -623,6 +678,36 @@
             // context.closePath();
             // context.stroke();
 
+            /* arc */
+            // context.lineWidth = 6;
+            // context.arc(400, 250, 100, 0, 2 * Math.PI, false);
+            // context.stroke();
+
+            /* arcTo */
+            // context.lineWidth = 6;
+            // context.moveTo(200, 200);
+            // context.lineTo(400, 200);
+            // context.arcTo(500, 200, 500, 300, 100);
+            // context.lineTo(500, 400);
+            // context.stroke();
+
+            /* 显示切线 */
+            // context.lineWidth = 6;
+            // context.moveTo(200, 200);
+            // context.lineTo(400, 200);
+            // context.arcTo(500, 200, 500, 300, 100);
+            // context.stroke();
+            // context.beginPath();
+            // context.setLineDash([6]);
+            // context.moveTo(400, 200);
+            // context.lineTo(500, 200);
+            // context.lineTo(500, 300);
+            // context.stroke();
+            // context.beginPath();
+            // context.setLineDash([0]);
+            // context.moveTo(500, 300);
+            // context.lineTo(500, 400);
+            // context.stroke();
         })();
 
         /* demo-mark-5 */
@@ -663,6 +748,130 @@
             // context.lineTo(400, 300);
             // context.lineTo(350, 200);
             // context.stroke();
+        })();
+
+        /* demo-mark-6 */
+        (function () {
+            let canvas = document.getElementById('demo6');
+            let context = canvas.getContext('2d');
+
+            canvas.width = 800;
+            canvas.height = 500;
+            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+
+            /* strokeText & fillText */
+            // context.font = '50px Gill Sans';
+            // context.strokeText('strokeText', 300, 200, 200);
+            // context.fillText('fillText', 300, 300, 200);
+
+            /* font */
+            /* .font-size和font-family不能够省略，且位置不能够互换: */
+            // context.font = '40px';
+            // context.fillText('Canvas', 300, 100);
+
+            // context.font = 'Gill Sans';
+            // context.fillText('Canvas', 300, 150);
+
+            // context.font = 'Gill Sans 40px';
+            // context.fillText('Canvas', 300, 200);
+
+            // context.font = '40px Gill Sans';
+            // context.fillText('Canvas', 300, 250);
+
+            /* font-style */
+            // context.font = 'normal 40px Gill Sans';
+            // context.fillText('normal', 300, 100);
+            // context.font = 'italic 40px Gill Sans'
+            // context.fillText('italic', 300, 200);
+            // context.font = 'oblique 40px Gill Sans'
+            // context.fillText('oblique', 300, 300);
+
+            /* font-variant 字体变体*/
+            // context.font = 'normal normal 40px Gill Sans';
+            // context.fillText('normal', 300, 100);
+            // context.font = 'normal small-caps 40px Gill Sans'
+            // context.fillText('small-caps', 300, 200);
+
+            /* font-weight 粗细*/
+            // context.font = 'normal small-caps normal 40px Gill Sans';
+            // context.fillText('normal', 300, 100);
+            // context.font = 'normal small-caps bold 40px Gill Sans'
+            // context.fillText('bold', 300, 150);
+            // context.font = 'normal small-caps bolder 40px Gill Sans'
+            // context.fillText('bolder', 300, 200);
+            // context.font = 'normal small-caps lighter 40px Gill Sans'
+            // context.fillText('lighter', 300, 250);
+            // context.font = 'normal small-caps 100 40px Gill Sans'
+            // context.fillText('100', 300, 300);
+            // context.font = 'normal small-caps 200 40px Gill Sans'
+            // context.fillText('200', 300, 350);
+            // context.font = 'normal small-caps 400 40px Gill Sans'
+            // context.fillText('400', 300, 400);
+            // context.font = 'normal small-caps 1000 40px Gill Sans'
+            // context.fillText('1000', 300, 450);
+
+            /* textAlign */
+            // context.strokeStyle = "hsl(47, 95%, 76%)";
+            // context.lineWidth = 6;
+            // context.moveTo(400, 110);
+            // context.lineTo(400, 400);
+            // context.stroke();
+
+            // context.font = '30px Gill Sans';
+            // context.textAlign = "center";
+            // context.fillText("textAlign=center", 400, 150);
+
+            // context.textAlign = "start";
+            // context.fillText("textAlign=start", 400, 200);
+
+            // context.textAlign = "end";
+            // context.fillText("textAlign=end", 400, 250);
+
+            // context.textAlign = "right";
+            // context.fillText("textAlign=right", 400, 300);
+
+            // context.textAlign = "left";
+            // context.fillText("textAlign=left", 400, 350);
+
+            /* textBaseline */
+            // context.strokeStyle = "hsl(47, 95%, 76%)";
+            // context.lineWidth = 6;
+            // context.moveTo(100, 250);
+            // context.lineTo(700, 250);
+            // context.stroke();
+
+            // context.font = '30px Gill Sans';
+
+            // context.textBaseline = "top";
+            // context.fillText("Top", 100, 250);
+            // context.textBaseline = "bottom";
+            // context.fillText("Bottom", 170, 250);
+            // context.textBaseline = "middle";
+            // context.fillText("Middle", 300, 250);
+            // context.textBaseline = "alphabetic";
+            // context.fillText("Alphabetic", 420, 250);
+            // context.textBaseline = "hanging";
+            // context.fillText("Hanging", 570, 250);
+        })();
+
+        /* demo-mark-7 */
+        (function () {
+            let canvas = document.getElementById('demo7');
+            let context = canvas.getContext('2d');
+
+            canvas.width = 800;
+            canvas.height = 500;
+            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+
+            let img = new Image();
+            img.src = 'img/img.jpeg';
+            img.onload = function(){
+                // context.drawImage(img,0,0);
+                // context.drawImage(img,0,0,50,50);
+                // context.drawImage(img,300,150,200,200);
+                // context.drawImage(img,0,500,200,200,300,150,200,200);
+            }
+
         })();
     </script>
 </body>
