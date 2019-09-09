@@ -922,13 +922,28 @@
             // }
             // context.putImageData(imgData, 300, 150);
 
-            
+
             let img2 = new Image();
             img2.src = 'img/canvas2.jpg';
             img2.onload = function () {
                 context.drawImage(img2, 0, 0);
-
+                let imgData = context.getImageData(0, 0, 800, 500);
+                let red = imgData.data[0];
+                let green = imgData.data[1];
+                let blue = imgData.data[2];
+                let alpha = imgData.data[3];
+                alert(red + " " + green + " " + blue + " " + alpha);
             }
+
+            // let imgData = context.getImageData(0, 0, 800, 500);
+            // // 反转颜色
+            // for (var i = 0; i < imgData.data.length; i += 4) {
+            //     imgData.data[i] = 255 - imgData.data[i];
+            //     imgData.data[i + 1] = 255 - imgData.data[i + 1];
+            //     imgData.data[i + 2] = 255 - imgData.data[i + 2];
+            //     imgData.data[i + 3] = 255;
+            // }
+            // context.putImageData(imgData, 0, 0);
 
 
 
