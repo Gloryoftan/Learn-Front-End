@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 50px;
+            height: 25px;
+            margin-bottom: 50px;
+            border: 1px solid black;
+        }
+
+        .div1 {
+            background: linear-gradient(to right, hsl(54, 100%, 93%) 5%, hsl(54, 100%, 73%) 30%, #FF8C42 75%, #FF3C38 100%);
+        }
+
+        .div2 {
+            background: linear-gradient(to right, hsl(50, 100%, 91%) 10%, hsl(50, 100%, 71%) 40%, hsl(0, 100%, 71%) 100%);
+        }
+
+        .div3 {
+            background: linear-gradient(to right, #F2F3AE 10%, #EDD382 40%, #FC9E4F 70%, #F4442E 100%);
+        }
+
+        .div4 {
+            background: linear-gradient(to right, hsl(54, 100%, 93%) 5%, hsl(54, 100%, 73%) 20%, #FF8C42 75%, #FF3C38 100%);
+        }
+
+        .div5 {
+            background: linear-gradient(to right, hsl(50, 100%, 91%) 10%, hsl(50, 100%, 71%) 50%, hsl(0, 100%, 71%) 100%);
+        }
+
+        .div6 {
+            background: linear-gradient(to right, hsl(50, 100%, 91%) 10%, hsl(50, 100%, 71%) 40%, hsl(15, 100%, 71%) 100%);
+        }
+
+        .div7 {
+            background: linear-gradient(to right, hsl(54, 100%, 93%) 2%, hsl(54, 100%, 73%) 20%, hsl(23, 100%, 63%) 75%, hsl(10, 100%, 61%) 100%);
+        }
+
+        .div10 {
+            --width: 50vh;
+            width: var(--width);
+            height: 100px;
+            background-image: linear-gradient(to right, white 0%, white 100%), linear-gradient(to right, hsl(54, 100%, 93%) 2%, hsl(54, 100%, 73%) 20%, hsl(23, 100%, 63%) 75%, hsl(10, 100%, 61%) 100%);
+            background-position: top right, center center;
+            background-size: calc(0.2 * var(--width)) 100px, var(--width) 100px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    <div class="div5"></div>
+    <div class="div6"></div>
+    <div class="div7"></div>
+    <div class="div10"></div>
+</body>
+
+</html>
