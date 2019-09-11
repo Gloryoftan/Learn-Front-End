@@ -1084,7 +1084,7 @@
 
             canvas.width = 800;
             canvas.height = 500;
-            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
 
             /* beginPath */
             // context.lineWidth = 10;
@@ -1134,6 +1134,67 @@
             // console.log(context.isPointInPath(300, 150));
             // context.fillText('(300,150)在路径上吗？' + _Text, 100, 40);
             // context.fillText('(100,150)在路径上吗？' + _Text2, 100, 80);
+
+            let oDemo = document.querySelector('#content .demo5 .title')
+            let aLi = document.querySelectorAll('#content .demo5 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.lineWidth = 10;
+                context.strokeStyle = 'hsl(0, 83%, 73%)';
+                context.moveTo(200, 200);
+                context.lineTo(400, 200);
+                context.stroke();
+
+                context.strokeStyle = 'hsl(47, 95%, 76%)';
+                context.beginPath();
+                context.moveTo(200, 300);
+                context.lineTo(400, 300);
+                context.stroke();
+            }
+
+            aLi[1].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.lineWidth = 10;
+                context.strokeStyle = 'hsl(47, 95%, 76%)';
+                context.moveTo(200, 200);
+                context.lineTo(400, 200);
+                context.lineTo(300, 400);
+                context.closePath();
+                context.stroke();
+            }
+
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.rect(50, 50, 200, 120);
+                context.stroke();
+                context.clip();
+                context.fillStyle = "hsl(0, 83%, 73%)";
+                context.fillRect(0, 0, 350, 200);
+            }
+
+            aLi[3].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.lineWidth = 6;
+                context.strokeStyle = 'hsl(47, 95%, 76%)';
+                context.rect(300, 150, 250, 175);
+                context.stroke();
+                context.font = '20px Gill Sans';
+                let _Text = context.isPointInPath(300, 150);
+                let _Text2 = context.isPointInPath(100, 150);
+                console.log(context.isPointInPath(300, 150));
+                context.fillText('(300,150)在路径上吗？' + _Text, 100, 40);
+                context.fillText('(100,150)在路径上吗？' + _Text2, 100, 80);
+            }
         })();
 
         /* demo-mark-6 */
@@ -1143,7 +1204,7 @@
 
             canvas.width = 800;
             canvas.height = 500;
-            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
 
             /* strokeText & fillText */
             // context.font = '50px Gill Sans';
@@ -1244,6 +1305,148 @@
             // var _Text = 'Canvas';
             // context.fillText("width:" + context.measureText(_Text).width, 10, 50);
             // context.fillText('Canvas', 300, 250);
+
+            let oDemo = document.querySelector('#content .demo6 .title')
+            let aLi = document.querySelectorAll('#content .demo6 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = '50px Gill Sans';
+                context.strokeStyle = "black";
+                context.lineWidth = 1;
+                context.strokeText('strokeText', 300, 200, 200);
+                context.fillText('fillText', 300, 300, 200);
+            }
+
+            aLi[1].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = '50px Gill Sans';
+                context.strokeStyle = "black";
+                context.lineWidth = 1;
+                context.strokeText('strokeText', 300, 200, 200);
+                context.fillText('fillText', 300, 300, 200);
+            }
+
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = '40px Gill Sans';
+                context.fillText('Canvas', 300, 250);
+            }
+
+            aLi[3].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = '20px Arial';
+                context.fillText('Canvas', 300, 250);
+            }
+
+            aLi[4].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = 'normal 40px Gill Sans';
+                context.fillText('normal', 300, 100);
+                context.font = 'italic 40px Gill Sans'
+                context.fillText('italic', 300, 200);
+                context.font = 'oblique 40px Gill Sans'
+                context.fillText('oblique', 300, 300);
+            }
+
+            aLi[5].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = 'normal normal 40px Gill Sans';
+                context.fillText('normal', 300, 100);
+                context.font = 'normal small-caps 40px Gill Sans'
+                context.fillText('small-caps', 300, 200);
+            }
+
+            aLi[6].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = 'normal small-caps normal 40px Gill Sans';
+                context.fillText('normal', 300, 100);
+                context.font = 'normal small-caps bold 40px Gill Sans'
+                context.fillText('bold', 300, 150);
+                context.font = 'normal small-caps bolder 40px Gill Sans'
+                context.fillText('bolder', 300, 200);
+                context.font = 'normal small-caps lighter 40px Gill Sans'
+                context.fillText('lighter', 300, 250);
+                context.font = 'normal small-caps 100 40px Gill Sans'
+                context.fillText('100', 300, 300);
+                context.font = 'normal small-caps 200 40px Gill Sans'
+                context.fillText('200', 300, 350);
+                context.font = 'normal small-caps 400 40px Gill Sans'
+                context.fillText('400', 300, 400);
+                context.font = 'normal small-caps 1000 40px Gill Sans'
+                context.fillText('1000', 300, 450);
+            }
+
+            aLi[7].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.strokeStyle = "hsl(47, 95%, 76%)";
+                context.lineWidth = 6;
+                context.moveTo(400, 110);
+                context.lineTo(400, 400);
+                context.stroke();
+
+                context.font = '30px Gill Sans';
+                context.textAlign = "center";
+                context.fillText("textAlign=center", 400, 150);
+
+                context.textAlign = "start";
+                context.fillText("textAlign=start", 400, 200);
+
+                context.textAlign = "end";
+                context.fillText("textAlign=end", 400, 250);
+
+                context.textAlign = "right";
+                context.fillText("textAlign=right", 400, 300);
+
+                context.textAlign = "left";
+                context.fillText("textAlign=left", 400, 350);
+
+            }
+
+            aLi[8].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.strokeStyle = "hsl(47, 95%, 76%)";
+                context.lineWidth = 6;
+                context.moveTo(100, 250);
+                context.lineTo(700, 250);
+                context.stroke();
+
+                context.font = '30px Gill Sans';
+
+                context.textBaseline = "top";
+                context.fillText("Top", 100, 250);
+                context.textBaseline = "bottom";
+                context.fillText("Bottom", 170, 250);
+                context.textBaseline = "middle";
+                context.fillText("Middle", 300, 250);
+                context.textBaseline = "alphabetic";
+                context.fillText("Alphabetic", 420, 250);
+                context.textBaseline = "hanging";
+                context.fillText("Hanging", 570, 250);
+            }
+
+            aLi[9].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.font = '40px Gill Sans';
+                var _Text = 'Canvas';
+                context.fillText("width:" + context.measureText(_Text).width, 10, 50);
+                context.fillText('Canvas', 300, 250);
+            }
         })();
 
         /* demo-mark-7 */
@@ -1253,7 +1456,7 @@
 
             canvas.width = 800;
             canvas.height = 500;
-            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
             /* drawImage */
             // let img = new Image();
@@ -1299,8 +1502,8 @@
             // let img2 = new Image();
             // img2.src = 'img/canvas2.jpg';
             // img2.onload = function () {
-            //     // context.drawImage(img2, 0, 0);
-            //     // let imgData = context.getImageData(0, 0, 800, 500);
+            //     context.drawImage(img2, 0, 0);
+            //     let imgData = context.getImageData(0, 0, 800, 500);
 
             //     // // 反转颜色
             //     // for (var i = 0; i < imgData.data.length; i += 4) {
@@ -1316,11 +1519,165 @@
             // let img3 = new Image();
             // img3.src = 'img/canvas2.jpg';
             // img3.onload = function () {
-            //     // context.drawImage(img3, 0, 0, 940 / 3, 679 / 3);
-            //     // let imgData = context.getImageData(0, 0, 940 / 3, 679 / 3);
+            //     context.drawImage(img3, 0, 0, 940 / 3, 679 / 3);
+            //     let imgData = context.getImageData(0, 0, 940 / 3, 679 / 3);
             //     // context.putImageData(imgData, 400, 150);
             //     // context.putImageData(imgData, 400, 150, 0, 0, 940 / 6, 679 / 6);
             // }
+
+            let oDemo = document.querySelector('#content .demo7 .title')
+            let aLi = document.querySelectorAll('#content .demo7 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                let img = new Image();
+                img.src = 'img/img.jpeg';
+                img.onload = function () {
+                    context.drawImage(img, 0, 0);
+                }
+            }
+
+            aLi[1].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                let img = new Image();
+                img.src = 'img/img.jpeg';
+                img.onload = function () {
+                    context.drawImage(img, 300, 150, 200, 200);
+                }
+            }
+
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                let img = new Image();
+                img.src = 'img/img.jpeg';
+                img.onload = function () {
+                    context.drawImage(img, 0, 500, 200, 200, 300, 150, 200, 200);
+                }
+            }
+
+            aLi[3].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                var imgData = context.createImageData(200, 100);
+                for (var i = 0; i < imgData.data.length; i += 4) {
+                    imgData.data[i + 0] = 255;
+                    imgData.data[i + 1] = 0;
+                    imgData.data[i + 2] = 0;
+                    imgData.data[i + 3] = 255;
+                }
+                context.putImageData(imgData, 300, 150);
+            }
+
+            aLi[4].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                var imgData = context.createImageData(200, 100);
+                for (var i = 0; i < imgData.data.length; i += 4) {
+                    imgData.data[i + 0] = 255;
+                    imgData.data[i + 1] = 0;
+                    imgData.data[i + 2] = 0;
+                    imgData.data[i + 3] = 255;
+                }
+                context.putImageData(imgData, 300, 150);
+            }
+
+            aLi[5].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                var imgData = context.createImageData(200, 100);
+                for (var i = 0; i < imgData.data.length; i += 4) {
+                    imgData.data[i + 0] = 255;
+                    imgData.data[i + 1] = 0;
+                    imgData.data[i + 2] = 0;
+                    imgData.data[i + 3] = 255;
+                }
+                context.putImageData(imgData, 300, 150);
+                context.font = '20px Gill Sans';
+                context.fillText("imgData.width=" + imgData.width, 100, 150);
+                context.fillText("imgData.height=" + imgData.height, 100, 200);
+            }
+
+            aLi[6].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                var imgData = context.createImageData(200, 100);
+                for (var i = 0; i < imgData.data.length; i += 4) {
+                    imgData.data[i + 0] = 255;
+                    imgData.data[i + 1] = 0;
+                    imgData.data[i + 2] = 0;
+                    imgData.data[i + 3] = 255;
+                }
+                context.putImageData(imgData, 300, 150);
+
+
+                context.font = '20px Gill Sans';
+                context.fillText("imgData.width=" + imgData.width, 100, 150);
+                context.fillText("imgData.height=" + imgData.height, 100, 200);
+            }
+
+            aLi[7].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+
+                var imgData = context.createImageData(200, 100);
+                for (var i = 0; i < imgData.data.length; i += 4) {
+                    imgData.data[i + 0] = 255;
+                    imgData.data[i + 1] = 0;
+                    imgData.data[i + 2] = 0;
+                    imgData.data[i + 3] = 255;
+                }
+                context.putImageData(imgData, 300, 150);
+
+                context.font = '20px Gill Sans';
+                context.fillText("imgData.height=" + imgData, 100, 300);
+                for (var i = 0; i < imgData.data.length / 4; i += 4) {
+                    imgData.data[i + 0] = 0;
+                    imgData.data[i + 1] = 0;
+                    imgData.data[i + 2] = 0;
+                    imgData.data[i + 3] = 255;
+                }
+                context.putImageData(imgData, 300, 150);
+            }
+
+            aLi[8].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                let img2 = new Image();
+                img2.src = 'img/canvas2.jpg';
+                img2.onload = function () {
+                    context.drawImage(img2, 0, 0);
+                    let imgData = context.getImageData(0, 0, 800, 500);
+                    // 反转颜色
+                    for (var i = 0; i < imgData.data.length; i += 4) {
+                        imgData.data[i] = 255 - imgData.data[i];
+                        imgData.data[i + 1] = 255 - imgData.data[i + 1];
+                        imgData.data[i + 2] = 255 - imgData.data[i + 2];
+                        imgData.data[i + 3] = 255;
+                    }
+                    context.putImageData(imgData, 0, 0);
+                }
+            }
+
+            aLi[9].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                let img3 = new Image();
+                img3.src = 'img/canvas2.jpg';
+                img3.onload = function () {
+                    context.drawImage(img3, 0, 0, 940 / 3, 679 / 3);
+                    let imgData = context.getImageData(0, 0, 940 / 3, 679 / 3);
+                    // context.putImageData(imgData, 400, 150);
+                    context.putImageData(imgData, 400, 150, 0, 0, 940 / 6, 679 / 6);
+                }
+            }
         })();
 
         /* demo-mark-8 */
@@ -1331,7 +1688,6 @@
             canvas.width = 800;
             canvas.height = 500;
             // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
-
             /* scale */
             // context.strokeRect(10, 10, 150, 75);
             // context.scale(2, 2);
@@ -1356,6 +1712,49 @@
 
             let oDemo = document.querySelector('#content .demo8 .title')
             let aLi = document.querySelectorAll('#content .demo8 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.save();
+                context.beginPath();
+                context.strokeRect(10, 10, 150, 75);
+                context.scale(2, 2);
+                context.strokeRect(10, 10, 150, 75);
+                context.scale(2, 2);
+                context.strokeRect(10, 10, 150, 75);
+                context.restore();
+            }
+
+            aLi[1].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.save();
+                context.beginPath();
+                context.strokeRect(300, 150, 150, 75);
+                context.rotate(30 * Math.PI / 180);
+                context.strokeRect(300, 150, 150, 75);
+
+                context.strokeRect(0, 0, 150, 75);
+                context.rotate(30 * Math.PI / 180);
+                context.strokeRect(0, 0, 150, 75);
+                context.restore();
+            }
+
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.save();
+                context.beginPath();
+                context.strokeRect(300, 150, 150, 75);
+                context.translate(300, 150);
+                context.rotate(30 * Math.PI / 180);
+                context.strokeRect(0, 0, 150, 75);
+                context.restore();
+            }
+
             // for (i = 0; i < aLi.length; i++) {
             //     console.log(i + "#####" + aLi[i].innerHTML)
             // }
@@ -1546,8 +1945,9 @@
 
             canvas.width = 800;
             canvas.height = 500;
-            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
 
+            /* globalAlpha */
             // context.fillStyle = "hsl(0, 83%, 73%)";
             // context.fillRect(100, 100, 200, 100);
             // context.globalAlpha = 0.5;
@@ -1560,6 +1960,26 @@
             let oDemo = document.querySelector('#content .demo9 .title')
             let aLi = document.querySelectorAll('#content .demo9 ul li');
             let styleToggle = 0;
+
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.save();
+                context.beginPath();
+                context.fillStyle = "hsl(0, 83%, 73%)";
+                context.fillRect(100, 100, 200, 100);
+                context.globalAlpha = 0.5;
+                context.fillRect(300, 250, 200, 100);
+                context.fillStyle = 'hsl(47, 95%, 76%)';
+                context.fillRect(350, 300, 200, 100);
+                context.restore();
+            }
+
             // for (i = 0; i < aLi.length; i++) {
             //     console.log(i + "#####" + aLi[i].innerHTML)
             // }
@@ -1617,7 +2037,49 @@
             canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
             /* save & restore */
-            context.font = '40px Gill Sans'
+            // context.font = '40px Gill Sans'
+            // context.fillStyle = 'hsl(0, 83%, 73%)';
+            // context.fillRect(100, 50, 200, 100);
+            // context.fillText('1', 100, 50);
+            // context.save();
+
+            // context.fillStyle = 'hsl(47, 95%, 76%)';
+            // context.fillRect(100, 200, 200, 100);
+            // context.fillText('2', 100, 200);
+            // context.save();
+
+            // context.fillStyle = 'lightblue';
+            // context.fillRect(100, 350, 200, 100);
+            // context.fillText('3', 100, 350);
+            // context.save();
+
+            // context.restore();
+            // context.fillRect(500, 50, 200, 100);
+            // context.fillText('4', 500, 50);
+
+            // context.restore();
+            // context.fillRect(500, 200, 200, 100);
+            // context.fillText('5', 500, 200);
+
+            // context.restore();
+            // context.fillRect(500, 350, 200, 100);
+            // context.fillText('6', 500, 350);
+
+            let oDemo = document.querySelector('#content .demo10 .title')
+            let aLi = document.querySelectorAll('#content .demo10 ul li');
+            let styleToggle = 0;
+
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.save();
+                context.beginPath();
+ context.font = '40px Gill Sans'
             context.fillStyle = 'hsl(0, 83%, 73%)';
             context.fillRect(100, 50, 200, 100);
             context.fillText('1', 100, 50);
@@ -1644,6 +2106,8 @@
             context.restore();
             context.fillRect(500, 350, 200, 100);
             context.fillText('6', 500, 350);
+            context.restore();
+            }
 
         })();
     </script>
