@@ -669,27 +669,24 @@
             // context.stroke();
 
             /* lineCap 线帽 */
-            context.lineWidth = 30;
-            context.beginPath();
-            context.moveTo(200, 300);
-            context.lineTo(500, 300);
-            context.lineCap = 'butt';
-            context.stroke();
-            context.font = '30px Gill Sans';
-            context.fillText('butt', 200, 300);
+            // context.lineWidth = 30;
+            // context.beginPath();
+            // context.moveTo(200, 300);
+            // context.lineTo(500, 300);
+            // context.lineCap = 'butt';
+            // context.stroke();
 
-            context.beginPath();
-            context.moveTo(200, 100);
-            context.lineTo(500, 100);
-            context.lineCap = 'round';
-            context.stroke();
+            // context.beginPath();
+            // context.moveTo(200, 100);
+            // context.lineTo(500, 100);
+            // context.lineCap = 'round';
+            // context.stroke();
 
-            context.beginPath();
-            context.moveTo(200, 200);
-            context.lineTo(500, 200);
-            context.lineCap = 'square';
-
-            context.stroke();
+            // context.beginPath();
+            // context.moveTo(200, 200);
+            // context.lineTo(500, 200);
+            // context.lineCap = 'square';
+            // context.stroke();
 
             /* lineJoin */
             // context.moveTo(200, 300);
@@ -748,24 +745,67 @@
 
             aLi[1].onclick = function () {
                 context.clearRect(0, 0, 800, 500);
+                context.font = '30px Gill Sans';
                 context.lineWidth = 30;
                 context.beginPath();
                 context.moveTo(200, 300);
                 context.lineTo(500, 300);
                 context.lineCap = 'butt';
                 context.stroke();
+                context.fillText('butt', 200, 280);
 
                 context.beginPath();
                 context.moveTo(200, 100);
                 context.lineTo(500, 100);
                 context.lineCap = 'round';
                 context.stroke();
+                context.fillText('round', 200, 80);
 
                 context.beginPath();
                 context.moveTo(200, 200);
                 context.lineTo(500, 200);
                 context.lineCap = 'square';
+                context.fillText('square', 200, 180);
+                context.stroke();
+            }
 
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.font = '30px Gill Sans';
+                context.lineWidth = 30;
+                context.beginPath();
+                context.moveTo(20, 300);
+                context.lineTo(220, 300);
+                context.lineTo(20, 200);
+                context.lineJoin = 'bevel';
+                context.stroke();
+                context.fillText('bevel', 20, 350);
+
+                context.beginPath();
+                context.moveTo(270, 300);
+                context.lineTo(470, 300);
+                context.lineTo(270, 200);
+                context.lineJoin = 'round';
+                context.stroke();
+                context.fillText('round', 270, 350);
+
+                context.beginPath();
+                context.moveTo(520, 300);
+                context.lineTo(720, 300);
+                context.lineTo(520, 200);
+                context.lineJoin = 'miter';
+                context.stroke();
+                context.fillText('miter', 520, 350);
+            }
+
+            aLi[3].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.moveTo(200, 300);
+                context.lineTo(500, 300);
+                context.lineTo(200, 200);
+                context.lineWidth = 30;
+                context.miterLimit = 2;
                 context.stroke();
             }
         })();
@@ -813,6 +853,54 @@
             // context.fillStyle = my_gradient;
             // context.fillRect(100, 100, 600, 300);
             // context.clearRect(150, 150, 50, 50);
+
+            let oDemo = document.querySelector('#content .demo3 .title')
+            let aLi = document.querySelectorAll('#content .demo3 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.strokeStyle = 'black';
+                context.rect(300, 200, 200, 100);
+                context.lineJoin = 'round';
+                context.stroke();
+            }
+
+            aLi[1].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.lineJoin = 'bevel';
+                context.strokeStyle = 'hsl(47, 95%, 76%)';
+                context.strokeRect(300, 200, 200, 100);
+            }
+
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+                my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+                my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+                my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+                context.fillStyle = my_gradient;
+                context.fillRect(300, 200, 200, 100);
+            }
+
+            aLi[3].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+                my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+                my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+                my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+                context.fillStyle = my_gradient;
+                context.fillRect(100, 100, 600, 300);
+                context.clearRect(150, 150, 50, 50);
+            }
         })();
 
         /* demo-mark-4 */
@@ -825,10 +913,9 @@
             // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
             /* quadraticCurveTo */
-            // context.lineWidth=10;
-            // context.moveTo(200,200);
-            // context.lineTo(600,200);
-            // context.quadraticCurveTo(300,400,600,200);
+            // context.lineWidth = 10;
+            // context.moveTo(200, 200);
+            // context.quadraticCurveTo(200, 400, 600, 200);
             // context.stroke();
 
             /* 显示控制线 */
@@ -904,6 +991,90 @@
             // context.moveTo(500, 300);
             // context.lineTo(500, 400);
             // context.stroke();
+
+            let oDemo = document.querySelector('#content .demo4 .title')
+            let aLi = document.querySelectorAll('#content .demo4 ul li');
+            oDemo.onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                canvas.style.background =
+                    "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+            }
+
+            aLi[0].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.lineWidth = 10;
+                context.setLineDash([0]);
+                context.moveTo(200, 200);
+                context.quadraticCurveTo(200, 400, 600, 200);
+                context.stroke();
+
+                context.lineWidth = 1;
+                context.setLineDash([5]);
+                context.beginPath();
+                context.moveTo(200, 200);
+                context.lineTo(200, 400);
+                context.lineTo(600, 200);
+                context.closePath();
+                context.stroke();
+            }
+
+            aLi[1].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.setLineDash([0]);
+                context.lineWidth = 10;
+                context.moveTo(200, 200);
+                context.bezierCurveTo(200, 400, 600, 400, 600, 200);
+                context.stroke();
+
+                context.lineWidth = 1;
+                context.setLineDash([5]);
+                context.beginPath();
+                context.moveTo(200, 200);
+                context.lineTo(200, 400);
+                context.lineTo(600, 200);
+                context.closePath();
+                context.stroke();
+
+                context.beginPath();
+                context.moveTo(200, 200);
+                context.lineTo(600, 200);
+                context.lineTo(600, 400);
+                context.closePath();
+                context.stroke();
+            }
+
+            aLi[2].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.lineWidth = 6;
+                context.setLineDash([0]);
+                context.arc(400, 250, 100, 0, 2 * Math.PI, false);
+                context.stroke();
+            }
+
+            aLi[3].onclick = function () {
+                context.clearRect(0, 0, 800, 500);
+                context.beginPath();
+                context.lineWidth = 6;
+                context.setLineDash([0]);
+                context.moveTo(200, 200);
+                context.lineTo(400, 200);
+                context.arcTo(500, 200, 500, 300, 100);
+                context.stroke();
+                context.beginPath();
+                context.setLineDash([6]);
+                context.moveTo(400, 200);
+                context.lineTo(500, 200);
+                context.lineTo(500, 300);
+                context.stroke();
+                context.beginPath();
+                context.setLineDash([0]);
+                context.moveTo(500, 300);
+                context.lineTo(500, 400);
+                context.stroke();
+            }
         })();
 
         /* demo-mark-5 */
