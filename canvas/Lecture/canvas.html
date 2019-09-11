@@ -142,6 +142,12 @@
                     <li>2. closePath
                         <span>JavaScript 语法： context.closePath();</span>
                     </li>
+                    <li>3. clip
+                        <span>JavaScript 语法： context.clip();</span>
+                    </li>
+                    <li>4. isPointInPath
+                        <span>JavaScript 语法： context.isPointInPath(x,y);</span>
+                    </li>
                 </ul>
                 <canvas id="demo5">
                     浏览器不支持canvas，请升级浏览器。
@@ -182,6 +188,9 @@
                     <li>5. textBaseline
                         <span>JavaScript 语法：
                             context.textBaseline="alphabetic|top|hanging|middle|ideographic|bottom";</span>
+                    </li>
+                    <li>6. measureText
+                        <span>JavaScript 语法： context.measureText(text).width;</span>
                     </li>
                 </ul>
                 <canvas id="demo6">
@@ -375,17 +384,39 @@
                     <li>2. globalCompositeOperation
                         <span>JavaScript 语法： context.globalCompositeOperation="source-in";</span>
                     </li>
-                    <li>2.1 source-atop</li>
-                    <li>2.2 source-in</li>
-                    <li>2.3 source-in</li>
-                    <li>2.4 source-in</li>
-                    <li>2.5 source-in</li>
-                    <li>2.6 source-in</li>
-                    <li>2.7 source-in</li>
-                    <li>2.8 source-in</li>
-                    <li>2.9 source-in</li>
-                    <li>2.10 source-in</li>
-                    <li>2.11 source-in</li>
+                    <li>source-atop
+                        <span>=>在目标图像顶部显示源图像。源图像位于目标图像之外的部分是不可见的。</span>
+                    </li>
+                    <li>source-in
+                        <span>=>在目标图像中显示源图像。只有目标图像内的源图像部分会显示，目标图像是透明的。</span>
+                    </li>
+                    <li>source-out
+                        <span>=>在目标图像之外显示源图像。只会显示目标图像之外源图像部分，目标图像是透明的。</span>
+                    </li>
+                    <li>source-over
+                        <span>=>默认。在目标图像上显示源图像。</span>
+                    </li>
+                    <li>destination-atop
+                        <span>=>在源图像顶部显示目标图像。源图像之外的目标图像部分不会被显示。</span>
+                    </li>
+                    <li>destination-in
+                        <span>=>在源图像中显示目标图像。只有源图像内的目标图像部分会被显示，源图像是透明的。</span>
+                    </li>
+                    <li>destination-out
+                        <span>=>在源图像外显示目标图像。只有源图像外的目标图像部分会被显示，源图像是透明的。</span>
+                    </li>
+                    <li>destination-over
+                        <span>=>在源图像上方显示目标图像。</span>
+                    </li>
+                    <li>lighter
+                        <span>=>显示源图像 + 目标图像。</span>
+                    </li>
+                    <li>copy
+                        <span>=>显示源图像。忽略目标图像。</span>
+                    </li>
+                    <li>xor
+                        <span>=>使用异或操作对源图像与目标图像进行组合。</span>
+                    </li>
                 </ul>
                 <canvas id="demo9">
                     浏览器不支持canvas，请升级浏览器。
@@ -393,42 +424,23 @@
             </div>
         </div>
 
-
-        <!-- demoX -->
-        <div class="demo demo4">
-            <div class="title">Demo4 => 路径</div>
+        <!-- demo10 -->
+        <div class="demo demo10">
+            <div class="title">Demo10 => 其他</div>
             <div class="blackboard">
                 <ul class="knowledge">
-                    <li>1. clip
-                        <span>JavaScript 语法： context.clip();</span>
+                    <li>1. save
+                        <span>JavaScript 语法： context.save();</span>
                     </li>
-                    <li>2. isPointInPath
-                        <span>JavaScript 语法： context.isPointInPath(x,y);</span>
-                    </li>
-                    <li>3. measureText
-                        <span>JavaScript 语法： context.measureText(text).width;</span>
-                    </li>
-
-
-
-
-
-
-
-                    <li>3.
-                        <span>JavaScript 语法： context.fillRect(x,y,width,height);</span>
-                    </li>
-                    <li>4.
-                        <span>JavaScript 语法： context.clearRect(x,y,width,height);</span>
+                    <li>2. restore
+                        <span>JavaScript 语法： context.restore();</span>
                     </li>
                 </ul>
-                <canvas id="demo4">
+                <canvas id="demo10">
                     浏览器不支持canvas，请升级浏览器。
                 </canvas>
             </div>
         </div>
-
-
 
     </div>
 
@@ -657,25 +669,27 @@
             // context.stroke();
 
             /* lineCap 线帽 */
-            // context.lineWidth = 30;
-            // context.beginPath();
-            // context.moveTo(200, 300);
-            // context.lineTo(500, 300);
-            // context.lineCap = 'butt';
-            // context.stroke();
+            context.lineWidth = 30;
+            context.beginPath();
+            context.moveTo(200, 300);
+            context.lineTo(500, 300);
+            context.lineCap = 'butt';
+            context.stroke();
+            context.font = '30px Gill Sans';
+            context.fillText('butt', 200, 300);
 
-            // context.beginPath();
-            // context.moveTo(200, 100);
-            // context.lineTo(500, 100);
-            // context.lineCap = 'round';
-            // context.stroke();
+            context.beginPath();
+            context.moveTo(200, 100);
+            context.lineTo(500, 100);
+            context.lineCap = 'round';
+            context.stroke();
 
-            // context.beginPath();
-            // context.moveTo(200, 200);
-            // context.lineTo(500, 200);
-            // context.lineCap = 'square';
+            context.beginPath();
+            context.moveTo(200, 200);
+            context.lineTo(500, 200);
+            context.lineCap = 'square';
 
-            // context.stroke();
+            context.stroke();
 
             /* lineJoin */
             // context.moveTo(200, 300);
@@ -899,7 +913,7 @@
 
             canvas.width = 800;
             canvas.height = 500;
-            // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
 
             /* beginPath */
             // context.lineWidth = 10;
@@ -930,6 +944,25 @@
             // context.lineTo(400, 300);
             // context.lineTo(350, 200);
             // context.stroke();
+
+            /* clip */
+            // context.rect(50,50,200,120);
+            // context.stroke();
+            // context.clip();
+            // context.fillStyle="hsl(0, 83%, 73%)";
+            // context.fillRect(0,0,350,200);
+
+            /* isPointInPath */
+            // context.lineWidth = 6;
+            // context.strokeStyle = 'hsl(47, 95%, 76%)';
+            // context.rect(300, 150, 250, 175);
+            // context.stroke();
+            // context.font = '20px Gill Sans';
+            // let _Text = context.isPointInPath(300, 150);
+            // let _Text2 = context.isPointInPath(100, 150);
+            // console.log(context.isPointInPath(300, 150));
+            // context.fillText('(300,150)在路径上吗？' + _Text, 100, 40);
+            // context.fillText('(100,150)在路径上吗？' + _Text2, 100, 80);
         })();
 
         /* demo-mark-6 */
@@ -1034,6 +1067,12 @@
             // context.fillText("Alphabetic", 420, 250);
             // context.textBaseline = "hanging";
             // context.fillText("Hanging", 570, 250);
+
+            /* measureText */
+            // context.font = '40px Gill Sans';
+            // var _Text = 'Canvas';
+            // context.fillText("width:" + context.measureText(_Text).width, 10, 50);
+            // context.fillText('Canvas', 300, 250);
         })();
 
         /* demo-mark-7 */
@@ -1146,9 +1185,9 @@
 
             let oDemo = document.querySelector('#content .demo8 .title')
             let aLi = document.querySelectorAll('#content .demo8 ul li');
-            for (i = 0; i < aLi.length; i++) {
-                console.log(i + "#####" + aLi[i].innerHTML)
-            }
+            // for (i = 0; i < aLi.length; i++) {
+            //     console.log(i + "#####" + aLi[i].innerHTML)
+            // }
 
             for (i = 5; i < aLi.length; i++) {
                 aLi[i].style.display = 'none';
@@ -1318,7 +1357,6 @@
 
             let renderTransPara = function (i) {
                 let transPara = aLi[i].innerText;
-                console.log();
                 context.clearRect(0, 0, 800, 500);
                 context.setTransform(transPara.split(',')[0], transPara.split(',')[1], transPara.split(',')[2],
                     transPara.split(',')[3], transPara.split(',')[4], transPara.split(',')[5]);
@@ -1348,6 +1386,93 @@
 
             /* globalCompositeOperation */
 
+            let oDemo = document.querySelector('#content .demo9 .title')
+            let aLi = document.querySelectorAll('#content .demo9 ul li');
+            let styleToggle = 0;
+            // for (i = 0; i < aLi.length; i++) {
+            //     console.log(i + "#####" + aLi[i].innerHTML)
+            // }
+
+            for (i = 2; i < aLi.length; i++) {
+                aLi[i].style.display = 'none';
+            }
+
+            aLi[1].onclick = function () {
+                if (styleToggle == 0) {
+                    for (i = 2; i < aLi.length; i++) {
+                        aLi[i].style.display = 'flex';
+                    }
+                    styleToggle = 1;
+                } else {
+                    for (i = 2; i < aLi.length; i++) {
+                        aLi[i].style.display = 'none';
+                    }
+                    styleToggle = 0;
+                }
+            }
+
+            for (i = 2; i < aLi.length; i++) {
+                let j = i;
+                aLi[i].onclick = function () {
+                    composite(j);
+                    console.log(j);
+                }
+            }
+
+            let composite = function (i) {
+                let compPara = trim(aLi[i].innerText.split('=>')[0]);
+                context.clearRect(0, 0, 800, 500);
+                context.globalCompositeOperation = 'source-over';
+                context.fillStyle = 'hsl(0, 83%, 73%)';
+                context.fillRect(250, 150, 200, 100);
+                context.globalCompositeOperation = compPara;
+                context.fillStyle = 'hsl(47, 95%, 76%)';
+                context.fillRect(350, 200, 200, 100);
+                console.log(compPara);
+            }
+
+            function trim(s) {
+                return s.replace(/(^\s*)|(\s*$)/g, "");
+            }
+        })();
+
+        /* demo-mark-10 */
+        (function () {
+            let canvas = document.getElementById('demo10');
+            let context = canvas.getContext('2d');
+
+            canvas.width = 800;
+            canvas.height = 500;
+            canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+
+            /* save & restore */
+            context.font = '40px Gill Sans'
+            context.fillStyle = 'hsl(0, 83%, 73%)';
+            context.fillRect(100, 50, 200, 100);
+            context.fillText('1', 100, 50);
+            context.save();
+
+            context.fillStyle = 'hsl(47, 95%, 76%)';
+            context.fillRect(100, 200, 200, 100);
+            context.fillText('2', 100, 200);
+            context.save();
+
+            context.fillStyle = 'lightblue';
+            context.fillRect(100, 350, 200, 100);
+            context.fillText('3', 100, 350);
+            context.save();
+
+            context.restore();
+            context.fillRect(500, 50, 200, 100);
+            context.fillText('4', 500, 50);
+
+            context.restore();
+            context.fillRect(500, 200, 200, 100);
+            context.fillText('5', 500, 200);
+
+            context.restore();
+            context.fillRect(500, 350, 200, 100);
+            context.fillText('6', 500, 350);
 
         })();
     </script>
