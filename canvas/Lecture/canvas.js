@@ -1676,7 +1676,7 @@
 
       canvas.width = 800;
       canvas.height = 500;
-    //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
 
       /* toDataURL */
       // context.fillStyle = "white";
@@ -1815,51 +1815,61 @@
       //   blackboard.appendChild(canvasHide);
 
       /* isPointInPath */
-    //   context.lineWidth = 6;
-    //   context.beginPath();
-    //   context.arc(250, 250, 100, 0, 2 * Math.PI, false);
-    //   context.stroke();
-    //   context.beginPath();
-    //   context.arc(550, 250, 100, 0, 2 * Math.PI, false);
-    //   context.stroke();
+      //   context.lineWidth = 6;
+      //   context.beginPath();
+      //   context.arc(250, 250, 100, 0, 2 * Math.PI, false);
+      //   context.stroke();
+      //   context.beginPath();
+      //   context.arc(550, 250, 100, 0, 2 * Math.PI, false);
+      //   context.stroke();
 
-    //   canvas.addEventListener("click", function (event) {
-    //       let x = getMousePosX(canvas, event);
-    //       let y = getMousePosY(canvas, event);
+      //   canvas.addEventListener("click", function (event) {
+      //       let x = getMousePosX(canvas, event);
+      //       let y = getMousePosY(canvas, event);
 
-    //       context.beginPath();
-    //       context.arc(250, 250, 100, 0, 2 * Math.PI, false);
-    //       if (context.isPointInPath(x, y)) {
-    //           context.save();
-    //           context.fillStyle = 'hsl(0, 83%, 73%)';
-    //           context.beginPath();
-    //           context.arc(250, 250, 100, 0, 2 * Math.PI, false);
-    //           context.fill();
-    //           context.restore();
-    //       } else {
-    //           context.beginPath();
-    //           context.arc(550, 250, 100, 0, 2 * Math.PI, false);
-    //           if (context.isPointInPath(x, y)) {
-    //               context.save();
-    //               context.fillStyle = 'hsl(47, 95%, 76%)';
-    //               context.beginPath();
-    //               context.arc(550, 250, 100, 0, 2 * Math.PI, false);
-    //               context.fill();
-    //               context.restore();
-    //           }
-    //       }
-    //   });
+      //       context.beginPath();
+      //       context.arc(250, 250, 100, 0, 2 * Math.PI, false);
+      //       if (context.isPointInPath(x, y)) {
+      //           context.save();
+      //           context.fillStyle = 'hsl(0, 83%, 73%)';
+      //           context.beginPath();
+      //           context.arc(250, 250, 100, 0, 2 * Math.PI, false);
+      //           context.fill();
+      //           context.restore();
+      //       } else {
+      //           context.beginPath();
+      //           context.arc(550, 250, 100, 0, 2 * Math.PI, false);
+      //           if (context.isPointInPath(x, y)) {
+      //               context.save();
+      //               context.fillStyle = 'hsl(47, 95%, 76%)';
+      //               context.beginPath();
+      //               context.arc(550, 250, 100, 0, 2 * Math.PI, false);
+      //               context.fill();
+      //               context.restore();
+      //           }
+      //       }
+      //   });
 
-    //   function getMousePosX(canvas, event) {
-    //       var rect = canvas.getBoundingClientRect();
-    //       var x = event.clientX - rect.left * (canvas.width / rect.width);
-    //       var y = event.clientY - rect.top * (canvas.height / rect.height);
-    //       return x;
-    //   }
+      //   function getMousePosX(canvas, event) {
+      //       var rect = canvas.getBoundingClientRect();
+      //       var x = event.clientX - rect.left * (canvas.width / rect.width);
+      //       var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //       return x;
+      //   }
 
-    //   function getMousePosY(canvas, event) {
-    //       var rect = canvas.getBoundingClientRect();
-    //       var y = event.clientY - rect.top * (canvas.height / rect.height);
-    //       return y;
-    //   }
+      //   function getMousePosY(canvas, event) {
+      //       var rect = canvas.getBoundingClientRect();
+      //       var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //       return y;
+      //   }
+      let oDemo = document.querySelector('#content .demo11 .title')
+      let aLi = document.querySelectorAll('#content .demo11 ul li');
+      oDemo.onclick = function () {
+          context.clearRect(0, 0, 800, 500);
+          canvas.style.background =
+              "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+          context.shadowBlur = 0;
+          context.shadowOffsetX = 0;
+          context.shadowOffsetY = 0;
+      }
   })();
