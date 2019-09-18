@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #333;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #container svg {
+            width: 600px;
+            height: 400px;
+            background: -webkit-linear-gradient(bottom, hsl(209, 71%, 62%), hsl(195, 66%, 60%));
+        }
+
+        #svg {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #svg svg {
+            width: 80vh;
+            height: 50vh;
+            margin: auto;
+            background: -webkit-linear-gradient(bottom, hsl(196, 54%, 55%), hsl(174, 47%, 52%));
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <canvas id="canvas"></canvas>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <text x="20" y="50" fill="hsl(0, 83%, 73%)" font-size="50px" font-family="Gill Sans">I love SVG</text>
+            <rect x="20" y="70" width="200" height="100" fill="none" stroke="black" stroke-width="3" />
+            <circle cx="120" cy="260" r="60" stroke="black" stroke-width="2" fill="hsl(47, 95%, 76%)" />
+        </svg>
+    </div>
+
+    <div id="svg">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <text x="3vh" y="6vh" fill="hsl(0, 83%, 73%)" font-size="6vh" font-family="Gill Sans">I love SVG</text>
+            <rect x="3vh" y="12vh" width="28vh" height="13vh" fill="none" stroke="black" stroke-width="3" />
+            <circle cx="18vh" cy="38vh" r="8vh" stroke="black" stroke-width="2" fill="hsl(47, 95%, 76%)" />
+        </svg>
+    </div>
+    <script src="../lib/jQuery-v3.4.1.js"></script>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let context = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 400;
+        canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+
+        context.beginPath();
+        context.save();
+        context.fillStyle = "hsl(0, 83%, 73%)";
+        context.font = '50px Gill Sans'
+        context.fillText('I love Canvas', 20, 50);
+        context.restore();
+
+        context.beginPath();
+        context.save();
+        context.lineWidth = 3;
+        context.strokeRect(20, 70, 200, 100);
+        context.restore();
+
+        context.beginPath();
+        context.save();
+        context.fillStyle = "hsl(47, 95%, 76%)";
+        context.arc(120, 260, 60, 0, 2 * Math.PI, false);
+        context.fill();
+        context.stroke();
+        context.restore();
+
+        let oCircle = document.querySelector("svg circle");
+        oCircle.onclick = function () {
+            $(oCircle).attr('fill', 'hsl(0, 83%, 73%)');
+        }
+    </script>
+</body>
+
+</html>
