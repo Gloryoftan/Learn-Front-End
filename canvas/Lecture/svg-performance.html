@@ -58,7 +58,7 @@
             _HTML +=
                 `<line x1="2" y1="${i}" x2="198" y2="${i}" style="stroke:hsl(0, 83%, 73%);stroke-width:3" class="line"></line>>`;
             _HTML += ` <polygon points="2,${i-1} 4,${i} 2,${i+1}" style="fill:white;stroke:hsl(47, 95%, 76%);stroke-width:2">
-                <animateMotion attributeName="x" path="M 0 0 H 190" begin="1s" dur='5s' repeatCount="indefinite">
+                <animateMotion attributeName="x" path="M 0 0 H 190" dur='3s' repeatCount="indefinite" begin="0s;">
                 </animateMotion>
             </polygon>`;
         }
@@ -68,12 +68,12 @@
 
         $('.line').on('mouseenter', function () {
             $(this).attr('style', 'stroke:hsl(0, 93%, 53%);stroke-width:4');
-            $(this).next().attr('style','fill:white;stroke:hsl(47, 95%, 76%);stroke-width:3');
+            $(this).next().attr('style', 'fill:white;stroke:hsl(47, 95%, 76%);stroke-width:3');
         });
 
         $('.line').on('mouseleave', function () {
             $(this).attr('style', 'stroke:hsl(0, 83%, 73%);stroke-width:3');
-            $(this).next().attr('style','fill:white;stroke:hsl(47, 95%, 76%);stroke-width:2');
+            $(this).next().attr('style', 'fill:white;stroke:hsl(47, 95%, 76%);stroke-width:2');
         });
     </script>
 </body>
