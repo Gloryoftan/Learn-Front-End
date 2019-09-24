@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>内容输出</title>
+</head>
+
+<body>
+
+
+    <div id="app"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type='text/babel'>
+
+        let chars = ['Harry James Potter','Hermione Jean Granger','Ronald Bilius "Ron" Weasley'];
+        let pros = {
+            headmaster:'Albus Percival Wulfric Brian Dumbledore',
+            darkMagic:'Severus Snape',
+            viceheadmaster:'Minerva McGonagal'
+        }
+
+        ReactDOM.render(
+            <div>
+                <h1>Hello React!</h1>
+                <h3>{3*3}</h3>
+                <h1 className = 'heading' style ={{color:'red'}}>Heading with style & class</h1>
+               <ul>
+               {
+                chars.map((char,index) =>{
+                       return <li key={index}>{char}</li>
+                   } )
+               }
+               </ul>
+               <ul>
+               {
+                Object.keys(pros).map((pro,index)=>{
+                    return <li key={index}>{pro} - {pros[pro]}</li>
+                })
+               }
+               </ul>
+            </div>,
+            document.getElementById('app'),
+        )
+    </script>
+
+</body>
+
+</html>
