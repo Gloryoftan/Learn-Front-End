@@ -5,12 +5,12 @@
 
       canvas.width = 800;
       canvas.height = 500;
-      // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
-      // context.moveTo(100, 100);
-      // context.lineTo(100, 400);
-      // context.lineTo(500, 400);
-      // context.lineTo(100, 100);
+      //   context.moveTo(100, 100);
+      //   context.lineTo(100, 400);
+      //   context.lineTo(500, 400);
+      //   context.lineTo(100, 100);
 
       /* stroke */
       // context.strokeStyle = "hsl(47, 95%, 76%)";
@@ -20,23 +20,41 @@
       // context.fillStyle = "hsl(196, 54%, 55%)";
       // context.fill();
 
-      /* 渐变 */
-      // let my_gradient = context.createLinearGradient(100, 100, 100, 400);
-      // let my_gradient = context.createLinearGradient(100, 100, 400, 100);
-      // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
-      // my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
-      // my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
-      // context.fillStyle = my_gradient;
-      // context.fill();
+      /* 渐变
+       * x0 渐变开始点的 x 坐标
+       * y0 渐变开始点的 y 坐标
+       * x1 渐变结束点的 x 坐标
+       * y1 渐变结束点的 y 坐标
+       */
+      //   let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+      //   // let my_gradient = context.createLinearGradient(100, 100, 400, 100);
+      //   my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+      //   my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+      //   my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+      //   context.fillStyle = my_gradient;
+      //   context.fill();
 
-      /* 辐射渐变 */
-      // var my_gradient = context.createRadialGradient(200, 300, 25, 200, 300, 150);
-      // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
-      // my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
-      // context.fillStyle = my_gradient;
-      // context.fill();
+      /* 辐射渐变 
+       * x0 渐变的开始圆的 x 坐标
+       * y0 渐变的开始圆的 y 坐标
+       * r0 开始圆的半径
+       * x1 渐变的结束圆的 x 坐标
+       * y1 渐变的结束圆的 y 坐标
+       * r1 结束圆的半径
+       */
+      //   var my_gradient = context.createRadialGradient(200, 300, 25, 200, 300, 150);
+      //   my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+      //   my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+      //   context.fillStyle = my_gradient;
+      //   context.fill();
 
-      /* 图案pattern */
+      /* 图案pattern
+       * image 规定要使用的图片、画布或视频元素。
+       * repeat 默认。该模式在水平和垂直方向重复。
+       * repeat-x 该模式只在水平方向重复。
+       * repeat-y 该模式只在垂直方向重复。
+       * no-repeat 该模式只显示一次（不重复）。
+       */
       // var imgs = new Image();
       // imgs.src = "img/icecream.png";
       // imgs.width = '50';
@@ -48,14 +66,19 @@
       //     context.fill();
       // }
 
-      /* 阴影 */
+      /* 阴影 
+       * number 阴影的模糊级数
+       * color 用于阴影的 CSS 颜色值。默认值是 #000000。
+       */
       // canvas.style.background = "hsl(0,0%,90%)";
       // context.fillStyle = "hsl(0,0%,100%)";
       // context.shadowBlur = 6;
       // context.shadowColor = "black";
       // context.fill();
 
-      /* 阴影偏移 */
+      /* 阴影偏移 
+       * number 正值或负值，定义阴影与形状的水平/垂直距离。
+       */
       // canvas.style.background = "hsl(0,0%,90%)";
       // context.fillStyle = "hsl(0,0%,100%)";
       // context.shadowBlur = 10;
@@ -221,7 +244,11 @@
       // context.lineWidth = 20;
       // context.stroke();
 
-      /* lineCap 线帽 */
+      /* lineCap 线帽 
+       * butt 默认。向线条的每个末端添加平直的边缘。
+       * round 向线条的每个末端添加圆形线帽。
+       * square 向线条的每个末端添加正方形线帽。
+       */
       // context.lineWidth = 30;
       // context.beginPath();
       // context.moveTo(200, 300);
@@ -241,13 +268,17 @@
       // context.lineCap = 'square';
       // context.stroke();
 
-      /* lineJoin */
-      // context.moveTo(200, 300);
-      // context.lineTo(500, 300);
-      // context.lineTo(200, 100);
-      // context.lineWidth = 30;
-      // context.lineJoin = 'bevel';
-      // context.stroke();
+      /* lineJoin 
+       * bevel 斜角
+       * round 圆角
+       * miter 默认。创建尖角。
+       */
+      //   context.moveTo(200, 300);
+      //   context.lineTo(500, 300);
+      //   context.lineTo(200, 100);
+      //   context.lineWidth = 30;
+      //   context.lineJoin = 'bevel';
+      //   context.stroke();
 
       // context.lineWidth = 30;
       // context.beginPath();
@@ -271,7 +302,9 @@
       // context.lineJoin = 'miter';
       // context.stroke();
 
-      /* miterLimit */
+      /* miterLimit 
+       * number 正数。规定最大斜接长度。如果斜接长度超过 miterLimit 的值，边角会以 lineJoin 的 "bevel" 类型来显示。
+       */
       // context.moveTo(200, 300);
       // context.lineTo(500, 300);
       // context.lineTo(200, 100);
@@ -374,16 +407,16 @@
 
       /* rect */
       context.lineWidth = 6;
-      // context.moveTo(300, 200);
-      // context.lineTo(500,200);
-      // context.lineTo(500,300);
-      // context.lineTo(300,300);
-      // context.lineTo(300, 200);
-      // context.stroke();
+      //   context.moveTo(300, 200);
+      //   context.lineTo(500,200);
+      //   context.lineTo(500,300);
+      //   context.lineTo(300,300);
+      //   context.lineTo(300, 200);
+      //   context.stroke();
 
-      // context.rect(300,200,200,100);
-      // context.lineJoin = 'round';
-      // context.stroke();
+    //   context.rect(300, 200, 200, 100);
+    //   context.lineJoin = 'round';
+    //   context.stroke();
 
       /* strokeRect */
       // context.lineJoin = 'bevel';
@@ -391,14 +424,19 @@
       // context.strokeRect(300,200,200,100);
 
       /* fillRect */
-      // let my_gradient = context.createLinearGradient(100, 100, 100, 400);
-      // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
-      // my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
-      // my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
-      // context.fillStyle = my_gradient;
-      // context.fillRect(300, 200, 200, 100);
+    //   let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+    //   my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+    //   my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+    //   my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+    //   context.fillStyle = my_gradient;
+    //   context.fillRect(300, 200, 200, 100);
 
-      /* clearRect */
+      /* clearRect 
+      * x 要清除的矩形左上角的 x 坐标
+      * y 要清除的矩形左上角的 y 坐标
+      * width 要清除的矩形的宽度，以像素计
+      * height 要清除的矩形的高度，以像素计
+      */
       // let my_gradient = context.createLinearGradient(100, 100, 100, 400);
       // my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
       // my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
@@ -465,11 +503,16 @@
       canvas.height = 500;
       // canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
-      /* quadraticCurveTo */
-      // context.lineWidth = 10;
-      // context.moveTo(200, 200);
-      // context.quadraticCurveTo(200, 400, 600, 200);
-      // context.stroke();
+      /* quadraticCurveTo 
+      * cpx 贝塞尔控制点的 x 坐标
+      * cpy 贝塞尔控制点的 y 坐标
+      * x 结束点的 x 坐标
+      * y 结束点的 y 坐标
+      */
+    //   context.lineWidth = 10;
+    //   context.moveTo(200, 200);
+    //   context.quadraticCurveTo(200, 400, 600, 200);
+    //   context.stroke();
 
       /* 显示控制线 */
       // context.lineWidth = 10;
@@ -486,7 +529,14 @@
       // context.closePath();
       // context.stroke();
 
-      /* bezierCurveTo */
+      /* bezierCurveTo 
+      * cp1x 第一个贝塞尔控制点的 x 坐标
+      * cp1y 第一个贝塞尔控制点的 y 坐标
+      * cp2x 第二个贝塞尔控制点的 x 坐标
+      * cp2y 第二个贝塞尔控制点的 y 坐标
+      * x 结束点的 x 坐标
+      * y 结束点的 y 坐标
+      */
       // context.lineWidth = 10;
       // context.moveTo(200, 200);
       // context.bezierCurveTo(200, 400, 600, 400, 600, 200);
@@ -1752,67 +1802,67 @@
       //   }
 
       /* 图形序号 */
-      //   context.lineWidth = 6;
-      //   context.beginPath();
-      //   context.arc(250, 250, 100, 0, 2 * Math.PI, false);
-      //   context.stroke();
-      //   context.beginPath();
-      //   context.arc(550, 250, 100, 0, 2 * Math.PI, false);
-      //   context.stroke();
+      // context.lineWidth = 6;
+      // context.beginPath();
+      // context.arc(250, 250, 100, 0, 2 * Math.PI, false);
+      // context.stroke();
+      // context.beginPath();
+      // context.arc(550, 250, 100, 0, 2 * Math.PI, false);
+      // context.stroke();
 
-      //   let blackboard = document.querySelector('.demo11 .blackboard');
-      //   let canvasHide = document.createElement('canvas');
-      //   canvasHide.width = canvas.width;
-      //   canvasHide.height = canvas.height;
-      //   let contextHide = canvasHide.getContext('2d');
-      //   const RGBToHex = (r, g, b) => ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0');
+      // let blackboard = document.querySelector('.demo11 .blackboard');
+      // let canvasHide = document.createElement('canvas');
+      // canvasHide.width = canvas.width;
+      // canvasHide.height = canvas.height;
+      // let contextHide = canvasHide.getContext('2d');
+      // const RGBToHex = (r, g, b) => ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0');
 
-      //   contextHide.beginPath();
-      //   contextHide.save();
-      //   contextHide.fillStyle = '#000001';
-      //   contextHide.arc(250, 250, 100, 0, 2 * Math.PI, false);
-      //   contextHide.fill();
-      //   contextHide.fillStyle = '#000002';
-      //   contextHide.beginPath();
-      //   contextHide.arc(550, 250, 100, 0, 2 * Math.PI, false);
-      //   contextHide.fill();
+      // contextHide.beginPath();
+      // contextHide.save();
+      // contextHide.fillStyle = '#000001';
+      // contextHide.arc(250, 250, 100, 0, 2 * Math.PI, false);
+      // contextHide.fill();
+      // contextHide.fillStyle = '#000002';
+      // contextHide.beginPath();
+      // contextHide.arc(550, 250, 100, 0, 2 * Math.PI, false);
+      // contextHide.fill();
 
-      //   canvas.addEventListener("click", function (event) {
-      //       let x = getMousePosX(canvas, event);
-      //       let y = getMousePosY(canvas, event);
-      //       let color = contextHide.getImageData(x, y, 1, 1).data;
-      //       let hex = RGBToHex(color[0], color[1], color[2]);
+      // canvas.addEventListener("click", function (event) {
+      //     let x = getMousePosX(canvas, event);
+      //     let y = getMousePosY(canvas, event);
+      //     let color = contextHide.getImageData(x, y, 1, 1).data;
+      //     let hex = RGBToHex(color[0], color[1], color[2]);
 
-      //       if (hex == '000001') {
-      //           context.save();
-      //           context.fillStyle = 'hsl(0, 83%, 73%)';
-      //           context.beginPath();
-      //           context.arc(250, 250, 100, 0, 2 * Math.PI, false);
-      //           context.fill();
-      //           context.restore();
-      //       } else if (hex == '000002') {
-      //           context.save();
-      //           context.fillStyle = 'hsl(47, 95%, 76%)';
-      //           context.beginPath();
-      //           context.arc(550, 250, 100, 0, 2 * Math.PI, false);
-      //           context.fill();
-      //           context.restore();
-      //       }
-      //   });
+      //     if (hex == '000001') {
+      //         context.save();
+      //         context.fillStyle = 'hsl(0, 83%, 73%)';
+      //         context.beginPath();
+      //         context.arc(250, 250, 100, 0, 2 * Math.PI, false);
+      //         context.fill();
+      //         context.restore();
+      //     } else if (hex == '000002') {
+      //         context.save();
+      //         context.fillStyle = 'hsl(47, 95%, 76%)';
+      //         context.beginPath();
+      //         context.arc(550, 250, 100, 0, 2 * Math.PI, false);
+      //         context.fill();
+      //         context.restore();
+      //     }
+      // });
 
-      //   function getMousePosX(canvas, event) {
-      //       var rect = canvas.getBoundingClientRect();
-      //       var x = event.clientX - rect.left * (canvas.width / rect.width);
-      //       var y = event.clientY - rect.top * (canvas.height / rect.height);
-      //       return x;
-      //   }
+      // function getMousePosX(canvas, event) {
+      //     var rect = canvas.getBoundingClientRect();
+      //     var x = event.clientX - rect.left * (canvas.width / rect.width);
+      //     var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //     return x;
+      // }
 
-      //   function getMousePosY(canvas, event) {
-      //       var rect = canvas.getBoundingClientRect();
-      //       var y = event.clientY - rect.top * (canvas.height / rect.height);
-      //       return y;
-      //   }
-      //   blackboard.appendChild(canvasHide);
+      // function getMousePosY(canvas, event) {
+      //     var rect = canvas.getBoundingClientRect();
+      //     var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //     return y;
+      // }
+      // blackboard.appendChild(canvasHide);
 
       /* isPointInPath */
       //   context.lineWidth = 6;
@@ -1873,3 +1923,21 @@
           context.shadowOffsetY = 0;
       }
   })();
+
+  //   $(window).unload(function () {
+  //       let _top = $(window).scrollTop();
+  //       sessionStorage.setItem("top", "_top");
+  //   })
+
+  $(window).bind('beforeunload', function () {
+      let _top = $(window).scrollTop();
+      sessionStorage.setItem("top", _top);
+  });
+
+  $(window).ready(function () {
+      let _sTop = sessionStorage.getItem('top');
+      console.log(_sTop);
+    $("html,body").animate({
+        scrollTop:_sTop
+    },1)
+  })
