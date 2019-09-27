@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mission</title>
+    <style>
+        :root {
+            --clr-red: hsl(0, 50%, 50%);
+            --clr-orange: hsl(30, 50%, 50%);
+            --clr-yellow: hsl(60, 50%, 50%);
+            --clr-chartreuse: hsl(90, 50%, 50%);
+            --clr-green: hsl(120, 50%, 50%);
+            --clr-spring: hsl(150, 50%, 50%);
+            --clr-cyan: hsl(180, 50%, 50%);
+            --clr-azure: hsl(210, 50%, 50%);
+            --clr-blue: hsl(240, 50%, 50%);
+            --clr-violet: hsl(270, 50%, 50%);
+            --clr-magenta: hsl(300, 50%, 50%);
+            --clr-rose: hsl(330, 50%, 50%);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        canvas {
+            background-color: hsl(0, 0%, 90%);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas">
+        您的浏览器不支持canvas
+    </canvas>
+
+    <script>
+        let canvas = document.getElementById('canvas');
+        let context = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerWidth;
+
+        drawGrid('hsl(0, 0%, 90%)', '#333', 100, 100);
+
+        function drawGrid(bgcolor, color, stepx, stepy) {
+            context.save()
+            context.fillStyle = bgcolor;
+            console.log(context);
+            context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+            context.lineWidth = 0.1;
+            context.strokeStyle = color;
+            for (var i = stepx; i < context.canvas.width; i += stepx) {
+                context.beginPath();
+                context.moveTo(i, 0);
+                context.lineTo(i, context.canvas.height);
+                context.closePath();
+                context.stroke();
+            }
+            for (var j = stepy; j < context.canvas.height; j += stepy) {
+                context.beginPath();
+                context.moveTo(0, j);
+                context.lineTo(context.canvas.width, j);
+                context.closePath();
+                context.stroke();
+            }
+            context.restore();
+        }
+    </script>
+</body>
+
+</html>
