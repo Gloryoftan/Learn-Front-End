@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Konva.js</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+    <script src="jQuery-v3.4.1.js"></script>
+    <script src="Konva.js"></script>
+    <script>
+        /* stage概念 */
+        //第1步：创建 stage
+        var stage = new Konva.Stage({
+            container: 'container', // id of container <div>
+            width: $(window).width(),
+            height: $(window).height(),
+        });
+
+        //第2步：创建 layer
+        var layer = new Konva.Layer();
+
+        //第3步：创建 shape
+        var circle = new Konva.Circle({
+            x: stage.width() / 2,
+            y: stage.height() / 2,
+            radius: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4
+        });
+
+        //第4步：添加 shape 至 layer
+        layer.add(circle);
+
+        //第5步：添加 layer 至 stage
+        stage.add(layer);
+
+        //第6步：draw
+        layer.draw();
+    </script>
+
+</body>
+
+</html>
