@@ -464,10 +464,106 @@
             </div>
         </div>
         <!-- <img id="imageTest1" src="" alt=""> -->
+
+        <!-- demo12 -->
+        <div class="demo demo12">
+            <div class="title">Mission12 => Konva.js</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. stage概念</li>
+                </ul>
+                <div class="konva" id="konva12"></div>
+            </div>
+        </div>
+
+        <!-- demo13 -->
+        <div class="demo demo13">
+            <div class="title">Mission13 => shape</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. Rect</li>
+                    <li>2. Circle</li>
+                    <li>3. Ellipse</li>
+                    <li>4. Wedge</li>
+                    <li>5. Simple Line</li>
+                    <li>6. Polygon</li>
+                    <li>7. Image</li>
+                    <li>8. Text</li>
+                    <li>9. TextPath</li>
+                    <li>10. Star</li>
+                    <li>11. Ring</li>
+                    <li>12. Arc</li>
+                    <li>13. Label</li>
+                    <li>14. Path</li>
+                    <li>15. Regular Polygon</li>
+                    <li>16. Arrow</li>
+                    <li>17. Custom Shape</li>
+                </ul>
+                <div class="konva" id="konva13"></div>
+            </div>
+        </div>
+
+        <!-- demo14 -->
+        <div class="demo demo14">
+            <div class="title">Mission14 => Styling</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. Fill</li>
+                    <li>2. Stroke</li>
+                    <li>3. Opacity</li>
+                    <li>4. Shadow</li>
+                    <li>5. Line Join</li>
+                    <li>6. Hide and Show</li>
+                    <li>7. Mouse Cursor Style</li>
+                    <li>8. Blend Mode</li>
+                </ul>
+                <div class="konva" id="konva14"></div>
+            </div>
+        </div>
+
+        <!-- demo15 -->
+        <div class="demo demo15">
+            <div class="title">Mission15 => Events</div>
+            <div class="blackboard">
+                <ul class="knowledge">
+                    <li>1. Binding Events</li>
+                    <li>2. Desktop and Mobile</li>
+                    <li>3. Remove Event</li>
+                    <li>4. Shadow</li>
+                    <li>5. Line Join</li>
+                    <li>6. Hide and Show</li>
+                    <li>7. Mouse Cursor Style</li>
+                    <li>8. Blend Mode</li>
+                </ul>
+                <div class="konva" id="konva15"></div>
+            </div>
+        </div>
     </div>
 
     <script src='../lib/jQuery-v3.4.1.js'></script>
+    <script src="Konva.js"></script>
     <script src="canvas.js"></script>
+    <script src="canvas-konva.js"></script>
+
+    <script>
+        /* 刷新页面保持位置 */
+        //   $(window).unload(function () {
+        //       let _top = $(window).scrollTop();
+        //       sessionStorage.setItem("top", "_top");
+        //   })
+
+        $(window).bind('beforeunload', function () {
+            let _top = $(window).scrollTop();
+            sessionStorage.setItem("top", _top);
+        });
+
+        $(window).ready(function () {
+            let _sTop = sessionStorage.getItem('top');
+            $("html,body").animate({
+                scrollTop: _sTop
+            }, 1)
+        })
+    </script>
 </body>
 
 </html>

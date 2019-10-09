@@ -236,10 +236,10 @@
 
       canvas.width = 800;
       canvas.height = 500;
-    //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
 
-    //   context.moveTo(200, 300);
-    //   context.lineTo(500, 300);
+      //   context.moveTo(200, 300);
+      //   context.lineTo(500, 300);
 
       /* lineWidth */
       //   context.lineWidth = 20;
@@ -306,12 +306,12 @@
       /* miterLimit 
        * number 正数。规定最大斜接长度。如果斜接长度超过 miterLimit 的值，边角会以 lineJoin 的 "bevel" 类型来显示。
        */
-    //   context.moveTo(200, 300);
-    //   context.lineTo(500, 300);
-    //   context.lineTo(200, 250);
-    //   context.lineWidth = 30;
-    //   context.miterLimit = 10;
-    //   context.stroke();
+      //   context.moveTo(200, 300);
+      //   context.lineTo(500, 300);
+      //   context.lineTo(200, 250);
+      //   context.lineWidth = 30;
+      //   context.miterLimit = 10;
+      //   context.stroke();
 
       let oDemo = document.querySelector('#content .demo2 .title')
       let aLi = document.querySelectorAll('#content .demo2 ul li');
@@ -404,10 +404,10 @@
 
       canvas.width = 800;
       canvas.height = 500;
-    //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
 
       /* rect */
-    //   context.lineWidth = 6;
+      //   context.lineWidth = 6;
       // context.moveTo(300, 200);
       // context.lineTo(500,200);
       // context.lineTo(500,300);
@@ -438,13 +438,13 @@
        * width 要清除的矩形的宽度，以像素计
        * height 要清除的矩形的高度，以像素计
        */
-    //   let my_gradient = context.createLinearGradient(100, 100, 100, 400);
-    //   my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
-    //   my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
-    //   my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
-    //   context.fillStyle = my_gradient;
-    //   context.fillRect(100, 100, 600, 300);
-    //   context.clearRect(150, 150, 50, 50);
+      //   let my_gradient = context.createLinearGradient(100, 100, 100, 400);
+      //   my_gradient.addColorStop(0, 'hsl(0, 83%, 73%)');
+      //   my_gradient.addColorStop(0.5, 'hsl(169, 56%, 73%)');
+      //   my_gradient.addColorStop(1, 'hsl(87, 100%, 91%)');
+      //   context.fillStyle = my_gradient;
+      //   context.fillRect(100, 100, 600, 300);
+      //   context.clearRect(150, 150, 50, 50);
 
       let oDemo = document.querySelector('#content .demo3 .title')
       let aLi = document.querySelectorAll('#content .demo3 ul li');
@@ -502,7 +502,7 @@
 
       canvas.width = 800;
       canvas.height = 500;
-    //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
       /* quadraticCurveTo 
        * cpx 贝塞尔控制点的 x 坐标
@@ -701,7 +701,7 @@
 
       canvas.width = 800;
       canvas.height = 500;
-    //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
 
       /* beginPath */
       //   context.lineWidth = 10;
@@ -835,7 +835,7 @@
 
       canvas.width = 800;
       canvas.height = 500;
-    //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(209, 71%, 62%), hsl(195, 66%, 60%))";
 
       /* strokeText & fillText */
       // context.font = '50px Gill Sans';
@@ -1095,7 +1095,7 @@
 
       canvas.width = 800;
       canvas.height = 500;
-    //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
+      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(217, 66%, 70%), hsl(246, 81%, 81%))";
 
       /* drawImage 
        * img 规定要使用的图像、画布或视频。
@@ -1792,17 +1792,17 @@
       //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
 
       /* toDataURL */
-        // context.fillStyle = "white";
-        // context.fillRect(0,0,800,500);
-        // let img = new Image();
-        // img.src = 'img/img.jpeg';
-        // img.onload = function () {
-        //     for (let i = 0; i < 10; i++) {
-        //         context.drawImage(img, i * 80, i * 50, 50, 50);
-        //     }
-        //     // let img2 = document.getElementById('imageTest1');
-        //     // img2.src = canvas.toDataURL('image.png', 1);
-        // }
+      // context.fillStyle = "white";
+      // context.fillRect(0,0,800,500);
+      // let img = new Image();
+      // img.src = 'img/img.jpeg';
+      // img.onload = function () {
+      //     for (let i = 0; i < 10; i++) {
+      //         context.drawImage(img, i * 80, i * 50, 50, 50);
+      //     }
+      //     // let img2 = document.getElementById('imageTest1');
+      //     // img2.src = canvas.toDataURL('image.png', 1);
+      // }
 
       /* canvas优化 */
       //   let canvasHide = document.createElement('canvas');
@@ -1987,19 +1987,4 @@
       }
   })();
 
-  //   $(window).unload(function () {
-  //       let _top = $(window).scrollTop();
-  //       sessionStorage.setItem("top", "_top");
-  //   })
-
-  $(window).bind('beforeunload', function () {
-      let _top = $(window).scrollTop();
-      sessionStorage.setItem("top", _top);
-  });
-
-  $(window).ready(function () {
-      let _sTop = sessionStorage.getItem('top');
-      $("html,body").animate({
-          scrollTop: _sTop
-      }, 1)
-  })
+  

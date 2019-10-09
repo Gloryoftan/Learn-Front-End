@@ -12,8 +12,8 @@
     --color-8: hsl(47, 95%, 76%);
     --color-9: hsl(87, 100%, 91%);
     --color-10: hsl(169, 56%, 73%);
-    --color-11:hsl(0, 100%, 50%);
-    --color-12:rgb(255, 255, 0);
+    --color-11: hsl(0, 100%, 50%);
+    --color-12: rgb(255, 255, 0);
 
 }
 
@@ -83,4 +83,12 @@ canvas {
 
 #pic {
     display: none;
+}
+
+.konva {
+    width: 800px;
+    height: 500px;
+    background-color: hsl(0, 0%, 30%);
+    /* background-color: hsl(0, 0%, 80%); */
+    margin: 20px 0 100px 0;
 }
