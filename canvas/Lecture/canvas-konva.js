@@ -1573,5 +1573,521 @@
             update();
         });
     });
+})();
 
+/* demo-mark-17 */
+(function () {
+    let oDemo = document.querySelector('#content .demo17 .title');
+    let aLi = document.querySelectorAll('#content .demo17 ul li');
+    let konva = document.getElementById('konva17');
+    var width = 800;
+    var height = 500;
+
+    oDemo.onclick = function () {
+        konva.style.background = "hsl(0,0%,80%)";
+    }
+
+    /* Common Easings */
+    aLi[0].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva17',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var greenBox = new Konva.Rect({
+            x: 70,
+            y: stage.height() / 2,
+            width: 100,
+            height: 50,
+            fill: 'green',
+            stroke: 'black',
+            strokeWidth: 4,
+            offset: {
+                x: 50,
+                y: 25
+            }
+        });
+
+        var blueBox = new Konva.Rect({
+            x: 190,
+            y: stage.height() / 2,
+            width: 100,
+            height: 50,
+            fill: 'blue',
+            stroke: 'black',
+            strokeWidth: 4,
+            offset: {
+                x: 50,
+                y: 25
+            }
+        });
+
+        var redBox = new Konva.Rect({
+            x: 310,
+            y: stage.height() / 2,
+            width: 100,
+            height: 50,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4,
+            offset: {
+                x: 50,
+                y: 25
+            }
+        });
+
+        layer.add(greenBox);
+        layer.add(blueBox);
+        layer.add(redBox);
+        stage.add(layer);
+
+        // tween 必须在shape 添加到layer之后才能定义
+        greenBox.tween = new Konva.Tween({
+            node: greenBox,
+            scaleX: 2,
+            scaleY: 1.5,
+            easing: Konva.Easings.EaseIn,
+            duration: 1
+        });
+
+        blueBox.tween = new Konva.Tween({
+            node: blueBox,
+            scaleX: 2,
+            scaleY: 1.5,
+            easing: Konva.Easings.EaseInOut,
+            duration: 1
+        });
+
+        redBox.tween = new Konva.Tween({
+            node: redBox,
+            scaleX: 2,
+            scaleY: 1.5,
+            easing: Konva.Easings.EaseOut,
+            duration: 1
+        });
+
+        // use event delegation
+        layer.on('mouseover touchstart', function (evt) {
+            evt.target.tween.play();
+        });
+
+        layer.on('mouseout touchend', function (evt) {
+            evt.target.tween.reverse();
+        });
+    }
+
+    /* Linear Easing */
+    aLi[1].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva17',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var rect = new Konva.Rect({
+            x: 50,
+            y: 20,
+            width: 100,
+            height: 50,
+            fill: 'green',
+            stroke: 'black',
+            strokeWidth: 2,
+            opacity: 0.2
+        });
+
+        layer.add(rect);
+        stage.add(layer);
+
+        var tween = new Konva.Tween({
+            node: rect,
+            duration: 1,
+            x: 140,
+            y: 90,
+            fill: 'red',
+            rotation: Math.PI * 2,
+            opacity: 1,
+            strokeWidth: 6,
+            scaleX: 1.5
+        });
+
+        // start tween after 2 seconds
+        setTimeout(function () {
+            tween.play();
+        }, 2000);
+    }
+
+    /* All Easings */
+    aLi[2].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva17',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var easings = [{
+                name: 'Linear',
+                color: 'blue'
+            },
+            {
+                name: 'EaseIn',
+                color: 'green'
+            },
+            {
+                name: 'EaseOut',
+                color: 'green'
+            },
+            {
+                name: 'EaseInOut',
+                color: 'green'
+            },
+            {
+                name: 'BackEaseIn',
+                color: 'blue'
+            },
+            {
+                name: 'BackEaseOut',
+                color: 'blue'
+            },
+            {
+                name: 'BackEaseInOut',
+                color: 'blue'
+            },
+            {
+                name: 'ElasticEaseIn',
+                color: 'green'
+            },
+            {
+                name: 'ElasticEaseOut',
+                color: 'green'
+            },
+            {
+                name: 'ElasticEaseInOut',
+                color: 'green'
+            },
+            {
+                name: 'BounceEaseIn',
+                color: 'blue'
+            },
+            {
+                name: 'BounceEaseOut',
+                color: 'blue'
+            },
+            {
+                name: 'BounceEaseInOut',
+                color: 'blue'
+            },
+            {
+                name: 'StrongEaseIn',
+                color: 'green'
+            },
+            {
+                name: 'StrongEaseOut',
+                color: 'green'
+            },
+            {
+                name: 'StrongEaseInOut',
+                color: 'green'
+            }
+        ];
+
+        var tweens = [];
+
+        for (var n = 0; n < easings.length; n++) {
+            var num = n + 1;
+            var ease = easings[n];
+            var text = new Konva.Text({
+                x: 10,
+                y: 60 + (n * 400) / easings.length,
+                padding: 4,
+                text: num + ') ' + ease.name,
+                fontSize: 18,
+                fontFamily: 'Calibri',
+                fill: ease.color
+            });
+
+            layer.add(text);
+
+            // the tween has to be created after the node has been added to the layer
+            var tween = new Konva.Tween({
+                node: text,
+                x: 280,
+                easing: Konva.Easings[ease.name],
+                duration: 2
+            });
+
+            // add tween to tweens array
+            tweens.push(tween);
+        }
+
+        stage.add(layer);
+
+        // play
+        document.getElementById('play').addEventListener(
+            'click',
+            function () {
+                for (var n = 0; n < tweens.length; n++) {
+                    tweens[n].play();
+                }
+            },
+            false
+        );
+
+        // pause
+        document.getElementById('pause').addEventListener(
+            'click',
+            function () {
+                for (var n = 0; n < tweens.length; n++) {
+                    tweens[n].pause();
+                }
+            },
+            false
+        );
+
+        // reverse
+        document.getElementById('reverse').addEventListener(
+            'click',
+            function () {
+                for (var n = 0; n < tweens.length; n++) {
+                    tweens[n].reverse();
+                }
+            },
+            false
+        );
+    }
+
+    /* Finish Event */
+    aLi[3].onclick = function () {
+        function writeMessage(message) {
+            text.text(message);
+            layer.draw();
+        }
+
+        var stage = new Konva.Stage({
+            container: 'konva17',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var text = new Konva.Text({
+            x: 10,
+            y: 10,
+            fontFamily: 'Calibri',
+            fontSize: 24,
+            text: '',
+            fill: 'black'
+        });
+
+        var wheel = new Konva.Star({
+            x: stage.width() / 2,
+            y: stage.height() / 2,
+            numPoints: 8,
+            outerRadius: 70,
+            innerRadius: 50,
+            fill: 'purple',
+            stroke: 'black',
+            strokeWidth: 5,
+            lineJoin: 'bevel'
+        });
+
+        layer.add(wheel);
+        layer.add(text);
+        stage.add(layer);
+
+        var tween = new Konva.Tween({
+            node: wheel,
+            duration: 4,
+            rotation: 360,
+            easing: Konva.Easings.BackEaseOut,
+            onFinish: function () {
+                writeMessage('tween finished!');
+            }
+        });
+
+        setTimeout(function () {
+            tween.play();
+        }, 1000);
+    }
+
+    /* Tween Filter */
+    aLi[4].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva17',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var lion = new Konva.Image({
+            x: 80,
+            y: 30,
+            draggable: true
+        });
+        layer.add(lion);
+        stage.add(layer);
+
+        var image = new Image();
+        image.onload = function () {
+            lion.image(image);
+            lion.cache();
+            lion.filters([Konva.Filters.Blur]);
+            lion.blurRadius(10);
+            layer.draw();
+
+            var tween = new Konva.Tween({
+                node: lion,
+                duration: 0.6,
+                blurRadius: 0,
+                easing: Konva.Easings.EaseInOut
+            });
+
+            lion.on('mouseover', function () {
+                tween.play();
+            });
+
+            lion.on('mouseout', function () {
+                tween.reverse();
+            });
+        };
+        image.src = 'img/lion.png';
+    }
+
+    /* All Controls */
+    aLi[5].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva17',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var rect = new Konva.Rect({
+            x: 50,
+            y: 130,
+            width: 100,
+            height: 50,
+            fill: 'green',
+            stroke: 'black',
+            strokeWidth: 2,
+            opacity: 0.2
+        });
+
+        layer.add(rect);
+        stage.add(layer);
+
+        var tween = new Konva.Tween({
+            node: rect,
+            duration: 6,
+            x: 220,
+            y: 75,
+            rotation: Math.PI * 10,
+            opacity: 1,
+            strokeWidth: 6,
+            scaleX: 1.3,
+            scaleY: 1.3,
+            easing: Konva.Easings.Linear,
+            fillR: 0,
+            fillG: 0,
+            fillB: 255
+        });
+
+        // pause tween
+        document.getElementById('pause1').addEventListener(
+            'click',
+            function () {
+                tween.pause();
+            },
+            false
+        );
+
+        // reverse tween
+        document.getElementById('reverse1').addEventListener(
+            'click',
+            function () {
+                tween.reverse();
+            },
+            false
+        );
+
+        // play tween forward
+        document.getElementById('play1').addEventListener(
+            'click',
+            function () {
+                tween.play();
+            },
+            false
+        );
+
+        // reset tween
+        document.getElementById('reset1').addEventListener(
+            'click',
+            function () {
+                tween.reset();
+            },
+            false
+        );
+
+        // force tween to finish
+        document.getElementById('finish1').addEventListener(
+            'click',
+            function () {
+                tween.finish();
+            },
+            false
+        );
+
+        // seek to 3 seconds
+        document.getElementById('seek1').addEventListener(
+            'click',
+            function () {
+                tween.seek(3);
+            },
+            false
+        );
+    }
+})();
+
+/* demo-mark-18 */
+(function () {
+    let oDemo = document.querySelector('#content .demo18 .title');
+    let aLi = document.querySelectorAll('#content .demo18 ul li');
+    let konva = document.getElementById('konva18');
+    var width = 800;
+    var height = 500;
+
+    oDemo.onclick = function () {
+        konva.style.background = "hsl(0,0%,80%)";
+    }
+
+    aLi[0].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva18',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var text = new Konva.Text({
+            x: 20,
+            y: 20,
+            fontFamily: 'Calibri',
+            fontSize: 24,
+            text: '<script>\n    var anim = new Konva.Animation(function(frame) {\n        var time = frame.time,\n        timeDiff = frame.timeDiff,\n        frameRate = frame.frameRate;\n    }, layer);\n    anim.start();\n</script>',
+            fill: 'black'
+        });
+
+        layer.add(text);
+        stage.add(layer);
+    }
 })();
