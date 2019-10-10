@@ -1360,4 +1360,218 @@
         layer.add(circle);
         stage.add(layer);
     }
+
+    /* Remove by Name */
+    aLi[3].onclick = function () {
+        function writeMessage(message) {
+            text.text(message);
+            layer.draw();
+        }
+
+        var stage = new Konva.Stage({
+            container: 'konva15',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var circle = new Konva.Circle({
+            x: stage.width() / 2,
+            y: stage.height() / 2 + 10,
+            radius: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4
+        });
+
+        circle.on('click.event1', function () {
+            alert('First Listener');
+        });
+        circle.on('click.event2', function () {
+            alert('Second Listener');
+        });
+
+        var rect1 = new Konva.Rect({
+            x: 1,
+            y: 30,
+            width: 50,
+            height: 25,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 1
+        })
+
+        var rect2 = new Konva.Rect({
+            x: 1,
+            y: 1,
+            width: 50,
+            height: 25,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 1
+        })
+
+        rect2.on('click', function () {
+            circle.off('click.event1');
+            alert('First Listener removed');
+        });
+
+        rect1.on('click', function () {
+            circle.off('click.event2');
+            alert('Second Listener removed');
+        });
+
+        layer.add(rect1);
+        layer.add(rect2);
+        layer.add(circle);
+        stage.add(layer);
+    }
+
+    /* Event Delegation */
+    aLi[4].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva15',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var star = new Konva.Star({
+            x: stage.width() / 2,
+            y: stage.height() / 2,
+            numPoints: 5,
+            innerRadius: 40,
+            outerRadius: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4,
+            scale: {
+                x: 2,
+                y: 2
+            },
+            name: 'my big star'
+        });
+
+        var star1 = new Konva.Star({
+            x: stage.width() / 5,
+            y: stage.height() / 5,
+            numPoints: 5,
+            innerRadius: 20,
+            outerRadius: 50,
+            fill: 'yellow',
+            stroke: 'blue',
+            strokeWidth: 4,
+            scale: {
+                x: 1,
+                y: 1
+            },
+            name: 'my small star'
+        });
+
+        layer.on('click', function (evt) {
+            // get the shape that was clicked on
+            var shape = evt.target;
+            alert('you clicked on "' + shape.name() + '"');
+        });
+
+        layer.add(star);
+        layer.add(star1);
+
+        stage.add(layer);
+    }
+
+    /* Keyboard Events */
+    aLi[5].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva15',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+        stage.add(layer);
+
+        var circle = new Konva.Circle({
+            x: stage.width() / 2,
+            y: stage.height() / 2 + 10,
+            radius: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4
+        });
+
+        layer.add(circle);
+        layer.draw();
+
+        var container = stage.container();
+
+        container.tabIndex = 1;
+
+        container.focus();
+
+        const DELTA = 4;
+
+        container.addEventListener('keydown', function (e) {
+            if (e.keyCode === 37) {
+                circle.x(circle.x() - DELTA);
+            } else if (e.keyCode === 38) {
+                circle.y(circle.y() - DELTA);
+            } else if (e.keyCode === 39) {
+                circle.x(circle.x() + DELTA);
+            } else if (e.keyCode === 40) {
+                circle.y(circle.y() + DELTA);
+            } else {
+                return;
+            }
+            e.preventDefault();
+            layer.batchDraw();
+        });
+    }
+})();
+
+/* demo-mark-16 */
+(function () {
+    let oDemo = document.querySelector('#content .demo16 .title');
+    let aLi = document.querySelectorAll('#content .demo16 ul li');
+    let konva = document.getElementById('konva16');
+    var width = 800;
+    var height = 500;
+
+    oDemo.onclick = function () {
+        konva.style.background = "hsl(0,0%,80%)";
+    }
+
+    Konva.Image.fromURL('img/lion.png', function (lion) {
+        var stage = new Konva.Stage({
+            container: 'konva16',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        lion.position({
+            x: 50,
+            y: 50
+        });
+        lion.cache();
+        lion.filters([Konva.Filters.Blur, Konva.Filters.Brighten, Konva.Filters.Contrast, Konva.Filters.Enhance, Konva.Filters.HSL, Konva.Filters.Noise, Konva.Filters.Pixelate]);
+        layer.add(lion);
+        stage.add(layer);
+
+        var sliders = ['blurRadius', 'brightness', 'contrast', 'enhance', 'hue', 'saturation', 'luminance', 'noise', 'pixelSize'];
+        sliders.forEach(function (attr) {
+            var slider = document.getElementById(attr);
+
+            function update() {
+                lion[attr](parseFloat(slider.value));
+                layer.batchDraw();
+            }
+            slider.oninput = update;
+            update();
+        });
+    });
+
 })();
