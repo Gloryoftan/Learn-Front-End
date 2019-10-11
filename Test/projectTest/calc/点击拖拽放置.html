@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #digit {
+            position: absolute;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2vh 6vh;
+            font-size: 10vh;
+            min-width: 8vh;
+            background-color: hsl(0, 0%, 30%);
+            color: hsl(0, 0%, 90%);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <div id="digit">40</div>
+
+    <script src="../../lib/jquery-1.11.3.min.js"></script>
+    <script>
+        $(document).mousedown(function (e) {
+            console.log($(e.target).html());
+            $('#digit').html($(e.target).html());
+            $('#digit').css({
+                display: 'flex',
+                top: (event.clientY - 50) + 'px',
+                left: (event.clientX + 10) + 'px'
+            })
+        })
+
+        $(document).mousemove(function (e) {
+            $('#digit').css({
+                top: (event.clientY - 50) + 'px',
+                left: (event.clientX + 10) + 'px'
+            })
+        })
+
+        $(document).mouseup(function (e) {
+            $('#digit').css({
+                display: 'none',
+            })
+        })
+    </script>
+</body>
+
+</html>

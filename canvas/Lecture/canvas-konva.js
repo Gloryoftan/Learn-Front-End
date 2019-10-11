@@ -2589,3 +2589,116 @@
         );
     }
 })();
+
+/* demo-mark-20 */
+(function () {
+    let oDemo = document.querySelector('#content .demo20 .title');
+    let aLi = document.querySelectorAll('#content .demo20 ul li');
+    let konva = document.getElementById('konva20');
+    var width = 800;
+    var height = 500;
+
+    oDemo.onclick = function () {
+        konva.style.background = "hsl(0,0%,80%)";
+    }
+
+    /* Serialize a Stage */
+    aLi[0].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva20',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+
+        var hexagon = new Konva.RegularPolygon({
+            x: width / 2,
+            y: height / 2,
+            sides: 6,
+            radius: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4
+        });
+
+        // add the shape to the layer
+        layer.add(hexagon);
+
+        // add the layer to the stage
+        stage.add(layer);
+
+        // save stage as a json string
+        var json = stage.toJSON();
+
+        console.log(json);
+    }
+
+    /* Simple Load */
+    aLi[1].onclick = function () {
+        var json =
+            '{"attrs":{"width":800,"height":500},"className":"Stage","children":[{"attrs":{},"className":"Layer","children":[{"attrs":{"x":400,"y":250,"sides":6,"radius":70,"fill":"red","stroke":"black","strokeWidth":4},"className":"RegularPolygon"}]}]}';
+
+        // create node using json string
+        var stage = Konva.Node.create(json, 'konva20');
+    }
+
+    /* Export to HD Image */
+    aLi[2].onclick = function () {
+        var stage = new Konva.Stage({
+            container: 'konva20',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+        stage.add(layer);
+
+        var box = new Konva.Rect({
+            x: stage.width() / 2 - 50,
+            y: stage.height() / 2 - 25,
+            width: 100,
+            height: 50,
+            fill: '#00D2FF',
+            stroke: 'black',
+            strokeWidth: 4,
+            draggable: true
+        });
+        layer.add(box);
+
+        var circle = new Konva.Circle({
+            x: stage.width() - 50,
+            y: stage.height() - 50,
+            radius: 50,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4,
+            draggable: true
+        });
+        layer.add(circle);
+
+        layer.draw();
+
+        // function from https://stackoverflow.com/a/15832662/512042
+        function downloadURI(uri, name) {
+            var link = document.createElement('a');
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
+
+        document.getElementById('save').addEventListener(
+            'click',
+            function () {
+                var dataURL = stage.toDataURL({
+                    pixelRatio: 3
+                });
+                downloadURI(dataURL, 'stage.png');
+            },
+            false
+        );
+    }
+})();
