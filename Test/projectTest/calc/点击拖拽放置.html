@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../../lib/jquery-ui.css">
     <style>
+        body {
+            user-select: none;
+        }
+
         #digit {
             position: absolute;
             display: none;
@@ -19,27 +24,82 @@
             color: hsl(0, 0%, 90%);
             white-space: nowrap;
         }
+
+        #ultest {
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        #cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -1;
+        }
+
+        #drop1,
+        #drop2 {
+            width: 50vh;
+            height: 25vh;
+            border: 1px solid black;
+        }
     </style>
 </head>
 
 <body>
-    <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
+    <div id="cover"></div>
+    <ul id="ultest">
+        <li class="judge">1</li>
+        <li class="judge">2</li>
+        <li class="judge">3</li>
+        <li class="judge">4</li>
+        <li class="judge">5</li>
+        <li class="judge">6</li>
+        <li class="judge">7</li>
+        <li class="judge">8</li>
+        <li class="judge">9</li>
+        <li class="judge">10</li>
     </ul>
     <div id="digit">40</div>
 
+    <div id="drop">
+        <div id="drop1"></div>
+        <div contenteditable="true" id="drop2"></div>
+    </div>
+
+    <div contenteditable="true" id="editTest">
+        <span></span>
+    </div>
+
     <script src="../../lib/jquery-1.11.3.min.js"></script>
+    <script src="../../lib/jquery-ui.js"></script>
     <script>
+        var dropHeight;
+        var dropWidth;
+        var dropPosX;
+        var dropPosY;
+        var dropRangeX;
+        var dropRangeY;
         $(document).mousedown(function (e) {
+
+            dropWidth = $('#drop2').width();
+            dropHeight = $('#drop2').height();
+            dropPosX = $('#drop2').offset().left;
+            dropPosY = $('#drop2').offset().top;
+            dropRangeX = dropPosX + dropWidth;
+            dropRangeY = dropPosY + dropHeight;
+
+            // console.log('width='+ $('#drop2').width());
+            console.log('x=' + dropPosX);
+            console.log('y=' + dropPosY);
+
+            console.log(e.target.className.indexOf('judge'));
+            if (e.target.className.indexOf('judge') == -1) {
+                return
+            }
             console.log($(e.target).html());
             $('#digit').html($(e.target).html());
             $('#digit').css({
@@ -47,20 +107,64 @@
                 top: (event.clientY - 50) + 'px',
                 left: (event.clientX + 10) + 'px'
             })
+            $('#cover').css({
+                'z-index': '100',
+                // 'background':'hsl(0,0%,80%)'
+            });
         })
 
         $(document).mousemove(function (e) {
+            // console.log(event.clientX+':'+event.clientY);
+            // console.log(dropWidth+':'+dropHeight);
             $('#digit').css({
                 top: (event.clientY - 50) + 'px',
                 left: (event.clientX + 10) + 'px'
             })
+
+            if (dropPosX < event.clientX && event.clientX < dropRangeX && dropPosY < event.clientY && event
+                .clientY < dropRangeY) {
+                $('#drop2').css({
+                    'background': 'hsl(0,0%,80%)'
+                })
+            } else {
+                $('#drop2').css({
+                    'background': 'transparent'
+                })
+            }
         })
 
         $(document).mouseup(function (e) {
+            if (dropPosX < event.clientX && event.clientX < dropRangeX && dropPosY < event.clientY && event
+                .clientY < dropRangeY) {
+                $('#drop2').html($('#digit').html())
+            }
             $('#digit').css({
                 display: 'none',
             })
+            $('#cover').css('z-index', '-1');
         })
+
+        $('#ultest').draggable();
+
+        $('#ultest').draggable({
+            disabled: true,
+        })
+
+        // $('#drop2').on({
+        //     'mouseenter': function (e) {
+        //         $('#drop2').css({
+        //             'background': 'hsl(0,0%,80%)'
+        //         })
+        //     },
+        //     'mouseleave': function (e) {
+        //         $('#drop2').css({
+        //             'background': 'transparent'
+        //         })
+        //     }
+        // })
+        // let oDrop2 = document.getElementById('drop2')
+        // console.log(oDrop2.getBoundingClientRect().left);
+        // console.log(oDrop2.getBoundingClientRect().top);
     </script>
 </body>
 
