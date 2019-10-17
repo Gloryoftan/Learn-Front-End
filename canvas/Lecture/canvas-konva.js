@@ -35,9 +35,6 @@
 
         //第5步：添加 layer 至 stage
         stage.add(layer);
-
-        //第6步：draw
-        layer.draw();
     }
 })();
 
@@ -1511,7 +1508,7 @@
 
         container.focus();
 
-        const DELTA = 4;
+        const DELTA = 20;
 
         container.addEventListener('keydown', function (e) {
             if (e.keyCode === 37) {
@@ -1528,6 +1525,73 @@
             e.preventDefault();
             layer.batchDraw();
         });
+    }
+
+    /* Transform and Resize Events */
+    aLi[6].onclick = function(){
+        var stage = new Konva.Stage({
+            container: 'konva15',
+            width: width,
+            height: height
+          });
+    
+          var layer = new Konva.Layer();
+          stage.add(layer);
+    
+          var rect = new Konva.Rect({
+            x: 160,
+            y: 60,
+            width: 100,
+            height: 90,
+            fill: 'red',
+            name: 'rect',
+            stroke: 'black',
+            draggable: true
+          });
+          layer.add(rect);
+    
+          var text = new Konva.Text({
+            x: 5,
+            y: 5
+          });
+          layer.add(text);
+          updateText();
+    
+          // create new transformer
+          var tr = new Konva.Transformer();
+          layer.add(tr);
+          tr.attachTo(rect);
+          layer.draw();
+    
+          rect.on('transformstart', function() {
+            console.log('transform start');
+          });
+    
+          rect.on('dragmove', function() {
+            updateText();
+          });
+          rect.on('transform', function() {
+            updateText();
+            console.log('transform');
+          });
+    
+          rect.on('transformend', function() {
+            console.log('transform end');
+          });
+    
+          function updateText() {
+            var lines = [
+              'x: ' + rect.x(),
+              'y: ' + rect.y(),
+              'rotation: ' + rect.rotation(),
+              'width: ' + rect.width(),
+              'height: ' + rect.height(),
+              'scaleX: ' + rect.scaleX(),
+              'scaleY: ' + rect.scaleY()
+            ];
+            text.text(lines.join('\n'));
+            layer.batchDraw();
+          }
     }
 })();
 
@@ -2475,16 +2539,12 @@
         document.getElementById('activate2').addEventListener(
             'click',
             function () {
-                // select shapes by name
                 var shapes = stage.find('Rect');
 
-                // if there are currently any active tweens, destroy them
-                // before creating new ones
                 for (var n = 0; n < tweens.length; n++) {
                     tweens[n].destroy();
                 }
 
-                // apply transition to all nodes in the array
                 shapes.each(function (shape) {
                     tweens.push(
                         new Konva.Tween({
@@ -2563,16 +2623,12 @@
         document.getElementById('activate3').addEventListener(
             'click',
             function () {
-                // select shapes by name
                 var shapes = stage.find('.rectangle');
 
-                // if there are currently any active tweens, destroy them
-                // before creating new ones
                 for (var n = 0; n < tweens.length; n++) {
                     tweens[n].destroy();
                 }
 
-                // apply transition to all nodes in the array
                 shapes.each(function (shape) {
                     tweens.push(
                         new Konva.Tween({

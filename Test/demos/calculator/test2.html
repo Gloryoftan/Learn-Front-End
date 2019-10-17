@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/jquery-ui.css">
+    <style>
+        #calclator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120vh;
+            height: 60vh;
+            /* border: 5vh solid transparent; */
+            /* padding: 2vh; */
+            /* border: 1px solid black; */
+            /* overflow: scroll; */
+            z-index: 100;
+        }
+
+        #calclator .calcData,
+        #calclator .formula {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            overflow: scroll;
+            width: 100%;
+            height: 50%;
+            background-color: hsl(0, 0%, 80%);
+            border: 1px solid black;
+
+        }
+
+        #calclator .calcData {
+            box-shadow: -10px 0px 10px red,
+                /*左边阴影*/
+                0px -10px 10px #000,
+                /*上边阴影*/
+                10px 0px 10px green,
+                /*右边阴影*/
+                0px 10px 10px blue
+        }
+
+        #calclator .formula {
+            box-shadow: 0px 2px 4px hsl(0, 0%, 60%), 0px 2px 4px hsl(0, 0%, 99%), 0px 2px 4px hsl(0, 0%, 60%), 0px 2px 4px hsl(0, 0%, 60%)
+        }
+
+        #calclator .formula {
+            background-color: hsl(0, 0%, 60%);
+        }
+
+        #calclator .calcData .data {
+            display: flex;
+            flex-wrap: nowrap;
+            max-height: 3vh;
+            font-size: 3vh;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="calclator">
+        <div class="calcData">
+            <div class="data">测试数据1</div>
+            <div class="data">测试数据2</div>
+            <div class="data">测试数据3</div>
+            <div class="data">长测试数据长测试数据长测试数据1</div>
+            <div class="data">长测试数据长测试数据2</div>
+            <div class="data">测试数据4</div>
+            <div class="data">长测试数据长测试数据3</div>
+            <div class="data">测试数据5</div>
+        </div>
+        <div class="formula">
+
+        </div>
+    </div>
+
+    <script src="../../lib/jQuery-v3.4.1.js"></script>
+    <script src="../../lib/jquery-ui.js"></script>
+    <script>
+        $('#calclator').resizable({
+            minWidth: '10',
+            minHeight: '10',
+        });
+
+        $('#calclator').draggable();
+
+        $('#calclator .calcData').sortable({
+            scroll: false,
+            tolerance: "pointer",
+        });
+
+        $('#calclator').droppable({
+            tolerance: 'touch',
+            out: function (event, ui) {
+                console.log(ui.draggable);
+                $(ui.draggable).remove();
+            },
+        })
+
+        $('#calclator .formula').droppable({
+            drop: function (event, ui) {
+                console.log(ui.draggable);
+            }
+        })
+
+        $('#calclator .data').on({
+            'click': function (e) {
+                console.log($(e.target).html());
+            }
+        })
+    </script>
+</body>
+
+</html>

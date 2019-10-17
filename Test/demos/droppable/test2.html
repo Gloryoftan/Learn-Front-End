@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/jquery-ui.css">
+    <style>
+        #container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120vh;
+            height: 60vh;
+            padding: 2vh;
+            /* border: 1px solid black; */
+            /* overflow: scroll; */
+            z-index: 10;
+        }
+
+        #info,
+        #calc {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            overflow: scroll;
+            width: 100%;
+            height: 50%;
+            background-color: hsl(0, 0%, 80%);
+            border: 1px solid black;
+        }
+
+        #calc {
+            background-color: hsl(0, 0%, 60%);
+        }
+
+        #info div {
+            max-height: 3vh;
+            font-size: 3vh;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid black;
+            transition: width 0.3s ease;
+        }
+
+        #info div.fade {
+            opacity: 0.2;
+            width: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="container">
+        <div id="info">
+            <div class="info">测试数据1</div>
+            <div class="info">测试数据2</div>
+            <div class="info">测试数据3</div>
+            <div class="info">长测试数据长测试数据长测试数据1</div>
+            <div class="info">长测试数据长测试数据2</div>
+            <div class="info">测试数据4</div>
+            <div class="info">长测试数据长测试数据3</div>
+            <div class="info">测试数据5</div>
+        </div>
+        <div id="calc">
+
+        </div>
+    </div>
+
+    <script src="../../lib/jQuery-v3.4.1.js"></script>
+    <script src="../../lib/jquery-ui.js"></script>
+    <script>
+        $('#container').resizable({
+            minWidth: '10',
+            minHeight: '10',
+        });
+
+        $('#container').draggable();
+        $('#info').sortable({
+            scroll: false,
+            tolerance: "pointer",
+        });
+
+        $('#container').droppable({
+            tolerance: 'touch',
+            out: function (event, ui) {
+                console.log(ui.draggable);
+                $(ui.draggable).remove();
+            },
+        })
+
+        $('#calc').droppable({
+            drop: function (event, ui) {
+                console.log(ui.draggable);
+            }
+        })
+
+        $('#info .info').on({
+            'click': function (e) {
+                console.log($(e.target).html());
+            }
+        })
+    </script>
+</body>
+
+</html>
