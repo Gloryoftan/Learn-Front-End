@@ -372,7 +372,7 @@
         var star = new Konva.Star({
             x: stage.width() / 2,
             y: stage.height() / 2,
-            numPoints: 6,
+            numPoints: 5,
             innerRadius: 40,
             outerRadius: 70,
             fill: 'yellow',
@@ -1508,7 +1508,7 @@
 
         container.focus();
 
-        const DELTA = 20;
+        const DELTA = 50;
 
         container.addEventListener('keydown', function (e) {
             if (e.keyCode === 37) {
@@ -2612,7 +2612,7 @@
                 y: 25
             },
             draggable: true,
-            name: 'rectangle'
+            name: 'rectangle1'
         });
         layer.add(rect1);
         layer.add(rect2);
@@ -2623,7 +2623,7 @@
         document.getElementById('activate3').addEventListener(
             'click',
             function () {
-                var shapes = stage.find('.rectangle');
+                var shapes = stage.find('.rectangle1');
 
                 for (var n = 0; n < tweens.length; n++) {
                     tweens[n].destroy();

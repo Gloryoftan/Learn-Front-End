@@ -1789,32 +1789,32 @@
 
       canvas.width = 800;
       canvas.height = 500;
-      //   canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
+        canvas.style.background = "-webkit-linear-gradient(bottom,  hsl(196, 54%, 55%), hsl(174, 47%, 52%))";
 
       /* toDataURL */
-      // context.fillStyle = "white";
-      // context.fillRect(0,0,800,500);
-      // let img = new Image();
-      // img.src = 'img/img.jpeg';
-      // img.onload = function () {
-      //     for (let i = 0; i < 10; i++) {
-      //         context.drawImage(img, i * 80, i * 50, 50, 50);
-      //     }
-      //     // let img2 = document.getElementById('imageTest1');
-      //     // img2.src = canvas.toDataURL('image.png', 1);
-      // }
+    //   context.fillStyle = "white";
+    //   context.fillRect(0,0,800,500);
+    //   let img = new Image();
+    //   img.src = 'img/img.jpeg';
+    //   img.onload = function () {
+    //       for (let i = 0; i < 10; i++) {
+    //           context.drawImage(img, i * 80, i * 50, 50, 50);
+    //       }
+    //       // let img2 = document.getElementById('imageTest1');
+    //       // img2.src = canvas.toDataURL('image.png', 1);
+    //   }
 
       /* canvas优化 */
-      //   let canvasHide = document.createElement('canvas');
-      //   canvasHide.width = canvas.width;
-      //   canvasHide.height = canvas.height;
-      //   let contextHide = canvasHide.getContext('2d');
+        // let canvasHide = document.createElement('canvas');
+        // canvasHide.width = canvas.width;
+        // canvasHide.height = canvas.height;
+        // let contextHide = canvasHide.getContext('2d');
 
-      //   for (let i = 0; i < 10; i++) {
-      //       contextHide.strokeRect(Math.random() * 800, Math.random() * 500, Math.random() * 100, Math
-      //       .random() * 100);
-      //   }
-      //   context.drawImage(canvasHide, 0, 0);
+        // for (let i = 0; i < 10; i++) {
+        //     contextHide.strokeRect(Math.random() * 800, Math.random() * 500, Math.random() * 100, Math
+        //     .random() * 100);
+        // }
+        // context.drawImage(canvasHide, 0, 0);
 
       /* 几何计算 */
       // context.lineWidth = 6;
@@ -1913,18 +1913,18 @@
       //     }
       // });
 
-      // function getMousePosX(canvas, event) {
-      //     var rect = canvas.getBoundingClientRect();
-      //     var x = event.clientX - rect.left * (canvas.width / rect.width);
-      //     var y = event.clientY - rect.top * (canvas.height / rect.height);
-      //     return x;
-      // }
+      function getMousePosX(canvas, event) {
+          var rect = canvas.getBoundingClientRect();
+          var x = event.clientX - rect.left * (canvas.width / rect.width);
+          var y = event.clientY - rect.top * (canvas.height / rect.height);
+          return x;
+      }
 
-      // function getMousePosY(canvas, event) {
-      //     var rect = canvas.getBoundingClientRect();
-      //     var y = event.clientY - rect.top * (canvas.height / rect.height);
-      //     return y;
-      // }
+      function getMousePosY(canvas, event) {
+          var rect = canvas.getBoundingClientRect();
+          var y = event.clientY - rect.top * (canvas.height / rect.height);
+          return y;
+      }
       // blackboard.appendChild(canvasHide);
 
       /* isPointInPath */
