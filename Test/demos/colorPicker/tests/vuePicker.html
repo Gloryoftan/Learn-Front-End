@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="vuePicker.css">
+</head>
+
+<body>
+    <template id="color-picker-template">
+
+        <div class="color-picker">
+            <div class="color-picker__overlay" v-if="isVisible" v-on:click="hide"></div>
+            <transition name="pop">
+                <div class="color-picker__flyout" v-if="isVisible">
+                    <div class="color-chip" v-bind:style="{'background': color}">
+                        <div class="color-chip__inner">
+                            <h1 class="color-chip__title">HSL</h1>
+                            <h3 class="color-chip__subtitle">{{ colorString }}</h3>
+                        </div>
+                    </div>
+                    <div class="color-picker__inner">
+                        <div class="control" v-bind:style="gradientH">
+                            <input type="range" min="0" max="360" v-model="h" />
+                        </div>
+                        <div class="control" v-bind:style="gradientS">
+                            <input type="range" min="0" max="100" v-model="s" />
+                        </div>
+                        <div class="control" v-bind:style="gradientL">
+                            <input type="range" min="0" max="100" v-model="l" />
+                        </div>
+                    </div>
+                </div>
+            </transition>
+            <div class="swatch" v-bind:style="{'background': color}" v-on:click="toggle"></div>
+        </div>
+    </template>
+
+    <div id="app">
+        <color-picker :change="updateColor"></color-picker>
+    </div>
+
+    <script src="../../../lib/vue.js"></script>
+    <script src="vuePicker.js"></script>
+</body>
+
+</html>
