@@ -8,52 +8,64 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../lib/jquery-ui.css">
     <style>
-        #calclator {
+        #calculator {
             position: absolute;
             top: 0;
             left: 0;
-            width: 120vh;
-            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            /* width: 120vh; */
+            /* height: 60vh; */
             /* border: 5vh solid transparent; */
             /* padding: 2vh; */
             /* border: 1px solid black; */
             /* overflow: scroll; */
             z-index: 100;
+        border: 10px solid red;
         }
 
-        #calclator .calcData,
-        #calclator .formula {
+        #calculator .calcData,
+        #calculator .formula {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             flex-wrap: wrap;
             overflow: scroll;
-            width: 100%;
-            height: 50%;
+            width: 60vh;
+            height: 30vh;
             background-color: hsl(0, 0%, 80%);
             border: 1px solid black;
-
+            transition: 1s;
         }
 
-        #calclator .calcData {
+        #calculator .calcData {
             box-shadow: -10px 0px 10px red,
                 /*左边阴影*/
                 0px -10px 10px #000,
                 /*上边阴影*/
                 10px 0px 10px green,
                 /*右边阴影*/
-                0px 10px 10px blue
+                0px 10px 10px blue;
+            transform: translateY(15vh);
+            overflow: hidden;
+    overflow-y: auto;
         }
 
-        #calclator .formula {
-            box-shadow: 0px 2px 4px hsl(0, 0%, 60%), 0px 2px 4px hsl(0, 0%, 99%), 0px 2px 4px hsl(0, 0%, 60%), 0px 2px 4px hsl(0, 0%, 60%)
-        }
-
-        #calclator .formula {
+        #calculator .formula {
             background-color: hsl(0, 0%, 60%);
+            box-shadow: 0px 2px 4px hsl(0, 0%, 60%), 0px 2px 4px hsl(0, 0%, 99%), 0px 2px 4px hsl(0, 0%, 60%), 0px 2px 4px hsl(0, 0%, 60%);
+            transform: translateY(-15vh)
         }
 
-        #calclator .calcData .data {
+        /* #calculator:hover .calcData{
+        transform: translateY(0);
+     }
+
+     #calculator:hover .formula{
+        transform: translateY(0);
+     } */
+
+        #calculator .calcData .data {
             display: flex;
             flex-wrap: nowrap;
             max-height: 3vh;
@@ -66,11 +78,11 @@
 </head>
 
 <body>
+    <div class="data">测试数据1🃏♥️♠️♦️♣️</div>
 
-
-    <!-- <div id="calclator">
+    <div id="calculator">
         <div class="calcData">
-            <div class="data">测试数据1</div>
+            <div class="data">测试数据1🃏♥️♠️♦️♣️</div>
             <div class="data">测试数据2</div>
             <div class="data">测试数据3</div>
             <div class="data">长测试数据长测试数据长测试数据1</div>
@@ -82,30 +94,56 @@
         <div class="formula">
 
         </div>
-    </div> -->
+    </div>
 
     <ul>
-            <li><a href="#">link 1</a></li>
-            <li><a href="#">link 2</a></li>
-            <li><a href="#">link 3</a></li>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 2</a></li>
+        <li><a href="#">link 3</a></li>
     </ul>
 
     <script src="../../lib/jQuery-v3.4.1.js"></script>
     <script src="../../lib/jquery-ui.js"></script>
     <script>
-        $('#calclator').resizable({
-            minWidth: '10',
-            minHeight: '10',
+        // $('#calculator').resizable({
+        //     minWidth: '10',
+        //     minHeight: '10',
+        // });
+
+        $('#calculator .calcData').resizable({
+            handles: 's,e',
         });
 
-        $('#calclator').draggable();
+        $('#calculator .formula').resizable({
+            alsoResize:'#calculator .calcData'
+        });
 
-        $('#calclator .calcData').sortable({
+        var calcHeight;
+        var calcWidth;
+        $('#calculator .calcData').resizable({
+            start: function (event, ui) {
+                calcHeight = $("#calculator").height();
+                calcWidth = $("#calculator").width();
+
+            },
+            resize: function (event, ui) {
+                // console.log(ui.size.width);
+                console.log('calc的高'+calcHeight);
+                    console.log('calc的宽'+calcWidth);
+                $('#calculator .formula').width(ui.size.width);
+                $('#calculator .formula').height(calcHeight - ui.size.height);
+            }
+        });
+
+
+        $('#calculator').draggable();
+
+        $('#calculator .calcData').sortable({
             scroll: false,
             tolerance: "pointer",
         });
 
-        $('#calclator').droppable({
+        $('#calculator').droppable({
             tolerance: 'touch',
             out: function (event, ui) {
                 console.log(ui.draggable);
@@ -113,17 +151,44 @@
             },
         })
 
-        $('#calclator .formula').droppable({
+        $('#calculator .formula').droppable({
             drop: function (event, ui) {
                 console.log(ui.draggable);
             }
         })
 
-        $('#calclator .data').on({
+        $('#calculator .data').on({
             'click': function (e) {
                 console.log($(e.target).html());
             }
         })
+
+
+        $(document).ready(function () {
+            $('#calculator .calcData').css({
+                'transform': "translateY(0)",
+            })
+            $('#calculator .formula').css({
+                'transform': "translateY(0)",
+            })
+            setTimeout(() => {
+                $('#calculator .calcData').css({
+                    'transition': "none",
+                })
+                $('#calculator .formula').css({
+                    'transition': "none",
+                })
+            }, 2000)
+
+            let ar = ['♥️'];
+            let br = ar;
+           
+            br.splice(0,2);
+
+            $('#calculator').append('<div>'+br.splice(0,1)[0]+'</div>')
+        })
+
+        
     </script>
 </body>
 
