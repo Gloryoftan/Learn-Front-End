@@ -20,9 +20,14 @@
             padding: 2vh 6vh;
             font-size: 10vh;
             min-width: 8vh;
-            background-color: hsl(0, 0%, 30%);
+            background: hsl(0, 0%, 30%);
             color: hsl(0, 0%, 90%);
             white-space: nowrap;
+        }
+
+        #digit.oncalc{
+            width: 200px;
+            transition: width 1s;
         }
 
         #ultest {
@@ -40,11 +45,28 @@
             z-index: -1;
         }
 
+        #drop{
+            display: flex;
+            flex-direction: column;
+            width: 50vh;
+            height: 50vh;
+        }
+
         #drop1,
         #drop2 {
-            width: 50vh;
-            height: 25vh;
+           height: 50%;
             border: 1px solid black;
+        }
+
+        #drop2{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #hardstand{
+            display: none;
+            border: 1px dashed black;
+            width: 40px;
+            height: 20px;
         }
     </style>
 </head>
@@ -63,11 +85,13 @@
         <li class="judge">9</li>
         <li class="judge">10</li>
     </ul>
-    <div id="digit">40</div>
+    <div id="digit" class="oncalc">40</div>
 
     <div id="drop">
         <div id="drop1"></div>
-        <div contenteditable="true" id="drop2"></div>
+        <div contenteditable="true" id="drop2">
+            <div id="hardstand"></div>
+        </div>
     </div>
 
     <div contenteditable="true" id="editTest">
@@ -105,7 +129,7 @@
             $('#digit').css({
                 display: 'flex',
                 top: (event.clientY - 50) + 'px',
-                left: (event.clientX + 10) + 'px'
+                left: (event.clientX - 50) + 'px'
             })
             $('#cover').css({
                 'z-index': '100',
@@ -118,7 +142,7 @@
             // console.log(dropWidth+':'+dropHeight);
             $('#digit').css({
                 top: (event.clientY - 50) + 'px',
-                left: (event.clientX + 10) + 'px'
+                left: (event.clientX - 50) + 'px'
             })
 
             if (dropPosX < event.clientX && event.clientX < dropRangeX && dropPosY < event.clientY && event
@@ -126,10 +150,12 @@
                 $('#drop2').css({
                     'background': 'hsl(0,0%,80%)'
                 })
+                $('#digit').addClass('oncalc');
             } else {
                 $('#drop2').css({
                     'background': 'transparent'
                 })
+                $('#digit').removeClass('oncalc');
             }
         })
 
@@ -150,6 +176,7 @@
             disabled: true,
         })
 
+        $('#drop').resizable();
         // $('#drop2').on({
         //     'mouseenter': function (e) {
         //         $('#drop2').css({
