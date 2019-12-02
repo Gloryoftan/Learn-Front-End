@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i&display=swap');
+
+        :root {
+            --brown: #231e1f;
+            --white: #ffffff;
+            --gray: #aeadad;
+            --yellow: #F1EB00;
+
+            --cabin: 'Cabin', sans-serif;
+            --grap: 1rem;
+
+            --fontGlobal: .9rem;
+
+            /*Number of items to display*/
+            --heightNavigation: calc((16px * 2) * 10);
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-kerning: auto;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        html {
+            font-size: var(--fontGlobal);
+            font-family: var(--cabin);
+            background-color: var(--brown);
+            color: var(--gray);
+        }
+
+        body {
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            letter-spacing: 0.09rem;
+        }
+
+        p {
+            letter-spacing: 0.09rem;
+            line-height: 1.5rem;
+            margin-top: 1.8rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .container-fluid {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main {
+            display: flex;
+            padding: 2rem;
+            height: 100vh;
+        }
+
+        .navigation {
+            flex-basis: 30%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex-basis: 60%;
+        }
+
+        .title__content {
+            font-family: var(--nunito);
+            color: var(--white);
+            letter-spacing: 0.5rem;
+            font-size: 4rem;
+            margin-top: 0rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .navigation__letters {
+            font-weight: 800;
+            align-self: start;
+            transform: translatex(-50%);
+            color: var(--white);
+            font-family: var(--nunito);
+            margin-bottom: 1rem;
+        }
+
+        .navigation__scrolleable {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .navigation__line {
+            --widthLine: 2px;
+            --centerPos: calc(-15px / 2 + var(--widthLine) / 2);
+            --yPos: 0;
+
+            min-height: 500px;
+            width: var(--widthLine);
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .navigation__line:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: var(--centerPos);
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--brown);
+            border: 1px solid var(--white);
+            transform: translate3d(0, var(--yPos), 0);
+            transition-duration: 1s;
+            transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition-property: transform;
+        }
+
+        .navigation__list {
+            margin-left: 2rem;
+            height: var(--heightNavigation);
+            overflow: hidden;
+            align-self: center;
+            margin-top: var(--grap);
+        }
+
+        .navigation__list-group {
+            display: grid;
+            grid-row-gap: var(--grap);
+            transition-duration: 1s;
+            transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition-property: transform;
+        }
+
+        .navigation__list-item {
+            cursor: pointer;
+            display: grid;
+            grid-template-areas: "center";
+            justify-content: start;
+        }
+
+        .navigation__list-item> :nth-child(1) {
+            grid-area: center;
+            transition-duration: .8s;
+            transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition-property: transform, opacity;
+        }
+
+        .navigation__list-item:hover> :nth-child(1) {
+            transform: translatex(-100%);
+        }
+
+        .navigation__list-item> :nth-child(2) {
+            grid-area: center;
+            color: var(--yellow);
+            transition-duration: .8s;
+            transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition-property: transform, opacity;
+            transform: translatex(100%);
+            opacity: 0;
+        }
+
+        .navigation__list-item:hover> :nth-child(2) {
+            transform: translatex(0);
+            opacity: 1;
+        }
+
+        /*scroll icon by https://codepen.io/2xsamurai/pen/WwmjKQ*/
+        .scroll-downs {
+            margin-top: 1.5rem;
+            width: 100%;
+            display: flex;
+            align-items: start;
+            align-content: center;
+            flex-direction: column;
+            z-index: 10;
+            height: 55px;
+            color: #fff;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .mousey {
+            min-width: 3px;
+            padding: 10px 10px;
+            min-height: 20px;
+            border: 4px solid #fff;
+            border-radius: 25px;
+            opacity: 0.75;
+            box-sizing: content-box;
+            position: relative;
+            transform: translatex(-50%);
+        }
+
+        .scroller {
+            width: 4px;
+            height: 10px;
+            border-radius: 25%;
+            background-color: #fff;
+            animation-name: scroll;
+            animation-duration: 2.2s;
+            animation-timing-function: cubic-bezier(.15, .41, .69, .94);
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 0;
+            }
+
+            10% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+        }
+
+        .text {
+            margin-top: 5px;
+        }
+
+        /* noise */
+
+        .noise {
+            z-index: 100;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            pointer-events: none;
+            opacity: .1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main container-fluid">
+        <canvas id="noise" class="noise"></canvas>
+        <div class="navigation">
+            <span class="navigation__letters">A - Z</span>
+            <div class="navigation__scrolleable">
+                <div class="navigation__line"></div>
+                <div class="navigation__list">
+                    <ul class="navigation__list-group">
+                        <li class="navigation__list-item"><span>Item 1</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 2</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 3</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 4</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 5</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 6</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 7</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 8</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 9</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 10</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 11</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 12</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 13</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 14</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 15</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 16</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 17</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 18</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 19</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 20</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 21</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 22</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 23</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 24</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 25</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 26</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 27</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 28</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 29</span><span>Select Item</span></li>
+                        <li class="navigation__list-item"><span>Item 30</span><span>Select Item</span></li>
+                    </ul>
+                </div>
+
+                <div class="scroll-downs">
+                    <div class="mousey">
+                        <div class="scroller"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="content">
+            <h1 class="title__content">Selected</h1>
+            <div class="text__content">
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has
+                    survived not only five centuries, but also the leap into electronic typesetting, remaining
+                    essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing Lorem Ipsum passages, and more recently with desktop
+                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                    distribution of letters, as opposed to using 'Content
+                    here, content here', making it look like readable English. Many desktop publishing packages and web
+                    page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will
+                    uncover many web sites still in their infancy.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const scrolleable = document.querySelector(".navigation__scrolleable");
+        const navigation_list = scrolleable.querySelector(".navigation__list");
+        const navigation_list_group = scrolleable.querySelector(
+            ".navigation__list-group"
+        );
+        const navigation_line = scrolleable.querySelector(".navigation__line");
+        const itemsLength = scrolleable.querySelectorAll(".navigation__list-item")
+            .length;
+
+        const itemsInView = itemsLength / 10 - 1;
+
+        // Function clamp a value between an upper and lower bound
+        const clamp = (v, min, max) => {
+            return Math.max(min, Math.min(v, max));
+        };
+
+        // Returns the size or its relative position with respect to the window
+        const bound = (item, prop) => {
+            return item.getBoundingClientRect()[prop];
+        };
+
+        let moveItems = 0;
+        let movePointTo = 0;
+
+        scrolleable.addEventListener("wheel", e => {
+            const delta = Math.sign(e.deltaY);
+
+            transitionPoint(delta);
+            transitionItems(delta);
+        });
+
+        // This will move the point from top to bottom or vice versa smoothly
+        const transitionPoint = delta => {
+            const lineHeight = bound(navigation_line, "height");
+            const linePerItemsViews = delta * lineHeight / itemsInView;
+            movePointTo += linePerItemsViews;
+            movePointTo = clamp(movePointTo, 0, lineHeight);
+            navigation_line.style.setProperty("--yPos", movePointTo + "px");
+        };
+
+        // Navigation elements with smooth transition
+        const transitionItems = delta => {
+            const height = bound(navigation_list, "height");
+            const totalHeight = bound(navigation_list_group, "height") - height;
+            moveItems += -delta * height;
+            moveItems = clamp(moveItems, -totalHeight, 0);
+            navigation_list_group.style.transform = `translate3d(0,${moveItems}px,0)`;
+        };
+    </script>
+</body>
+
+</html>
