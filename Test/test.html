@@ -6,67 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        :root {
-            --dark: blue;
-        }
-
-        .dark {
-            --dark: black;
-        }
-
-        div {
-            width: 50px;
-            height: 50px;
-        }
-
-        #div1 {
-            background-color: var(--dark);
-        }
-
-        body{
-
-        }
-
-
-        #hsl{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 200px;
-            height: 200px;
-            border: 1px solid #000;
-            background: hsl(199, 10%, 96%);
-        }
-        
-        #hsl2{
-            width: 50px;
-            height: 50px;
-            background: hsl(897, 221%, 59%);
-            border: 1px solid black;
-        }
-
-
-    </style>
 </head>
 
 <body>
-    <div id="div1"></div>
-    <div id="div2"></div>
-    <div id="div3"></div>
-    <button id="btn">1</button>
-    <div id='hsl'>
-        <div id="hsl2">
+    <div id="test" style="width: 50px; height: 25px; background: #000;"></div>
 
-        </div>
-    </div>
+    <script src="lib/jQuery-v3.4.1.js"></script>
     <script>
-        let btn = document.getElementById('btn');
-        let body = document.getElementsByTagName('body')[0];
-        console.log(body);
-                btn.onclick = function () {
-                    body.classList.add("dark");
-                }
+        $('#test').on({
+            'click': function (e) {
+                e.stopPropagation;
+                console.log('click')
+            },
+            'dblclick': function (e) {
+                console.log('doubleClick')
+            }
+        })
+
+        $('#test').off('click');
+
+        $('#test').on('click');
+        // setTimeout(() => {
+        //     $('#test').on('click');
+        // }, 5000);
     </script>
 </body>
 
