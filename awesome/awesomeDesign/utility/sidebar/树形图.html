@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<!-- <style>
+    @charset "UTF-8";
+
+    ul.mtree {
+        opacity: 0;
+        margin-left: 0;
+        padding: 1.2em;
+    }
+
+    ul.mtree ul {
+        margin-left: 1em;
+    }
+
+    ul.mtree li {
+        list-style: none;
+    }
+
+    ul.mtree a {
+        display: block;
+    }
+
+    ul.mtree li.mtree-node>a {
+        font-weight: bold;
+    }
+
+    ul.mtree a {
+        -webkit-transition: all 300ms ease-out;
+        -moz-transition: all 300ms ease-out;
+        -ms-transition: all 300ms ease-out;
+        -o-transition: all 300ms ease-out;
+        transition: all 300ms ease-out;
+    }
+
+    ul.mtree.bubba ul {
+        margin-left: 0;
+    }
+
+    ul.mtree.bubba ul li {
+        font-size: .9em;
+    }
+
+    ul.mtree.bubba li.mtree-node>a:after {
+        content: '›';
+        margin-left: .5em;
+        font-weight: normal;
+    }
+
+    ul.mtree.bubba li.mtree-node>a {
+        font-weight: bold;
+        text-transform: upperCase;
+    }
+
+    ul.mtree.bubba>li {
+        border-bottom: 1px solid #DDD;
+    }
+
+    ul.mtree.bubba>li:last-child {
+        border-bottom: none;
+    }
+
+    ul.mtree.bubba li:last-child>a {
+        border: none;
+    }
+
+    ul.mtree.bubba>li.mtree-open>a {
+        background: #DDD;
+    }
+
+    ul.mtree.bubba li>a:hover {
+        background: #DDD;
+    }
+
+    ul.mtree.bubba li.mtree-active>a {
+        background: #FFC000;
+        color: #FFF;
+    }
+
+    ul.mtree.bubba a {
+        padding: 7px 0px 7px 1em;
+    }
+
+    ul.mtree.bubba li li>a {
+        padding-left: 2em;
+    }
+
+    ul.mtree.bubba li li li>a {
+        padding-left: 3em;
+    }
+
+    ul.mtree.bubba li li li li>a {
+        padding-left: 4em;
+    }
+
+    ul.mtree.bubba li li li li li>a {
+        padding-left: 5em;
+    }
+
+    ul.mtree.skinny li {
+        font-size: .9em;
+    }
+
+    ul.mtree.skinny a {
+        padding: 0px 18px;
+        color: #555;
+    }
+
+    ul.mtree.skinny a:hover {
+        text-decoration: underline;
+    }
+
+    ul.mtree.skinny li.mtree-node:before {
+        float: left;
+        margin-left: .5em;
+        zoom: .8;
+        margin-top: .1em;
+        color: #777;
+    }
+
+    ul.mtree.skinny li.mtree-open:before {
+        content: '-';
+    }
+
+    ul.mtree.skinny li.mtree-closed:before {
+        content: '+';
+    }
+
+    ul.mtree.skinny ul>li:first-child {
+        margin-top: .1em;
+    }
+
+    ul.mtree.skinny ul>li:last-child {
+        margin-bottom: .3em;
+    }
+
+    ul.mtree.skinny ul a {
+        color: #666;
+    }
+
+    ul.mtree.transit {
+        background: #111;
+    }
+
+    ul.mtree.transit ul {
+        margin-left: 0;
+    }
+
+    ul.mtree.transit ul>li {
+        font-size: .9em;
+    }
+
+    ul.mtree.transit li.mtree-node {
+        position: relative;
+    }
+
+    ul.mtree.transit li.mtree-node>a:before {
+        color: #CCC;
+        font-weight: normal;
+        position: absolute;
+        right: 20px;
+    }
+
+    ul.mtree.transit li.mtree-open>a:before {
+        content: '-';
+    }
+
+    ul.mtree.transit li.mtree-closed>a:before {
+        content: '+';
+    }
+
+    ul.mtree.transit ul>li:first-child {
+        margin-top: 1px;
+    }
+
+    ul.mtree.transit li.mtree-open>a {
+        background: #222;
+    }
+
+    ul.mtree.transit li>a:hover,
+    ul.mtree.transit li.mtree-active>a {
+        background: #333;
+        color: #FFF;
+    }
+
+    ul.mtree.transit li.mtree-node>ul>li:last-child {
+        margin-bottom: .5em;
+        padding-bottom: .5em;
+        border-bottom: 1px solid #333;
+    }
+
+    ul.mtree.transit li.mtree-node:last-child>ul>li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    ul.mtree.transit a {
+        padding: 5px 0px 5px 0.8em;
+        color: #CCC;
+    }
+
+    ul.mtree.transit li li>a {
+        padding-left: 1.6em;
+    }
+
+    ul.mtree.transit li li li>a {
+        padding-left: 2.4em;
+    }
+
+    ul.mtree.transit li li li li>a {
+        padding-left: 3.2em;
+    }
+
+    ul.mtree.transit li li li li li>a {
+        padding-left: 4em;
+    }
+
+    ul.mtree.jet ul {
+        margin-left: 0;
+    }
+
+    ul.mtree.jet li {
+        margin-bottom: 1px;
+    }
+
+    ul.mtree.jet li:last-child {
+        margin-bottom: 0px;
+    }
+
+    ul.mtree.jet li:first-child {
+        margin-top: 1px;
+    }
+
+    ul.mtree.jet li.mtree-active a {
+        background: #E3E3E3;
+    }
+
+    ul.mtree.jet li.mtree-active li:last-child>a {
+        border-radius: 0px 0px 3px 3px;
+    }
+
+    ul.mtree.jet li.mtree-active>a {
+        background: #008cba;
+        color: #FFF;
+        border-radius: 3px 3px 0px 0px;
+    }
+
+    ul.mtree.jet li>a:hover {
+        background: #FFC000;
+        color: #FFF;
+    }
+
+    ul.mtree.jet a {
+        padding: 5px 0px 5px 1em;
+    }
+
+    ul.mtree.jet li li>a {
+        padding-left: 2em;
+    }
+
+    ul.mtree.jet li li li>a {
+        padding-left: 3em;
+    }
+
+    ul.mtree.jet li li li li>a {
+        padding-left: 4em;
+    }
+
+    ul.mtree.jet li li li li li>a {
+        padding-left: 5em;
+    }
+
+    ul.mtree.nix {
+        background: none;
+    }
+
+    ul.mtree.nix a {
+        display: inline;
+    }
+
+    ul.mtree.nix ul {
+        margin-left: 1em;
+    }
+
+    ul.mtree.nix ul>li {
+        list-style-position: inside;
+    }
+
+    ul.mtree.nix li {
+        list-style: disc;
+    }
+
+    .mtree-demo .mtree {
+        background: #EEE;
+        margin: 20px auto;
+        max-width: 320px;
+        border-radius: 3px;
+    }
+
+    .mtree-skin-selector {
+        text-align: center;
+        background: #EEE;
+        padding: 10px 0 15px;
+    }
+
+    .mtree-skin-selector li {
+        display: inline-block;
+        float: none;
+    }
+
+    .mtree-skin-selector button {
+        padding: 5px 10px;
+        margin-bottom: 1px;
+        background: #BBB;
+    }
+
+    .mtree-skin-selector button:hover {
+        background: #999;
+    }
+
+    .mtree-skin-selector button.active {
+        background: #999;
+        font-weight: bold;
+    }
+
+    .mtree-skin-selector button.csl.active {
+        background: #FFC000;
+    }
+</style> -->
+
+<body>
+
+    <!-- This is mtree list -->
+    <ul class="mtree">
+        <li><a href="#">Africa</a>
+            <ul>
+                <li><a href="#">Algeria</a></li>
+                <li><a href="#">Marocco</a></li>
+                <li><a href="#">Libya</a></li>
+                <li><a href="#">Somalia</a></li>
+                <li><a href="#">Kenya</a></li>
+                <li><a href="#">Mauritania</a></li>
+                <li><a href="#">South Africa</a></li>
+            </ul>
+        </li>
+        <li><a href="#">America</a>
+            <ul>
+                <li><a href="#">North-America</a>
+                    <ul>
+                        <li><a href="#">Canada</a></li>
+                        <li><a href="#">USA</a>
+                            <ul>
+                                <li><a href="#">New York</a></li>
+                                <li><a href="#">California</a>
+                                    <ul>
+                                        <li><a href="#">Los Angeles</a></li>
+                                        <li><a href="#">San Diego</a></li>
+                                        <li><a href="#">Sacramento</a></li>
+                                        <li><a href="#">San Francisco</a></li>
+                                        <li><a href="#">Bakersville</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Lousiana</a></li>
+                                <li><a href="#">Texas</a></li>
+                                <li><a href="#">Nevada</a></li>
+                                <li><a href="#">Montana</a></li>
+                                <li><a href="#">Virginia</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">Middle-America</a>
+                    <ul>
+                        <li><a href="#">Mexico</a></li>
+                        <li><a href="#">Honduras</a></li>
+                        <li><a href="#">Guatemala</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">South-America</a>
+                    <ul>
+                        <li><a href="#">Brazil</a></li>
+                        <li><a href="#">Argentina</a></li>
+                        <li><a href="#">Uruguay</a></li>
+                        <li><a href="#">Chile</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Asia</a>
+            <ul>
+                <li><a href="#">China</a></li>
+                <li><a href="#">India</a></li>
+                <li><a href="#">Malaysia</a></li>
+                <li><a href="#">Thailand</a></li>
+                <li><a href="#">Vietnam</a></li>
+                <li><a href="#">Singapore</a></li>
+                <li><a href="#">Indonesia</a></li>
+                <li><a href="#">Mongolia</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Europe</a>
+            <ul>
+                <li><a href="#">North</a>
+                    <ul>
+                        <li><a href="#">Norway</a></li>
+                        <li><a href="#">Sweden</a></li>
+                        <li><a href="#">Finland</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">East</a>
+                    <ul>
+                        <li><a href="#">Romania</a></li>
+                        <li><a href="#">Bulgaria</a></li>
+                        <li><a href="#">Poland</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">South</a>
+                    <ul>
+                        <li><a href="#">Italy</a></li>
+                        <li><a href="#">Greece</a></li>
+                        <li><a href="#">Spain</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">West</a>
+                    <ul>
+                        <li><a href="#">France</a></li>
+                        <li><a href="#">England</a></li>
+                        <li><a href="#">Portugal</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Oceania</a>
+            <ul>
+                <li><a href="#">Australia</a></li>
+                <li><a href="#">New Zealand</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Arctica</a></li>
+        <li><a href="#">Antarctica</a></li>
+    </ul>
+
+    <script src="../../../../Test/lib/jQuery-v3.4.1.js"></script>
+    <script src="../../../../Test/lib/velocity.js"></script>
+    <script>
+        // mtree.js
+        // Requires jquery.js and velocity.js (optional but recommended).
+        // Copy the below function, add to your JS, and simply add a list <ul class=mtree> ... </ul>
+        
+        (function ($, window, document, undefined) {
+
+            // Only apply if mtree list exists
+            if ($('ul.mtree').length) {
+
+
+                // Settings
+                var collapsed = true; // Start with collapsed menu (only level 1 items visible)
+                var close_same_level = false; // Close elements on same level when opening new node.
+                var duration = 400; // Animation duration should be tweaked according to easing.
+                var listAnim = true; // Animate separate list items on open/close element (velocity.js only).
+                var easing = 'easeOutQuart'; // Velocity.js only, defaults to 'swing' with jquery animation.
+
+
+                // Set initial styles 
+                $('.mtree ul').css({
+                    'overflow': 'hidden',
+                    'height': (collapsed) ? 0 : 'auto',
+                    'display': (collapsed) ? 'none' : 'block'
+                });
+
+                // Get node elements, and add classes for styling
+                var node = $('.mtree li:has(ul)');
+                node.each(function (index, val) {
+                    $(this).children(':first-child').css('cursor', 'pointer')
+                    $(this).addClass('mtree-node mtree-' + ((collapsed) ? 'closed' : 'open'));
+                    $(this).children('ul').addClass('mtree-level-' + ($(this).parentsUntil($('ul.mtree'),
+                        'ul').length + 1));
+                });
+
+                // Set mtree-active class on list items for last opened element
+                $('.mtree li > *:first-child').on('click.mtree-active', function (e) {
+                    if ($(this).parent().hasClass('mtree-closed')) {
+                        $('.mtree-active').not($(this).parent()).removeClass('mtree-active');
+                        $(this).parent().addClass('mtree-active');
+                    } else if ($(this).parent().hasClass('mtree-open')) {
+                        $(this).parent().removeClass('mtree-active');
+                    } else {
+                        $('.mtree-active').not($(this).parent()).removeClass('mtree-active');
+                        $(this).parent().toggleClass('mtree-active');
+                    }
+                });
+
+                // Set node click elements, preferably <a> but node links can be <span> also
+                node.children(':first-child').on('click.mtree', function (e) {
+
+                    // element vars
+                    var el = $(this).parent().children('ul').first();
+                    var isOpen = $(this).parent().hasClass('mtree-open');
+
+                    // close other elements on same level if opening 
+                    if ((close_same_level || $('.csl').hasClass('active')) && !isOpen) {
+                        var close_items = $(this).closest('ul').children('.mtree-open').not($(this)
+                        .parent()).children('ul');
+
+                        // Velocity.js
+                        if ($.Velocity) {
+                            close_items.velocity({
+                                height: 0
+                            }, {
+                                duration: duration,
+                                easing: easing,
+                                display: 'none',
+                                delay: 100,
+                                complete: function () {
+                                    setNodeClass($(this).parent(), true)
+                                }
+                            });
+
+                            // jQuery fallback
+                        } else {
+                            close_items.delay(100).slideToggle(duration, function () {
+                                setNodeClass($(this).parent(), true);
+                            });
+                        }
+                    }
+
+                    // force auto height of element so actual height can be extracted
+                    el.css({
+                        'height': 'auto'
+                    });
+
+                    // listAnim: animate child elements when opening
+                    if (!isOpen && $.Velocity && listAnim) el.find(' > li, li.mtree-open > ul > li').css({
+                        'opacity': 0
+                    }).velocity('stop').velocity('list');
+
+                    // Velocity.js animate element
+                    if ($.Velocity) {
+                        el.velocity('stop').velocity({
+                            //translateZ: 0, // optional hardware-acceleration is automatic on mobile
+                            height: isOpen ? [0, el.outerHeight()] : [el.outerHeight(), 0]
+                        }, {
+                            queue: false,
+                            duration: duration,
+                            easing: easing,
+                            display: isOpen ? 'none' : 'block',
+                            begin: setNodeClass($(this).parent(), isOpen),
+                            complete: function () {
+                                if (!isOpen) $(this).css('height', 'auto');
+                            }
+                        });
+
+                        // jQuery fallback animate element
+                    } else {
+                        setNodeClass($(this).parent(), isOpen);
+                        el.slideToggle(duration);
+                    }
+
+                    // We can't have nodes as links unfortunately
+                    e.preventDefault();
+                });
+
+                // Function for updating node class
+                function setNodeClass(el, isOpen) {
+                    if (isOpen) {
+                        el.removeClass('mtree-open').addClass('mtree-closed');
+                    } else {
+                        el.removeClass('mtree-closed').addClass('mtree-open');
+                    }
+                }
+
+                // List animation sequence
+                if ($.Velocity && listAnim) {
+                    $.Velocity.Sequences.list = function (element, options, index, size) {
+                        $.Velocity.animate(element, {
+                            opacity: [1, 0],
+                            translateY: [0, -(index + 1)]
+                        }, {
+                            delay: index * (duration / size / 2),
+                            duration: duration,
+                            easing: easing
+                        });
+                    };
+                }
+
+                // Fade in mtree after classes are added.
+                // Useful if you have set collapsed = true or applied styles that change the structure so the menu doesn't jump between states after the function executes.
+                if ($('.mtree').css('opacity') == 0) {
+                    if ($.Velocity) {
+                        $('.mtree').css('opacity', 1).children().css('opacity', 0).velocity('list');
+                    } else {
+                        $('.mtree').show(200);
+                    }
+                }
+            }
+        }(jQuery, this, this.document));
+
+
+        /* DEMO STUFF */
+        $(document).ready(function () {
+            var mtree = $('ul.mtree');
+
+            // Skin selector for demo
+            mtree.wrap('<div class=mtree-demo></div>');
+            var skins = ['bubba', 'skinny', 'transit', 'jet', 'nix'];
+            mtree.addClass(skins[0]);
+            $('body').prepend('<div class="mtree-skin-selector"><ul class="button-group radius"></ul></div>');
+            var s = $('.mtree-skin-selector');
+            $.each(skins, function (index, val) {
+                s.find('ul').append('<li><button class="small skin">' + val + '</button></li>');
+            });
+            s.find('ul').append('<li><button class="small csl active">Close Same Level</button></li>');
+            s.find('button.skin').each(function (index) {
+                $(this).on('click.mtree-skin-selector', function () {
+                    s.find('button.skin.active').removeClass('active');
+                    $(this).addClass('active');
+                    mtree.removeClass(skins.join(' ')).addClass(skins[index]);
+                });
+            })
+            s.find('button:first').addClass('active');
+            s.find('.csl').on('click.mtree-close-same-level', function () {
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

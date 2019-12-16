@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 50px 100px;
+            font-family: sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 25px;
+            line-height: 2em;
+            list-style: none;
+            background-color: #fff;
+        }
+
+        ul li {
+            position: relative;
+        }
+
+        ul li:before {
+            position: absolute;
+            top: 0;
+            left: -15px;
+            display: block;
+            width: 15px;
+            height: 1em;
+            content: "";
+            border-bottom: 1px dotted #666;
+            border-left: 1px dotted #666;
+        }
+
+        /* hide the vertical line on the first item */
+        ul.tree>li:first-child:before {
+            border-left: none;
+        }
+
+        ul li:after {
+            position: absolute;
+            top: 1.1em;
+            bottom: 1px;
+            left: -15px;
+            display: block;
+            content: "";
+            border-left: 1px dotted #666;
+        }
+
+        /* hide the lines on the last item */
+        ul li:last-child:after {
+            display: none;
+        }
+
+        /* inserted via JS  */
+        .js-toggle-icon {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            width: 14px;
+            margin-right: 2px;
+            margin-left: -23px;
+            line-height: 14px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #fff;
+            border: 1px solid #666;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Collapsible Tree Menu</h1>
+    <ul class="tree">
+        <li itemId='1'>
+            1
+        </li>
+        <li itemId='2'>
+            2
+            <ul>
+                <li itemId='3'>
+                    3
+                    <ul>
+                        <li itemId='8'>
+                            8
+                        </li>
+                        <li itemId='9'>
+                            9
+                        </li>
+                    </ul>
+                </li>
+                <li itemId='4'>
+                    4
+                    <ul>
+                        <li itemId='10'>
+                            10
+                        </li>
+                        <li itemId='11'>
+                            11
+                        </li>
+                    </ul>
+                </li>
+                <li itemId='5'>
+                    5
+                </li>
+                <li itemId='6'>
+                    6
+                </li>
+            </ul>
+        </li>
+        <li itemId='7'>7</li>
+
+    </ul>
+
+    <script src="../../../../Test/lib/jQuery-v3.4.1.js"></script>
+    <script>
+        $(function () {
+            // Hide all lists except the outermost.
+            $('ul.tree ul').hide();
+
+            $('.tree li > ul').each(function (i) {
+                var $subUl = $(this);
+                var $parentLi = $subUl.parent('li');
+                var $toggleIcon = '<i class="js-toggle-icon">+</i>';
+
+                $parentLi.addClass('has-children');
+
+                $parentLi.prepend($toggleIcon).find('.js-toggle-icon').on('click', function () {
+                    $(this).text($(this).text() == '+' ? '-' : '+');
+                    $subUl.slideToggle('fast');
+                });
+            });
+
+            $('.tree li').each(function (i) {
+                var $item = $(this);
+
+                $item.on('click', function (e) {
+                    e.stopPropagation();
+                    console.log($(this).attr('itemId'));
+                })
+
+            });
+        });
+    </script>
+</body>
+
+</html>
