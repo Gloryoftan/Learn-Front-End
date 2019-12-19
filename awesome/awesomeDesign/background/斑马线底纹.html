@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0px;
+        }
+
+        .button {
+            -webkit-transition: box-shadow 0.15s;
+            -moz-transition: box-shadow 0.15s;
+            -ms-transition: box-shadow 0.15s;
+            -o-transition: box-shadow 0.15s;
+            transition: box-shadow 0.15s;
+            border: 1px solid #b2afa5;
+            border-color: #e1e0dc #c9c8c1 #b2afa5;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.439);
+            background: -webkit-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: -moz-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: -ms-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: -o-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: linear-gradient(top, #f6f5f0, #e1e0dc);
+            -pie-background: linear-gradient(top, #f6f5f0, #e1e0dc);
+            color: #6b635b;
+            -webkit-box-shadow: rgba(255, 255, 255, 0) 0 0 1px 0, rgba(255, 255, 255, 0) 0 0 0 1px inset, white 0 1px 0 0;
+            -moz-box-shadow: rgba(255, 255, 255, 0) 0 0 1px 0, rgba(255, 255, 255, 0) 0 0 0 1px inset, white 0 1px 0 0;
+            -ms-box-shadow: rgba(255, 255, 255, 0) 0 0 1px 0, rgba(255, 255, 255, 0) 0 0 0 1px inset, white 0 1px 0 0;
+            -o-box-shadow: rgba(255, 255, 255, 0) 0 0 1px 0, rgba(255, 255, 255, 0) 0 0 0 1px inset, white 0 1px 0 0;
+            box-shadow: rgba(255, 255, 255, 0) 0 0 1px 0, rgba(255, 255, 255, 0) 0 0 0 1px inset, white 0 1px 0 0;
+            display: inline-block;
+            white-space: nowrap;
+            margin: 0;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: normal;
+            text-align: center;
+            color: #6b635b;
+            padding: 30px 50px;
+            text-decoration: none;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+
+        /* .button.disabled {
+            color: #bdbbb9;
+            border: 1px solid #d3d3d3;
+            cursor: auto;
+            text-shadow: white 0 1px 0;
+            -webkit-box-shadow: white 0 1px 0 0 inset;
+            -moz-box-shadow: white 0 1px 0 0 inset;
+            -ms-box-shadow: white 0 1px 0 0 inset;
+            -o-box-shadow: white 0 1px 0 0 inset;
+            box-shadow: white 0 1px 0 0 inset;
+        }
+ */
+
+        .in-progress {
+            text-shadow: none;
+            background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent), -webkit-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent), -moz-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent), -ms-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent), -o-linear-gradient(top, #f6f5f0, #e1e0dc);
+            background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent), linear-gradient(top, #f6f5f0, #e1e0dc);
+            -pie-background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent), linear-gradient(top, #f6f5f0, #e1e0dc);
+            background-repeat: repeat;
+            -webkit-background-size: 40px 40px, 100% 100%;
+            -moz-background-size: 40px 40px, 100% 100%;
+            -ms-background-size: 40px 40px, 100% 100%;
+            -o-background-size: 40px 40px, 100% 100%;
+            background-size: 40px 40px, 100% 100%;
+            -webkit-animation: progress-bar-stripes 2s linear infinite;
+            -moz-animation: progress-bar-stripes 2s linear infinite;
+            -ms-animation: progress-bar-stripes 2s linear infinite;
+            -o-animation: progress-bar-stripes 2s linear infinite;
+            animation: progress-bar-stripes 2s linear infinite;
+        }
+
+        /* @-webkit-keyframes progress-bar-stripes {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 40px 0;
+            }
+        }
+
+        @-moz-keyframes progress-bar-stripes {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 40px 0;
+            }
+        }
+
+        @keyframes progress-bar-stripes {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 40px 0;
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <button class="button">Normal state </button>
+
+    <br><br>
+
+    <button class="button disabled in-progress">Please wait...</button>
+</body>
+
+</html>
