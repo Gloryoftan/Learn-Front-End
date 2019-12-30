@@ -1,0 +1,426 @@
+:root {
+    /* theme */
+    --bg-h: 199;
+    --bg-s: 10%;
+    --bg-l: 98%;
+    --cmpt-h: 178;
+    --cmpt-s: 60%;
+    --cmpt-l: 42%;
+    --text-h: 0;
+    --text-l: 30%;
+
+    /* text */
+    --text-color-fix-1: hsl(0, 0%, 100%);
+    --text-default-color: hsl(0, 0%, var(--text-l));
+
+    /* nav navigator */
+    --nav-color-1: hsl(var(--cmpt-h),
+            calc(var(--cmpt-s) - 15%),
+            calc(var(--cmpt-l) + 3%));
+    --nav-color-2: hsl(var(--cmpt-h),
+            calc(var(--cmpt-s) - 15%),
+            calc(var(--cmpt-l) - 0%));
+    --nav-color-3: hsl(var(--cmpt-h),
+            calc(var(--cmpt-s) - 15%),
+            calc(var(--cmpt-l) - 3%));
+    --nav-hover-color: hsl(var(--cmpt-h),
+            calc(var(--cmpt-s) - 10%),
+            calc(var(--cmpt-l) + 10%));
+    --nav-home-bg: radial-gradient(hsl(calc(var(--cmpt-h) + 2), var(--cmpt-s), calc(var(--cmpt-l) - 2%)),
+            hsl(calc(var(--cmpt-h) + 2), var(--cmpt-s), calc(var(--cmpt-l) - 2%)),
+            hsl(calc(var(--cmpt-h) + 2), var(--cmpt-s), calc(var(--cmpt-l) - 18%)));
+    --nav-home-hover-bg: radial-gradient(hsl(calc(var(--cmpt-h) + 2),
+                calc(var(--cmpt-s) - 10%),
+                calc(var(--cmpt-l) + 15%)),
+            hsl(calc(var(--cmpt-h) + 2),
+                calc(var(--cmpt-s) - 10%),
+                calc(var(--cmpt-l) + 15%)),
+            hsl(calc(var(--cmpt-h) + 2),
+                calc(var(--cmpt-s) - 15%),
+                calc(var(--cmpt-l) + 0%)));
+}
+
+.dark:root {
+    --bg-h: 210;
+    --bg-s: 17%;
+    --bg-l: 16%;
+    --cmpt-h: 178;
+    --cmpt-s: 90%;
+    --cmpt-l: 27%;
+    --text-h: 0;
+    --text-l: 106%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft Yahei", "STXihei", Tahoma, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: hsl(var(--bg-h), var(--bg-s), var(--bg-l));
+}
+
+h1 {
+    color: var(--text-default-color);
+    padding: 4vh;
+}
+
+#circleNav {
+    --circle-nav-size: 25vh;
+    --home-size: calc(var(--circle-nav-size) * 0.44);
+    --l1menu-size: calc(var(--circle-nav-size) * 0.72);
+    --shadow-size: var(--l1menu-size);
+    --l1menu-border: 0px;
+    --l1menu-line-height: calc((var(--l1menu-size) - var(--home-size)) / 2 - var(--l1menu-border));
+    --l2menu-size: calc(var(--circle-nav-size) * 1);
+    --l2menu-border: var(--l1menu-border);
+    --l2menu-line-height: calc((var(--l2menu-size) - var(--l1menu-size)) / 2 - var(--l2menu-border));
+    --home-font-size: calc(var(--circle-nav-size) * 0.12);
+    --l1-font-size: calc(var(--circle-nav-size) * 0.075);
+    --l2-font-size: calc(var(--circle-nav-size) * 0.065);
+    position: relative;
+    left: 0vh;
+    bottom: 0vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--circle-nav-size);
+    height: var(--circle-nav-size);
+    cursor: pointer;
+    user-select: none;
+    text-shadow: 0px 0px 5px hsla(0, 0%, 0%, 0.2);
+}
+
+.absurd #circleNav {
+    text-shadow: 0px 0px 5px hsl(202, 77%, 54%);
+}
+
+#circleNav .home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--home-size);
+    height: var(--home-size);
+    border-radius: 100%;
+    background: hsl(calc(var(--cmpt-h) + 2),
+            var(--cmpt-s),
+            calc(var(--cmpt-l) + 0%));
+    box-shadow: 0px 0px 12px hsla(0, 0%, 0%, 0.35) inset;
+    color: var(--text-color-fix-1);
+    z-index: 1001;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.dark #circleNav .home {
+    background-color: hsl(198, 62%, 27%);
+}
+
+.absurd #circleNav .home {
+    background: url(../../images/absurd_nav_bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0px 0px 12px hsla(200, 45%, 5%, 0.56);
+}
+
+#circleNav .home>div {
+    font-size: var(--home-font-size);
+    height: 0px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    transition: all 200ms;
+}
+
+#circleNav .home>div:not(.sibling-checked) {
+    height: 100%;
+}
+
+#circleNav .home>div>div {
+    pointer-events: none;
+}
+
+#circleNav .home #ch span:nth-child(1) {
+    display: block;
+    font-size: calc(var(--home-font-size) * 1);
+    line-height: 120%;
+}
+
+#circleNav .home #ch span:nth-child(2) {
+    font-size: calc(var(--home-font-size) * 0.46);
+    line-height: 120%;
+    color: hsla(0, 0%, 100%, 0.5);
+    text-shadow: none;
+}
+
+.absurd #circleNav .home span:nth-child(2) {
+    display: none;
+}
+
+#circleNav .home #sg span:nth-child(1) {
+    display: block;
+    font-size: calc(var(--home-font-size) * 0.72);
+    line-height: 170%;
+}
+
+#circleNav .home #sg span:nth-child(2) {
+    font-size: calc(var(--home-font-size) * 0.59);
+    line-height: 60%;
+    color: hsla(0, 0%, 100%, 0.5);
+    text-shadow: none;
+}
+
+#circleNav .home:hover {
+    --home-font-size: calc(var(--circle-nav-size) * 0.096);
+}
+
+#circleNav .home:hover>div {
+    height: 50% !important;
+    border-radius: 0 !important;
+}
+
+#circleNav .home:hover #ch {
+    justify-content: flex-end;
+}
+
+#circleNav .home:hover #sg {
+    justify-content: flex-start;
+}
+
+#circleNav .home>div:hover {
+    background-color: hsla(var(--cmpt-h),
+            calc(var(--cmpt-s) - 0%),
+            calc(var(--cmpt-l) + 6%)) !important;
+    box-shadow: 0px 0px 12px hsla(0, 0%, 0%, 0.15) inset;
+    height: 50% !important;
+}
+
+#circleNav .home>div.checked {
+    background-color: hsla(var(--cmpt-h),
+            calc(var(--cmpt-s) - 3%),
+            calc(var(--cmpt-l) + 12%)) !important;
+    box-shadow: 0px 0px 15px hsla(0, 0%, 0%, 0.2) inset;
+    /* height: 100% !important; */
+    border-radius: 100%;
+}
+
+.dark #circleNav .home>div:hover {
+    background-color: hsl(198, 71%, 42%) !important;
+}
+
+.dark #circleNav .home>div.checked {
+    background-color: hsl(198, 71%, 38%) !important;
+}
+
+.absurd #circleNav .home>div:hover {
+    background-color: hsla(207, 61%, 48%, 0.48) !important;
+}
+
+.absurd #circleNav .home>div.checked {
+    background-color: hsla(0, 0%, 100%, 0.05) !important;
+}
+
+#circleNav .l1Menu {
+    position: absolute;
+    width: var(--l1menu-size);
+    height: var(--l1menu-size);
+    margin: 0;
+    border-radius: 100%;
+    transition: transform 0.5s;
+    z-index: 1000;
+    box-shadow: 0px 0px 15px hsla(0, 0%, 0%, 0.08);
+}
+
+.absurd #circleNav .l1Menu {
+    box-shadow: 0px 0px 1px hsla(192, 70%, 53%, 0.3);
+    /* border: 1px solid hsl(205, 70%, 53%); */
+    filter: drop-shadow(0px 0px 1px hsl(210, 199%, 50%));
+}
+
+ul.l1Menu {}
+
+#circleNav .spin-text {
+    display: inline-block;
+    transform: rotate(var(--rotate-deg));
+}
+
+#circleNav .flipped .spin-text {
+    transform-origin: 50% 0% !important;
+    transform: translateY(100%) rotate(calc(180deg + var(--rotate-deg)));
+}
+
+#circleNav .l1Menu .spin-text {
+    transform-origin: 50% 100%;
+}
+
+#circleNav .l2Menu .spin-text {
+    transform-origin: 50% 80%;
+}
+
+#circleNav ul li {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+    border: var(--l1menu-border) solid transparent;
+    border-collapse: collapse;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background 200ms;
+}
+
+#circleNav .l1Menu li {
+    clip-path: url(#sector-60);
+}
+
+#circleNav .l1Menu li.hiding {
+    display: none;
+}
+
+#circleNav .l1Menu li:nth-child(3n + 1) {
+    background-color: var(--nav-color-1);
+}
+
+#circleNav .l1Menu li:nth-child(3n - 1) {
+    background-color: var(--nav-color-2);
+}
+
+#circleNav .l1Menu li:nth-child(3n) {
+    background-color: var(--nav-color-3);
+}
+
+#circleNav .l1Menu li .icon {
+    display: inline-flex;
+    position: absolute;
+    align-items: center;
+    height: var(--l1menu-line-height);
+    font-size: var(--l1-font-size);
+    color: hsl(0, 0%, 100%);
+    /* background: purple; */
+}
+
+#circleNav .l2Menu {
+    z-index: 999;
+    transform: rotate(0deg);
+    position: absolute;
+    border-radius: 100%;
+    height: var(--l2menu-size);
+    width: var(--l2menu-size);
+    margin: 0;
+}
+
+.absurd #circleNav .l2Menu {
+    filter: drop-shadow(0px 0px 1px hsl(210, 100%, 50%));
+}
+
+#circleNav .l2Menu li:nth-child(3n + 1) {
+    background-color: var(--nav-color-1);
+}
+
+#circleNav .l2Menu li:nth-child(3n - 1) {
+    background-color: var(--nav-color-2);
+}
+
+#circleNav .l2Menu li:nth-child(3n) {
+    background-color: var(--nav-color-3);
+}
+
+.dark #circleNav .l1Menu li:nth-child(3n + 1) {
+    background-color: hsl(203, 59%, 28%);
+}
+
+.dark #circleNav .l1Menu li:nth-child(3n - 1) {
+    background-color: hsl(203, 56%, 24%);
+}
+
+.dark #circleNav .l1Menu li:nth-child(3n) {
+    background-color: hsl(203, 68%, 20%);
+}
+
+.dark #circleNav .l2Menu li:nth-child(3n + 1) {
+    background-color: hsl(203, 61%, 29%);
+}
+
+.dark #circleNav .l2Menu li:nth-child(3n - 1) {
+    background-color: hsl(201, 61%, 24%);
+}
+
+.dark #circleNav .l2Menu li:nth-child(3n) {
+    background-color: hsl(203, 66%, 22%);
+}
+
+.absurd #circleNav .l1Menu li {}
+
+.absurd #circleNav .l1Menu li,
+.absurd #circleNav .l2Menu li {
+    background-color: hsl(210, 86%, 13%) !important;
+}
+
+#circleNav li:hover {
+    background-color: hsla(var(--cmpt-h),
+            calc(var(--cmpt-s) - 10%),
+            calc(var(--cmpt-l) + 5%)) !important;
+}
+
+#circleNav li.checked {
+    background-color: hsla(var(--cmpt-h),
+            calc(var(--cmpt-s) - 10%),
+            calc(var(--cmpt-l) + 10%)) !important;
+}
+
+.dark #circleNav li:hover {
+    background-color: hsl(204, 57%, 43%) !important;
+}
+
+.dark #circleNav li.checked {
+    background-color: hsl(204, 51%, 45%) !important;
+}
+
+.absurd #circleNav li:hover {
+    background-color: hsl(217, 72%, 32%) !important;
+}
+
+.absurd #circleNav li.checked {
+    background-color: hsl(217, 72%, 24%) !important;
+}
+
+#circleNav .l2Menu li .icon {
+    position: absolute;
+    font-size: var(--l2-font-size);
+    color: hsl(0, 0%, 100%);
+    display: inline-flex;
+    height: var(--l2menu-line-height);
+    align-items: center;
+    z-index: 2;
+}
+
+#circleNav .shadow {
+    position: absolute;
+    height: var(--shadow-size);
+    width: var(--shadow-size);
+    border-radius: 100%;
+    box-shadow: 1px 5px 20px hsla(0, 0%, 0%, 0.15) !important;
+    z-index: 999;
+}
+
+.absurd #circleNav .shadow::after {
+    position: absolute;
+    border-radius: inherit;
+    content: '';
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid hsl(205, 70%, 53%);
+    box-shadow: 0px 0px 20px hsla(205, 70%, 53%, 0.2) !important;
+}
