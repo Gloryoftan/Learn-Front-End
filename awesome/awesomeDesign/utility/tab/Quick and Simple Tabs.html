@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul li {
+            list-style-type: none;
+        }
+
+        .wrapper {
+            margin: 30px auto;
+            width: 80%;
+            font-family: sans-serif;
+            color: #555;
+            font-size: 14px;
+            line-height: 24px;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        h1+p {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        .tabs li {
+            float: left;
+            width: 20%;
+        }
+
+        .tabs a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #888;
+            padding: 20px 0;
+            border-bottom: 2px solid #888;
+            background: #f7f7f7;
+        }
+
+        .tabs a:hover,
+        .tabs a.active {
+            background: #ddd;
+        }
+
+        .tabgroup div {
+            padding: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Quick and Simple Tabs</h1>
+        <p>A quick and easy method for tabs that supports multiple tab groups on one page.</p>
+        <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+            <li><a href="#tab1" class="active">Tab 1</a></li>
+            <li><a href="#tab2">Tab 2</a></li>
+            <li><a href="#tab3">Tab 3</a></li>
+            <li><a href="#tab4">Tab 4</a></li>
+            <li><a href="#tab5">Tab 5</a></li>
+        </ul>
+        <section id="first-tab-group" class="tabgroup">
+            <div id="tab1">
+                <h2>Heading 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla deserunt consectetur ratione id
+                    tempore laborum laudantium facilis reprehenderit beatae dolores ipsum nesciunt alias iusto dicta
+                    eius itaque blanditiis modi velit.</p>
+            </div>
+            <div id="tab2">
+                <h2>Heading 2</h2>
+                <p>Adipisci autem obcaecati velit natus quos beatae explicabo at tempora minima voluptates deserunt eum
+                    consectetur reiciendis placeat dolorem repellat in nam asperiores impedit voluptas iure repellendus
+                    unde eveniet accusamus ex.</p>
+            </div>
+            <div id="tab3">
+                <h2>Heading 3</h2>
+                <p>Atque ratione soluta laboriosam illo inventore amet ipsum aliquam assumenda harum provident nam
+                    accusantium neque debitis obcaecati maxime officia saepe ad ducimus in quam libero vero quasi. Saepe
+                    sit nisi?</p>
+            </div>
+            <div id="tab4">
+                <h2>Heading 4</h2>
+                <p>Quidem perferendis id sapiente cumque ullam repellendus dolorum odit rerum quibusdam tempora
+                    voluptatibus ipsum. Maiores laborum velit aperiam dicta quisquam assumenda at esse exercitationem
+                    culpa sequi porro minus ipsa aut.</p>
+            </div>
+            <div id="tab5">
+                <h2>Heading 5</h2>
+                <p>Iste eligendi ratione libero impedit quos necessitatibus labore corporis deserunt quo porro hic eius
+                    delectus ea ad amet dolore officiis debitis! Libero officia magnam consequuntur dignissimos
+                    molestias quia modi repellat.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="wrapper">
+        <ul class="tabs clearfix" data-tabgroup="second-tab-group">
+            <li><a href="#tab6" class="active">Tab 1</a></li>
+            <li><a href="#tab7">Tab 2</a></li>
+            <li><a href="#tab8">Tab 3</a></li>
+            <li><a href="#tab9">Tab 4</a></li>
+            <li><a href="#tab10">Tab 5</a></li>
+        </ul>
+        <section id="second-tab-group" class="tabgroup">
+            <div id="tab6">
+                <h2>Heading 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla deserunt consectetur ratione id
+                    tempore laborum laudantium facilis reprehenderit beatae dolores ipsum nesciunt alias iusto dicta
+                    eius itaque blanditiis modi velit.</p>
+            </div>
+            <div id="tab7">
+                <h2>Heading 2</h2>
+                <p>Adipisci autem obcaecati velit natus quos beatae explicabo at tempora minima voluptates deserunt eum
+                    consectetur reiciendis placeat dolorem repellat in nam asperiores impedit voluptas iure repellendus
+                    unde eveniet accusamus ex.</p>
+            </div>
+            <div id="tab8">
+                <h2>Heading 3</h2>
+                <p>Atque ratione soluta laboriosam illo inventore amet ipsum aliquam assumenda harum provident nam
+                    accusantium neque debitis obcaecati maxime officia saepe ad ducimus in quam libero vero quasi. Saepe
+                    sit nisi?</p>
+            </div>
+            <div id="tab9">
+                <h2>Heading 4</h2>
+                <p>Quidem perferendis id sapiente cumque ullam repellendus dolorum odit rerum quibusdam tempora
+                    voluptatibus ipsum. Maiores laborum velit aperiam dicta quisquam assumenda at esse exercitationem
+                    culpa sequi porro minus ipsa aut.</p>
+            </div>
+            <div id="tab10">
+                <h2>Heading 5</h2>
+                <p>Iste eligendi ratione libero impedit quos necessitatibus labore corporis deserunt quo porro hic eius
+                    delectus ea ad amet dolore officiis debitis! Libero officia magnam consequuntur dignissimos
+                    molestias quia modi repellat.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="../../../../Test/lib/jquery-1.11.3.min.js"></script>
+    <script>
+        $('.tabgroup > div').hide();
+        $('.tabgroup > div:first-of-type').show();
+        $('.tabs a').click(function (e) {
+            e.preventDefault();
+            var $this = $(this),
+                tabgroup = '#' + $this.parents('.tabs').data('tabgroup'),
+                others = $this.closest('li').siblings().children('a'),
+                target = $this.attr('href');
+            others.removeClass('active');
+            $this.addClass('active');
+            $(tabgroup).children('div').hide();
+            $(target).show();
+
+        })
+    </script>
+</body>
+
+</html>
