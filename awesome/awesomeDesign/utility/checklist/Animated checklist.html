@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .list__item {
+            cursor: pointer;
+        }
+
+        .list__item-text {
+            display: inline-block;
+            position: relative;
+        }
+
+        .list__item-text:before,
+        .list__item-text:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            margin: auto;
+            transition: all .2s;
+        }
+
+        .list__item-text:before {
+            opacity: .65;
+            background: #fff;
+        }
+
+        .list__item-text:after {
+            opacity: .5;
+            height: 1px;
+            background: #000;
+        }
+
+        .list__item.checked .list__item-icon {
+            -webkit-animation: check .2s linear;
+            animation: check .2s linear;
+        }
+
+        .list__item.checked .list__item-text:before,
+        .list__item.checked .list__item-text:after {
+            width: 100%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        @-webkit-keyframes check {
+            from {
+                -webkit-transform: scale(1.5);
+                transform: scale(1.5);
+            }
+
+            to {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes check {
+            from {
+                -webkit-transform: scale(1.5);
+                transform: scale(1.5);
+            }
+
+            to {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="list">
+        <li class="list__item">
+            <span class="list__item-icon fa fa-square-o"></span>
+            <span class="list__item-icon fa fa-check-square hide"></span>
+            <span class="list__item-text">Make a list</span>
+        </li>
+        <li class="list__item">
+            <span class="list__item-icon fa fa-square-o"></span>
+            <span class="list__item-icon fa fa-check-square hide"></span>
+            <span class="list__item-text">Check it twice</span>
+        </li>
+        <li class="list__item">
+            <span class="list__item-icon fa fa-square-o"></span>
+            <span class="list__item-icon fa fa-check-square hide"></span>
+            <span class="list__item-text">Find out who's naughty</span>
+        </li>
+        <li class="list__item">
+            <span class="list__item-icon fa fa-square-o"></span>
+            <span class="list__item-icon fa fa-check-square hide"></span>
+            <span class="list__item-text">Find out who's nice</span>
+        </li>
+    </ul>
+    <script src="../../../../Test/lib/jquery-1.11.3.min.js"></script>
+    <script>
+        $('.list__item').click(function () {
+            $(this).toggleClass('checked');
+            $(this).children('.list__item-icon').toggleClass('hide');
+        });
+    </script>
+</body>
+
+</html>
