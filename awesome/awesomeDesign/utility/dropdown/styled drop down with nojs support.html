@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+        /* demo junk */
+        body {
+            max-width: 30em;
+            margin: 1em auto;
+            background-color: #b5b9bf;
+            height: 101%;
+            padding: 4em;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+            font-size: 11.2px;
+            line-height: 1.75em;
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 4em;
+            text-align: center;
+            color: #9a9fa7;
+            padding-bottom: .5em;
+            line-height: 1em;
+        }
+
+        /*  ************************   */
+        /* meat and potatoes  */
+        .select {
+            user-select: none;
+            cursor: pointer;
+            position: relative;
+            text-align: left;
+            height: 3.5em;
+            line-height: 3.5em;
+            display: block;
+            width: 100%;
+            background-color: rgba(227, 229, 231, 0.5);
+            background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U5ZWFlYyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2I1YjliZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+            background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e9eaec), color-stop(100%, #b5b9bf));
+            background: -moz-linear-gradient(top, #e9eaec 0%, #b5b9bf 100%);
+            background: -webkit-linear-gradient(top, #e9eaec 0%, #b5b9bf 100%);
+            background: linear-gradient(to bottom, #e9eaec 0%, #b5b9bf 100%);
+            -moz-border-radius: 0.25em;
+            -webkit-border-radius: 0.25em;
+            border-radius: 0.25em;
+            color: rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 1.75em 0 rgba(255, 255, 255, 0.15);
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 1.75em 0 rgba(255, 255, 255, 0.15);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 1.75em 0 rgba(255, 255, 255, 0.15);
+            text-indent: 1em;
+            width: 97%;
+            min-width: 11em;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .select:after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            content: "";
+            display: block;
+            height: 3.5em;
+            width: 2.5em;
+            -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.015), inset 0 0 0 1px rgba(255, 255, 255, 0.1), -0.2em 0 0.2em -0.2em rgba(0, 0, 0, 0.2);
+            -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.015), inset 0 0 0 1px rgba(255, 255, 255, 0.1), -0.2em 0 0.2em -0.2em rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.015), inset 0 0 0 1px rgba(255, 255, 255, 0.1), -0.2em 0 0.2em -0.2em rgba(0, 0, 0, 0.2);
+            float: right;
+            border-radius: 0 .25em .25em 0;
+        }
+
+        .select:before {
+            content: "";
+            border: .5em solid black;
+            border-width: .5em .5em 0;
+            border-color: #ccc transparent;
+            border-color: rgba(0, 0, 0, 0.2) transparent;
+            width: 0;
+            height: 0;
+            position: absolute;
+            right: 0;
+            margin-top: 1.4875em;
+            margin-left: -4em;
+            margin-right: .75em;
+            transition: all .15s ease;
+        }
+
+        .select:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #333;
+        }
+
+        .select:hover:before {
+            border-color: #666 transparent;
+            border-color: rgba(0, 0, 0, 0.5) transparent;
+        }
+
+        .select ul {
+            position: relative;
+            list-style: none;
+            z-index: 2;
+            padding: 0;
+            margin: 0;
+            background-color: #ecedee;
+            -moz-border-radius: 0 0 0.25em 0.25em;
+            -webkit-border-radius: 0;
+            border-radius: 0 0 0.25em 0.25em;
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 3em rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 3em rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 3em rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+            width: 100%;
+            overflow: hidden;
+            max-height: 15em;
+            overflow-y: auto;
+        }
+
+        .select ul li {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .select ul li a,
+        .select ul li label,
+        .select ul li span {
+            cursor: pointer;
+            text-overflow: ellipsis;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            display: block;
+            color: #7e8590;
+        }
+
+        .select ul li a span,
+        .select ul li label span,
+        .select ul li span span {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .select ul li a input[type="checkbox"],
+        .select ul li label input[type="checkbox"],
+        .select ul li span input[type="checkbox"] {
+            opacity: 0;
+        }
+
+        .select ul li a:hover,
+        .select ul li a input:checked~span,
+        .select ul li label:hover,
+        .select ul li label input:checked~span,
+        .select ul li span:hover,
+        .select ul li span input:checked~span {
+            background-color: #4e9fdd;
+            background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZjYWZlMyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzMwOGZkNyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+            background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6cafe3), color-stop(100%, #308fd7));
+            background: -moz-linear-gradient(top, #6cafe3 0%, #308fd7 100%);
+            background: -webkit-linear-gradient(top, #6cafe3 0%, #308fd7 100%);
+            background: linear-gradient(to bottom, #6cafe3 0%, #308fd7 100%);
+            color: white;
+        }
+
+        .select ul li a input:checked~span:after,
+        .select ul li label input:checked~span:after,
+        .select ul li span input:checked~span:after {
+            content: "selected";
+            position: absolute;
+            right: 2em;
+            margin-right: 2em;
+        }
+
+        .select ul li:last-child a {
+            -moz-border-radius: 0 0 0.25em 0.25em;
+            -webkit-border-radius: 0;
+            border-radius: 0 0 0.25em 0.25em;
+        }
+
+        .select ul:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 2px;
+            width: 100%;
+            height: .5em;
+            background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2I5ZDlmMiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2VjZWRlZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+            background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b9d9f2), color-stop(100%, #ecedee));
+            background: -moz-linear-gradient(top, #b9d9f2 0%, #ecedee 100%);
+            background: -webkit-linear-gradient(top, #b9d9f2 0%, #ecedee 100%);
+            background: linear-gradient(to bottom, #b9d9f2 0%, #ecedee 100%);
+            box-shadow: 0 -1px 0 #e4f0fa, 0 -2px 0 #4e9fdd;
+        }
+
+        .select span {
+            display: block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-right: 3em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .select.clicked {
+            -moz-border-radius: 0.25em 0.25em 0 0;
+            -webkit-border-radius: 0.25em;
+            border-radius: 0.25em 0.25em 0 0;
+            background-color: rgba(227, 229, 231, 0.5);
+            background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2M1YzljZCIvPjxzdG9wIG9mZnNldD0iMjAlIiBzdG9wLWNvbG9yPSIjZGJkZGUwIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjFmMmYzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+            background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c5c9cd), color-stop(20%, #dbdde0), color-stop(100%, #f1f2f3));
+            background: -moz-linear-gradient(top, #c5c9cd 0%, #dbdde0 20%, #f1f2f3 100%);
+            background: -webkit-linear-gradient(top, #c5c9cd 0%, #dbdde0 20%, #f1f2f3 100%);
+            background: linear-gradient(to bottom, #c5c9cd 0%, #dbdde0 20%, #f1f2f3 100%);
+            -moz-box-shadow: 0 1px 0.5em rgba(78, 159, 221, 0.5), 0 0 0 1px #4e9fdd, inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+            -webkit-box-shadow: 0 1px 0.5em rgba(78, 159, 221, 0.5), 0 0 0 1px #4e9fdd, inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+            box-shadow: 0 1px 0.5em rgba(78, 159, 221, 0.5), 0 0 0 1px #4e9fdd, inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+            color: #363a3f;
+        }
+
+        .select.clicked:before {
+            content: "";
+            border-width: 0 .5em .5em .5em;
+            border-color: rgba(0, 0, 0, 0.15) transparent;
+            position: absolute;
+            right: 0;
+            margin-top: 1.4em;
+        }
+
+        .select.clicked span {
+            color: #3b3b3b;
+        }
+
+        .select.clicked ul {
+            display: block;
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 3em rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 3em rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 3em rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+        }
+
+        .select ul {
+            display: none;
+        }
+
+        /* for our friends without javascript */
+        .nojs .select {
+            height: auto;
+        }
+
+        .nojs .select:hover ul {
+            display: block;
+            max-height: 8em;
+        }
+
+        .nojs .select:hover ul:before {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class='nojs'>
+    <h1>drop down menus</h1>
+    <div class='select'>
+        <span>Standard drop down</span>
+        <ul>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div class='select'>
+        <span>multiple select dropdown</span>
+        <ul>
+            <li>
+                <label>
+                    <input type='checkbox'>
+                    <span>
+                        awesome
+                    </span>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type='checkbox'>
+                    <span>
+                        awesome
+                    </span>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type='checkbox'>
+                    <span>
+                        awesome
+                    </span>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type='checkbox'>
+                    <span>
+                        awesome
+                    </span>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type='checkbox'>
+                    <span>
+                        awesome
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div class='select'>
+        <span>Drop down with a long list</span>
+        <ul>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>big tall list</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click wow</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>it is very tall</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>click</a>
+            </li>
+            <li>
+                <a href=''>so tall</a>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <script>
+        $("body").removeClass("nojs").addClass("js");
+
+        $("div.select > span").click(function (e) {
+            var container = $(this).parent();
+            // var container = $(this).closest('div.select'); // alternative
+
+            if (container.hasClass('clicked')) {
+                // Dropdown already open so close it
+                container.removeClass('clicked');
+            } else {
+                // Hide all open dropdowns so only one is open at a time
+                $("div.select.clicked").removeClass("clicked");
+                // Open this dropdown
+                container.addClass("clicked");
+            }
+
+            e.stopPropagation(); // prevent the $('html').click fires..
+        });
+
+        $('html').click(function (e) {
+            // this is not pretty...
+            // check if we are clicking inside an open select
+            if ($(e.target).closest('div.select.clicked').length == 0) {
+
+
+                // Close open dropdowns when clicking elsewhere
+                $('div.select.clicked').removeClass('clicked');
+            }
+        });
+    </script>
+</body>
+
+</html>
