@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #000;
+        }
+
+        .switch {
+            display: inline-block;
+            position: relative;
+            width: 2.5rem;
+            height: 1rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            transition: background 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .switch::before {
+            content: '';
+            position: absolute;
+            top: -0.25rem;
+            left: -0.25rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #bdbdbd;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.28);
+            border-radius: 50%;
+            transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:checked+.switch::before {
+            left: 1.25rem;
+        }
+
+        .wrapper.dark input:checked+.switch {
+            background: rgba(128, 203, 196, 0.5);
+        }
+
+        .wrapper.dark input:checked+.switch::before {
+            background: #80cbc4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper dark">
+        <div class="content">
+            <ul>
+                <li>
+                    <p>Some Option 1</p>
+                    <input id="test" type="checkbox" hidden="hidden" />
+                    <label class="switch" for="test"></label>
+                </li>
+                <li>
+                    <p>Some Option 2</p>
+                    <input id="test1" type="checkbox" hidden="hidden" />
+                    <label class="switch" for="test1"></label>
+                </li>
+                <li>
+                    <p>Some Option 3</p>
+                    <input id="test2" type="checkbox" hidden="hidden" />
+                    <label class="switch" for="test2"></label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
