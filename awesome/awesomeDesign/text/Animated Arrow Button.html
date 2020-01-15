@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
     <style>
         * {
             -webkit-font-smoothing: antialiased;
@@ -15,8 +14,10 @@
 
         html,
         body {
+            background: #121212;
+            height: 100%;
+            font-family: 'Playfair Display', serif;
             font-size: 16px;
-            line-height: 26px;
         }
 
         .container {
@@ -31,7 +32,7 @@
         }
 
         .the-arrow {
-            width: 1px;
+            width: 64px;
             transition: all 0.2s;
         }
 
@@ -43,13 +44,13 @@
 
         .the-arrow.-left>.shaft {
             width: 0;
-            background-color: #4c4c4c;
+            background-color: #999;
         }
 
         .the-arrow.-left>.shaft:before,
         .the-arrow.-left>.shaft:after {
             width: 0;
-            background-color: #4c4c4c;
+            background-color: #999;
         }
 
         .the-arrow.-left>.shaft:before {
@@ -67,7 +68,7 @@
         }
 
         .the-arrow.-right>.shaft {
-            width: 1px;
+            width: 64px;
             transition-delay: 0.2s;
         }
 
@@ -89,7 +90,7 @@
         }
 
         .the-arrow>.shaft {
-            background-color: #4c4c4c;
+            background-color: #999;
             display: block;
             height: 1px;
             position: relative;
@@ -100,7 +101,7 @@
 
         .the-arrow>.shaft:before,
         .the-arrow>.shaft:after {
-            background-color: #4c4c4c;
+            background-color: #999;
             content: '';
             display: block;
             height: 1px;
@@ -123,7 +124,7 @@
 
         .animated-arrow {
             display: inline-block;
-            color: #4c4c4c;
+            color: #999;
             font-size: 1.25em;
             font-style: italic;
             text-decoration: none;
@@ -132,20 +133,20 @@
         }
 
         .animated-arrow:hover {
-            color: #808080;
+            color: #eaeaea;
         }
 
         .animated-arrow:hover>.the-arrow.-left>.shaft {
             width: 64px;
             transition-delay: 0.1s;
-            background-color: #808080;
+            background-color: #eaeaea;
         }
 
         .animated-arrow:hover>.the-arrow.-left>.shaft:before,
         .animated-arrow:hover>.the-arrow.-left>.shaft:after {
             width: 8px;
             transition-delay: 0.1s;
-            background-color: #808080;
+            background-color: #eaeaea;
         }
 
         .animated-arrow:hover>.the-arrow.-left>.shaft:before {
@@ -159,8 +160,6 @@
         }
 
         .animated-arrow:hover>.main {
-            -webkit-transform: translateX(17px);
-            transform: translateX(17px);
             -webkit-transform: translateX(80px);
             transform: translateX(80px);
         }
@@ -216,7 +215,37 @@
                     </span>
                     <span class='main'>
                         <span class='text'>
-                            高级搜索
+                            Discover the Agency
+                        </span>
+                        <span class='the-arrow -right'>
+                            <span class='shaft'></span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a class='animated-arrow'>
+                    <span class='the-arrow -left'>
+                        <span class='shaft'></span>
+                    </span>
+                    <span class='main'>
+                        <span class='text'>
+                            View Projects
+                        </span>
+                        <span class='the-arrow -right'>
+                            <span class='shaft'></span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a class='animated-arrow'>
+                    <span class='the-arrow -left'>
+                        <span class='shaft'></span>
+                    </span>
+                    <span class='main'>
+                        <span class='text'>
+                            Get in Touch
                         </span>
                         <span class='the-arrow -right'>
                             <span class='shaft'></span>
