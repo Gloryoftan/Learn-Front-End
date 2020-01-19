@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @charset "UTF-8";
+
+        body {
+            background: #B7B7B7;
+        }
+
+        .head {
+            background: #292D43;
+            color: #485f6e;
+            font-size: 30px;
+            font-weight: bold;
+            height: 40px;
+            position: relative;
+            width: 100%;
+        }
+
+        .head::after {
+            content: '—';
+            position: absolute;
+            right: 10px;
+        }
+
+        .wrap {
+            background: white;
+            border: 1px solid darkgray;
+            -webkit-box-shadow: 0px 4px 15px -2px #757575;
+            -moz-box-shadow: 0px 4px 15px -2px #757575;
+            box-shadow: 0px 4px 15px -2px #757575;
+            margin: 10% auto 0;
+            max-width: 200px;
+        }
+
+        .colors {
+            background: #31364E;
+            list-style-type: none;
+            margin: 0;
+            max-height: 10000px;
+            overflow: hidden;
+            padding: 5px;
+            transition: max-height .5s ease-in;
+        }
+
+        .colors li {
+            background: none;
+            cursor: auto;
+            display: inline-block;
+            height: 31px;
+            margin: 0 -4px 0 0;
+            padding: 10px 0;
+            text-align: center;
+            width: 25%;
+        }
+
+        .colors li:hover .color {
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45), 0 0 0 2px rgba(205, 205, 205, 0.9);
+            transform: scale(1.05);
+        }
+
+        .colors li.selected .color {
+            opacity: .9;
+            position: relative;
+            transform: scale(1.25);
+        }
+
+        .colors li.selected .color::after {
+            color: azure;
+            content: '✓';
+            height: 100%;
+            left: 0;
+            line-height: 34px;
+            position: absolute;
+            text-indent: 0;
+            width: 100%;
+        }
+
+        .colors .color {
+            border-radius: 100%;
+            cursor: pointer;
+            height: 33px;
+            margin: 0 auto;
+            text-indent: -9999px;
+            -webkit-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            width: 33px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="head"></div>
+        <ul class="colors">
+            <li>
+                <div class="color" style="background:#E94A35;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#F59D00;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#F5E100;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#009755;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#0073BF;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#083D7A;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#6EC4FD;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#7935E9;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#000000;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#B58989;"></div>
+            </li>
+            <li class="selected">
+                <div class="color" style="background:#B7B7B7;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#D2B85C;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#745029;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#790000;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#F26D7D;"></div>
+            </li>
+            <li>
+                <div class="color" style="background:#6DF2B5;"></div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const colors = document.querySelectorAll('.colors li');
+
+        colors.forEach(function (color) {
+            color.onclick = function () {
+                colors.forEach(color => color.classList.remove('selected'));
+                document.body.style.background = color.querySelector('.color').style.background;
+                return color.classList.toggle('selected');
+            };
+        });
+    </script>
+</body>
+
+</html>
