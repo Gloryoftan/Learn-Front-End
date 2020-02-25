@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 15vh 5vh 60vh 20vh;
+            grid-template-areas:
+                "aside header header"
+                "aside sub-header sub-header"
+                "aside rule attr"
+                "aside footer footer"
+        }
+
+        .c-1 {
+            grid-area: aside;
+            background: red;
+        }
+
+        .c-2 {
+            grid-area: header;
+            background: orange;
+        }
+
+        .c-3 {
+            grid-area: sub-header;
+            background: yellow;
+        }
+
+        .c-4 {
+            grid-area: rule;
+            background: green;
+        }
+
+        .c-5 {
+            grid-area: attr;
+            background: lightskyblue;
+        }
+
+        .c-6 {
+            grid-area: footer;
+            background: blue;
+        }
+
+
+        body.on .container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 15fr 5fr 60fr 20fr;
+            grid-template-areas:
+                "header header"
+                "sub-header sub-header"
+                "rule attr"
+        }
+
+        body.on .c-1 {
+            display: none;
+        }
+
+        body.on .c-2 {
+            grid-area: header;
+            background: orange;
+        }
+
+        body.on .c-3 {
+            grid-area: sub-header;
+            background: yellow;
+        }
+
+        body.on .c-4 {
+            grid-area: rule;
+            background: green;
+        }
+
+        body.on .c-5 {
+            grid-area: attr;
+            background: lightskyblue;
+        }
+
+        body.on .c-6 {
+            display: none;
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="c-1">c-1</div>
+        <div class="c-2">c-2</div>
+        <div class="c-3">c-3</div>
+        <div class="c-4">c-4</div>
+        <div class="c-5">c-5</div>
+        <div class="c-6">c-6</div>
+    </div>
+
+
+</body>
+
+</html>
