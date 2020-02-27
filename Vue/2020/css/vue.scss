@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+
+    .control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 500px;
+        margin-top: 20px;
+
+        .arrow {
+            display: flex;
+            width: 100px;
+
+            &.arrow-left {
+                justify-content: flex-start;
+            }
+
+            &.arrow-right {
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    .toc {
+        display: inline-flex;
+        justify-content: space-between;
+        padding-top: 10px;
+        width: 500px;
+    }
+}

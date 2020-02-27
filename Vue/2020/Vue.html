@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Test</title>
+    <link rel="stylesheet" href="css/vue.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <img v-bind:src="bioshockImg[index].src" alt="" width="500px" height="300px">
+        <div class="control">
+            <div class="arrow arrow-left">
+                <span v-if="index !== 0">《</span>
+            </div>
+            <div>{{bioshockImg[index].name}}</div>
+            <div class="arrow arrow-right">
+                <span v-if="index !== bioshockImg.length - 1">》</span>
+            </div>
+        </div>
+        <div class="toc">
+            <div v-for="item in bioshockImg">{{item.name}}</div>
+        </div>
+    </div>
+    <script src="../../Test/lib/jQuery-v3.4.1.js"></script>
+    <script src="libs/vue-2.js"></script>
+
+    <script>
+        let data = {
+            bioshockImg: [{
+                name: 'Bioshock 1',
+                src: '../../Test/img/bioshock/bioshock1.jpg'
+            }, {
+                name: 'Bioshock 2',
+                src: '../../Test/img/bioshock/bioshock2.jpg'
+            }, {
+                name: 'Bioshock 3',
+                src: '../../Test/img/bioshock/bioshock3.jpg'
+            }, {
+                name: 'Bioshock 4',
+                src: '../../Test/img/bioshock/bioshock4.jpg'
+            }, {
+                name: 'Bioshock 5',
+                src: '../../Test/img/bioshock/bioshock5.jpg'
+            }, {
+                name: 'Bioshock 6',
+                src: '../../Test/img/bioshock/bioshock6.jpg'
+            }],
+            index: 1,
+        }
+        let vm = new Vue({
+            el: '#app',
+            data: data,
+
+        })
+    </script>
+</body>
+
+</html>
