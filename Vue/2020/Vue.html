@@ -10,18 +10,25 @@
 
 <body>
     <div id="app">
-        <img v-bind:src="bioshockImg[index].src" alt="" width="500px" height="300px">
-        <div class="control">
-            <div class="arrow arrow-left">
-                <span v-if="index !== 0">《</span>
-            </div>
-            <div>{{bioshockImg[index].name}}</div>
-            <div class="arrow arrow-right">
-                <span v-if="index !== bioshockImg.length - 1">》</span>
+        <div class="img">
+            <img v-bind:src="bioshockImg[index].src" alt="" width="500px" height="300px">
+            <div class="control">
+                <div class="arrow arrow-left">
+                    <span v-if="index !== 0" v-on:click="changeIndex(-1)">《</span>
+                </div>
+                <div>{{bioshockImg[index].name}}</div>
+                <div class="arrow arrow-right">
+                    <span v-if="index !== bioshockImg.length - 1" v-on:click="changeIndex(1)">》</span>
+                </div>
             </div>
         </div>
+
         <div class="toc">
             <div v-for="item in bioshockImg">{{item.name}}</div>
+        </div>
+        <div class="tag">
+            <div class="tag-container">{{tag}}</div>
+            <input type="text" v-model="tag">
         </div>
     </div>
     <script src="../../Test/lib/jQuery-v3.4.1.js"></script>
@@ -37,7 +44,7 @@
                 src: '../../Test/img/bioshock/bioshock2.jpg'
             }, {
                 name: 'Bioshock 3',
-                src: '../../Test/img/bioshock/bioshock3.jpg'
+                src: '../../Test/img/bioshock/bioshock3.png'
             }, {
                 name: 'Bioshock 4',
                 src: '../../Test/img/bioshock/bioshock4.jpg'
@@ -49,10 +56,16 @@
                 src: '../../Test/img/bioshock/bioshock6.jpg'
             }],
             index: 1,
+            tag: '暂无描述'
         }
         let vm = new Vue({
             el: '#app',
             data: data,
+            methods: {
+                changeIndex: function (step) {
+                    this.index = (this.index + step + this.bioshockImg.length) % this.bioshockImg.length;
+                }
+            }
         })
     </script>
 </body>
