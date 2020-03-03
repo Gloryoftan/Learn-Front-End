@@ -24,11 +24,63 @@
         </div>
 
         <div class="toc">
-            <div v-for="item in bioshockImg">{{item.name}}</div>
+            <div v-for="(item,index) in contentToc">
+                <div>
+                    <span>No.{{index+1}}</span>
+                    <span>{{item.name}}</span>
+                    <span>{{item.src}}</span>
+                </div>
+            </div>
         </div>
         <div class="tag">
-            <div class="tag-container">{{tag}}</div>
-            <input type="text" v-model="tag">
+            <div class="tag-container">
+                <div>描述：{{tag}}</div>
+                <div>主角：{{sex}}</div>
+                <div>平台：{{platform}}</div>
+                <div>NPC：{{char.join(",")}}</div>
+                <div>任务：{{ mission ? '已':'未'}}完成主要任务</div>
+
+            </div>
+            <div class="cntr-input">
+                <div>描述：</div>
+                <input type="text" v-model="tag">
+            </div>
+            <div class="cntr-sex">
+                <span>主角：</span>
+                <input type="radio" value="Elizabeth" v-model="sex">Elizabeth
+                <input type="radio" value="Booker" v-model="sex">Booker
+                <input type="radio" value="Nobody" v-model="sex">Nobody
+            </div>
+            <div class="cntr-platform">
+                <span> 所用平台：</span>
+                <select name="" id="" v-model='platform'>
+                    <option value="PC">PC</option>
+                    <option value="Xbox360">Xbox360</option>
+                    <option value="PS3">PS3</option>
+                </select>
+            </div>
+            <div class="cntr-char">
+                <span>NPC</span>
+                <input type="checkbox" value="Zachary Comstock" v-model='char'>Zachary Comstock
+                <input type="checkbox" value="Daisy Fitzroy" v-model='char'>Daisy Fitzroy
+                <input type="checkbox" value="Robert Lutece" v-model='char'>Robert Lutece
+                <input type="checkbox" value="Rosalind Lutece" v-model='char'>Rosalind Lutece
+                <input type="checkbox" value="Jeremiah Fink" v-model='char'>Jeremiah Fink
+                <input type="checkbox" value="Cornelius Slate" v-model='char'>Cornelius Slate
+            </div>
+            <div class="cntr-mission">
+                <input type="checkbox" v-model="mission">
+                <span>是否完成任务</span>
+            </div>
+            <div class="cntr-filter">
+                <span>筛选</span>
+                <select name="" id="" v-model='inputFilter.type'>
+                    <option value="全部">全部</option>
+                    <option value="jpg">jpg</option>
+                    <option value="png">png</option>
+                </select>
+                <input type="text" v-model='inputFilter.content'>
+            </div>
         </div>
     </div>
     <script src="../../Test/lib/jQuery-v3.4.1.js"></script>
@@ -38,29 +90,67 @@
         let data = {
             bioshockImg: [{
                 name: 'Bioshock 1',
+                type: 'jpg',
                 src: '../../Test/img/bioshock/bioshock1.jpg'
             }, {
                 name: 'Bioshock 2',
+                type: 'jpg',
                 src: '../../Test/img/bioshock/bioshock2.jpg'
             }, {
                 name: 'Bioshock 3',
+                type: 'png',
                 src: '../../Test/img/bioshock/bioshock3.png'
             }, {
                 name: 'Bioshock 4',
+                type: 'jpg',
                 src: '../../Test/img/bioshock/bioshock4.jpg'
             }, {
                 name: 'Bioshock 5',
+                type: 'jpg',
                 src: '../../Test/img/bioshock/bioshock5.jpg'
             }, {
                 name: 'Bioshock 6',
+                type: 'jpg',
                 src: '../../Test/img/bioshock/bioshock6.jpg'
             }],
-            index: 1,
-            tag: '暂无描述'
+            index: 0,
+            tag: '暂无描述',
+            sex: 'Elizabeth',
+            char: ['Zachary Comstock', 'Daisy Fitzroy', 'Robert Lutece', 'Rosalind Lutece', ],
+            mission: true,
+            platform: 'PC',
+            inputFilter: {
+                type: '全部',
+                content: '',
+            }
+
+
         }
         let vm = new Vue({
             el: '#app',
             data: data,
+            computed: {
+                typeToc: function () {
+                    if (this.inputFilter.type !== "全部") {
+                        return this.bioshockImg.filter(item => {
+                            return item.type === this.inputFilter.type
+                        })
+                    } else {
+                        return this.bioshockImg;
+                    }
+                },
+                contentToc: function () {
+                    if (this.inputFilter.content) {
+                        return this.typeToc.filter(item => {
+                            let _value = this.inputFilter.content.toLowerCase(),
+                                _name = item.name.toLowerCase();
+                            return _name.indexOf(_value) !== -1
+                        })
+                    } else {
+                        return this.typeToc
+                    }
+                }
+            },
             methods: {
                 changeIndex: function (step) {
                     this.index = (this.index + step + this.bioshockImg.length) % this.bioshockImg.length;
