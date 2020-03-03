@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <div id="app">
         <div class="img">
             <img v-bind:src="bioshockImg[index].src" alt="" width="500px" height="300px">
@@ -22,13 +23,12 @@
                 </div>
             </div>
         </div>
-
         <div class="toc">
+            <div>图片目录</div>
             <div v-for="(item,index) in contentToc">
                 <div>
                     <span>No.{{index+1}}</span>
                     <span>{{item.name}}</span>
-                    <span>{{item.src}}</span>
                 </div>
             </div>
         </div>
@@ -39,8 +39,10 @@
                 <div>平台：{{platform}}</div>
                 <div>NPC：{{char.join(",")}}</div>
                 <div>任务：{{ mission ? '已':'未'}}完成主要任务</div>
-
+                <div v-if="srcResult">src:{{srcResult.src}}</div>
             </div>
+        </div>
+        <div class="input">
             <div class="cntr-input">
                 <div>描述：</div>
                 <input type="text" v-model="tag">
@@ -60,7 +62,7 @@
                 </select>
             </div>
             <div class="cntr-char">
-                <span>NPC</span>
+                <span>NPC:</span>
                 <input type="checkbox" value="Zachary Comstock" v-model='char'>Zachary Comstock
                 <input type="checkbox" value="Daisy Fitzroy" v-model='char'>Daisy Fitzroy
                 <input type="checkbox" value="Robert Lutece" v-model='char'>Robert Lutece
@@ -72,6 +74,8 @@
                 <input type="checkbox" v-model="mission">
                 <span>是否完成任务</span>
             </div>
+        </div>
+        <div class="filter">
             <div class="cntr-filter">
                 <span>筛选</span>
                 <select name="" id="" v-model='inputFilter.type'>
@@ -81,8 +85,21 @@
                 </select>
                 <input type="text" v-model='inputFilter.content'>
             </div>
+            <div class="cntr-map">
+                <span>Map</span>
+                <select name="" id="" v-model="inputMap.type">
+                    <option v-bind:value="null">请选择</option>
+                    <option v-for="item in typeMap.sort">{{item}}</option>
+                </select>
+                <select name="" id="" v-model="inputMap.title">
+                    <option v-bind:value="null">请选择</option>
+                    <option v-for="item in titleMap.sort">{{item}}</option>
+                </select>
+            </div>
         </div>
+        
     </div>
+
     <script src="../../Test/lib/jQuery-v3.4.1.js"></script>
     <script src="libs/vue-2.js"></script>
 
@@ -112,6 +129,26 @@
                 name: 'Bioshock 6',
                 type: 'jpg',
                 src: '../../Test/img/bioshock/bioshock6.jpg'
+            }, {
+                name: 'Bioshock 7',
+                type: 'jpg',
+                src: '../../Test/img/bioshock/bioshock7.jpg'
+            }, {
+                name: 'Bioshock 8',
+                type: 'jpg',
+                src: '../../Test/img/bioshock/bioshock8.jpg'
+            }, {
+                name: 'Bioshock 9',
+                type: 'jpg',
+                src: '../../Test/img/bioshock/bioshock9.png'
+            }, {
+                name: 'Bioshock 10',
+                type: 'jpeg',
+                src: '../../Test/img/bioshock/bioshock10.jpeg'
+            }, {
+                name: 'Bioshock 11',
+                type: 'jpg',
+                src: '../../Test/img/bioshock/bioshock11.jpg'
             }],
             index: 0,
             tag: '暂无描述',
@@ -122,6 +159,10 @@
             inputFilter: {
                 type: '全部',
                 content: '',
+            },
+            inputMap:{
+                type:null,
+                title:null,
             }
 
 
@@ -148,6 +189,47 @@
                         })
                     } else {
                         return this.typeToc
+                    }
+                },
+                typeMap: function () {
+                    let imgMap = {
+                        sort: [],
+                        map: {},
+                    }
+                    this.bioshockImg.forEach((item, index) => {
+                        let {
+                            name,
+                            type,
+                            src
+                        } = item;
+                        if (!imgMap.map[type]) {
+                            imgMap.sort.push(type)
+                            imgMap.map[type] = {
+                                sort: [],
+                                map: {}
+                            }
+                        }
+                        imgMap.map[type].sort.push(name)
+                        imgMap.map[type].map[name] = {
+                            index,
+                            src
+                        }
+                    })
+                    return imgMap;
+                },
+                titleMap:function(){
+                    this.inputMap.title = null;
+                    if(this.inputMap.type){
+                        return this.typeMap.map[this.inputMap.type]
+                    }else{
+                        return [];
+                    }
+                },
+                srcResult:function(){
+                    if(this.inputMap.title){
+                        return this.titleMap.map[this.inputMap.title]
+                    }else{
+                        return null;
                     }
                 }
             },

@@ -3,9 +3,9 @@
     grid-template-rows: 1fr 2fr 1fr;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
-        "toc toc tag"
-        ". img tag"
-        ". . .";
+        "toc tag input"
+        "toc img input"
+        "filter . .";
     width: 100%;
     height: 100%;
     user-select: none;
@@ -56,11 +56,34 @@
         justify-content: space-between;
         align-items: center;
 
+
+    }
+
+    .input {
+        grid-area: input;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
         .cntr-input {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+        }
+    }
+
+    .filter{
+        grid-area: filter;
+        display: flex;
+        flex-direction: column;
+
+        .cntr-filter{
+            display: flex;
+        }
+
+        .cntr-map{
+            display: flex;
         }
     }
 }
