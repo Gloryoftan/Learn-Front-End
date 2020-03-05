@@ -1,0 +1,33 @@
+{
+  "contact": [
+    {
+      "id": 1,
+      "name": "Elizabeth",
+      "mainchar": true,
+      "sex": "female"
+    },
+    {
+      "name": "Booker",
+      "mainchar": true,
+      "sex": "male",
+      "id": 2
+    },
+    {
+      "name": "Zachary Comstock",
+      "mainchar": false,
+      "sex": "male",
+      "id": 3
+    },
+    {
+      "name": "Daisy Fitzroy",
+      "mainchar": false,
+      "sex": "female",
+      "id": 4
+    },
+    {
+      "name": "Robert Lutece",
+      "id": 5,
+      "sex": "male"
+    }
+  ]
+}

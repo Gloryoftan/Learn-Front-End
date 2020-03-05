@@ -97,7 +97,26 @@
                 </select>
             </div>
         </div>
-        
+        <div class="watch">
+            <div>
+                <span>对象里的单一key - Value</span>
+                <span v-on:click="watchObj.num++">{{watchObj.num}}</span>
+                <span v-on:click="watchObj.num2++">{{watchObj.num2}}</span>
+            </div>
+            <div>
+                <span>参数</span>
+                <span v-on:click='watchNum++'>{{watchNum}}</span>
+            </div>
+            <div>
+                <span>数组里塞对象</span>
+                <span v-for="(item,index) in watchObjArray" v-on:click="watchObjArrayHandler(index)">{{item.num}}</span>
+            </div>
+            <div>
+                <span>数组</span>
+                <span v-for="(item,index) in watchArray" v-on:click="watchArrayHandler(index)">{{item}}</span>
+            </div>
+        </div>
+
     </div>
 
     <script src="../../Test/lib/jQuery-v3.4.1.js"></script>
@@ -160,11 +179,23 @@
                 type: '全部',
                 content: '',
             },
-            inputMap:{
-                type:null,
-                title:null,
-            }
-
+            inputMap: {
+                type: null,
+                title: null,
+            },
+            watchObj: {
+                num: 0,
+                num2: 0,
+            },
+            watchObjArray: [{
+                num: 0
+            }, {
+                num: 0
+            }, {
+                num: 0
+            }],
+            watchNum: 0,
+            watchArray: [0, 0, 0],
 
         }
         let vm = new Vue({
@@ -217,26 +248,56 @@
                     })
                     return imgMap;
                 },
-                titleMap:function(){
+                titleMap: function () {
                     this.inputMap.title = null;
-                    if(this.inputMap.type){
+                    if (this.inputMap.type) {
                         return this.typeMap.map[this.inputMap.type]
-                    }else{
+                    } else {
                         return [];
                     }
                 },
-                srcResult:function(){
-                    if(this.inputMap.title){
+                srcResult: function () {
+                    if (this.inputMap.title) {
                         return this.titleMap.map[this.inputMap.title]
-                    }else{
+                    } else {
                         return null;
                     }
                 }
             },
             methods: {
-                changeIndex: function (step) {
+                changeIndex(step) {
                     this.index = (this.index + step + this.bioshockImg.length) % this.bioshockImg.length;
+                },
+                watchObjArrayHandler(index) {
+                    this.watchObjArray[index].num++
+                },
+                watchArrayHandler(index) {
+                    this.$set(this.watchArray, index, this.watchArray[index] + 1)
                 }
+            },
+            watch: {
+                ['watchObj.num'](val, oldval) {
+                    console.log("对象里的num", val, oldval);
+                },
+                watchObj: {
+                    handler(val, oldval) {
+                        console.log("对象里的num", val, oldval);
+                    },
+                    deep: true,
+                },
+                watchNum(val, oldval) {
+                    console.log("参数", val, oldval);
+                },
+                watchArray(val, oldval) {
+                    console.log("数组", val, oldval);
+                },
+                watchObjArray: {
+                    handler(val, oldval) {
+                        console.log("数组", val, oldval);
+                    },
+                    deep: true
+                },
+
             }
         })
     </script>
