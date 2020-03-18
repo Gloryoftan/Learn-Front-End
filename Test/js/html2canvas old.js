@@ -1,5 +1,5 @@
 /*!
- * html2canvas 1.0.0-rc.5 <https://html2canvas.hertzen.com>
+ * html2canvas 1.0.0-rc.3 <https://html2canvas.hertzen.com>
  * Copyright (c) 2019 Niklas von Hertzen <https://hertzen.com>
  * Released under MIT License
  */
@@ -1550,7 +1550,7 @@
         return isIdentToken(token) && token.value === value;
     };
     var nonWhiteSpace = function (token) { return token.type !== TokenType.WHITESPACE_TOKEN; };
-    var nonFunctionArgSeparator = function (token) {
+    var nonFunctionArgSeperator = function (token) {
         return token.type !== TokenType.WHITESPACE_TOKEN && token.type !== TokenType.COMMA_TOKEN;
     };
     var parseFunctionArgs = function (tokens) {
@@ -1772,7 +1772,7 @@
         return 0;
     };
     var rgb = function (args) {
-        var tokens = args.filter(nonFunctionArgSeparator);
+        var tokens = args.filter(nonFunctionArgSeperator);
         if (tokens.length === 3) {
             var _a = tokens.map(getTokenColorValue), r = _a[0], g = _a[1], b = _a[2];
             return pack(r, g, b, 1);
@@ -1804,7 +1804,7 @@
         }
     }
     var hsl = function (args) {
-        var tokens = args.filter(nonFunctionArgSeparator);
+        var tokens = args.filter(nonFunctionArgSeperator);
         var hue = tokens[0], saturation = tokens[1], lightness = tokens[2], alpha = tokens[3];
         var h = (hue.type === TokenType.NUMBER_TOKEN ? deg(hue.number) : angle.parse(hue)) / (Math.PI * 2);
         var s = isLengthPercentage(saturation) ? saturation.number / 100 : 0;
@@ -2358,10 +2358,8 @@
     };
 
     var Logger = /** @class */ (function () {
-        function Logger(_a) {
-            var id = _a.id, enabled = _a.enabled;
+        function Logger(id) {
             this.id = id;
-            this.enabled = enabled;
             this.start = Date.now();
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -2370,22 +2368,20 @@
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            if (this.enabled) {
+            // eslint-disable-next-line no-console
+            if (typeof window !== 'undefined' && window.console && typeof console.debug === 'function') {
                 // eslint-disable-next-line no-console
-                if (typeof window !== 'undefined' && window.console && typeof console.debug === 'function') {
-                    // eslint-disable-next-line no-console
-                    console.debug.apply(console, [this.id, this.getTime() + "ms"].concat(args));
-                }
-                else {
-                    this.info.apply(this, args);
-                }
+                console.debug.apply(console, [this.id, this.getTime() + "ms"].concat(args));
+            }
+            else {
+                this.info.apply(this, args);
             }
         };
         Logger.prototype.getTime = function () {
             return Date.now() - this.start;
         };
-        Logger.create = function (options) {
-            Logger.instances[options.id] = new Logger(options);
+        Logger.create = function (id) {
+            Logger.instances[id] = new Logger(id);
         };
         Logger.destroy = function (id) {
             delete Logger.instances[id];
@@ -2403,12 +2399,10 @@
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            if (this.enabled) {
+            // eslint-disable-next-line no-console
+            if (typeof window !== 'undefined' && window.console && typeof console.info === 'function') {
                 // eslint-disable-next-line no-console
-                if (typeof window !== 'undefined' && window.console && typeof console.info === 'function') {
-                    // eslint-disable-next-line no-console
-                    console.info.apply(console, [this.id, this.getTime() + "ms"].concat(args));
-                }
+                console.info.apply(console, [this.id, this.getTime() + "ms"].concat(args));
             }
         };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -2417,15 +2411,13 @@
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            if (this.enabled) {
+            // eslint-disable-next-line no-console
+            if (typeof window !== 'undefined' && window.console && typeof console.error === 'function') {
                 // eslint-disable-next-line no-console
-                if (typeof window !== 'undefined' && window.console && typeof console.error === 'function') {
-                    // eslint-disable-next-line no-console
-                    console.error.apply(console, [this.id, this.getTime() + "ms"].concat(args));
-                }
-                else {
-                    this.info.apply(this, args);
-                }
+                console.error.apply(console, [this.id, this.getTime() + "ms"].concat(args));
+            }
+            else {
+                this.info.apply(this, args);
             }
         };
         Logger.instances = {};
@@ -2635,7 +2627,7 @@
                     stops.push({ stop: HUNDRED_PERCENT, color: color$1 });
                 }
                 else if (firstToken.name === 'color-stop') {
-                    var values = firstToken.values.filter(nonFunctionArgSeparator);
+                    var values = firstToken.values.filter(nonFunctionArgSeperator);
                     if (values.length === 2) {
                         var color$1 = color.parse(values[1]);
                         var stop_1 = values[0];
@@ -2858,9 +2850,6 @@
             throw new Error("Unsupported image type");
         }
     };
-    function isSupportedImage(value) {
-        return value.type !== TokenType.FUNCTION || SUPPORTED_IMAGE_FUNCTIONS[value.name];
-    }
     var SUPPORTED_IMAGE_FUNCTIONS = {
         'linear-gradient': linearGradient,
         '-moz-linear-gradient': prefixLinearGradient,
@@ -2888,7 +2877,7 @@
             if (first.type === TokenType.IDENT_TOKEN && first.value === 'none') {
                 return [];
             }
-            return tokens.filter(function (value) { return nonFunctionArgSeparator(value) && isSupportedImage(value); }).map(image.parse);
+            return tokens.filter(nonFunctionArgSeperator).map(image.parse);
         }
     };
 
@@ -3083,7 +3072,6 @@
             case '-webkit-flex':
                 return 128 /* FLEX */;
             case 'grid':
-            case '-ms-grid':
                 return 256 /* GRID */;
             case 'ruby':
                 return 512 /* RUBY */;
@@ -4422,8 +4410,8 @@
         function IFrameElementContainer(iframe) {
             var _this = _super.call(this, iframe) || this;
             _this.src = iframe.src;
-            _this.width = parseInt(iframe.width, 10) || 0;
-            _this.height = parseInt(iframe.height, 10) || 0;
+            _this.width = parseInt(iframe.width, 10);
+            _this.height = parseInt(iframe.height, 10);
             _this.backgroundColor = _this.styles.backgroundColor;
             try {
                 if (iframe.contentWindow &&
@@ -4526,9 +4514,6 @@
     var isHTMLElementNode = function (node) {
         return typeof node.style !== 'undefined';
     };
-    var isSVGElementNode = function (element) {
-        return typeof element.className === 'object';
-    };
     var isLIElement = function (node) { return node.tagName === 'LI'; };
     var isOLElement = function (node) { return node.tagName === 'OL'; };
     var isInputElement = function (node) { return node.tagName === 'INPUT'; };
@@ -4566,27 +4551,23 @@
             var _this = this;
             var counterIncrement = style.counterIncrement;
             var counterReset = style.counterReset;
-            var canReset = true;
             if (counterIncrement !== null) {
                 counterIncrement.forEach(function (entry) {
                     var counter = _this.counters[entry.counter];
-                    if (counter && entry.increment !== 0) {
-                        canReset = false;
+                    if (counter) {
                         counter[Math.max(0, counter.length - 1)] += entry.increment;
                     }
                 });
             }
             var counterNames = [];
-            if (canReset) {
-                counterReset.forEach(function (entry) {
-                    var counter = _this.counters[entry.counter];
-                    counterNames.push(entry.counter);
-                    if (!counter) {
-                        counter = _this.counters[entry.counter] = [];
-                    }
-                    counter.push(entry.reset);
-                });
-            }
+            counterReset.forEach(function (entry) {
+                var counter = _this.counters[entry.counter];
+                counterNames.push(entry.counter);
+                if (!counter) {
+                    counter = _this.counters[entry.counter] = [];
+                }
+                counter.push(entry.reset);
+            });
             return counterNames;
         };
         return CounterState;
@@ -5037,40 +5018,28 @@
             /* Chrome doesn't detect relative background-images assigned in inline <style> sheets when fetched through getComputedStyle
              if window url is about:blank, we can assign the url to current by writing onto the document
              */
-            var iframeLoad = iframeLoader(iframe).then(function () { return __awaiter(_this, void 0, void 0, function () {
-                var onclone;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            this.scrolledElements.forEach(restoreNodeScroll);
-                            if (cloneWindow) {
-                                cloneWindow.scrollTo(windowSize.left, windowSize.top);
-                                if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) &&
-                                    (cloneWindow.scrollY !== windowSize.top || cloneWindow.scrollX !== windowSize.left)) {
-                                    documentClone.documentElement.style.top = -windowSize.top + 'px';
-                                    documentClone.documentElement.style.left = -windowSize.left + 'px';
-                                    documentClone.documentElement.style.position = 'absolute';
-                                }
-                            }
-                            onclone = this.options.onclone;
-                            if (typeof this.clonedReferenceElement === 'undefined') {
-                                return [2 /*return*/, Promise.reject("Error finding the " + this.referenceElement.nodeName + " in the cloned document")];
-                            }
-                            if (!(documentClone.fonts && documentClone.fonts.ready)) return [3 /*break*/, 2];
-                            return [4 /*yield*/, documentClone.fonts.ready];
-                        case 1:
-                            _a.sent();
-                            _a.label = 2;
-                        case 2:
-                            if (typeof onclone === 'function') {
-                                return [2 /*return*/, Promise.resolve()
-                                        .then(function () { return onclone(documentClone); })
-                                        .then(function () { return iframe; })];
-                            }
-                            return [2 /*return*/, iframe];
+            var iframeLoad = iframeLoader(iframe).then(function () {
+                _this.scrolledElements.forEach(restoreNodeScroll);
+                if (cloneWindow) {
+                    cloneWindow.scrollTo(windowSize.left, windowSize.top);
+                    if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) &&
+                        (cloneWindow.scrollY !== windowSize.top || cloneWindow.scrollX !== windowSize.left)) {
+                        documentClone.documentElement.style.top = -windowSize.top + 'px';
+                        documentClone.documentElement.style.left = -windowSize.left + 'px';
+                        documentClone.documentElement.style.position = 'absolute';
                     }
-                });
-            }); });
+                }
+                var onclone = _this.options.onclone;
+                if (typeof _this.clonedReferenceElement === 'undefined') {
+                    return Promise.reject("Error finding the " + _this.referenceElement.nodeName + " in the cloned document");
+                }
+                if (typeof onclone === 'function') {
+                    return Promise.resolve()
+                        .then(function () { return onclone(documentClone); })
+                        .then(function () { return iframe; });
+                }
+                return iframe;
+            });
             documentClone.open();
             documentClone.write(serializeDoctype(document.doctype) + "<html></html>");
             // Chrome scrolls the parent document for some reason after the write to the cloned window???
@@ -5228,7 +5197,7 @@
                     createPseudoHideStyles(clone);
                 }
                 var counters = this.counters.parse(new CSSParsedCounterDeclaration(style));
-                var before = this.resolvePseudoContent(node, clone, styleBefore, PseudoElementType.BEFORE);
+                var before_1 = this.resolvePseudoContent(node, clone, styleBefore, PseudoElementType.BEFORE);
                 for (var child = node.firstChild; child; child = child.nextSibling) {
                     if (!isElementNode(child) ||
                         (!isScriptElement(child) &&
@@ -5239,12 +5208,12 @@
                         }
                     }
                 }
-                if (before) {
-                    clone.insertBefore(before, clone.firstChild);
+                if (before_1) {
+                    clone.insertBefore(before_1, clone.firstChild);
                 }
-                var after = this.resolvePseudoContent(node, clone, styleAfter, PseudoElementType.AFTER);
-                if (after) {
-                    clone.appendChild(after);
+                var after_1 = this.resolvePseudoContent(node, clone, styleAfter, PseudoElementType.AFTER);
+                if (after_1) {
+                    clone.appendChild(after_1);
                 }
                 this.counters.pop(counters);
                 if (style && this.options.copyStyles && !isIFrameElement(node)) {
@@ -5294,7 +5263,7 @@
                         }
                     }
                     else if (token.name === 'counter') {
-                        var _a = token.values.filter(nonFunctionArgSeparator), counter = _a[0], counterStyle = _a[1];
+                        var _a = token.values.filter(nonFunctionArgSeperator), counter = _a[0], counterStyle = _a[1];
                         if (counter && isIdentToken(counter)) {
                             var counterState = _this.counters.getCounterValue(counter.value);
                             var counterType = counterStyle && isIdentToken(counterStyle)
@@ -5304,7 +5273,7 @@
                         }
                     }
                     else if (token.name === 'counters') {
-                        var _b = token.values.filter(nonFunctionArgSeparator), counter = _b[0], delim = _b[1], counterStyle = _b[2];
+                        var _b = token.values.filter(nonFunctionArgSeperator), counter = _b[0], delim = _b[1], counterStyle = _b[2];
                         if (counter && isIdentToken(counter)) {
                             var counterStates = _this.counters.getCounterValues(counter.value);
                             var counterType_1 = counterStyle && isIdentToken(counterStyle)
@@ -5327,29 +5296,16 @@
                             anonymousReplacedElement.appendChild(document.createTextNode(getQuote(declaration.quotes, --_this.quoteDepth, false)));
                             break;
                         default:
-                            // safari doesn't parse string tokens correctly because of lack of quotes
-                            anonymousReplacedElement.appendChild(document.createTextNode(token.value));
+                        //    console.log('ident', token, declaration);
                     }
                 }
             });
             anonymousReplacedElement.className = PSEUDO_HIDE_ELEMENT_CLASS_BEFORE + " " + PSEUDO_HIDE_ELEMENT_CLASS_AFTER;
-            var newClassName = pseudoElt === PseudoElementType.BEFORE
-                ? " " + PSEUDO_HIDE_ELEMENT_CLASS_BEFORE
-                : " " + PSEUDO_HIDE_ELEMENT_CLASS_AFTER;
-            if (isSVGElementNode(clone)) {
-                clone.className.baseValue += newClassName;
-            }
-            else {
-                clone.className += newClassName;
-            }
+            clone.className +=
+                pseudoElt === PseudoElementType.BEFORE
+                    ? " " + PSEUDO_HIDE_ELEMENT_CLASS_BEFORE
+                    : " " + PSEUDO_HIDE_ELEMENT_CLASS_AFTER;
             return anonymousReplacedElement;
-        };
-        DocumentCloner.destroy = function (container) {
-            if (container.parentNode) {
-                container.parentNode.removeChild(container);
-                return true;
-            }
-            return false;
         };
         return DocumentCloner;
     }());
@@ -5743,9 +5699,6 @@
                         parentStack.negativeZIndex.some(function (current, i) {
                             if (order_1 > current.element.container.styles.zIndex.order) {
                                 index_1 = i;
-                                return false;
-                            }
-                            else if (index_1 > 0) {
                                 return true;
                             }
                             return false;
@@ -5757,9 +5710,6 @@
                         parentStack.positiveZIndex.some(function (current, i) {
                             if (order_1 > current.element.container.styles.zIndex.order) {
                                 index_2 = i + 1;
-                                return false;
-                            }
-                            else if (index_2 > 0) {
                                 return true;
                             }
                             return false;
@@ -6101,12 +6051,10 @@
             this.canvas = options.canvas ? options.canvas : document.createElement('canvas');
             this.ctx = this.canvas.getContext('2d');
             this.options = options;
-            if (!options.canvas) {
-                this.canvas.width = Math.floor(options.width * options.scale);
-                this.canvas.height = Math.floor(options.height * options.scale);
-                this.canvas.style.width = options.width + "px";
-                this.canvas.style.height = options.height + "px";
-            }
+            this.canvas.width = Math.floor(options.width * options.scale);
+            this.canvas.height = Math.floor(options.height * options.scale);
+            this.canvas.style.width = options.width + "px";
+            this.canvas.style.height = options.height + "px";
             this.fontMetrics = new FontMetrics(document);
             this.ctx.scale(this.options.scale, this.options.scale);
             this.ctx.translate(-options.x + options.scrollX, -options.y + options.scrollY);
@@ -6338,9 +6286,7 @@
                             return [4 /*yield*/, iframeRenderer.render(container.tree)];
                         case 13:
                             canvas = _b.sent();
-                            if (container.width && container.height) {
-                                this.ctx.drawImage(canvas, 0, 0, container.width, container.height, container.bounds.left, container.bounds.top, container.bounds.width, container.bounds.height);
-                            }
+                            this.ctx.drawImage(canvas, 0, 0, container.width, container.width, container.bounds.left, container.bounds.top, container.bounds.width, container.bounds.height);
                             _b.label = 14;
                         case 14:
                             if (container instanceof InputElementContainer) {
@@ -6650,10 +6596,8 @@
                                                 });
                                                 ctx.fillStyle = gradient_1;
                                                 ctx.fillRect(0, 0, width, height);
-                                                if (width > 0 && height > 0) {
-                                                    pattern = this_1.ctx.createPattern(canvas, 'repeat');
-                                                    this_1.renderRepeat(path, pattern, x, y);
-                                                }
+                                                pattern = this_1.ctx.createPattern(canvas, 'repeat');
+                                                this_1.renderRepeat(path, pattern, x, y);
                                             }
                                             else if (isRadialGradient(backgroundImage)) {
                                                 _d = calculateBackgroundRendering(container, index, [
@@ -6785,20 +6729,17 @@
                             _i = 0, borders_1 = borders;
                             _a.label = 3;
                         case 3:
-                            if (!(_i < borders_1.length)) return [3 /*break*/, 7];
+                            if (!(_i < borders_1.length)) return [3 /*break*/, 6];
                             border = borders_1[_i];
                             if (!(border.style !== BORDER_STYLE.NONE && !isTransparent(border.color))) return [3 /*break*/, 5];
-                            return [4 /*yield*/, this.renderBorder(border.color, side, paint.curves)];
+                            return [4 /*yield*/, this.renderBorder(border.color, side++, paint.curves)];
                         case 4:
                             _a.sent();
                             _a.label = 5;
                         case 5:
-                            side++;
-                            _a.label = 6;
-                        case 6:
                             _i++;
                             return [3 /*break*/, 3];
-                        case 7: return [2 /*return*/];
+                        case 6: return [2 /*return*/];
                     }
                 });
             });
@@ -6912,9 +6853,7 @@
         if (options === void 0) { options = {}; }
         return renderElement(element, options);
     };
-    if (typeof window !== "undefined") {
-        CacheStorage.setContext(window);
-    }
+    CacheStorage.setContext(window);
     var renderElement = function (element, opts) { return __awaiter(_this, void 0, void 0, function () {
         var ownerDocument, defaultView, instanceName, _a, width, height, left, top, defaultResourceOptions, resourceOptions, defaultOptions, options, windowBounds, documentCloner, clonedElement, container, documentBackgroundColor, bodyBackgroundColor, bgColor, defaultBackgroundColor, backgroundColor, renderOptions, canvas, renderer, root, renderer;
         return __generator(this, function (_b) {
@@ -6956,7 +6895,7 @@
                     };
                     options = __assign({}, defaultOptions, resourceOptions, opts);
                     windowBounds = new Bounds(options.scrollX, options.scrollY, options.windowWidth, options.windowHeight);
-                    Logger.create({ id: instanceName, enabled: options.logging });
+                    Logger.create(instanceName);
                     Logger.getInstance(instanceName).debug("Starting document clone");
                     documentCloner = new DocumentCloner(element, {
                         id: instanceName,
@@ -6979,7 +6918,7 @@
                         ? parseColor$1(getComputedStyle(ownerDocument.body).backgroundColor)
                         : COLORS.TRANSPARENT;
                     bgColor = opts.backgroundColor;
-                    defaultBackgroundColor = typeof bgColor === 'string' ? parseColor$1(bgColor) : bgColor === null ? COLORS.TRANSPARENT : 0xffffffff;
+                    defaultBackgroundColor = typeof bgColor === 'string' ? parseColor$1(bgColor) : 0xffffffff;
                     backgroundColor = element === ownerDocument.documentElement
                         ? isTransparent(documentBackgroundColor)
                             ? isTransparent(bodyBackgroundColor)
@@ -6990,7 +6929,6 @@
                     renderOptions = {
                         id: instanceName,
                         cache: options.cache,
-                        canvas: options.canvas,
                         backgroundColor: backgroundColor,
                         scale: options.scale,
                         x: options.x,
@@ -7026,7 +6964,7 @@
                     _b.label = 5;
                 case 5:
                     if (options.removeContainer === true) {
-                        if (!DocumentCloner.destroy(container)) {
+                        if (!cleanContainer(container)) {
                             Logger.getInstance(instanceName).error("Cannot detach cloned iframe as it is not in the DOM anymore");
                         }
                     }
@@ -7037,6 +6975,13 @@
             }
         });
     }); };
+    var cleanContainer = function (container) {
+        if (container.parentNode) {
+            container.parentNode.removeChild(container);
+            return true;
+        }
+        return false;
+    };
 
     return html2canvas;
 
