@@ -1,10 +1,9 @@
 {
   "contact": [
     {
-      "id": 1,
       "name": "Elizabeth",
-      "mainchar": true,
-      "sex": "female"
+      "sex": "female",
+      "id": 1
     },
     {
       "name": "Booker",
@@ -28,6 +27,46 @@
       "name": "Robert Lutece",
       "id": 5,
       "sex": "male"
+    },
+    {
+      "name": "asdasd",
+      "sex": "asdasdasd",
+      "id": 9
+    },
+    {
+      "name": "wawasda",
+      "sex": "qwowedow",
+      "id": 10
+    },
+    {
+      "name": "123123123",
+      "sex": "123123123",
+      "id": 11
+    },
+    {
+      "name": "ssxsxs",
+      "sex": "xsxsxs",
+      "id": 12
+    },
+    {
+      "name": "asdasd",
+      "sex": "asdasd",
+      "id": 13
+    },
+    {
+      "name": "asdasdasd",
+      "sex": "asdasdasd",
+      "id": 14
+    },
+    {
+      "name": "asdasd",
+      "sex": "asdasdasd",
+      "id": 16
+    },
+    {
+      "name": "asdsadasd",
+      "sex": "xxxxxx",
+      "id": 17
     }
   ]
 }

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/vue-contact.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <section v-if="loading">
+            Loading...
+        </section>
+        <section v-else>
+            <div class="info">
+                <input type="text" placeholder="Name" v-model.trim="input.name">
+                <input type="text" placeholder="Sex" v-model.trim="input.sex">
+                <button v-on:click="submitHandler">提交</button>
+                <button v-on:click="cancelHandler">取消</button>
+            </div>
+            <ul class="list">
+                <li v-for="(items,index) in contacts">
+                    <span>{{index+1}}</span>
+                    <span>{{items.name}}</span>
+                    <span>{{items.sex}}</span>
+                    <button v-on:click="editHandler(items)">修改</button>
+                    <button v-on:click="deleteHandler(items)">删除</button>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+
+    <script src="../../Test/lib/jQuery-v3.4.1.js"></script>
+    <script src="libs/vue-2.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        (function (Vue) {
+            new Vue({
+                el: '#app',
+                data: {
+                    loading: false,
+                    contacts: [],
+                    editId: null,
+                    input: {
+                        name: '',
+                        sex: '',
+                    }
+                },
+                methods: {
+                    cancelHandler: function () {
+                        this.input = {
+                            name: '',
+                            sex: '',
+                        };
+                        this.editId = null;
+                    },
+                    submitHandler: function () {
+                        let {
+                            name,
+                            sex
+                        } = this.input;
+                        if (!name || !sex) return;
+                        this.loading = true;
+                        if (this.editId == null) {
+                            axios.post('http://localhost:8888/contact', this.input).then((res) => {
+                                this.loading = false;
+                            }).catch((err) => {
+                                console.log(err)
+                            })
+                        } else {
+                            axios.put('http://localhost:8888/contact/' + this.editId,
+                                this.input).then((res) => {
+                                this.loading = false;
+                                this.editId = null;
+                            }).catch((err) => {
+                                console.log(err)
+                            })
+                        }
+                    },
+                    deleteHandler: function (items) {
+                        console.log(items.id)
+                        if (confirm(`是否删除${items.name}`)) {
+                            this.loading = true;
+                            axios.delete('http://localhost:8888/contact/' + items.id).then((res) => {
+                                cancelHandler();
+                                this.loading = false;
+                            }).catch((err) => {
+                                console.log(err)
+                            })
+                        }
+                    },
+                    editHandler: function (items) {
+                        this.input = { 
+                            name: items.name,
+                            sex: items.sex,
+                        }
+                        this.editId = items.id;
+                    }
+                },
+                mounted() {
+                    this.loading = true;
+                    axios.get('http://localhost:8888/contact').then((res) => {
+                        console.log(res);
+                        this.contacts = res.data;
+                        this.loading = false;
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                },
+            })
+        })(Vue);
+    </script>
+</body>
+
+</html>
