@@ -29,6 +29,23 @@
         // setTimeout(() => {
         //     $('#test').on('click');
         // }, 5000);
+
+
+        let test = function (para) {
+            console.log(para);
+
+            let _para = para === 0 ? 0 : para ? para : 'default';
+            
+            console.log(_para);
+        }
+
+        test();
+        test(null);
+        test(false);
+        test(0);
+        test('0');
+        test('otherthing')
+        
     </script>
 </body>
 
