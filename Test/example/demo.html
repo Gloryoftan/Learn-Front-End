@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+</head>
+
+<body>
+    <div>
+        <input type="radio" name="" id="" value="value1">
+        <label>value1</label>
+        <input type="radio" name="" id="" value="value2">
+        <label>value2</label>
+        <input type="radio" name="" id="" value="value3">
+        <label>value3</label>
+        <input type="radio" name="" id="" value="value4">
+        <label>value4</label>
+
+
+    </div>
+
+    <script src="jQuery-v3.4.1.js"></script>
+    <script>
+        let aRadio = [];
+        $('input').on('click', function () {
+            let _val = $(this).val();
+            aRadio.push(_val);
+            console.log(_val)
+            console.log(aRadio)
+        });
+    </script>
+</body>
+
+</html>
