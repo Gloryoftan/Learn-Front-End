@@ -40,3 +40,24 @@
 .ps{
 	font-size: 0.6em;
 }
+
+
+body{
+	color:hsl(198, 75%, 57%);
+	color:#6b9eb8;
+
+	color: hsl(162, 71%, 66%);
+	color: #8dc3b3;
+
+	color: hsl(227, 19%, 48%);
+	color: #77787e;
+
+	color: hsl(234, 58%, 76%);
+	color: #b7b9cd;
+
+	color: hsl(98, 61%, 80%);
+	color: #cbd2c6;
+
+	color: hsl(187, 64%, 75%);
+	color: #b6c6c8;
+}

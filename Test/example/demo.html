@@ -25,11 +25,15 @@
     <script>
         let aRadio = [];
         $('input').on('click', function () {
-            let _val = $(this).val();
+            let _val = $(this).val(),
+                _id = $(this).attr('id'),
+                _content = $(this).attr('content')
             aRadio.push(_val);
             console.log(_val)
             console.log(aRadio)
         });
+
+        
     </script>
 </body>
 
