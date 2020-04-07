@@ -51,7 +51,7 @@
  *circleRMax 圆形半径最大值 默认45
  */
 
-/* $ */
+/* global $ */
 function Icons(option) {
     this._init(option);
 }
