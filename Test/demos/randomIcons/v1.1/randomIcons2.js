@@ -50,6 +50,8 @@
  *circleRMin 圆形半径最小值 默认25
  *circleRMax 圆形半径最大值 默认45
  */
+
+/* $ */
 function Icons(option) {
     this._init(option);
 }
