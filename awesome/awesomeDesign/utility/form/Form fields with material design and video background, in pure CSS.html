@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Form.min.css">
+</head>
+
+<body>
+    <!-- Taken from https://codepen.io/jonnitto/project/editor/XRPjxx -->
+    <video width="1280" height="720" class="background" autoplay muted loop>
+        <source src="https://codepen.jonnitto.ch/BackgroundVideo.mp4" type="video/mp4">
+    </video>
+    <form class="form-card">
+        <fieldset class="form-fieldset">
+            <legend class="form-legend">Material Design Formular</legend>
+            <div class="form-radio form-radio-inline">
+                <div class="form-radio-legend">Prefered Pronoun</div>
+                <label class="form-radio-label">
+                    <input name=pronoun class="form-radio-field" type="radio" required value="He" />
+                    <i class="form-radio-button"></i>
+                    <span>He</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=pronoun class="form-radio-field" type="radio" required value="She" />
+                    <i class="form-radio-button"></i>
+                    <span>She</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=pronoun class="form-radio-field" type="radio" required value="They" />
+                    <i class="form-radio-button"></i>
+                    <span>They</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=pronoun class="form-radio-field" type="radio" required value="Ze" />
+                    <i class="form-radio-button"></i>
+                    <span>Ze</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=pronoun class="form-radio-field" type="radio" required value="A pronoun not listed" />
+                    <i class="form-radio-button"></i>
+                    <span>A pronoun not listed</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=pronoun class="form-radio-field" type="radio" required value="No pronoun preference" />
+                    <i class="form-radio-button"></i>
+                    <span>No pronoun preference</span>
+                </label>
+                <small class="form-element-hint">Feel free to choose</small>
+            </div>
+            <div class="form-element form-input">
+                <input id="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9" class="form-element-field"
+                    placeholder="Please fill in your full name" type="input" required />
+                <div class="form-element-bar"></div>
+                <label class="form-element-label" for="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9">Name</label>
+            </div>
+            <div class="form-element form-input form-has-error">
+                <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" class="form-element-field -hasvalue"
+                    placeholder=" " type="number" required value="13" />
+                <div class="form-element-bar"></div>
+                <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Your age</label>
+                <small class="form-element-hint">You are way to young, sorry</small>
+            </div>
+            <div class="form-element form-input">
+                <input id="field-uyzeji-352rnc-4rv3g1-bvlh88-9dewuz" class="form-element-field" placeholder=" "
+                    type="email" required />
+                <div class="form-element-bar"></div>
+                <label class="form-element-label" for="field-uyzeji-352rnc-4rv3g1-bvlh88-9dewuz">Email</label>
+                <small class="form-element-hint">We will never spam you!</small>
+            </div>
+            <div class="form-checkbox form-checkbox-inline">
+                <div class="form-checkbox-legend">Which type of music do you like?</div>
+                <label class="form-checkbox-label">
+                    <input name=rap class="form-checkbox-field" type="checkbox" />
+                    <i class="form-checkbox-button"></i>
+                    <span>Rap</span>
+                </label>
+                <label class="form-checkbox-label">
+                    <input name=pop class="form-checkbox-field" type="checkbox" />
+                    <i class="form-checkbox-button"></i>
+                    <span>Pop</span>
+                </label>
+                <label class="form-checkbox-label">
+                    <input name=rock class="form-checkbox-field" type="checkbox" />
+                    <i class="form-checkbox-button"></i>
+                    <span>Rock</span>
+                </label>
+                <label class="form-checkbox-label">
+                    <input name=metal class="form-checkbox-field" type="checkbox" />
+                    <i class="form-checkbox-button"></i>
+                    <span>Metal</span>
+                </label>
+                <label class="form-checkbox-label">
+                    <input name=r_b class="form-checkbox-field" type="checkbox" />
+                    <i class="form-checkbox-button"></i>
+                    <span>R&amp;B</span>
+                </label>
+            </div>
+            <div class="form-element form-select">
+                <select id="field-be1h8i-ll2hpg-q4efzm-nfjj1e-udkw5r" class="form-element-field">
+                    <option disabled selected value="" class="form-select-placeholder"></option>
+                    <option value="Rap">Rap</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Metal">Metal</option>
+                    <option value="R&amp;B">R&amp;B</option>
+                </select>
+                <div class="form-element-bar"></div>
+                <label class="form-element-label" for="field-be1h8i-ll2hpg-q4efzm-nfjj1e-udkw5r">Select your favorite
+                    music genre</label>
+            </div>
+            <div class="form-radio form-radio-block">
+                <div class="form-radio-legend">I prefer…</div>
+                <label class="form-radio-label">
+                    <input name=eat class="form-radio-field" type="radio" value="vagatarian food" />
+                    <i class="form-radio-button"></i>
+                    <span>vagatarian food</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=eat class="form-radio-field" type="radio" value="vegan food" />
+                    <i class="form-radio-button"></i>
+                    <span>vegan food</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=eat class="form-radio-field" type="radio" value="food with fish" />
+                    <i class="form-radio-button"></i>
+                    <span>food with fish</span>
+                </label>
+                <label class="form-radio-label">
+                    <input name=eat class="form-radio-field" type="radio" value="food with meat" />
+                    <i class="form-radio-button"></i>
+                    <span>food with meat</span>
+                </label>
+            </div>
+            <div class="form-element form-textarea">
+                <textarea id="field-3naeph-0f3yuw-x153ph-dzmahy-qhkmgm" class="form-element-field"
+                    placeholder=" "></textarea>
+                <div class="form-element-bar"></div>
+                <label class="form-element-label" for="field-3naeph-0f3yuw-x153ph-dzmahy-qhkmgm">Your Message</label>
+
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            <button class="form-btn" type="submit">Send inquiry</button>
+            <button class="form-btn-cancel -nooutline" type="reset">Cancel</button>
+        </div>
+    </form>
+
+    <script>
+        // Taken from https://codepen.io/jonnitto/project/editor/XRPjxx
+
+        // Minimal Javascript (for Edge, IE and select box)
+        document.addEventListener("change", function (event) {
+            let element = event.target;
+            if (element && element.matches(".form-element-field")) {
+                element.classList[element.value ? "add" : "remove"]("-hasvalue");
+            }
+        });
+    </script>
+</body>
+
+</html>
