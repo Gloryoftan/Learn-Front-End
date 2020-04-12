@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {
+            // this.say = function () {
+            //     console.log("你好")
+            // }
+        }
+        var p1 = new Person();
+        var p2 = new Person();
+        // console.log(p1.say === p2.say); //false
+        Person.prototype.say = function () {
+            console.log('Say something!');
+        }
+        p1.say();
+
+        function paraScope() {
+            console.log(name);
+            var name = "Jay Chou"
+            console.log(name);
+        }
+
+        paraScope();
+    </script>
+</body>
+
+</html>
