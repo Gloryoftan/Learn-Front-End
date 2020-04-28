@@ -13,32 +13,77 @@
         (function (global) {
             function Monitor() {}
             Monitor = {
-                orilog: function (para) {
+                log: function (para) {
                     if (!debugMode) return;
                     console.log(para)
                 },
-                origroup: function (title, ...args) {
+                info: function (para) {
+                    if (!debugMode) return;
+                    console.info(para)
+                },
+                warn: function (para) {
+                    if (!debugMode) return;
+                    console.warn(para)
+                },
+                error: function (para) {
+                    if (!debugMode) return;
+                    console.error(para)
+                },
+                group: function (title, ...args) {
+                    if (!debugMode) return;
                     console.group(title);
                     args.forEach(item => {
                         console.log(item);
                     })
                     console.groupEnd();
                 },
+                table: function (obj) {
+                    if (!debugMode) return;
+                    console.table(obj);
+                },
+                beginGroup: function (title) {
+                    if (!debugMode) return;
+                    console.group(title);
+                },
+                closeGroup: function () {
+                    if (!debugMode) return;
+                    console.groupEnd();
+                },
+                setTimer: function (name) {
+                    if (!debugMode) return;
+                    console.time(name)
+                },
+                endTimer: function (name) {
+                    if (!debugMode) return;
+                    console.timeEnd(name)
+                },
+                assert: function (assertion, obj) {
+                    if (!debugMode) return;
+                    console.assert(assertion, obj)
+                },
+                trace: function () {
+                    if (!debugMode) return;
+                    console.trace();
+                },
+                clear: function () {
+                    if (!debugMode) return;
+                    console.clear();
+                },
                 debugger: function () {
                     if (!debugMode) return;
                     debugger;
                 },
-                group: function (title, obj) {
+                prints: function (obj, title) {
                     if (!debugMode) return;
-                    console.group(title);
+                    let _title = title === 0 ? 0 : title ? title : '未命名prints';
+                    console.group(_title);
                     Object.keys(obj).map((key, index) => {
                         let _key = key,
                             _value = obj[key],
                             _type = this._getType(_value);
-                        // console.log('%c参数' + index + ' ' + key,
-                        //     'color: white; background-color: ' + this
-                        //     ._randomColor(), obj[key], typeof (obj[key]))
-                        console.log('%c 参数 ' + '%c ' + _key + ' ' + '%c 类型 ' + '%c ' + _type + ' ',
+                        _length = _type.length;
+                        console.log('%c 类型 ' + '%c ' + _type + this._textAlign(_length) + '%c 参数 ' +
+                            '%c ' + _key + ' ',
                             'color: white;  background-color: ' + this._getColorByType(_type),
                             'color:' + this._getColorByType(_type),
                             'color: white; background-color: ' + this._getColorByType(_type),
@@ -47,24 +92,28 @@
                     })
                     console.groupEnd();
                 },
-                log: function (obj) {
+                print: function (obj) {
                     if (!debugMode) return;
                     let _key = Object.keys(obj)[0],
                         _value = Object.values(obj)[0],
-                        _type = this._getType(_value);
-                    console.log('%c 参数 ' + '%c ' + _key + ' ' + '%c 类型 ' + '%c ' + _type + ' ',
+                        _type = this._getType(_value),
+                        _length = _type.length;
+                    console.log('%c 类型 ' + '%c ' + _type + this._textAlign(_length) + '%c 参数 ' + '%c ' +
+                        _key + ' ',
                         'color: white;  background-color: ' + this._getColorByType(_type),
                         'color:' + this._getColorByType(_type),
                         'color: white; background-color: ' + this._getColorByType(_type),
                         'color:' + this._getColorByType(_type),
                         _value);
                 },
-                threeDText: function (text) {
+                threeD: function (text) {
+                    if (!debugMode) return;
                     console.log("%c" + text,
                         " text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:2em"
                     );
                 },
-                RainbowText: function (textLength) {
+                rainbow: function (textLength) {
+                    if (!debugMode) return;
                     console.log('%c' + textLength,
                         'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:1em;'
                     );
@@ -72,12 +121,12 @@
                 _randomColor: function () {
                     const colorMap = {
                         1: '#D33F49',
-                        2: '#95B46A',
+                        2: 'hsl(120, 60%, 40%)',
                         3: '#2274A5',
                         4: '#d37f3f',
                         5: '#e0c74d',
-                        6: '#3fd3c9',
-                        7: '#c93fd3'
+                        6: 'hsl(176, 57%, 40%)',
+                        7: 'hsl(296, 63%, 50%)'
                     }
                     const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) +
                         min;
@@ -86,16 +135,16 @@
                 },
                 _getColorByType: function (_type) {
                     const tyepMap = {
-                        String: '#95B46A',
+                        String: 'hsl(120, 60%, 40%)',
                         Number: '#2274A5',
                         Boolean: '#D33F49',
                         Date: '#d37f3f',
-                        Array: '#3fd3c9',
-                        Object: '#3fd3c9',
+                        Array: 'hsl(176, 57%, 40%)',
+                        Object: 'hsl(176, 57%, 40%)',
                         BigInt: '#2274A5',
-                        Symbol: '#95B46A',
-                        Function: '#c93fd3',
-                        Map: '#c93fd3',
+                        Symbol: 'hsl(120, 60%, 40%)',
+                        Function: 'hsl(296, 63%, 50%)',
+                        Map: 'hsl(296, 63%, 50%)',
                         Undefined: '#D33F49',
                         Null: '#D33F49',
                     }
@@ -105,6 +154,22 @@
                 _getType: function (v) {
                     v = v === undefined ? 'Undefined' : v === null ? 'Null' : v.constructor.name
                     return v;
+                },
+                _textAlign: function (length) {
+                    const _spaceMap = {
+                        0: '          ',
+                        1: '         ',
+                        2: '        ',
+                        3: '       ',
+                        4: '      ',
+                        5: '     ',
+                        6: '    ',
+                        7: '   ',
+                        8: '  ',
+                        9: ' ',
+                    }
+                    let _space = _spaceMap[length] ? _spaceMap[length] : ' ';
+                    return _space;
                 }
             }
             global.M = global.Monitor = Monitor;
@@ -126,25 +191,36 @@
             paraSymbol = Symbol(),
             paraFunction = function () {},
             paraJson = JSON.parse('{"result":true, "count":42}'),
-            paraMap = new Map();
-
-        const getType = v => (v === undefined ? 'Undefined' : v === null ? 'Null' : v.constructor.name);
-
+            paraMap = new Map(),
+            arrayObj = [{
+                    name: "JavaScript",
+                    fileExtension: ".js"
+                },
+                {
+                    name: "TypeScript",
+                    fileExtension: ".ts"
+                },
+                {
+                    name: "CoffeeScript",
+                    fileExtension: ".coffee"
+                }
+            ],
+            paraAssertion = '断言测试';
 
         ! function () {
-            M.log({
+            M.print({
                 paraStr
             })
 
-            M.log({
+            M.print({
                 paraNum
             })
 
-            M.group('Group测试', {
+            M.prints({
                 paraStr
             });
 
-            M.group('Group测试2', {
+            M.prints({
                 paraStr,
                 paraNum,
                 paraBoolean,
@@ -158,19 +234,43 @@
                 paraFunction,
                 paraJson,
                 paraMap,
-            })
+                arrayObj,
+            }, 'prints测试')
 
-            M.orilog('It\'s original console.log 原始的console.logs');
-            M.origroup('原始的console.group', paraStr, paraNum, paraBoolean, paraUndefined, paraNull, paraDate,
+            M.threeD('3D文本测试');
+
+            M.rainbow('RainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowText')
+
+            M.beginGroup('Original console.log');
+            M.log('It\'s original console.log 下面是原生的测试');
+            M.log('console.log');
+            M.info('console.info');
+            M.warn('console.warn');
+            M.error('console.error');
+            M.group('原始的console.group', paraStr, paraNum, paraBoolean, paraUndefined, paraNull, paraDate,
                 paraArray)
+            M.table(arrayObj)
 
-            M.threeDText('3D文本测试');
+            M.beginGroup('第1层');
+            M.log('原生grop测试');
+            M.beginGroup('第2层');
+            M.log('原生grop测试');
+            M.log('原生grop测试');
+            M.closeGroup();
+            M.closeGroup();
 
-            M.RainbowText('RainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowText')
+            M.setTimer('timer');
+            M.endTimer('timer');
+
+            M.assert(false, paraAssertion);
+            ! function traceTest() {
+                M.trace();
+            }()
+            M.closeGroup();
         }()
 
-
         ! function () {
+            const getType = v => (v === undefined ? 'Undefined' : v === null ? 'Null' : v.constructor.name);
             console.log(getType(paraStr))
             console.log(getType(paraNum))
             console.log(getType(paraBoolean))
