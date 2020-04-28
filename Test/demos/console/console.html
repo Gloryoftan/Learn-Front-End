@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Monitor Demo</title>
 </head>
 
 <body>
@@ -32,16 +32,32 @@
                     if (!debugMode) return;
                     console.group(title);
                     Object.keys(obj).map((key, index) => {
-                        console.log('%c参数' + index + ' ' + key,
-                            'color: white; background-color: ' + this
-                            ._randomColor(), obj[key])
+                        let _key = key,
+                            _value = obj[key],
+                            _type = this._getType(_value);
+                        // console.log('%c参数' + index + ' ' + key,
+                        //     'color: white; background-color: ' + this
+                        //     ._randomColor(), obj[key], typeof (obj[key]))
+                        console.log('%c 参数 ' + '%c ' + _key + ' ' + '%c 类型 ' + '%c ' + _type + ' ',
+                            'color: white;  background-color: ' + this._getColorByType(_type),
+                            'color:' + this._getColorByType(_type),
+                            'color: white; background-color: ' + this._getColorByType(_type),
+                            'color:' + this._getColorByType(_type),
+                            _value);
                     })
                     console.groupEnd();
                 },
                 log: function (obj) {
                     if (!debugMode) return;
-                    console.log('%c参数 ' + Object.keys(obj)[0], 'color: white; background-color: ' + this
-                        ._randomColor(), Object.values(obj)[0])
+                    let _key = Object.keys(obj)[0],
+                        _value = Object.values(obj)[0],
+                        _type = this._getType(_value);
+                    console.log('%c 参数 ' + '%c ' + _key + ' ' + '%c 类型 ' + '%c ' + _type + ' ',
+                        'color: white;  background-color: ' + this._getColorByType(_type),
+                        'color:' + this._getColorByType(_type),
+                        'color: white; background-color: ' + this._getColorByType(_type),
+                        'color:' + this._getColorByType(_type),
+                        _value);
                 },
                 threeDText: function (text) {
                     console.log("%c" + text,
@@ -57,53 +73,118 @@
                     const colorMap = {
                         1: '#D33F49',
                         2: '#95B46A',
-                        3: '#2274A5'
+                        3: '#2274A5',
+                        4: '#d37f3f',
+                        5: '#e0c74d',
+                        6: '#3fd3c9',
+                        7: '#c93fd3'
                     }
                     const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) +
                         min;
-                    let num = randomIntegerInRange(1, 3);
+                    let num = randomIntegerInRange(1, 7);
                     return colorMap[num];
+                },
+                _getColorByType: function (_type) {
+                    const tyepMap = {
+                        String: '#95B46A',
+                        Number: '#2274A5',
+                        Boolean: '#D33F49',
+                        Date: '#d37f3f',
+                        Array: '#3fd3c9',
+                        Object: '#3fd3c9',
+                        BigInt: '#2274A5',
+                        Symbol: '#95B46A',
+                        Function: '#c93fd3',
+                        Map: '#c93fd3',
+                        Undefined: '#D33F49',
+                        Null: '#D33F49',
+                    }
+                    let _res = tyepMap[_type] ? tyepMap[_type] : '#000';
+                    return _res;
+                },
+                _getType: function (v) {
+                    v = v === undefined ? 'Undefined' : v === null ? 'Null' : v.constructor.name
+                    return v;
                 }
             }
             global.M = global.Monitor = Monitor;
         })(window)
 
-        let paraStr = "para1",
+        const paraStr = "para1",
             paraNum = 1,
             paraBoolean = true,
+            paraDate = new Date(),
+            paraArray = [1, 2, 3, 4, 5],
+            paraObject = {
+                key1: 'value1',
+                key2: 'value2',
+                key3: 'value3',
+            },
             paraUndefined = undefined,
             paraNull = null,
-            paraDate = new Date(),
-            paraArray = [1, 2, 3, 4, 5];
+            paraBigInt = 2n ** 53n,
+            paraSymbol = Symbol(),
+            paraFunction = function () {},
+            paraJson = JSON.parse('{"result":true, "count":42}'),
+            paraMap = new Map();
 
-        M.log({
-            paraStr
-        })
+        const getType = v => (v === undefined ? 'Undefined' : v === null ? 'Null' : v.constructor.name);
 
-        M.log({
-            paraNum
-        })
 
-        M.group('Group测试', {
-            paraStr
-        });
+        ! function () {
+            M.log({
+                paraStr
+            })
 
-        M.group('Group测试2', {
-            paraStr,
-            paraNum,
-            paraBoolean,
-            paraUndefined,
-            paraNull,
-            paraDate,
-            paraArray
-        })
+            M.log({
+                paraNum
+            })
 
-        M.orilog('It\'s original console.log 原始的console.logs');
-        M.origroup('原始的console.group', paraStr, paraNum, paraBoolean, paraUndefined, paraNull, paraDate, paraArray)
+            M.group('Group测试', {
+                paraStr
+            });
 
-        M.threeDText('3D文本测试');
+            M.group('Group测试2', {
+                paraStr,
+                paraNum,
+                paraBoolean,
+                paraDate,
+                paraArray,
+                paraObject,
+                paraUndefined,
+                paraNull,
+                paraBigInt,
+                paraSymbol,
+                paraFunction,
+                paraJson,
+                paraMap,
+            })
 
-        M.RainbowText('RainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowText')
+            M.orilog('It\'s original console.log 原始的console.logs');
+            M.origroup('原始的console.group', paraStr, paraNum, paraBoolean, paraUndefined, paraNull, paraDate,
+                paraArray)
+
+            M.threeDText('3D文本测试');
+
+            M.RainbowText('RainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowTextRainbowText')
+        }()
+
+
+        ! function () {
+            console.log(getType(paraStr))
+            console.log(getType(paraNum))
+            console.log(getType(paraBoolean))
+            console.log(getType(paraDate))
+            console.log(getType(paraArray))
+            console.log(getType(paraObject))
+            console.log(getType(paraUndefined))
+            console.log(getType(paraNull))
+            console.log(getType(paraBigInt))
+            console.log(getType(paraSymbol))
+            console.log(getType(paraFunction))
+            console.log(getType(paraJson))
+            console.log(getType(paraMap))
+        }
     </script>
 </body>
 
