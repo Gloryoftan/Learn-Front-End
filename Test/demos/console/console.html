@@ -31,10 +31,10 @@
                 group: function (title, obj) {
                     if (!debugMode) return;
                     console.group(title);
-                    Object.keys(obj).map((key, item) => {
-                        console.log('%c参数 ' + key,
+                    Object.keys(obj).map((key, index) => {
+                        console.log('%c参数' + index + ' ' + key,
                             'color: white; background-color: ' + this
-                            ._randomColor(), item)
+                            ._randomColor(), obj[key])
                     })
                     console.groupEnd();
                 },
