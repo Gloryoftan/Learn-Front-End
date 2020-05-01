@@ -1,5 +1,8 @@
-var basicNum = 0;
+var basicNum = 100;
 var add = function (a, b) {
     return a + b;
 };
-export default { basicNum, add };
+export {
+    basicNum,
+    add
+};
