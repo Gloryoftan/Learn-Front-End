@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //obj
+        let cachedData;
+        this.echarts = new JamEChart($('#gridbalance-card-body'), {
+            type: 'bar',
+            itemColorSet: ['hsl(180, 49%, 51%)', 'hsl(25, 77%, 54%)', 'hsl(199, 89%, 44%)', 'hsl(89, 88%, 68%)', 'hsl(252, 46%, 61%)', 'hsl(53, 61%, 58%)'],
+            style: [JamEChart.style.bar.borderRadius([7, 7, 0, 0])],
+            datasource: function () {
+                return cachedData.json;
+            },
+            format: {
+                cols: ['负荷', '发电', '受电', '旋备(模拟)'],
+                pattern: [{
+                    '@row': function (key) {
+                        let _children = function () {
+                            let _scenarioRegion = RTCPScenario.__data__.curRegion.value
+                            return Object.values(_scenarioRegion.children)
+                        }
+                        return _children().includes(key)
+                    }
+                }, {
+                    '@col': function (key) {
+                        return ['pload', 'pgen', 'pstat', 'prec'].includes(key)
+                    }
+                }, {
+                    '@data': function (val, row, col, dataMap) {
+                        return Math.abs(val)
+                    }
+                }],
+                colNameMap: {
+                    pgen: '发电',
+                    pload: '负荷',
+                    pstat: '受电',
+                    prec: '旋备(模拟)'
+                }
+            }
+        })
+            .buildEChartOption();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //1.id
+        /*
+            ID
+            cardID
+            url
+            succsessFun
+            errorFun
+            {
+                data:{
+                    sql:sql
+                }
+            }
+
+        */
+        ajaxCall('User profile', '', '../../rtcpd/rest/common/getUserProfile',
+         function (data) {
+            if ('user' in data) {
+                userProfile = data.user;
+                userName = userProfile.fullName ? userProfile.fullName : userName;
+                userId = userProfile.id ? userProfile.id : 0;
+            }
+        },
+        null,
+        {
+            data:
+
+        });
+    </script>
+</body>
+
+</html>
