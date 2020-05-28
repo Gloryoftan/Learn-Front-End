@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-content: flex-start;
+            /* display: grid;
+            counter-reset: hex;
+            position: relative;
+            align-content: start;
+            grid-template-columns: repeat(auto-fit, minmax(22vh, 1fr)); */
+        }
+
+        .hex {
+            position: relative;
+            visibility: hidden;
+            width: 20vh;
+            height: 20vh;
+            background: lightpink;
+            margin: 0 .5vh;
+        }
+
+        .hexIn {
+            position: absolute;
+            width: 100%;
+            padding-bottom: 116%;
+            overflow: hidden;
+            visibility: hidden;
+            background: red;
+            transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+        }
+
+        .hexContent {
+            position: absolute;
+            visibility: visible;
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: lightgreen;
+            transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+        }
+    </style>
+</head>
+
+<body>
+    <li class="hex" id="first">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <div class="hexContent"></div>
+        </div>
+    </li>
+</body>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+<script>
+
+
+
+    // setInterval(() => {
+    //     let _preLeft = $('#first')[0].getBoundingClientRect().left;
+    //     test($('#first'))
+    // }, 5000);
+
+
+
+    // function test($target, _preLeft) {
+    //     if (!$target) return;
+    //     let _sibLeft = $target.next()[0].getBoundingClientRect().left;
+    //     if (_preLeft == _sibLeft) {
+    //         $target.css('margin-left', '10vh')
+    //     }
+    //     test($target.next(), _preLeft)
+    // }
+</script>
+
+</html>
