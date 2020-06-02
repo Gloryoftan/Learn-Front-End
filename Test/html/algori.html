@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function returnRes1(len, num) {
+            let res;
+            let gap = Math.floor(len / 8);
+            len += gap;
+            res = Math.ceil(len / num);
+            console.log(res);
+        }
+
+        function returnRes(len, num) {
+            len += Math.floor(len / (2 * num));
+            console.log(Math.ceil(len / num));
+        }
+
+    </script>
+</body>
+
+</html>
