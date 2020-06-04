@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs Play</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            position: relative;
+            font-family: avenir;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            position: relative;
+        }
+
+        .tab:hover {
+            z-index: 1;
+        }
+
+        .top-tab {
+            width: 150px;
+            height: 60px;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: -20px;
+            border-radius: 5px;
+            transition: .2s;
+        }
+
+        .top-tab-1 {
+            background: linear-gradient(to top right, #80D8FF, #304FFE);
+            left: 30%;
+        }
+
+        .top-tab-2 {
+            background: linear-gradient(to top right, #00E5FF, blue);
+            left: 38%;
+        }
+
+        .top-tab-3 {
+            background: linear-gradient(to top right, #26C6DA, #006064);
+            left: 46%;
+        }
+
+        .top-tab-4 {
+            background: linear-gradient(to top right, #5C6BC0, #1A237E);
+            left: 54%;
+        }
+
+        .top-tab-content {
+            color: white;
+            padding-top: 30px;
+            padding-left: 5px;
+            transition: .2s;
+        }
+
+        .top-tab:hover {
+            transform: translateY(10px) scale(1.05);
+        }
+
+        .top-tab:hover .top-tab-content {
+            font-weight: bold;
+        }
+
+        .side-tab {
+            width: 150px;
+            height: 150px;
+            transform: rotate(45deg);
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            right: -110px;
+            transition: .2s;
+        }
+
+        .side-tab-1 {
+            top: 5%;
+            background: linear-gradient(to right, #64FFDA, #00C853);
+        }
+
+        .side-tab-2 {
+            top: 30%;
+            background: linear-gradient(to right, #00E5FF, blue);
+        }
+
+        .side-tab-3 {
+            top: 55%;
+            background: linear-gradient(to right, #EA80FC, #AA00FF);
+        }
+
+        .side-tab:hover {
+            transform: translateX(-20px);
+        }
+
+        .side-tab:hover .side-tab-content {
+            transform: rotate(0deg);
+            padding-left: 10px;
+        }
+
+        .side-tab-content {
+            color: #fff;
+            font-weight: bold;
+            margin-top: 65px;
+            transform: rotate(-45deg);
+            transition: .2s;
+        }
+
+        .bottom-tab {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: -95px;
+            transition: .2s;
+        }
+
+        .bottom-tab-1 {
+            background: linear-gradient(to right, #E040FB, #7B1FA2);
+            left: 45%;
+        }
+
+        .bottom-tab-2 {
+            background: linear-gradient(to right, #76FF03, #388E3C);
+            left: 52%;
+        }
+
+        .bottom-tab-3 {
+            background: linear-gradient(to right, #FFFF00, #FFAB00);
+            left: 59%;
+        }
+
+        .bottom-tab-4 {
+            background: linear-gradient(to right, #F06292, #D50000);
+            left: 66%;
+        }
+
+        .bottom-tab:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .bottom-tab:hover .bottom-tab-content {
+            font-size: 18px;
+        }
+
+        .bottom-tab-content {
+            color: #fff;
+            transition: .2s;
+            margin: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top-tab top-tab-1 tab">
+            <div class="top-tab-content">sky</div>
+        </div>
+        <div class="top-tab top-tab-2 tab">
+            <div class="top-tab-content">blue</div>
+        </div>
+        <div class="top-tab top-tab-3 tab">
+            <div class="top-tab-content">green</div>
+        </div>
+        <div class="top-tab top-tab-4 tab">
+            <div class="top-tab-content">indigo</div>
+        </div>
+
+        <div class="side-tab side-tab-1 tab">
+            <div class="side-tab-content">hey</div>
+        </div>
+        <div class="side-tab side-tab-2 tab">
+            <div class="side-tab-content">hi</div>
+        </div>
+        <div class="side-tab side-tab-3 tab">
+            <div class="side-tab-content">hello</div>
+        </div>
+
+        <div class="bottom-tab bottom-tab-1 tab">
+            <div class="bottom-tab-content">purple</div>
+        </div>
+        <div class="bottom-tab bottom-tab-2 tab">
+            <div class="bottom-tab-content">green</div>
+        </div>
+        <div class="bottom-tab bottom-tab-3 tab">
+            <div class="bottom-tab-content">yellow</div>
+        </div>
+        <div class="bottom-tab bottom-tab-4 tab">
+            <div class="bottom-tab-content">red</div>
+        </div>
+    </div>
+</body>
+
+</html>
