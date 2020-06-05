@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs Play</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            position: relative;
+            font-family: avenir;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            position: relative;
+        }
+
+        .tab:hover {
+            z-index: 1;
+        }
+
+        .top-tab {
+            width: 150px;
+            height: 60px;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: -20px;
+            border-radius: 5px;
+            transition: .2s;
+        }
+
+        .top-tab-1 {
+            background: linear-gradient(to top right, #80D8FF, #304FFE);
+            left: 30%;
+        }
+
+        .top-tab-2 {
+            background: linear-gradient(to top right, #00E5FF, blue);
+            left: 38%;
+        }
+
+        .top-tab-3 {
+            background: linear-gradient(to top right, #26C6DA, #006064);
+            left: 46%;
+        }
+
+        .top-tab-4 {
+            background: linear-gradient(to top right, #5C6BC0, #1A237E);
+            left: 54%;
+        }
+
+        .top-tab-content {
+            color: white;
+            padding-top: 30px;
+            padding-left: 5px;
+            transition: .2s;
+        }
+
+        .top-tab:hover {
+            transform: translateY(10px) scale(1.05);
+        }
+
+        .top-tab:hover .top-tab-content {
+            font-weight: bold;
+        }
+
+        #test {
+            writing-mode: vertical-rl;
+            font-size: 2em;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top-tab top-tab-1 tab">
+            <div class="top-tab-content">sky</div>
+        </div>
+        <div class="top-tab top-tab-2 tab">
+            <div class="top-tab-content">blue</div>
+        </div>
+        <div class="top-tab top-tab-3 tab">
+            <div class="top-tab-content">green</div>
+        </div>
+        <div class="top-tab top-tab-4 tab">
+            <div class="top-tab-content">indigo</div>
+        </div>
+    </div>
+
+    <div id="test">上海-武汉</div>
+</body>
+
+</html>
