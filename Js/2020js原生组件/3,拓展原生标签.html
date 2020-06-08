@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <img is="my-img" src="" alt="">
+
+    <script>
+        class myIMG extends HTMLImageElement {
+            constructor() {
+                super();
+                setTimeout(() => {
+                    this.src =
+                        'https://hbimg.huabanimg.com/67bcf019c3aba12abc19624e1afe3418a03fb2021cf00-iDEjac_fw658/format/webp';
+                }, 2000);
+            }
+        }
+
+        customElements.define('my-img', myIMG, {
+            extends: 'img'
+        });
+    </script>
+
+</body>
+
+</html>
