@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: black;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <span></span>
+    <input type="text" id="name">
+    <div class="show"></div>
+
+    <script>
+        let oInput = document.getElementById("name");
+        let oDiv = document.getElementsByClassName("show")[0];
+        oInput.oninput = function () { oDiv.innerHTML = oInput.value; }
+        var foo = 1;
+        function test() {
+            console.log(foo); var foo = 2; console.log(foo);
+        }
+        console.log(foo);
+        test();
+        console.log(foo);
+
+        var a = 1865.3, b = 1865.2, c = 1865.1;
+        console.log(a - b)
+        console.log(b - c)
+        console.log(a - b == b - c)
+        console.log(a - b == b - c, a - b == 0.1, b - c == 0.1)
+
+        var a = { name: "hello" }, b = { name: "hi" }
+        function exchange(a, b) {
+            var c = b;
+            b = a;
+            a = c;
+            a.name = a.name + "1";
+            b.name = b.name + "2";
+            console.info(a.name, b.name);
+        }
+        exchange(a, b);//hi1 hello2
+        console.info(a.name, b.name);//hello2 hi1
+
+        Object.prototype.trim = function () {
+            return this.replace(/(^\s*)|(\s*$)/g, "");
+        }
+
+        const reverse = (num) => {
+            let _ns = Math.abs(num).toString();
+            let _res = "";
+            let _array = [];
+            for (i = 0; i < _ns.length; i++) {
+                _res = _ns[i] + _res;
+            }
+            _res = (num < 0) ? (-1 * _res) : (1 * _res);
+            return _res;
+        }
+
+        console.log(typeof (reverse(-123)), reverse(123))
+
+        let nums = [1, 2, 3, 4]
+        const sumIndex = (array, sum) => {
+            for (let i = 0; i < array.length; i++) {
+                for (let j = i + 1; j < array.length; j++) {
+                    if (array[i] + array[j] === sum) {
+                        return [i, j]
+                    }
+                }
+            }
+        }
+
+        console.log(sumIndex(nums, 6))
+
+        let timeArray = ["02:01", "09:09", "09:07", "00:01", "23:59", "19:37"];
+
+        const timeCompare = (array) => {
+            let _array = [];
+            let min = 1440;
+            array.forEach((item, index) => {
+                _array[index] = item.split(':')[0] * 60 + item.split(':')[1] * 1;
+            })
+            _array.sort(function (a, b) { return a - b });
+            console.log(_array);
+            for (let i = 0; i < _array.length - 1; i++) {
+                min = Math.min((_array[i + 1] - _array[i]), min)
+            }
+            return min;
+        }
+        console.log(timeCompare(timeArray));
+
+
+        // $.ajaxCache(function (options, original) {
+        //     if (options.cache) {
+        //         var success = original.success || $.noop,
+        //             url = original.url;
+        //         //remove jQuery cache
+        //         options.cache = false;
+        //         options.beforeSend = function () {
+        //             if (localStorage.getItem(url)) {
+        //                 success(localStorage.getItem(url));
+        //                 return false;
+        //             }
+        //             return true;
+        //         };
+        //         options.success = function (data, textStatus) {
+        //             var responseData = JSON.stringify(data.responseJSON);
+        //             localStorage.setItem(url, responseData);
+        //             if ($.isFunction(success)) {
+        //                 success(responseJSON);
+        //             }
+        //         };
+        //     }
+        // });
+
+
+    </script>
+</body>
+
+</html>

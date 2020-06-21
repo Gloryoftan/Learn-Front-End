@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            background: -webkit-gradient(linear, left top, left bottom, from(#4678F3), to(#64D6EE));
+            background: linear-gradient(to bottom, #4678F3, #64D6EE);
+        }
+
+        html {
+            font-size: 62.5%;
+            height: 100%;
+            display: -webkit-box;
+            display: flex;
+        }
+
+        body {
+            width: 100%;
+            margin: auto;
+        }
+
+        .option-row {
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: stretch;
+            align-items: stretch;
+            width: 90%;
+            max-width: 400px;
+            height: 150px;
+            margin: auto;
+            position: relative;
+        }
+
+        .option {
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            display: block;
+            padding: 0.5em;
+            background: #FFF;
+            border-radius: 0.25em;
+            font-size: 4rem;
+            position: relative;
+            margin: 0.1em;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: end;
+            justify-content: flex-end;
+            -webkit-box-align: start;
+            align-items: flex-start;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            flex-direction: column;
+            cursor: pointer;
+            opacity: 0.5;
+            -webkit-transition-duration: 0.8s, 0.6s;
+            transition-duration: 0.8s, 0.6s;
+            -webkit-transition-property: flex-grow, opacity, -webkit-box-flex;
+            transition-property: flex-grow, opacity, -webkit-box-flex;
+            transition-property: flex-grow, opacity;
+            -webkit-transition-timing-function: cubic-bezier(0.98, 0, 0.22, 0.98), ease-in-out;
+            transition-timing-function: cubic-bezier(0.98, 0, 0.22, 0.98), ease-in-out;
+        }
+
+        .option:before,
+        .option:after {
+            content: '';
+            display: block;
+            border: solid 2px #64D6EE;
+            visibility: visible;
+        }
+
+        .option:before {
+            position: absolute;
+            top: 0.5em;
+            right: 0.5em;
+            border-radius: 50%;
+            width: 0.25em;
+            height: 0.25em;
+        }
+
+        .option:after {
+            width: 100%;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleX(0.2);
+            transform: scaleX(0.2);
+            -webkit-transition: inherit;
+            transition: inherit;
+            -webkit-transition-property: opacity, -webkit-transform;
+            transition-property: opacity, -webkit-transform;
+            transition-property: transform, opacity;
+            transition-property: transform, opacity, -webkit-transform;
+        }
+
+        .option-input {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .option__label {
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            font-weight: bold;
+            -webkit-transform-origin: left bottom;
+            transform-origin: left bottom;
+            -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+            -webkit-transition: inherit;
+            transition: inherit;
+            -webkit-transition-property: opacity, -webkit-transform;
+            transition-property: opacity, -webkit-transform;
+            transition-property: transform, opacity;
+            transition-property: transform, opacity, -webkit-transform;
+        }
+
+        .option__label sub {
+            margin-left: 0.25em;
+            font-size: 0.4em;
+            display: inline-block;
+            vertical-align: 0.3em;
+        }
+
+        .option-input:checked+.option {
+            -webkit-box-flex: 4;
+            flex-grow: 4;
+            opacity: 1;
+        }
+
+        .option-input:checked+.option::after {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+
+        .option-input:checked+.option::before {
+            background: #64D6EE;
+        }
+
+        .option-input:checked+.option .option__label {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="option-row">
+
+        <input class="option-input" checked id="option-1" type="radio" name="options" />
+        <label class="option" for="option-1">
+            <span class="option__label">
+                1<sub>gb</sub>
+            </span>
+        </label>
+
+        <input class="option-input" id="option-2" type="radio" name="options" />
+        <label class="option" for="option-2">
+            <span class="option__label">
+                5<sub>gb</sub>
+            </span>
+        </label>
+
+    </div>
+
+    <div class="option-row">
+
+        <input class="option-input" id="option-3" type="radio" name="options" />
+        <label class="option" for="option-3">
+            <span class="option__label">
+                10<sub>gb</sub>
+            </span>
+        </label>
+
+        <input class="option-input" id="option-4" type="radio" name="options" />
+        <label class="option" for="option-4">
+            <span class="option__label">
+                20<sub>gb</sub>
+            </span>
+        </label>
+
+    </div>
+</body>
+
+</html>
