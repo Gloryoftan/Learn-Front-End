@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interviews</title>
+</head>
+
+<body>
+
+    <script>
+        // let obj = {
+        //     a: 1,
+        //     b: [1, 2, 3]
+        // }
+        // let a = obj.a;
+        // let b = obj.b;
+        // a = 2;
+        // b.push(4)
+        // console.log(obj, a, b);
+
+        // var a = { name: "hello" }, b = { name: "hi" }
+        // function exchange(a, b) {
+        //     var c = b;
+        //     b = a;
+        //     a = c;
+        //     a.name = a.name + "1";
+        //     b.name = b.name + "2";
+        //     console.info(a.name, b.name);
+        // }
+        // exchange(a, b);//hi1 hello2
+        // console.info(a.name, b.name);//hello2 hi1
+
+        // var obj = {}; obj.a = 100;
+        // var arr = []; arr.a = 100;
+        // function fn() { }
+        // fn.a = 100;
+
+        // // 要点二：__proto__
+        // console.log(obj.__proto__);
+        // console.log(arr.__proto__);
+        // console.log(fn.__proto__);
+
+        // // 要点三：函数有 prototype
+        // console.log(fn.prototype)
+
+        // // 要点四：引用类型的 __proto__ 属性值指向它的构造函数的 prototype 属性值
+        // console.log(obj.__proto__ === Object.prototype)
+
+        // var a = true;
+        // setTimeout(function () {
+        //     a = false;
+        // }, 100)
+        // while (a) {
+        //     console.log('while执行了')
+        // }
+
+        function test(person) {
+            person.age = 26
+            person = {
+                name: 'yyy',
+                age: 30
+            }
+
+            return person
+        }
+        const p1 = {
+            name: 'yck',
+            age: 25
+        }
+        const p2 = test(p1)
+        console.log(p1)
+        console.log(p2)
+    </script>
+</body>
+
+</html>
