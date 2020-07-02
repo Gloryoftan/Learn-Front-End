@@ -1,12 +1,12 @@
-import popEvent from './event.js';
+import popEvent from "./event.js";
 
-let temp = document.createElement('template');
+let temp = document.createElement("template");
 document.body.appendChild(temp);
 temp.innerHTML = `
 <div class="mask" data-hide='true'></div>
 <div class="dialog_box bg2">
     <div class="dialog_header"></div>
-    <div class="dialog_title">{{ title}}</div>
+    <div class="dialog_title">{{title}}</div>
     <div class="dialog_content">{{content}}</div>
     <div class="btn_line">
         <div class="btn cancel" data-hide='true' data-cancel='123'>知道了</div>
@@ -20,39 +20,52 @@ export default class myCom extends HTMLElement {
         console.log(this.innerHTML);
         let attr = this.attributes;
         this._data = {
-            title: attr.title ? attr.title.value : '默认的标题',
-            content: attr.content ? attr.content.value : '这里是默认的内容，这个人很懒，什么有意义的内容都没有留下',
-        }
+            title: attr.title ? attr.title.value : "默认的标题",
+            content: attr.content ? attr.content.value : "这里是默认的内容，这个人很懒，什么有意义的内容都没有留下",
+            array: [1,2,3],
+        };
         this.render();
         this.bindEvent();
         this.compileNode(this.obj);
         this.observe(this._data);
 
         setTimeout(() => {
-            this._data.title = '这里是修改的标题'
-        }, 2000)
-
+            this._data.title = "这里是修改的标题";
+        }, 2000);
     }
     observe(data) {
         let _this = this;
         this._data = new Proxy(data, {
             set(obj, prop, value) {
                 let event = new CustomEvent(prop, {
-                    detail: value
+                    detail: value,
                 });
                 _this.dispatchEvent(event);
                 return Reflect.set(...arguments);
-            }
+            },
         });
     }
-
     render() {
-        this.btn = document.createElement('button');
-        this.btn.innerText = '点击显示弹窗';
-        this.btn.setAttribute('data-open', 'true');
-        this.obj = document.createElement('div');
+        this.btn = document.createElement("button");
+        this.btn.innerText = "点击显示弹窗";
+        this.btn.setAttribute("data-open", "true");
+        this.obj = document.createElement("div");
         this.obj.append(temp.content.cloneNode(true));
         this.append(this.obj, this.btn);
+        this.addEventListener("array", (e) => {
+            console.log("0,0");
+        });
+
+        // let _div = document.createElement("button");
+        // let _div2 = document.createElement("div");
+        // let _div3 = document.createElement("div");
+        // _div.innerHTML = `<div>${this._data.array[0]}</div>`;
+        // _div2.innerHTML = this._data.array;
+        // _div3.innerHTML = this._data.title;
+        // this.append(_div);
+        // this.append(_div2);
+        // this.append(_div3);
+
         this.hide();
     }
     compileNode(el) {
@@ -66,16 +79,15 @@ export default class myCom extends HTMLElement {
                     this._data[$1] && (node.textContent = text.replace(reg, this._data[$1]));
 
                     this.addEventListener($1, (e) => {
-                        node.textContent = text.replace(reg, e.detail)
-                    })
-
-                };
+                        node.textContent = text.replace(reg, e.detail);
+                    });
+                }
             } else if (node.nodeType === 1) {
                 let attrs = node.attributes;
-                if (attrs.hasOwnProperty('v-model')) {
-                    let keyname = attrs['v-model'].nodeValue;
+                if (attrs.hasOwnProperty("v-model")) {
+                    let keyname = attrs["v-model"].nodeValue;
                     node.value = this._data[keyname];
-                    node.addEventListener('input', e => {
+                    node.addEventListener("input", (e) => {
                         this._data[keyname] = node.value;
                     });
                     // console.log(this._data);
@@ -86,35 +98,35 @@ export default class myCom extends HTMLElement {
                     this.compileNode(node);
                 }
             }
-        })
+        });
     }
 
     bindEvent() {
         this.event = new popEvent({
-            obj: this
+            obj: this,
         });
     }
     open() {
-        this.obj.style.display = 'block';
+        this.obj.style.display = "block";
     }
     hide() {
-        console.log('点击了mask');
-        this.obj.style.display = 'none';
+        console.log("点击了mask");
+        this.obj.style.display = "none";
     }
     cancel() {
-        console.log('点击了取消');
+        console.log("点击了取消");
     }
     confirm() {
-        console.log('点击了确定');
+        console.log("点击了确定");
     }
     test() {
-        console.log('触发了弹窗的点击事件');
+        console.log("触发了弹窗的点击事件");
     }
 }
 
-window.customElements.define('my-com', myCom);
+window.customElements.define("my-com", myCom);
 
-let style = document.createElement('style');
+let style = document.createElement("style");
 document.body.appendChild(style);
 style.innerText = `
 body {
@@ -201,4 +213,4 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-}`
+}`;

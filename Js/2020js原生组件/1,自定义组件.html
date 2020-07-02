@@ -13,15 +13,20 @@
 
 <body>
 
-    <my-com data-test='aosd' title='这里是自定义的标题' content='这里是我们自定义的内容'>
+    <my-com data-test='' title='这里是自定义的标题' content='这里是我们自定义的内容'>
         <span>asdaoj</span>
     </my-com>
     <script src='./dialog.js' type='module'></script>
     <script type='module'>
-        // let domcom = document.querySelector('my-com');
+        let domcom = document.querySelector('my-com');
+
         // domcom.__proto__['test'] = function () {
         //     console.log('123');
         // }
+        setTimeout(() => {
+            domcom._data.title = "这里是修改的标题123123";
+            domcom._data.array = [3,2,1];
+        }, 5000);
     </script>
 
 </body>

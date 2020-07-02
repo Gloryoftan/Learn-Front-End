@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class TargetObj {
+            constructor(age, name) {
+                this.name = name;
+                this.age = age;
+                this.build();
+            }
+            build() {
+                let body = document.getElementsByTagName('body')[0];
+                console.log(body)
+                body.innerHTML = `${this.name} + ${this.age}`
+            }
+        }
+
+        let targetObj = new TargetObj(1, 'Martin');
+
+        let observerProxy = new Proxy(targetObj, {
+            set(target, property, value, reciever) {
+                if (property === 'name') {
+                    observer(target[property], value);
+                }
+
+                Reflect.set(target, property, value, reciever);
+            }
+        });
+        // 定义值改变时的处理函数
+        function observer(oldVal, newVal) {
+            // 其他处理逻辑...
+            console.info(`name属性的值从 ${oldVal} 改变为 ${newVal}`);
+        }
+
+        observerProxy.name = 'Lucas';
+        console.info(targetObj);
+
+
+
+    </script>
+</body>
+
+</html>
